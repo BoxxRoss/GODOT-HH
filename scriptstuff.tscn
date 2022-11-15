@@ -1,0 +1,189 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://the realthing.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://enemy.gd" type="Script" id=3]
+[ext_resource path="res://NEW lightingthing.png" type="Texture" id=4]
+[ext_resource path="res://WALL.tres" type="TileSet" id=5]
+[ext_resource path="res://lights.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 21.5, 20 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.5, 21 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19.5, 19 )
+
+[node name="world" instance=ExtResource( 1 )]
+position = Vector2( 1, 0 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+modulate = Color( 0.286275, 0.368627, 0.345098, 1 )
+position = Vector2( 960, 337 )
+scale = Vector2( 109.125, 61.1875 )
+texture = ExtResource( 4 )
+
+[node name="KinematicBody2D" parent="." index="1"]
+position = Vector2( 302, 171 )
+
+[node name="CollisionShape2D" parent="KinematicBody2D" index="1"]
+position = Vector2( 0, -0.5 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="3"]
+current = true
+zoom = Vector2( 0.7, 0.7 )
+smoothing_enabled = true
+
+[node name="Light2D" type="Light2D" parent="KinematicBody2D" index="4"]
+position = Vector2( 81, -4 )
+scale = Vector2( 2.6875, 2.02344 )
+texture = ExtResource( 6 )
+color = Color( 0.996078, 1, 0.709804, 1 )
+shadow_enabled = true
+
+[node name="bulletpoint" type="Node2D" parent="KinematicBody2D" index="5"]
+position = Vector2( 16, 0 )
+
+[node name="enemy" type="KinematicBody2D" parent="." index="2" groups=["enviroment"]]
+position = Vector2( 335, 415 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy" index="0"]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 3 )
+
+[node name="Icon" type="Sprite" parent="enemy" index="1"]
+modulate = Color( 0.627451, 0.0392157, 0.0392157, 1 )
+position = Vector2( -0.500008, 0 )
+scale = Vector2( 0.640625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="enemy" index="2"]
+position = Vector2( 0.5, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )
+
+[node name="enemy2" type="KinematicBody2D" parent="." index="3" groups=["enviroment"]]
+position = Vector2( -21, 376 )
+rotation = -2.61799
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy2" index="0"]
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="enemy2" index="1"]
+modulate = Color( 0.627451, 0.0392157, 0.0392157, 1 )
+position = Vector2( -0.500008, 0 )
+scale = Vector2( 0.640625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="enemy2" index="2"]
+position = Vector2( 0.5, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy2/Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )
+
+[node name="enemy3" type="KinematicBody2D" parent="." index="4" groups=["enviroment"]]
+position = Vector2( -11, 474 )
+rotation = -2.61799
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy3" index="0"]
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="enemy3" index="1"]
+modulate = Color( 0.627451, 0.0392157, 0.0392157, 1 )
+position = Vector2( -0.500008, 0 )
+scale = Vector2( 0.640625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="enemy3" index="2"]
+position = Vector2( 0.5, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy3/Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )
+
+[node name="enemy4" type="KinematicBody2D" parent="." index="5" groups=["enviroment"]]
+position = Vector2( 86, 496 )
+rotation = -2.61799
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy4" index="0"]
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="enemy4" index="1"]
+modulate = Color( 0.627451, 0.0392157, 0.0392157, 1 )
+position = Vector2( -0.500008, 0 )
+scale = Vector2( 0.640625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="enemy4" index="2"]
+position = Vector2( 0.5, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy4/Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )
+
+[node name="enemy5" type="KinematicBody2D" parent="." index="6" groups=["enviroment"]]
+position = Vector2( 869, -14 )
+rotation = -2.61799
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy5" index="0"]
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="enemy5" index="1"]
+modulate = Color( 0.627451, 0.0392157, 0.0392157, 1 )
+position = Vector2( -0.500008, 0 )
+scale = Vector2( 0.640625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="enemy5" index="2"]
+position = Vector2( 0.5, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy5/Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )
+
+[node name="enemy6" type="KinematicBody2D" parent="." index="7" groups=["enviroment"]]
+position = Vector2( 476, 58 )
+rotation = -1.57079
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy6" index="0"]
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="enemy6" index="1"]
+modulate = Color( 0.627451, 0.0392157, 0.0392157, 1 )
+position = Vector2( -0.500008, 0 )
+scale = Vector2( 0.640625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="enemy6" index="2"]
+position = Vector2( 0.5, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy6/Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="." index="8" groups=["enviroment"]]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -720867, 0, 0, -720866, 0, 0, -720865, 0, 0, -720864, 0, 0, -720863, 0, 0, -720862, 0, 0, -720861, 0, 0, -720860, 0, 0, -720859, 0, 0, -655332, 0, 0, -655331, 0, 0, -655323, 0, 0, -655322, 0, 0, -655321, 0, 0, -589796, 0, 0, -589785, 0, 0, -524260, 0, 0, -524249, 0, 0, -458724, 0, 0, -458713, 0, 0, -393188, 0, 0, -393177, 0, 0, -393176, 0, 0, -393175, 0, 0, -393174, 0, 0, -393171, 0, 0, -393170, 0, 0, -393169, 0, 0, -393168, 0, 0, -393167, 0, 0, -393166, 0, 0, -393164, 0, 0, -393163, 0, 0, -393162, 0, 0, -393161, 0, 0, -393160, 0, 0, -327652, 0, 0, -327641, 0, 0, -327639, 0, 0, -327638, 0, 0, -327637, 0, 0, -327636, 0, 0, -327635, 0, 0, -327630, 0, 0, -327623, 0, 0, -262116, 0, 0, -262105, 0, 0, -262103, 0, 0, -262094, 0, 0, -262087, 0, 0, -262086, 0, 0, -262085, 0, 0, -262084, 0, 0, -196580, 0, 0, -196569, 0, 0, -196558, 0, 0, -196551, 0, 0, -196548, 0, 0, -196547, 0, 0, -131033, 0, 0, -131022, 0, 0, -131015, 0, 0, -131011, 0, 0, -131010, 0, 0, -131009, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65503, 0, 0, -65497, 0, 0, -65493, 0, 0, -65486, 0, 0, -65479, 0, 0, -65473, 0, 0, -65472, 0, 0, 4, 0, 0, 15, 0, 0, 33, 0, 0, 39, 0, 0, 43, 0, 0, 50, 0, 0, 57, 0, 0, 64, 0, 0, 65540, 0, 0, 65569, 0, 0, 65575, 0, 0, 65579, 0, 0, 65586, 0, 0, 65593, 0, 0, 65600, 0, 0, 65601, 0, 0, 131076, 0, 0, 131122, 0, 0, 131129, 0, 0, 131137, 0, 0, 131138, 0, 0, 196612, 0, 0, 196613, 0, 0, 196658, 0, 0, 196665, 0, 0, 196674, 0, 0, 196675, 0, 0, 262149, 0, 0, 262194, 0, 0, 262201, 0, 0, 262211, 0, 0, 327685, 0, 0, 327730, 0, 0, 327737, 0, 0, 327748, 0, 0, 393221, 0, 0, 393231, 0, 0, 393232, 0, 0, 393245, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0, 393256, 0, 0, 393257, 0, 0, 393258, 0, 0, 393259, 0, 0, 393260, 0, 0, 393261, 0, 0, 393262, 0, 0, 393263, 0, 0, 393264, 0, 0, 393265, 0, 0, 393266, 0, 0, 393284, 0, 0, 393285, 0, 0, 458757, 0, 0, 458766, 0, 0, 458781, 0, 0, 458821, 0, 0, 458822, 0, 0, 524293, 0, 0, 524294, 0, 0, 524301, 0, 0, 524317, 0, 0, 524358, 0, 0, 589829, 0, 0, 589830, 0, 0, 589837, 0, 0, 589853, 0, 0, 589894, 0, 0, 589895, 0, 0, 655366, 0, 0, 655389, 0, 0, 655431, 0, 0, 720902, 0, 0, 720925, 0, 0, 720930, 0, 0, 720931, 0, 0, 720933, 0, 0, 720934, 0, 0, 720952, 0, 0, 720967, 0, 0, 786438, 0, 0, 786461, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786488, 0, 0, 786503, 0, 0, 851974, 0, 0, 851997, 0, 0, 852002, 0, 0, 852003, 0, 0, 852004, 0, 0, 852024, 0, 0, 852030, 0, 0, 852031, 0, 0, 852039, 0, 0, 983038, 0, 0, 983039, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917510, 0, 0, 917533, 0, 0, 917538, 0, 0, 917539, 0, 0, 917560, 0, 0, 917565, 0, 0, 917566, 0, 0, 917575, 0, 0, 1048572, 0, 0, 1048573, 0, 0, 1048574, 0, 0, 983041, 0, 0, 983046, 0, 0, 983047, 0, 0, 983069, 0, 0, 983074, 0, 0, 983096, 0, 0, 983100, 0, 0, 983101, 0, 0, 983103, 0, 0, 983111, 0, 0, 1114107, 0, 0, 1114108, 0, 0, 1048577, 0, 0, 1048605, 0, 0, 1048632, 0, 0, 1048635, 0, 0, 1048636, 0, 0, 1048639, 0, 0, 1048647, 0, 0, 1179642, 0, 0, 1179643, 0, 0, 1114113, 0, 0, 1114135, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114141, 0, 0, 1114168, 0, 0, 1114169, 0, 0, 1114170, 0, 0, 1114175, 0, 0, 1114183, 0, 0, 1245178, 0, 0, 1179649, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179677, 0, 0, 1179693, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1179702, 0, 0, 1179703, 0, 0, 1179704, 0, 0, 1179705, 0, 0, 1179711, 0, 0, 1179719, 0, 0, 1310714, 0, 0, 1245185, 0, 0, 1245207, 0, 0, 1245211, 0, 0, 1245213, 0, 0, 1245228, 0, 0, 1245229, 0, 0, 1245247, 0, 0, 1245248, 0, 0, 1245255, 0, 0, 1376250, 0, 0, 1310721, 0, 0, 1310749, 0, 0, 1310763, 0, 0, 1310764, 0, 0, 1310784, 0, 0, 1310785, 0, 0, 1310791, 0, 0, 1441785, 0, 0, 1441786, 0, 0, 1376257, 0, 0, 1376265, 0, 0, 1376266, 0, 0, 1376268, 0, 0, 1376285, 0, 0, 1376299, 0, 0, 1376321, 0, 0, 1376327, 0, 0, 1507321, 0, 0, 1441801, 0, 0, 1441804, 0, 0, 1441821, 0, 0, 1441834, 0, 0, 1441863, 0, 0, 1572857, 0, 0, 1507337, 0, 0, 1507340, 0, 0, 1507370, 0, 0, 1507399, 0, 0, 1638393, 0, 0, 1572873, 0, 0, 1572876, 0, 0, 1572905, 0, 0, 1572906, 0, 0, 1572934, 0, 0, 1572935, 0, 0, 1703929, 0, 0, 1638409, 0, 0, 1638412, 0, 0, 1638441, 0, 0, 1638470, 0, 0, 1769465, 0, 0, 1703945, 0, 0, 1703948, 0, 0, 1703977, 0, 0, 1704004, 0, 0, 1704005, 0, 0, 1704006, 0, 0, 1835001, 0, 0, 1769481, 0, 0, 1769485, 0, 0, 1769513, 0, 0, 1769533, 0, 0, 1769534, 0, 0, 1769535, 0, 0, 1769536, 0, 0, 1769537, 0, 0, 1769538, 0, 0, 1769539, 0, 0, 1769540, 0, 0, 1900537, 0, 0, 1835017, 0, 0, 1835021, 0, 0, 1835022, 0, 0, 1835049, 0, 0, 1835069, 0, 0, 1966073, 0, 0, 1900553, 0, 0, 1900558, 0, 0, 1900559, 0, 0, 1900560, 0, 0, 1900561, 0, 0, 1900562, 0, 0, 1900563, 0, 0, 1900564, 0, 0, 1900585, 0, 0, 1900588, 0, 0, 1900589, 0, 0, 1900590, 0, 0, 1900591, 0, 0, 1900592, 0, 0, 1900593, 0, 0, 1900594, 0, 0, 1900595, 0, 0, 1900596, 0, 0, 1900597, 0, 0, 1900598, 0, 0, 1900599, 0, 0, 1900600, 0, 0, 1900601, 0, 0, 1900602, 0, 0, 1900603, 0, 0, 1900604, 0, 0, 1900605, 0, 0, 2031609, 0, 0, 2031610, 0, 0, 1966089, 0, 0, 1966101, 0, 0, 1966102, 0, 0, 1966103, 0, 0, 1966104, 0, 0, 1966105, 0, 0, 1966106, 0, 0, 1966107, 0, 0, 1966108, 0, 0, 1966109, 0, 0, 1966110, 0, 0, 1966111, 0, 0, 1966112, 0, 0, 1966113, 0, 0, 1966114, 0, 0, 1966115, 0, 0, 1966116, 0, 0, 1966117, 0, 0, 1966118, 0, 0, 1966119, 0, 0, 1966120, 0, 0, 1966121, 0, 0, 1966123, 0, 0, 1966124, 0, 0, 2097146, 0, 0, 2031625, 0, 0, 2162682, 0, 0, 2097161, 0, 0, 2228218, 0, 0, 2162697, 0, 0, 2293754, 0, 0, 2293755, 0, 0, 2293756, 0, 0, 2293757, 0, 0, 2293758, 0, 0, 2293759, 0, 0, 2228224, 0, 0, 2228225, 0, 0, 2228226, 0, 0, 2228227, 0, 0, 2228233, 0, 0, 2293763, 0, 0, 2293764, 0, 0, 2293765, 0, 0, 2293766, 0, 0, 2293767, 0, 0, 2293768, 0, 0, 2293769, 0, 0 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="9"]
+
+[connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="enemy/Area2D" to="enemy" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="enemy2/Area2D" to="enemy2" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="enemy3/Area2D" to="enemy3" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="enemy4/Area2D" to="enemy4" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="enemy5/Area2D" to="enemy5" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="enemy6/Area2D" to="enemy6" method="_on_Area2D_body_entered"]
