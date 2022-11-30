@@ -9,7 +9,7 @@ var motion = Vector2()
 func _physics_process(delta):
 	var Player = get_parent().get_node("KinematicBody2D")
 	
-	position += (Player.position - position)/50
+	position += (Player.position - position)/60
 	look_at(Player.position)
 	
 	move_and_collide(motion)

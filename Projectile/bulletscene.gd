@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends bullets
 
 
 func _on_bulletscene_body_entered(body):

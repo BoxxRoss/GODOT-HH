@@ -6,6 +6,11 @@
 [node name="world" instance=ExtResource( 1 )]
 position = Vector2( 59, 68 )
 
+[node name="TinyBullet" type="Sprite" parent="." index="1"]
+position = Vector2( 80, -17 )
+scale = Vector2( 1.625, 1.28125 )
+texture = ExtResource( 2 )
+
 [node name="NewPiskel" parent="KinematicBody2D" index="0"]
 position = Vector2( 19.5, -17 )
 scale = Vector2( 2.21875, 2 )
@@ -15,8 +20,3 @@ position = Vector2( 19, -16 )
 
 [node name="CollisionShape2D" parent="KinematicBody2D/Area2D" index="0"]
 position = Vector2( 19.5, -16.5 )
-
-[node name="TinyBullet" type="Sprite" parent="." index="1"]
-position = Vector2( 80, -17 )
-scale = Vector2( 1.625, 1.28125 )
-texture = ExtResource( 2 )
