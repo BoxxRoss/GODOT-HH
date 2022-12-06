@@ -8,6 +8,7 @@ func _process(delta):
 	if ENEMYhealth <= 0:
 		queue_free()	
 
+
 func _physics_process(delta):
 	var Player = get_parent().get_node("KinematicBody2D")
 	
