@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://the realthing.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://NEW lightingthing.png" type="Texture" id=4]
 [ext_resource path="res://WALL.tres" type="TileSet" id=5]
 [ext_resource path="res://flashlight.png" type="Texture" id=6]
+[ext_resource path="res://bar.png" type="Texture" id=7]
+[ext_resource path="res://Control.gd" type="Script" id=8]
+[ext_resource path="res://Camera2D.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22.5, 22 )
+extents = Vector2( 21.0001, 19.9999 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20.7501, 19.9999 )
@@ -18,7 +21,7 @@ position = Vector2( 1, 0 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 modulate = Color( 0.286275, 0.368627, 0.345098, 1 )
-position = Vector2( 950, 348 )
+position = Vector2( 1025, 343 )
 scale = Vector2( 109.125, 61.1875 )
 texture = ExtResource( 4 )
 
@@ -34,9 +37,10 @@ position = Vector2( 0, -0.5 )
 current = true
 zoom = Vector2( 0.7, 0.7 )
 smoothing_enabled = true
+script = ExtResource( 9 )
 
 [node name="Light2D" type="Light2D" parent="KinematicBody2D" index="4"]
-position = Vector2( 1, 0 )
+position = Vector2( 1, -2 )
 scale = Vector2( 2.6875, 2.02344 )
 texture = ExtResource( 6 )
 energy = 1.2
@@ -266,6 +270,24 @@ tile_data = PoolIntArray( -720867, 0, 0, -720866, 0, 0, -720865, 0, 0, -720864, 
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="13"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="14"]
+
+[node name="Control" type="Control" parent="CanvasLayer" index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Control" index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+step = 0.01
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 7 )
+tint_under = Color( 0, 0, 0, 1 )
+tint_progress = Color( 0.74902, 0.25098, 0.25098, 1 )
+
+[connection signal="camera_zoom" from="KinematicBody2D" to="KinematicBody2D/Camera2D" method="_on_KinematicBody2D_camera_zoom"]
+[connection signal="stamina_change" from="KinematicBody2D" to="CanvasLayer/Control" method="_on_KinematicBody2D_stamina_change"]
 [connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="enemy1/Area2D" to="enemy1" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="enemy2/Area2D" to="enemy2" method="_on_Area2D_body_entered"]

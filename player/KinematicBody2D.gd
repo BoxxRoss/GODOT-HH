@@ -1,46 +1,55 @@
 extends KinematicBody2D
 
+var is_breathing = false
 var move = false
-var stamina = 100
+export var stamina = 100
+signal stamina_change
+signal camera_zoom
 var fire_rate = 0.5
 var movespeed = 200
 var bullet_speed = 750
 var bullet = preload("res://Projectile/bullets.tscn")
 var can_fire = true
 
-func _ready():
-	pass # Replace with function body.
-
 func _physics_process(delta):
 	var motion = Vector2()
 	move = false
+	
+	
+		
+	
 	if Input.is_action_pressed("Up"):
 		motion.y -= 1
-		stamina = stamina - 0.1
-		print(stamina)
+		stamina = stamina - 0.05
 		move = true
-
+		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Down"):
 		motion.y += 1
-		stamina = stamina - 0.1
-		print(stamina)
+		stamina = stamina - 0.05
 		move = true
-
+		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Left"):
 		motion.x -= 1
-		stamina = stamina - 0.1
-		print(stamina)
+		stamina = stamina - 0.05
 		move = true
+		emit_signal("stamina_change", stamina)
 
 		
 	if Input.is_action_pressed("Right"):
 		motion.x += 1
-		stamina = stamina - 0.1
-		print(stamina)
+		stamina = stamina - 0.05
 		move = true
-
+		emit_signal("stamina_change", stamina)
+		
+		
+	if Input.is_action_just_pressed("Breath"):
+		stamina = stamina + 10
+		movespeed = 10
+		emit_signal("camera_zoom")
+		is_breathing = true
+		
 		
 	if stamina >= 100:
 		stamina = 100
@@ -57,7 +66,8 @@ func _physics_process(delta):
 
 	if move == false:
 		stamina = stamina + 0.22
-	print (stamina)
+		emit_signal("stamina_change", stamina)
+
 		
 	motion = motion.normalized()
 	motion = move_and_slide(motion * movespeed)
@@ -65,10 +75,12 @@ func _physics_process(delta):
 
 
 		
-	if Input.is_action_just_pressed("Shoot") and can_fire and stamina > 10:
+	if Input.is_action_just_pressed("Shoot") and can_fire and stamina > 10 and is_breathing != true:
 		fire()
+		emit_signal("stamina_change", stamina)
 
 func fire ():
+	stamina = stamina - 5
 	var bullet_instance = bullet.instance()
 	bullet_instance.position = $bulletpoint.get_global_position()
 	bullet_instance.rotation_degrees = rotation_degrees
@@ -77,12 +89,11 @@ func fire ():
 	can_fire = false
 	yield(get_tree().create_timer(fire_rate), "timeout")
 	can_fire = true
-	stamina = stamina - 10
+	
+	
 func kill ():
 	get_tree().reload_current_scene()
 	
-	
-
 
 
 
