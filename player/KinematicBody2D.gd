@@ -1,15 +1,19 @@
 extends KinematicBody2D
 
+
 var is_breathing = false
 var move = false
 export var stamina = 100
 signal stamina_change
 signal camera_zoom
+signal camera_zoom_out
+signal slow_down
 var fire_rate = 0.5
 var movespeed = 200
 var bullet_speed = 750
 var bullet = preload("res://Projectile/bullets.tscn")
 var can_fire = true
+var Sprint = false
 
 func _physics_process(delta):
 	var motion = Vector2()
@@ -45,11 +49,27 @@ func _physics_process(delta):
 		
 		
 	if Input.is_action_just_pressed("Breath"):
-		stamina = stamina + 10
-		movespeed = 10
+		stamina = stamina + 5
 		emit_signal("camera_zoom")
+		emit_signal("slow_down")
 		is_breathing = true
+		Engine.time_scale = 0.05
 		
+	if Input.is_action_just_pressed("Cancel"):
+		if is_breathing == true:
+			is_breathing = false
+			movespeed = 200
+			emit_signal("camera_zoom_out")
+			Engine.time_scale = 1
+	
+	if Input.is_action_pressed("Sprint"):
+		Sprint = true
+		movespeed = 300
+		print(movespeed)
+		stamina = stamina - 0.2
+		
+	else:
+		Sprint = false
 		
 	if stamina >= 100:
 		stamina = 100
@@ -59,9 +79,9 @@ func _physics_process(delta):
 		movespeed = movespeed - 1
 		if movespeed <= 100:	
 			movespeed = 100
-	elif stamina > 0:
+	elif stamina > 0 and is_breathing == false:
 		movespeed = movespeed + 1
-		if movespeed >= 200:
+		if movespeed >= 200 and Sprint == false:
 			movespeed = 200
 
 	if move == false:
@@ -93,7 +113,7 @@ func fire ():
 	
 func kill ():
 	get_tree().reload_current_scene()
-	
+	Engine.time_scale = 1
 
 
 
@@ -101,3 +121,5 @@ func kill ():
 func _on_Area2D_body_entered(body):
 	if "enemy" in body.name:
 		kill()
+
+

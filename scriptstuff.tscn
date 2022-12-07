@@ -37,6 +37,10 @@ position = Vector2( 0, -0.5 )
 current = true
 zoom = Vector2( 0.7, 0.7 )
 smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
 script = ExtResource( 9 )
 
 [node name="Light2D" type="Light2D" parent="KinematicBody2D" index="4"]
@@ -287,6 +291,8 @@ tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.74902, 0.25098, 0.25098, 1 )
 
 [connection signal="camera_zoom" from="KinematicBody2D" to="KinematicBody2D/Camera2D" method="_on_KinematicBody2D_camera_zoom"]
+[connection signal="camera_zoom_out" from="KinematicBody2D" to="KinematicBody2D/Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]
+[connection signal="slow_down" from="KinematicBody2D" to="enemy1" method="_on_KinematicBody2D_slow_down"]
 [connection signal="stamina_change" from="KinematicBody2D" to="CanvasLayer/Control" method="_on_KinematicBody2D_stamina_change"]
 [connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="enemy1/Area2D" to="enemy1" method="_on_Area2D_body_entered"]
