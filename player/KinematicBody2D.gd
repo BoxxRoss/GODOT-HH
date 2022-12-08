@@ -8,6 +8,7 @@ signal stamina_change
 signal camera_zoom
 signal camera_zoom_out
 signal slow_down
+
 var fire_rate = 0.5
 var movespeed = 200
 var bullet_speed = 750
@@ -54,6 +55,7 @@ func _physics_process(delta):
 		emit_signal("slow_down")
 		is_breathing = true
 		Engine.time_scale = 0.05
+		Engine.iterations_per_second = 45
 		
 	if Input.is_action_just_pressed("Cancel"):
 		if is_breathing == true:
@@ -61,6 +63,7 @@ func _physics_process(delta):
 			movespeed = 200
 			emit_signal("camera_zoom_out")
 			Engine.time_scale = 1
+			Engine.iterations_per_second = 60
 	
 	if Input.is_action_pressed("Sprint"):
 		Sprint = true
@@ -114,7 +117,7 @@ func fire ():
 func kill ():
 	get_tree().reload_current_scene()
 	Engine.time_scale = 1
-
+	Engine.iterations_per_second = 60
 
 
 
