@@ -8,6 +8,7 @@ signal stamina_change
 signal camera_zoom
 signal camera_zoom_out
 signal slow_down
+var breathless = false
 
 var fire_rate = 0.5
 var movespeed = 200
@@ -25,26 +26,26 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("Up"):
 		motion.y -= 1
-		stamina = stamina - 0.05
+		stamina = stamina - 0.025
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Down"):
 		motion.y += 1
-		stamina = stamina - 0.05
+		stamina = stamina - 0.025
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Left"):
 		motion.x -= 1
-		stamina = stamina - 0.05
+		stamina = stamina - 0.025
 		move = true
 		emit_signal("stamina_change", stamina)
 
 		
 	if Input.is_action_pressed("Right"):
 		motion.x += 1
-		stamina = stamina - 0.05
+		stamina = stamina - 0.025
 		move = true
 		emit_signal("stamina_change", stamina)
 		
@@ -65,7 +66,7 @@ func _physics_process(delta):
 			Engine.time_scale = 1
 			Engine.iterations_per_second = 60
 	
-	if Input.is_action_pressed("Sprint"):
+	if Input.is_action_pressed("Sprint") and breathless == false:
 		Sprint = true
 		movespeed = 300
 		print(movespeed)
@@ -80,10 +81,12 @@ func _physics_process(delta):
 	if stamina < 0:
 		stamina = 0
 		movespeed = movespeed - 1
+		breathless = true
 		if movespeed <= 100:	
 			movespeed = 100
-	elif stamina > 0 and is_breathing == false:
+	elif stamina > 10 and is_breathing == false:
 		movespeed = movespeed + 1
+		breathless = false
 		if movespeed >= 200 and Sprint == false:
 			movespeed = 200
 

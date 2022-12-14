@@ -1,8 +1,8 @@
 extends Camera2D
 
-var min_zoom = Vector2(0.200001, 0.200001)
-var max_zoom = Vector2(0.7, 0.7)
-var zoom_speed = Vector2(0.5, 0.5)
+var min_zoom = Vector2(0.100001, 0.100001)
+var zoomed = false
+var zoom_speed = Vector2(0.35, 0.35)
 var des_zoom = zoom
 
 
@@ -11,12 +11,15 @@ func _process(delta):
 
 	
 func _on_KinematicBody2D_camera_zoom():
-	if des_zoom > min_zoom:
+	if des_zoom > min_zoom and zoomed == false:
+		zoomed = true
 		des_zoom -= zoom_speed
 		
+			
 		
 
 
 
 func _on_KinematicBody2D_camera_zoom_out():
-	des_zoom = Vector2(0.7, 0.7)
+	des_zoom = Vector2(0.45, 0.45)
+	zoomed = false

@@ -3,11 +3,12 @@ extends KinematicBody2D
 export var ENEMYhealth : int = 3
 
 
+
+
 func _process(delta):
 	if ENEMYhealth <= 0:
-		queue_free()	
-
-
+		queue_free()
+		Global.score += 1
 
 func _physics_process(delta):
 	
@@ -27,20 +28,5 @@ func _on_Area2D_body_entered(body):
 	
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
