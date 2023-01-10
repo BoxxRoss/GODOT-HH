@@ -9,6 +9,9 @@ func _process(delta):
 	if ENEMYhealth <= 0:
 		queue_free()
 		Global.score += 1
+		Global.enemy_score -= 10
+		print(Global.enemy_score)
+
 
 func _physics_process(delta):
 	

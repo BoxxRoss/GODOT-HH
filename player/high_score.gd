@@ -1,0 +1,12 @@
+extends Label
+
+
+
+func _process(delta):
+	self.text = str("Most Ghosts Vanquished: ",Global.highest_score)
+
+
+func _on_KinematicBody2D_player_death():
+	
+	if Global.highest_score < Global.last_score:
+		Global.highest_score = Global.last_score

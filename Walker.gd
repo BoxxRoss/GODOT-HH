@@ -17,7 +17,7 @@ func _init(starting_position, new_border):
 	
 func walk(steps):
 	for step in steps:
-		if randf() <= 0.2 or steps_since_turn >= 3:
+		if randf() <= 0.2 or steps_since_turn >= 4:
 			change_direction()
 		if step():
 			step_history.append(position)

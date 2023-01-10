@@ -4,10 +4,10 @@ extends KinematicBody2D
 var is_breathing = false
 var move = false
 export var stamina = 100
+signal player_death
 signal stamina_change
 signal camera_zoom
 signal camera_zoom_out
-signal slow_down
 var breathless = false
 
 var fire_rate = 0.5
@@ -21,7 +21,7 @@ func _physics_process(delta):
 	var motion = Vector2()
 	move = false
 	
-	
+
 		
 	
 	if Input.is_action_pressed("Up"):
@@ -49,11 +49,10 @@ func _physics_process(delta):
 		move = true
 		emit_signal("stamina_change", stamina)
 		
-		
+	
 	if Input.is_action_just_pressed("Breath"):
 		stamina = stamina + 5
 		emit_signal("camera_zoom")
-		emit_signal("slow_down")
 		is_breathing = true
 		Engine.time_scale = 0.05
 		Engine.iterations_per_second = 45
@@ -121,11 +120,14 @@ func kill ():
 	get_tree().reload_current_scene()
 	Engine.time_scale = 1
 	Engine.iterations_per_second = 60
+	emit_signal("player_death")
 
 
-
-func _on_Area2D_body_entered(body):
+func _on_Area2D2_body_entered(body):
 	if "enemy" in body.name:
 		kill()
+
+
+
 
 
