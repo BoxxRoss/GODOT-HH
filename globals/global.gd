@@ -11,3 +11,6 @@ func instance_node(node, location, parent):
 	node_instance.global_position = location
 	return node_instance
 	
+
+
+

@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 Betterpause="*res://Rooms/betterpause.tscn"
 Global="*res://globals/global.gd"
+SaveScript="*res://Save_script.gd"
 
 [display]
 

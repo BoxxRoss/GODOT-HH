@@ -11,9 +11,12 @@ var zoomed = false
 var zoom_speed = Vector2(0.35, 0.35)
 var des_zoom = zoom
 
+func _process(delta):
+	zoom = lerp(zoom, des_zoom, .05)
 
 
 func _input(event):
+	
 	
 
 	if event is InputEventMouseMotion:
