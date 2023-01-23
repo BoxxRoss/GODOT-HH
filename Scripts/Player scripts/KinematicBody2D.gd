@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+var health = 50
 var is_breathing = false
 var move = false
 export var stamina = 100
@@ -8,11 +8,12 @@ signal player_death
 signal stamina_change
 signal camera_zoom
 signal camera_zoom_out
-var breathless = false
+signal damage_taken
 
+var breathless = false
 var fire_rate = 0.5
 var movespeed = 200
-var bullet_speed = 750
+var bullet_speed = 400
 var bullet = preload("res://Projectile/bullets.tscn")
 var can_fire = true
 var Sprint = false
@@ -20,7 +21,7 @@ var Sprint = false
 func _physics_process(delta):
 	var motion = Vector2()
 	move = false
-	
+	print(motion)
 
 		
 	
@@ -68,7 +69,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Sprint") and breathless == false:
 		Sprint = true
 		movespeed = 300
-		print(movespeed)
 		stamina = stamina - 0.2
 		
 	else:
@@ -104,6 +104,9 @@ func _physics_process(delta):
 		fire()
 		emit_signal("stamina_change", stamina)
 
+func _ready():
+	emit_signal("damage_taken", health)
+
 func fire ():
 	stamina = stamina - 5
 	var bullet_instance = bullet.instance()
@@ -116,17 +119,27 @@ func fire ():
 	can_fire = true
 	
 	
-func kill ():
+func kill():
 	get_tree().reload_current_scene()
+	health = 100
+	is_breathing = false
+	emit_signal("damage_taken", health)
+	Global.enemy_score = 0
 	Engine.time_scale = 1
 	Engine.iterations_per_second = 60
 	emit_signal("player_death")
 
 
 func _on_Area2D2_body_entered(body):
-	if "enemy" in body.name:
-		kill()
+	if "enemy" in body.name:	
+		health -= 10
+		emit_signal("damage_taken", health)
+		if is_breathing == true:
+			kill()
+		if health <= 0:
+			kill()
 
+			
 
 
 

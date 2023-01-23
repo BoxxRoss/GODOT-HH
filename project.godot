@@ -22,13 +22,13 @@ _global_script_class_icons={
 
 config/name="Hidden Horror"
 run/main_scene="res://Rooms/MainMenu.tscn"
-config/icon="res://icon.png"
+config/icon="res://Sprites/icon.png"
 
 [autoload]
 
 Betterpause="*res://Rooms/betterpause.tscn"
 Global="*res://globals/global.gd"
-SaveScript="*res://Save_script.gd"
+SaveScript="*res://Scripts/Room Scripts/Save_script.gd"
 
 [display]
 

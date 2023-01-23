@@ -7,8 +7,8 @@ var borders = Rect2(1, 1, 132,82)
 var Player = preload("res://player/playernew.tscn")
 
 onready var tileMap = $TileMap2
-signal scoreupdate
-var enemy_1 = preload("res://enemy1.tscn")
+signal timer_reduce
+var enemy_1 = preload("res://Enemys/enemy1.tscn")
 var options = [1,2,3,4,5]
 var playerspot = Vector2(0,0)
 
@@ -19,27 +19,28 @@ func _ready():
 	randomize()
 	var rand_value = options[randi() % options.size()]
 	if rand_value == 1:
-		playerspot = Vector2(3072 * 2,1984 * 2)
+		playerspot = Vector2(1408,1120)
 	if rand_value == 2:
-		playerspot = Vector2(1184 * 2,832 * 2)
+		playerspot = Vector2(2592, 4832)
 	if rand_value == 3:
-		playerspot = Vector2(4832 * 2,2976 * 2)
+		playerspot = Vector2(6240, 1440)
 	if rand_value == 4:
-		playerspot = Vector2(1856 * 2,2784 * 2)
+		playerspot = Vector2(7840, 4864)
 	if rand_value == 5:
-		playerspot = Vector2(3680 * 2,1088 * 2)		
+		playerspot = Vector2(4192, 2784)		
 	generate_level()
 	
 
 	
 func generate_level():
 	var walker = Walker.new(Vector2(76,41), borders)
-	var map = walker.walk(15000)	
+	var map = walker.walk(13000)	
 	
 
 	var player = Player.instance()
 	add_child(player)
 	player.position = playerspot
+
 
 	
 	walker.queue_free()
@@ -55,8 +56,14 @@ func _input(event):
 """
 
 func _process(delta):
-	print(Global.last_score)
+	emit_signal("timer_reduce")
 
+	
+
+	
+	
+	
+	
 func _on_enemy_spawn_timer_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -68,10 +75,10 @@ func _on_enemy_spawn_timer_timeout():
 	if Global.enemy_score != 100:
 		add_child(instance)
 		Global.enemy_score += 10
-		print(Global.enemy_score)
+
 
 
 func _on_world_tree_exiting() -> void:
 	SaveScript.save_val(Global.highest_score)
-	print("exited well")
+
 	
