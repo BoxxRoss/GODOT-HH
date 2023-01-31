@@ -1,52 +1,125 @@
 extends KinematicBody2D
 
+# health related
+var max_health = 50
 var health = 50
+
+# breathing mechanics
+var breathless = false
 var is_breathing = false
-var move = false
-export var stamina = 100
-signal player_death
+
+# stamina 
 signal stamina_change
+export var stamina = 100
+# level ups
+var has_upgrade_one = false
+var has_upgrade_two = false
+var has_upgrade_three = false
+var has_upgrade_four = false
+var has_upgrade_five = false
+var has_upgrade_six = false
+var	has_upgrade_sevean = false
+var has_upgrade_eight = false
+var has_upgrade_nine = false
+var has_upgrade_ten = false
+
+# camera
 signal camera_zoom
 signal camera_zoom_out
-signal damage_taken
 
-var breathless = false
+# movement
+var move = false
+var movespeed = 6000 
+var Sprint = false
+
+# death and damage
+signal damage_taken
+signal player_death
+
+# bullets and weapons
 var fire_rate = 0.5
-var movespeed = 200
 var bullet_speed = 400
 var bullet = preload("res://Projectile/bullets.tscn")
+var block = preload("res://Projectile/Crosshair.tscn")
 var can_fire = true
-var Sprint = false
+
+func _level_checks():
+	
+	if Global.kill_count >= 5 and has_upgrade_one == false:
+		level_up()
+		has_upgrade_one = true
+		print(has_upgrade_one)
+		
+	if Global.kill_count >= 10 and has_upgrade_two == false:
+		level_up()
+		has_upgrade_two = true
+	
+	if Global.kill_count >= 15 and has_upgrade_three == false:
+		level_up()
+		has_upgrade_three = true
+		
+	if Global.kill_count >= 20 and has_upgrade_four == false:
+		level_up()
+		has_upgrade_four = true
+		
+	if Global.kill_count >= 25 and has_upgrade_five == false:
+		level_up()
+		has_upgrade_five = true
+		
+	if Global.kill_count >= 30 and has_upgrade_six == false:
+		level_up()
+		has_upgrade_six = true
+		
+	if Global.kill_count >= 35 and has_upgrade_sevean == false:
+		level_up()
+		has_upgrade_sevean = true
+		
+	if Global.kill_count >= 40 and has_upgrade_eight == false:
+		level_up()
+		has_upgrade_eight = true
+		
+	if Global.kill_count >= 45 and has_upgrade_nine == false:
+		level_up()
+		has_upgrade_nine = true
+		
+	if Global.kill_count >= 50 and has_upgrade_ten == false:
+		level_up()
+		has_upgrade_ten = true
+		
+func level_up():
+	Global.stamina_multi -= 0.05
+	
 
 func _physics_process(delta):
 	var motion = Vector2()
 	move = false
-	print(motion)
-
-		
 	
+	_level_checks()
+
+				
+				
 	if Input.is_action_pressed("Up"):
 		motion.y -= 1
-		stamina = stamina - 0.025
+		stamina = stamina - (0.025 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Down"):
 		motion.y += 1
-		stamina = stamina - 0.025
+		stamina = stamina - (0.025 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Left"):
 		motion.x -= 1
-		stamina = stamina - 0.025
+		stamina = stamina - (0.025 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 
 		
 	if Input.is_action_pressed("Right"):
 		motion.x += 1
-		stamina = stamina - 0.025
+		stamina = stamina - (0.025 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
@@ -101,6 +174,7 @@ func _physics_process(delta):
 
 		
 	if Input.is_action_just_pressed("Shoot") and can_fire and stamina > 10 and is_breathing != true:
+		Global.fired = true
 		fire()
 		emit_signal("stamina_change", stamina)
 
@@ -109,6 +183,11 @@ func _ready():
 
 func fire ():
 	stamina = stamina - 5
+	var block_instance = block.instance()
+	block_instance.position = get_global_mouse_position()
+	block_instance.rotation_degrees = rotation_degrees
+	get_tree().get_root().call_deferred("add_child", block_instance)
+	
 	var bullet_instance = bullet.instance()
 	bullet_instance.position = $bulletpoint.get_global_position()
 	bullet_instance.rotation_degrees = rotation_degrees
@@ -121,7 +200,7 @@ func fire ():
 	
 func kill():
 	get_tree().reload_current_scene()
-	health = 100
+	health = max_health
 	is_breathing = false
 	emit_signal("damage_taken", health)
 	Global.enemy_score = 0
@@ -144,3 +223,7 @@ func _on_Area2D2_body_entered(body):
 
 
 
+
+
+func _on_KinematicBody2D_stamina_change():
+	pass # Replace with function body.

@@ -1,7 +1,7 @@
 extends Label
 var deathcheck = false
 var highest_score = 0
-var wait = 30
+
 
 func _process(delta):
 	self.text = str("Ghosts Vanquished: ",Global.score)

@@ -27,7 +27,7 @@ config/icon="res://Sprites/icon.png"
 [autoload]
 
 Betterpause="*res://Rooms/betterpause.tscn"
-Global="*res://globals/global.gd"
+Global="*res://Tilesets/globals/global.gd"
 SaveScript="*res://Scripts/Room Scripts/Save_script.gd"
 
 [display]

@@ -117,15 +117,25 @@ script = ExtResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 4.76837e-07, -1.19209e-07 )
-scale = Vector2( 0.876563, 0.680556 )
+scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 energy = 1.2
 shadow_enabled = true
+shadow_gradient_length = 0.4
+
+[node name="Light2D2" type="Light2D" parent="."]
+light_mask = 32
+position = Vector2( 4.76837e-07, -1.19209e-07 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+energy = 0.7
+shadow_gradient_length = 2.0
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
 [connection signal="camera_zoom_out" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]
 [connection signal="damage_taken" from="." to="CanvasLayer/Control" method="_on_KinematicBody2D_damage_taken"]
 [connection signal="player_death" from="." to="CanvasLayer/kill_counter" method="_on_KinematicBody2D_player_death"]
 [connection signal="player_death" from="." to="CanvasLayer/high_score" method="_on_KinematicBody2D_player_death"]
+[connection signal="stamina_change" from="." to="." method="_on_KinematicBody2D_stamina_change"]
 [connection signal="stamina_change" from="." to="CanvasLayer/Control" method="_on_KinematicBody2D_stamina_change"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
