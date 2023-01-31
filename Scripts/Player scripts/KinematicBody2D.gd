@@ -37,7 +37,7 @@ signal damage_taken
 signal player_death
 
 # bullets and weapons
-var fire_rate = 0.5
+var fire_rate = 1.5 
 var bullet_speed = 400
 var bullet = preload("res://Projectile/bullets.tscn")
 var block = preload("res://Projectile/Crosshair.tscn")
