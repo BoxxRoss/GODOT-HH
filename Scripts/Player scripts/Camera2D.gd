@@ -16,8 +16,6 @@ func _process(delta):
 
 
 func _input(event):
-	
-	
 
 	if event is InputEventMouseMotion:
 		var delta = event.relative

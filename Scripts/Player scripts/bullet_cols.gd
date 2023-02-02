@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var flare_spawn = preload("res://Projectile/flare.tscn")
 
 	
 func _process(delta):
@@ -16,7 +16,11 @@ func _on_Area2D_body_entered(body):
 	else:
 		queue_free()
 		Global.bul_check = false
-
+		var flares = flare_spawn.instance()
+		flares.rotation_degrees = rotation_degrees
+		flares.position = self.position
+		
+		get_tree().get_root().call_deferred("add_child", flares)
 
 func _on_Timer_timeout():
 	queue_free()

@@ -48,7 +48,6 @@ func _level_checks():
 	if Global.kill_count >= 5 and has_upgrade_one == false:
 		level_up()
 		has_upgrade_one = true
-		print(has_upgrade_one)
 		
 	if Global.kill_count >= 10 and has_upgrade_two == false:
 		level_up()
