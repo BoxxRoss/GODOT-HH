@@ -17,22 +17,29 @@ margin_top = -34.0
 margin_right = 512.0
 margin_bottom = 34.0
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="Start_Story" type="Button" parent="VBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 20.0
-text = "Start"
+text = "Start Story"
 
-[node name="Optionsbutton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 44.0
-text = "Options"
+text = "Start"
 
-[node name="Quitbutton" type="Button" parent="VBoxContainer"]
+[node name="Optionsbutton" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 1024.0
 margin_bottom = 68.0
+text = "Options"
+
+[node name="Quitbutton" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 1024.0
+margin_bottom = 92.0
 text = "Quit"
 
+[connection signal="pressed" from="VBoxContainer/Start_Story" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quitbutton" to="." method="_on_Quitbutton_pressed"]

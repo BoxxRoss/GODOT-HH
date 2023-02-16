@@ -40,7 +40,7 @@ shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 5, 5 )
+zoom = Vector2( 0.45, 0.45 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -120,17 +120,15 @@ script = ExtResource( 8 )
 position = Vector2( 1, 4 )
 scale = Vector2( 5.36133, 5.36133 )
 texture = ExtResource( 2 )
-energy = 2.5
+energy = 2.3
 shadow_enabled = true
 shadow_buffer_size = 1000
 shadow_gradient_length = 0.1
 
 [node name="Light2D2" type="Light2D" parent="."]
 light_mask = 32
-position = Vector2( 0.500004, 0.0480309 )
-scale = Vector2( 1.03906, 1.06175 )
+scale = Vector2( 1.70312, 1.74031 )
 texture = ExtResource( 2 )
-energy = 1.2
 shadow_gradient_length = 2.0
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
