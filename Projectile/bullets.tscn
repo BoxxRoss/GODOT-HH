@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Projectile/light_flareGG.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player scripts/bulletscene.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/GOflashlight.png" type="Texture" id=3]
+[ext_resource path="res://basic_light1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 1.5 )
@@ -12,7 +12,7 @@ extents = Vector2( 16, 4 )
 
 [node name="bullets" type="RigidBody2D"]
 collision_layer = 7
-collision_mask = 7
+collision_mask = 23
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
@@ -39,11 +39,11 @@ wait_time = 2.0
 autostart = true
 
 [node name="Light2D2" type="Light2D" parent="."]
-position = Vector2( -12, 3.55271e-15 )
-scale = Vector2( 0.159688, 0.129444 )
+position = Vector2( -13, 1.90735e-06 )
+scale = Vector2( 0.225677, 0.192326 )
 texture = ExtResource( 3 )
 texture_scale = 3.0
-energy = 0.8
+energy = 2.0
 shadow_enabled = true
 shadow_gradient_length = 5.0
 

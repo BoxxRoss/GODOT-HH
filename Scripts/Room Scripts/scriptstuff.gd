@@ -8,7 +8,7 @@ var Player = preload("res://player/playernew.tscn")
 
 onready var tileMap = $TileMap2
 signal timer_reduce
-var enemy_1 = preload("res://Enemys/enemy1.tscn")
+var enemy_1 = preload("res://Enemys/enemy1old.tscn")
 var options = [1,2,3,4,5]
 var playerspot = Vector2(0,0)
 
