@@ -37,11 +37,16 @@ signal damage_taken
 signal player_death
 
 # bullets and weapons
+
 var fire_rate = 1.5 
+var fire_rate_lit = 0.5
 var bullet_speed = 400
+var lightin = preload("res://Projectile/light_spray.tscn")
 var bullet = preload("res://Projectile/bullets.tscn")
 var block = preload("res://Projectile/Crosshair.tscn")
-var can_fire = true
+var can_fire_flare = true
+var can_fire_light = true
+var weapon_select = 1
 
 func _level_checks():
 	
@@ -94,31 +99,34 @@ func _physics_process(delta):
 	move = false
 	
 	_level_checks()
-
-				
-				
+	Global.bullet_pos = $bulletpoint.get_global_position()
+	Global.ply_rotations = self.global_rotation_degrees
+	if Input.is_action_pressed("Switch to flares"):
+		weapon_select = 1
+	if Input.is_action_pressed("Switch to flames"):
+		weapon_select = 2
 	if Input.is_action_pressed("Up"):
 		motion.y -= 1
-		stamina = stamina - (0.025 * Global.stamina_multi)
+		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Down"):
 		motion.y += 1
-		stamina = stamina - (0.025 * Global.stamina_multi)
+		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Left"):
 		motion.x -= 1
-		stamina = stamina - (0.025 * Global.stamina_multi)
+		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 
 		
 	if Input.is_action_pressed("Right"):
 		motion.x += 1
-		stamina = stamina - (0.025 * Global.stamina_multi)
+		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
@@ -142,7 +150,10 @@ func _physics_process(delta):
 		Sprint = true
 		movespeed = 300
 		stamina = stamina - 0.2
+	
+
 		
+	
 	else:
 		Sprint = false
 		
@@ -172,15 +183,29 @@ func _physics_process(delta):
 
 
 		
-	if Input.is_action_just_pressed("Shoot") and can_fire and stamina > 10 and is_breathing != true:
+	if Input.is_action_just_pressed("Shoot") and can_fire_flare and stamina > 10 and is_breathing != true and weapon_select == 1:
 		Global.fired = true
-		fire()
+		fire_flare()
 		emit_signal("stamina_change", stamina)
-
+	
+	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
+		fire_light_spray()
 func _ready():
 	emit_signal("damage_taken", health)
 
-func fire ():
+
+func fire_light_spray():
+	var light_instance = lightin.instance()
+	light_instance.position = $bulletpoint.get_global_position()
+	light_instance.rotation_degrees = rotation_degrees
+	get_tree().get_root().call_deferred("add_child", light_instance)
+	can_fire_light = false
+	yield(get_tree().create_timer(fire_rate_lit), "timeout")
+	can_fire_light = true
+
+		
+		
+func fire_flare():
 	stamina = stamina - 5
 	var block_instance = block.instance()
 	block_instance.position = get_global_mouse_position()
@@ -192,9 +217,9 @@ func fire ():
 	bullet_instance.rotation_degrees = rotation_degrees
 	bullet_instance.apply_impulse(Vector2(),Vector2(bullet_speed,0).rotated(rotation))
 	get_tree().get_root().call_deferred("add_child", bullet_instance)
-	can_fire = false
+	can_fire_flare = false
 	yield(get_tree().create_timer(fire_rate), "timeout")
-	can_fire = true
+	can_fire_flare = true
 	
 	
 func kill():
@@ -224,5 +249,4 @@ func _on_Area2D2_body_entered(body):
 
 
 
-func _on_KinematicBody2D_stamina_change():
-	pass # Replace with function body.
+

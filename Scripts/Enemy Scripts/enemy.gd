@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var ENEMYhealth : int = 1
+var ENEMYhealth : int = 1
 
 func enemy_death():
 	queue_free()
@@ -29,7 +29,12 @@ func _on_Area2D_body_entered(body):
 		ENEMYhealth -= 1
 		Global.enemy_hit = true
 		Global.enemy_hit = false
-		
+	
+	if "flare" in body.name:
+		ENEMYhealth -= 1
+		Global.enemy_hit = true
+		Global.enemy_hit = false
+	
 	if "KinematicBody2D" in body.name:
 		enemy_death()
 		Global.score -= 1

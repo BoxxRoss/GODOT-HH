@@ -5,6 +5,8 @@ var enemy_hit = false
 
 
 #bullets
+var ply_rotations = Vector2()
+var bullet_pos = Vector2()
 var fired = false
 var bul_check = true
 var Playerss = preload("res://player/playernew.tscn")
@@ -18,6 +20,7 @@ var kill_count = 0
 
 #level ups
 var stamina_multi = 1
+
 
 
 func instance_node(node, location, parent):
