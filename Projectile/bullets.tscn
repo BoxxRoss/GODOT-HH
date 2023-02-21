@@ -5,10 +5,10 @@
 [ext_resource path="res://basic_light1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 1.5 )
+extents = Vector2( 6.5, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 4 )
+extents = Vector2( 14, 3 )
 
 [node name="bullets" type="RigidBody2D"]
 collision_layer = 7
@@ -20,7 +20,7 @@ script = ExtResource( 2 )
 
 [node name="TinyBullet" type="Sprite" parent="."]
 position = Vector2( -2.84217e-14, 0 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,11 +39,11 @@ wait_time = 2.0
 autostart = true
 
 [node name="Light2D2" type="Light2D" parent="."]
-position = Vector2( -13, 1.90735e-06 )
+position = Vector2( -11, 9.53674e-07 )
 scale = Vector2( 0.225677, 0.192326 )
 texture = ExtResource( 3 )
 texture_scale = 3.0
-energy = 2.0
+energy = 1.5
 shadow_enabled = true
 shadow_gradient_length = 5.0
 

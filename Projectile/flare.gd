@@ -5,9 +5,8 @@ var die_out = false
 
 
 
-func _ready():
-	pass
-	
+
+
 
 func _process(delta):
 	if die_out == false and $Light2D.energy < 1.5:
@@ -20,11 +19,11 @@ func _process(delta):
 func _on_Timer_timeout():
 	die_out = true
 
-	
+
+func _on_Area2D_body_entered(body):
+
+	if body.is_in_group("enemys"):
+		queue_free()
+		print("flare gone!")
 
 
-
-
-
-
-		

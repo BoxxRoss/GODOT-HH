@@ -4,10 +4,10 @@
 [ext_resource path="res://Scripts/Player scripts/bullet_cols.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3, 3 )
+extents = Vector2( 4, 4 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 3 )
+extents = Vector2( 6, 6 )
 
 [node name="Crosshair" type="Node2D"]
 script = ExtResource( 2 )

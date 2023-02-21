@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var slowed = false
 var motion = Vector2(0 , 0)
-var speed = 150
+var speed = 50
 var ENEMYhealth : int = 1
 
 func enemy_death():
@@ -14,38 +14,41 @@ func enemy_death():
 func _process(delta):
 	if ENEMYhealth <= 0:
 		enemy_death()
-
-
+	
+	if Global.enemy_hit == true:
+		queue_free()
+		Global.enemy_hit = false
+	"""
 func _physics_process(delta):
 	
+
+		
 	var Player = get_parent().get_node("KinematicBody2D")
 	
 	motion = position.direction_to(Player.position) * speed
 	motion = move_and_slide(motion)
 	look_at(Player.position)
-	
+
 	
 	
 	if slowed == true:
 		speed = 50
 	else:
-		speed = 150
-
+		speed = 50
+	"""
 
 func _on_Area2D_body_entered(body):
 	if "bullet" in body.name:
-		ENEMYhealth -= 1
-		Global.enemy_hit = true
-		Global.enemy_hit = false
-		
+		queue_free()
+		print("enemy hit by bullet!")
+
 	if body is TileMap:
 		slowed = true
 
 	
 	if "flare" in body.name:
-		ENEMYhealth -= 1
-		Global.enemy_hit = true
-		Global.enemy_hit = false
+
+		print("enemy hit by flare!")
 	
 	if "KinematicBody2D" in body.name:
 		enemy_death()
