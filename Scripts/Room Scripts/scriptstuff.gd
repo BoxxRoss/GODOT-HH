@@ -72,7 +72,7 @@ func _on_enemy_spawn_timer_timeout():
 	var instance = enemy_1.instance()
 	
 	instance.global_position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
-	if Global.enemy_score != 1000:
+	if Global.enemy_score != 100:
 		add_child(instance)
 		Global.enemy_score += 10
 
