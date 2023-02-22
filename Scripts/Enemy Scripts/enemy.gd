@@ -3,7 +3,8 @@ extends KinematicBody2D
 var slowed = false
 var motion = Vector2(0 , 0)
 var speed = 125
-var ENEMYhealth : int = 1
+var ENEMYhealthmax : int = 1
+var ENEMYhealth = ENEMYhealthmax
 
 func enemy_death():
 	queue_free()
@@ -11,14 +12,14 @@ func enemy_death():
 	Global.score += 1
 	Global.kill_count += 1
 
-func _process(delta):
-	if ENEMYhealth <= 0:
-		enemy_death()
-	
-
-	
+func onhit(damage):
+	ENEMYhealth -= 0.2
 func _physics_process(delta):
 	
+	if ENEMYhealth <= 0:
+		enemy_death()
+
+		
 
 		
 	var Player = get_parent().get_node("KinematicBody2D")

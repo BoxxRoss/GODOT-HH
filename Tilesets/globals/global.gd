@@ -1,7 +1,7 @@
 extends Node
 
 #enemy
-var enemy_hit = false
+var enemy_hit_by_lightnin = false
 
 
 #bullets
