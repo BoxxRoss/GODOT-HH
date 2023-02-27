@@ -1,5 +1,7 @@
 extends Node
 
+var switch = false
+
 #enemy
 var enemy_hit_by_lightnin = false
 

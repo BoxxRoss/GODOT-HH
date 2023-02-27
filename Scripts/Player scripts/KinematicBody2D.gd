@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 # health related
 var max_health = 50
 var health = 50
@@ -98,7 +99,6 @@ func _physics_process(delta):
 	var motion = Vector2()
 	move = false
 	
-
 	
 	_level_checks()
 	Global.bullet_pos = $bulletpoint.get_global_position()
@@ -147,7 +147,7 @@ func _physics_process(delta):
 			emit_signal("camera_zoom_out")
 			Engine.time_scale = 1
 			Engine.iterations_per_second = 60
-	
+			
 	if Input.is_action_pressed("Sprint") and breathless == false:
 		Sprint = true
 		movespeed = 300

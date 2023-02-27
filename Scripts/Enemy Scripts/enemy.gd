@@ -14,6 +14,8 @@ func enemy_death():
 
 func onhit(damage):
 	ENEMYhealth -= 0.2
+	
+
 func _physics_process(delta):
 	
 	if ENEMYhealth <= 0:
@@ -21,12 +23,12 @@ func _physics_process(delta):
 
 		
 
-		
-	var Player = get_parent().get_node("KinematicBody2D")
+	if Global.switch:
+		var Player = get_parent().get_node("KinematicBody2D")
 	
-	motion = position.direction_to(Player.position) * speed
-	motion = move_and_slide(motion)
-	look_at(Player.position)
+		motion = position.direction_to(Player.position) * speed
+		motion = move_and_slide(motion)
+		look_at(Player.position)
 
 	
 	

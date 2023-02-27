@@ -6,6 +6,7 @@ var borders = Rect2(1, 1, 132,82)
 
 var Player = preload("res://player/playernew.tscn")
 
+
 onready var tileMap = $TileMap2
 signal timer_reduce
 var enemy_1 = preload("res://Enemys/enemy1old.tscn")
@@ -17,6 +18,10 @@ func _ready():
 		Global.highest_score = SaveScript.load_val()
 		emit_signal("scoreupdate")
 	randomize()
+	
+
+	
+	
 	var rand_value = options[randi() % options.size()]
 	if rand_value == 1:
 		playerspot = Vector2(1408,1120)
