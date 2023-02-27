@@ -98,6 +98,8 @@ func _physics_process(delta):
 	var motion = Vector2()
 	move = false
 	
+
+	
 	_level_checks()
 	Global.bullet_pos = $bulletpoint.get_global_position()
 	Global.ply_rotations = self.global_rotation_degrees

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Room Scripts/scriptstuff.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Room Scripts/enemy_spawn_timer.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/NEW lightingthing.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/messy_floor.png" type="Texture" id=4]
 [ext_resource path="res://Tilesets/newwallscustomsssss.tres" type="TileSet" id=5]
 [ext_resource path="res://Tilesets/WALL.tres" type="TileSet" id=6]
@@ -21,12 +20,6 @@ __meta__ = {
 "_edit_vertical_guides_": [ -3328.0 ]
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.235294, 0.235294, 0.235294, 1 )
-position = Vector2( 4927, 3072 )
-scale = Vector2( 254, 154 )
-texture = ExtResource( 3 )
-
 [node name="Sprite2" type="Sprite" parent="."]
 modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
 position = Vector2( 5055, 3022 )
@@ -37,11 +30,12 @@ texture = ExtResource( 4 )
 environment = SubResource( 4 )
 
 [node name="enemy_spawn_timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 autostart = true
 script = ExtResource( 2 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 position = Vector2( 1151, 736 )

@@ -119,17 +119,14 @@ margin_bottom = 568.0
 script = ExtResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 1, 4 )
-scale = Vector2( 5.36133, 5.36133 )
 texture = ExtResource( 2 )
+texture_scale = 4.0
 energy = 2.3
 shadow_enabled = true
-shadow_buffer_size = 1000
 shadow_gradient_length = 0.1
 
 [node name="Light2D2" type="Light2D" parent="."]
 light_mask = 32
-scale = Vector2( 1.70312, 1.74031 )
 texture = ExtResource( 2 )
 shadow_gradient_length = 2.0
 

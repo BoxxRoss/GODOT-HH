@@ -30,6 +30,11 @@ Betterpause="*res://Rooms/betterpause.tscn"
 Global="*res://Tilesets/globals/global.gd"
 SaveScript="*res://Scripts/Room Scripts/Save_script.gd"
 
+[debug]
+
+settings/fps/force_fps=60
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=1280
