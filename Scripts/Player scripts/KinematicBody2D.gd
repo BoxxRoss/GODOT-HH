@@ -38,7 +38,7 @@ signal damage_taken
 signal player_death
 
 # bullets and weapons
-var charge_ball = 0
+var charge_ball = 0.5
 var fire_rate = 1.5 
 var fire_rate_lit = 0.5
 var fire_rate_lit_ball = 0.5
@@ -202,13 +202,16 @@ func _physics_process(delta):
 		fire_light_spray()
 		
 
-	if Input.is_action_pressed("Shoot"):
-		charge_ball += 0.1
+	if Input.is_action_pressed("Shoot") and weapon_select == 3:
+		charge_ball += 0.05
+		if charge_ball >= 4.5:
+			charge_ball = 4.5
 		
 	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == 3:
 		Global.charge_balls = charge_ball
+		print(charge_ball)
 		fire_light_ball()
-		charge_ball = 0
+		charge_ball = 0.5
 		
 func _ready():
 	emit_signal("damage_taken", health)
