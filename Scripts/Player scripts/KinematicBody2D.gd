@@ -38,15 +38,19 @@ signal damage_taken
 signal player_death
 
 # bullets and weapons
-
+var charge_ball = 0
 var fire_rate = 1.5 
 var fire_rate_lit = 0.5
+var fire_rate_lit_ball = 0.5
 var bullet_speed = 400
+var bullet_speed_lightnin_ball = 200
 var lightin = preload("res://Projectile/light_spray.tscn")
 var bullet = preload("res://Projectile/flare_bullet.tscn")
 var block = preload("res://Projectile/Crosshair.tscn")
+var lightnin_ball = preload("res://Projectile/Lightning_ball_charge.tscn")
 var can_fire_flare = true
 var can_fire_light = true
+var can_fire_light_ball = true
 var weapon_select = 1
 
 func _level_checks():
@@ -95,6 +99,8 @@ func level_up():
 	Global.stamina_multi -= 0.05
 	
 
+
+
 func _physics_process(delta):
 	var motion = Vector2()
 	move = false
@@ -107,6 +113,8 @@ func _physics_process(delta):
 		weapon_select = 1
 	if Input.is_action_pressed("Switch to flames"):
 		weapon_select = 2
+	if Input.is_action_pressed("switch_to_lightnin_ball"):
+		weapon_select = 3
 	if Input.is_action_pressed("Up"):
 		motion.y -= 1
 		stamina = stamina - (0.05 * Global.stamina_multi)
@@ -158,7 +166,6 @@ func _physics_process(delta):
 	
 	else:
 		Sprint = false
-		
 	if stamina >= 100:
 		stamina = 100
 			
@@ -185,6 +192,7 @@ func _physics_process(delta):
 
 
 		
+		
 	if Input.is_action_just_pressed("Shoot") and can_fire_flare and stamina > 10 and is_breathing != true and weapon_select == 1:
 		Global.fired = true
 		fire_flare()
@@ -192,10 +200,30 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
 		fire_light_spray()
+		
+
+	if Input.is_action_pressed("Shoot"):
+		charge_ball += 0.1
+		
+	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == 3:
+		Global.charge_balls = charge_ball
+		fire_light_ball()
+		charge_ball = 0
+		
 func _ready():
 	emit_signal("damage_taken", health)
-
-
+	
+func fire_light_ball():
+	var light_ball_inst = lightnin_ball.instance()
+	light_ball_inst.position = $bulletpoint.get_global_position()
+	light_ball_inst.rotation_degrees = rotation_degrees
+	light_ball_inst.apply_impulse(Vector2(),Vector2(bullet_speed_lightnin_ball,0).rotated(rotation))
+	get_tree().get_root().call_deferred("add_child", light_ball_inst)
+	can_fire_light_ball = false
+	yield(get_tree().create_timer(fire_rate_lit_ball), "timeout")
+	can_fire_light_ball = true
+	
+	
 func fire_light_spray():
 	var light_instance = lightin.instance()
 	light_instance.position = $bulletpoint.get_global_position()
