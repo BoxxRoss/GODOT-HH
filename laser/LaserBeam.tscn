@@ -11,7 +11,7 @@ blend_mode = 1
 blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 53, 10 )
+extents = Vector2( 2.5, 10 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
@@ -51,10 +51,10 @@ offset = Vector2( 0, -12 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 100, 24 )
 
-[node name="Area2D" type="Area2D" parent="Beam"]
+[node name="Area2Dbeam" type="Area2D" parent="Beam"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/Area2D"]
-position = Vector2( 46, -1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/Area2Dbeam"]
+position = Vector2( 5.5, -1 )
 shape = SubResource( 8 )
 
 [node name="End" type="Position2D" parent="."]
@@ -77,4 +77,5 @@ position = Vector2( 3, -1 )
 enabled = true
 cast_to = Vector2( 100, 0 )
 
+[connection signal="body_entered" from="Beam/Area2Dbeam" to="." method="_on_Area2Dbeam_body_entered"]
 [connection signal="body_entered" from="End/Area2D" to="." method="_on_Area2D_body_entered"]
