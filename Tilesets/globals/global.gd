@@ -7,6 +7,7 @@ var enemy_hit_by_lightnin = false
 
 
 #bullets
+var beam_active = false
 var charge_balls = 0
 var ply_rotations = Vector2()
 var bullet_pos = Vector2()

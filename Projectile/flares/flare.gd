@@ -3,7 +3,7 @@ var die_out = false
 
 
 
-
+"""
 
 
 
@@ -25,5 +25,5 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		queue_free()
 		print("flare gone!")
-
+"""
 

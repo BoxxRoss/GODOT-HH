@@ -36,7 +36,7 @@ func _physics_process(delta):
 	
 
 	
-
+"""
 	var Player = get_parent().get_node("KinematicBody2D")
 	
 	motion = position.direction_to(Player.position) * speed
@@ -50,7 +50,7 @@ func _physics_process(delta):
 	else:
 		speed = 125
 
-
+"""
 
 func _on_Area2D_body_entered(body):
 	if body is TileMap:

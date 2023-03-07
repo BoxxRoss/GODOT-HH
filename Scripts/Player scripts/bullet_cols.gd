@@ -1,5 +1,5 @@
 extends Node2D
-
+"""
 var flare_spawn = preload("res://Projectile/flare.tscn")
 var flare_skitter_speed = 3
 
@@ -16,6 +16,7 @@ func _on_Area2D_body_entered(body):
 		print("crosshair gone!")
 		
 	else:
+	
 		queue_free()
 		Global.bul_check = false
 		var flares = flare_spawn.instance()
@@ -26,6 +27,6 @@ func _on_Area2D_body_entered(body):
 
 func _on_Timer_timeout():
 	queue_free()
+		
 
-
-
+"""

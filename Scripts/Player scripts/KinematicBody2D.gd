@@ -38,17 +38,19 @@ signal damage_taken
 signal player_death
 
 # bullets and weapons
+
+
 var charge_ball = 0.5
-var fire_rate = 1.5 
 var fire_rate_lit = 0.5
 var fire_rate_lit_ball = 0.5
 var bullet_speed = 400
 var bullet_speed_lightnin_ball = 200
+var laser_beam = preload("res://laser/LaserBeam.tscn")
 var lightin = preload("res://Projectile/light_spray.tscn")
-var bullet = preload("res://Projectile/flare_bullet.tscn")
-var block = preload("res://Projectile/Crosshair.tscn")
+
+var beam_crosshair = preload("res://Projectile/Beam_cross_hair.tscn")
+var beam_hittin = false
 var lightnin_ball = preload("res://Projectile/Lightning_ball_charge.tscn")
-var can_fire_flare = true
 var can_fire_light = true
 var can_fire_light_ball = true
 var weapon_select = 1
@@ -192,11 +194,14 @@ func _physics_process(delta):
 
 
 		
-		
-	if Input.is_action_just_pressed("Shoot") and can_fire_flare and stamina > 10 and is_breathing != true and weapon_select == 1:
-		Global.fired = true
-		fire_flare()
-		emit_signal("stamina_change", stamina)
+	if Global.beam_active == false:
+		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == 1:
+			Global.beam_active = true
+			fire_beam()
+			emit_signal("stamina_change", stamina)
+	
+	if Input.is_action_just_pressed("right click"):
+		Global.beam_active = false
 	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
 		fire_light_spray()
@@ -212,7 +217,18 @@ func _physics_process(delta):
 		print(charge_ball)
 		fire_light_ball()
 		charge_ball = 0.5
-		
+
+func fire_beam():
+	
+	var block_instance = beam_crosshair.instance()
+	block_instance.position = get_global_mouse_position()
+	block_instance.rotation_degrees = rotation_degrees
+	get_tree().get_root().call_deferred("add_child", block_instance)
+	
+	var beam_o_laser = laser_beam.instance()
+	beam_o_laser.position = $bulletpoint.get_global_position()
+	get_tree().get_root().call_deferred("add_child", beam_o_laser)
+
 func _ready():
 	emit_signal("damage_taken", health)
 	
@@ -237,7 +253,7 @@ func fire_light_spray():
 	can_fire_light = true
 
 		
-		
+"""
 func fire_flare():
 	stamina = stamina - 5
 	var block_instance = block.instance()
@@ -253,8 +269,8 @@ func fire_flare():
 	can_fire_flare = false
 	yield(get_tree().create_timer(fire_rate), "timeout")
 	can_fire_flare = true
-	
-	
+"""	
+
 func kill():
 	get_tree().reload_current_scene()
 	health = max_health

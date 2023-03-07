@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Projectile/light_flareGG.png" type="Texture" id=1]
 [ext_resource path="res://basic_light1.png" type="Texture" id=2]
-[ext_resource path="res://Projectile/flare.gd" type="Script" id=3]
+[ext_resource path="res://Projectile/flares/flare.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14, 4 )
