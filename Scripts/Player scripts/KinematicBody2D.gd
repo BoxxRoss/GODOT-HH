@@ -204,10 +204,12 @@ func _physics_process(delta):
 		Global.beam_active = false
 	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
+		Global.beam_active = false
 		fire_light_spray()
 		
 
 	if Input.is_action_pressed("Shoot") and weapon_select == 3:
+		Global.beam_active = false
 		charge_ball += 0.05
 		if charge_ball >= 4.5:
 			charge_ball = 4.5

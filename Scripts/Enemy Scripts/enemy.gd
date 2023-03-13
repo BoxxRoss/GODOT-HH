@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var damage_dealt
 var hurt = false
 var slowed = false
 var motion = Vector2(0 , 0)
@@ -7,9 +8,10 @@ var speed = 125
 var ENEMYhealthmax : int = 1
 var ENEMYhealth = ENEMYhealthmax
 
-func taking_damage():
+func taking_damage(weapon_damage):
 	hurt = true
-	
+	damage_dealt = weapon_damage
+	print(weapon_damage)
 func taking_damage_stop():
 	hurt = false
 	
@@ -32,11 +34,11 @@ func _physics_process(delta):
 
 	if hurt == true:
 		
-		ENEMYhealth -= 0.01
+		ENEMYhealth -= damage_dealt
 	
 
 	
-"""
+
 	var Player = get_parent().get_node("KinematicBody2D")
 	
 	motion = position.direction_to(Player.position) * speed
@@ -50,7 +52,7 @@ func _physics_process(delta):
 	else:
 		speed = 125
 
-"""
+
 
 func _on_Area2D_body_entered(body):
 	if body is TileMap:

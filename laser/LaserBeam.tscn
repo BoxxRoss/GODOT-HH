@@ -52,6 +52,8 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 100, 24 )
 
 [node name="Area2Dbeam" type="Area2D" parent="Beam"]
+collision_layer = 513
+collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/Area2Dbeam"]
 position = Vector2( 5.5, -1 )
@@ -68,6 +70,8 @@ process_material = SubResource( 6 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="End"]
+collision_layer = 513
+collision_mask = 513
 
 [node name="end_point" type="CollisionShape2D" parent="End/Area2D"]
 shape = SubResource( 7 )
@@ -78,4 +82,6 @@ enabled = true
 cast_to = Vector2( 100, 0 )
 
 [connection signal="body_entered" from="Beam/Area2Dbeam" to="." method="_on_Area2Dbeam_body_entered"]
+[connection signal="body_exited" from="Beam/Area2Dbeam" to="." method="_on_Area2Dbeam_body_exited"]
 [connection signal="body_entered" from="End/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="End/Area2D" to="." method="_on_Area2D_body_exited"]
