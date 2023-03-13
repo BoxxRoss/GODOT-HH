@@ -3,6 +3,7 @@ extends Node2D
 signal stamina_change
 export var stamina = 100
 
+var rotations = self.rotation_degrees
 var breathless = false
 var is_breathing = false
 var Sprint = false
@@ -70,7 +71,7 @@ func _on_KinematicBody2D_stamina_change(stamina):
 		
 	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == 3:
 		Global.charge_balls = charge_ball
-		print(charge_ball)
+
 		fire_light_ball()
 		charge_ball = 0.5
 
@@ -89,8 +90,8 @@ func fire_beam():
 func fire_light_ball():
 	var light_ball_inst = lightnin_ball.instance()
 	light_ball_inst.position = $bulletpoint.get_global_position()
-	light_ball_inst.rotation_degrees = rotation_degrees
-	light_ball_inst.apply_impulse(Vector2(),Vector2(bullet_speed_lightnin_ball,0).rotated(rotation))
+	light_ball_inst.rotation_degrees = self.rotation_degrees
+	light_ball_inst.apply_impulse(Vector2(),Vector2(bullet_speed_lightnin_ball,0).rotated(rotations))
 	get_tree().get_root().call_deferred("add_child", light_ball_inst)
 	can_fire_light_ball = false
 	yield(get_tree().create_timer(fire_rate_lit_ball), "timeout")
@@ -105,3 +106,7 @@ func fire_light_spray():
 	can_fire_light = false
 	yield(get_tree().create_timer(fire_rate_lit), "timeout")
 	can_fire_light = true
+
+
+func _on_KinematicBody2D_player_rotation(rotation):
+	rotations = rotation
