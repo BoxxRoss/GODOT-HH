@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hidden Horror"
-run/main_scene="res://Rooms/MainMenu.tscn"
+run/main_scene="res://Rooms/menu_rooms/MainMenu.tscn"
 config/icon="res://Sprites/icon.png"
 
 [autoload]

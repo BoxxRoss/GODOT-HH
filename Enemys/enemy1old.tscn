@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 71.6662, 70.0005 )
+extents = Vector2( 48.3331, 43.3336 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22.4999, 22.0001 )

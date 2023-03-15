@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 # health related
-var max_health = 50
-var health = 50
+var max_health = 100
+var health = 100
 
 # breathing mechanics
 var breathless = false
@@ -12,7 +12,6 @@ var is_breathing = false
 # stamina 
 signal stamina_change
 export var stamina = 100
-
 
 # camera
 signal camera_zoom
@@ -121,20 +120,10 @@ func kill():
 	emit_signal("player_death")
 
 
-func _on_Area2D2_body_entered(body):
-	if "enemy" in body.name:	
-		health -= 10
-		emit_signal("damage_taken", health)
-		if is_breathing == true:
-			kill()
-		if health <= 0:
-			kill()
-
-			
-
-
-
-
-
-
-
+func take_a_hit():
+	health -= 10
+	emit_signal("damage_taken", health)
+	if is_breathing == true:
+		kill()
+	if health <= 0:
+		kill()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://basic_light1.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/Player scripts/high_score.gd" type="Script" id=8]
 [ext_resource path="res://player/weapon_control.gd" type="Script" id=9]
 [ext_resource path="res://player/Upgrade_control.gd" type="Script" id=10]
+[ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -26,14 +27,14 @@ collision_layer = 515
 collision_mask = 515
 script = ExtResource( 4 )
 
+[node name="Upgrade_control" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
 [node name="weapon_control" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
 [node name="bulletpoint" type="Position2D" parent="weapon_control"]
 position = Vector2( 35, 0 )
-
-[node name="Upgrade_control" type="Node2D" parent="."]
-script = ExtResource( 10 )
 
 [node name="NewPiskel2" type="Sprite" parent="."]
 position = Vector2( 0, -1 )
@@ -105,7 +106,6 @@ margin_left = 967.0
 margin_top = 569.0
 margin_right = 1223.0
 margin_bottom = 609.0
-max_value = 50.0
 step = 0.01
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 5 )
@@ -138,6 +138,8 @@ shadow_gradient_length = 0.1
 light_mask = 32
 texture = ExtResource( 2 )
 shadow_gradient_length = 2.0
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 11 )]
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
 [connection signal="camera_zoom_out" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]

@@ -11,7 +11,7 @@ var charge_ball = 0.5
 var fire_rate_lit = 0.5
 var fire_rate_lit_ball = 0.5
 var bullet_speed = 400
-var bullet_speed_lightnin_ball = 200
+var bullet_speed_lightnin_ball = 150
 var laser_beam = preload("res://laser/LaserBeam.tscn")
 var lightin = preload("res://Projectile/light_spray.tscn")
 
@@ -21,6 +21,9 @@ var lightnin_ball = preload("res://Projectile/Lightning_ball_charge.tscn")
 var can_fire_light = true
 var can_fire_light_ball = true
 var weapon_select = 1
+
+func _on_KinematicBody2D_stamina_change(stamina):
+	stamina = stamina
 
 func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
@@ -32,7 +35,14 @@ func _physics_process(delta):
 		weapon_select = 2
 	if Input.is_action_pressed("switch_to_lightnin_ball"):
 		weapon_select = 3
+	
+	if Input.is_action_just_pressed("Breath"):
+		is_breathing = true
 		
+	if Input.is_action_just_pressed("Cancel"):
+		if is_breathing == true:
+			is_breathing = false
+	
 	if Input.is_action_pressed("Sprint") and breathless == false:
 		Sprint = true
 	else:
@@ -42,13 +52,7 @@ func _physics_process(delta):
 		breathless = true
 	else:
 		breathless = false
-		
-		
-	
 
-func _on_KinematicBody2D_stamina_change(stamina):
-	stamina = stamina
-	
 	if Global.beam_active == false:
 		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == 1:
 			Global.beam_active = true
@@ -62,8 +66,7 @@ func _on_KinematicBody2D_stamina_change(stamina):
 		Global.beam_active = false
 		fire_light_spray()
 		
-
-	if Input.is_action_pressed("Shoot") and weapon_select == 3:
+	if Input.is_action_pressed("Shoot") and weapon_select == 3 and is_breathing != true:
 		Global.beam_active = false
 		charge_ball += 0.05
 		if charge_ball >= 4.5:
@@ -81,12 +84,10 @@ func fire_beam():
 	block_instance.position = get_global_mouse_position()
 	block_instance.rotation_degrees = rotation_degrees
 	get_tree().get_root().call_deferred("add_child", block_instance)
-	
 	var beam_o_laser = laser_beam.instance()
 	beam_o_laser.position = $bulletpoint.get_global_position()
 	get_tree().get_root().call_deferred("add_child", beam_o_laser)
 
-	
 func fire_light_ball():
 	var light_ball_inst = lightnin_ball.instance()
 	light_ball_inst.position = $bulletpoint.get_global_position()
@@ -97,7 +98,6 @@ func fire_light_ball():
 	yield(get_tree().create_timer(fire_rate_lit_ball), "timeout")
 	can_fire_light_ball = true
 	
-	
 func fire_light_spray():
 	var light_instance = lightin.instance()
 	light_instance.position = $bulletpoint.get_global_position()
@@ -106,7 +106,6 @@ func fire_light_spray():
 	can_fire_light = false
 	yield(get_tree().create_timer(fire_rate_lit), "timeout")
 	can_fire_light = true
-
 
 func _on_KinematicBody2D_player_rotation(rotation):
 	rotations = rotation
