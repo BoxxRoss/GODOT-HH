@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var damage = 0.1
+var damage = 15
 
 
 func _process(delta):

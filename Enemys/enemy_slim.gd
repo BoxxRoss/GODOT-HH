@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
+
 var damage_dealt
 var hurt = false
 var slowed = false
 var motion = Vector2(0 , 0)
-var speed = 100
-var ENEMYhealthmax : int = 100
+var speed = 200
+var ENEMYhealthmax : int = 50
 var ENEMYhealth = ENEMYhealthmax
 
 func taking_damage(weapon_damage):
@@ -50,7 +51,7 @@ func _physics_process(delta):
 	if slowed == true:
 		speed = 50
 	else:
-		speed = 100
+		speed = 150
 
 
 

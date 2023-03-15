@@ -67,8 +67,8 @@ func _physics_process(delta):
 		stamina = stamina + 5
 		emit_signal("camera_zoom")
 		is_breathing = true
-		Engine.time_scale = 0.05
-		Engine.iterations_per_second = 45
+		Engine.time_scale = 0.1
+		Engine.iterations_per_second = 50
 		
 	if Input.is_action_just_pressed("Cancel"):
 		if is_breathing == true:

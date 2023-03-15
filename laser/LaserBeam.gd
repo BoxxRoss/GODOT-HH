@@ -2,8 +2,8 @@ extends Node2D
 
 const MAX_LENGTH = 2000
 
-var beam_damage = 0.005
-var point_damage = 0.01
+var beam_damage = 0.75
+var point_damage = 1.5
 
 onready var beam = $Beam
 onready var end = $End

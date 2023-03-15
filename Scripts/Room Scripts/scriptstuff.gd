@@ -10,7 +10,9 @@ var Player = preload("res://player/playernew.tscn")
 onready var tileMap = $TileMap2
 signal timer_reduce
 var enemy_1 = preload("res://Enemys/enemy1old.tscn")
+var enemy_slim = preload("res://Enemys/enemy_slim.tscn")
 var options = [1,2,3,4,5]
+var enemy_options = [1,2]
 var playerspot = Vector2(0,0)
 
 func _ready():
@@ -70,15 +72,25 @@ func _process(delta):
 	
 	
 func _on_enemy_spawn_timer_timeout():
+	var rand_enemy_value = enemy_options[randi() % enemy_options.size()]
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 
 	$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
 	var instance = enemy_1.instance()
+	var slim_instance = enemy_slim.instance()
 	
-	instance.global_position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
+	
+	var enemy_chosen = null
+	
+	if rand_enemy_value == 1:
+		enemy_chosen = slim_instance
+	if rand_enemy_value == 2:
+		enemy_chosen = instance
+	
+	enemy_chosen.position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
 	if Global.enemy_score != 100:
-		add_child(instance)
+		add_child(enemy_chosen)
 		Global.enemy_score += 10
 
 

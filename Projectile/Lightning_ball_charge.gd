@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-var damage = 0.01
+var damage = 1
 var current_charge = Global.charge_balls
 var dec_charge = 0.01
 
