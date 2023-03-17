@@ -34,7 +34,6 @@ func _physics_process(delta):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
-		print("enemy_detected")
 		var weapon_damage = point_damage
 		body.taking_damage(weapon_damage)
 
@@ -44,7 +43,6 @@ func _on_Area2D_body_exited(body):
 
 func _on_Area2Dbeam_body_entered(body):
 	if body.is_in_group("enemys"):
-		print("enemy_detected_on_beam")
 		var weapon_damage = beam_damage
 		body.taking_damage(weapon_damage)
 

@@ -6,13 +6,13 @@ var hurt = false
 var slowed = false
 var motion = Vector2(0 , 0)
 var speed = 200
-var ENEMYhealthmax : int = 50
+var ENEMYhealthmax : int = 25
 var ENEMYhealth = ENEMYhealthmax
 
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
-	print(weapon_damage)
+
 func taking_damage_stop():
 	hurt = false
 	

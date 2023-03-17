@@ -8,8 +8,8 @@
 [ext_resource path="res://Scripts/Room Scripts/Control.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Room Scripts/kill_counter.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player scripts/high_score.gd" type="Script" id=8]
-[ext_resource path="res://player/weapon_control.gd" type="Script" id=9]
-[ext_resource path="res://player/Upgrade_control.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Player scripts/weapon_control.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player scripts/Upgrade_control.gd" type="Script" id=10]
 [ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -54,7 +54,7 @@ shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.45, 0.45 )
+zoom = Vector2( 10, 10 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
