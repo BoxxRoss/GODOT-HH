@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 var damage_dealt
 var hurt = false
 var slowed = false
@@ -7,6 +8,7 @@ var motion = Vector2(0 , 0)
 var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
+
 
 func taking_damage(weapon_damage):
 	hurt = true
@@ -49,15 +51,19 @@ func _physics_process(delta):
 	
 	if slowed == true:
 		speed = 50
+		$Light2D.energy = 1.2
+		$Icon.modulate.a = 0.5
 	else:
 		speed = 100
-
+		$Light2D.energy = 0
+		$Icon.modulate.a = 1
 
 
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
-
+		
+		
 	if "KinematicBody2D" in body.name:
 		enemy_death()
 		Global.score -= 1

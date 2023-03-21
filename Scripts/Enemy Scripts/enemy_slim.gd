@@ -50,8 +50,12 @@ func _physics_process(delta):
 	
 	if slowed == true:
 		speed = 50
+		$Light2D.energy = 1.2
+		$Sprite.modulate.a = 0.5
 	else:
 		speed = 150
+		$Light2D.energy = 0
+		$Sprite.modulate.a = 1
 
 
 
