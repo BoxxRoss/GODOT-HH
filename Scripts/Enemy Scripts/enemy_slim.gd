@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+var four_coll_checker = 0
 var damage_dealt
 var hurt = false
 var slowed = false
@@ -37,7 +37,12 @@ func _physics_process(delta):
 		
 		ENEMYhealth -= damage_dealt
 	
-
+	if four_coll_checker == 4:
+		$Light2D.energy = 1.2
+		$Sprite.modulate.a = lerp($Icon.modulate.a, 1, .05)
+	else:
+		$Light2D.energy = 0
+		$Sprite.modulate.a = lerp($Icon.modulate.a, 1, .05)
 	
 
 	var Player = get_parent().get_node("KinematicBody2D")
@@ -50,12 +55,8 @@ func _physics_process(delta):
 	
 	if slowed == true:
 		speed = 50
-		$Light2D.energy = 1.2
-		$Sprite.modulate.a = 0.5
 	else:
 		speed = 150
-		$Light2D.energy = 0
-		$Sprite.modulate.a = 1
 
 
 
@@ -68,9 +69,38 @@ func _on_Area2D_body_entered(body):
 		Global.score -= 1
 		body.take_a_hit()
 
-
-
-
 func _on_Area2D_body_exited(body):
 	if body is TileMap:
 		slowed = false
+
+func _on_Area2Dfront_body_entered(body):
+	if body is TileMap:
+		four_coll_checker += 1
+
+func _on_Area2Dfront_body_exited(body):
+	if body is TileMap:
+		four_coll_checker -= 1
+
+func _on_Area2Dleft_body_entered(body):
+	if body is TileMap:
+		four_coll_checker += 1
+
+func _on_Area2Dleft_body_exited(body):
+	if body is TileMap:
+		four_coll_checker -= 1
+
+func _on_Area2Dright_body_entered(body):
+	if body is TileMap:
+		four_coll_checker += 1
+
+func _on_Area2Dright_body_exited(body):
+	if body is TileMap:
+		four_coll_checker -= 1
+
+func _on_Area2Dback_body_entered(body):
+	if body is TileMap:
+		four_coll_checker += 1
+		
+func _on_Area2Dback_body_exited(body):
+	if body is TileMap:
+		four_coll_checker -= 1

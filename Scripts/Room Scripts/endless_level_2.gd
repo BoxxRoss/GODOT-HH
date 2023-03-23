@@ -2,8 +2,8 @@ extends "res://Scripts/Room Scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var options = [1,2,3,4,5]
-var enemy_options = [1,1,2]
-var walker_intensity = 13000
+var enemy_options = [1,2,2]
+var walker_intensity = 17000
 
 func _ready():
 	randomize()
@@ -59,5 +59,9 @@ func _on_enemy_spawn_timer_timeout():
 		add_child(enemy_chosen)
 		Global.enemy_score += 10
 
-func _on_world_timer_reduce():
+
+
+
+
+func _on_endless_level_2_timer_reduce():
 	pass # Replace with function body.
