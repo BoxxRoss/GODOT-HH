@@ -38,11 +38,9 @@ func _physics_process(delta):
 		ENEMYhealth -= damage_dealt
 	
 	if four_coll_checker == 4:
-		$Light2D.energy = 1.2
-		$Sprite.modulate.a = lerp($Icon.modulate.a, 1, .05)
-	else:
-		$Light2D.energy = 0
-		$Sprite.modulate.a = lerp($Icon.modulate.a, 1, .05)
+		$Sprite.modulate.a = lerp($Sprite.modulate.a, 0, .05)
+	else:	
+		$Sprite.modulate.a = lerp($Sprite.modulate.a, 1, .05)
 	
 
 	var Player = get_parent().get_node("KinematicBody2D")
@@ -55,8 +53,10 @@ func _physics_process(delta):
 	
 	if slowed == true:
 		speed = 50
+		$Light2D.energy = lerp($Icon.modulate.a, 1.5, .04)
 	else:
 		speed = 150
+		$Light2D.energy = lerp($Icon.modulate.a, 0, .04)
 
 
 

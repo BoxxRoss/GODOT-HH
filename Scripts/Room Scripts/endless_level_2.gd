@@ -1,7 +1,7 @@
 extends "res://Scripts/Room Scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
-var options = [1,2,3,4,5]
+var spawn_options = [1,2,3,4,5]
 var enemy_options = [1,2,2]
 var walker_intensity = 17000
 
@@ -10,13 +10,13 @@ func _ready():
 	
 
 
-	var rand_value = options[randi() % options.size()]
+	var rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
 		playerspot = Vector2(1536,1280)
 	if rand_value == 2:
 		playerspot = Vector2(3584, 5120)
 	if rand_value == 3:
-		playerspot = Vector2(8960, 1952)
+		playerspot = Vector2(10752, 1792)
 	if rand_value == 4:
 		playerspot = Vector2(11200, 5952)
 	if rand_value == 5:
@@ -27,7 +27,7 @@ func _ready():
 func generate_level():
 	var walker = Walker.new(Vector2(76,41), borders)
 	var map = walker.walk(walker_intensity)	
-	
+	print(playerspot)
 	var player = Player.instance()
 	add_child(player)
 	player.position = playerspot

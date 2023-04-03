@@ -39,10 +39,8 @@ func _physics_process(delta):
 		ENEMYhealth -= damage_dealt
 	
 	if four_coll_checker == 4:
-		$Light2D.energy = 1.2
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)
 	else:
-		$Light2D.energy = 0
 		$Icon.modulate.a = lerp($Icon.modulate.a, 1, .05)
 	
 
@@ -56,8 +54,10 @@ func _physics_process(delta):
 	
 	if slowed == true:
 		speed = 50
+		$Light2D.energy = lerp($Icon.modulate.a, 1.2, .03)
 	else:
 		speed = 100
+		$Light2D.energy = lerp($Icon.modulate.a, 0, .03)
 
 
 
