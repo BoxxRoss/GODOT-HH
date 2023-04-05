@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/much better lightning.png-d4fe3a5a316d863ceca6259b7007fe35.stex"
+path="res://.import/basic_light1.png-88ae8e45523a24e5cb17654ad9cc9fd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectile/much better lightning.png"
-dest_files=[ "res://.import/much better lightning.png-d4fe3a5a316d863ceca6259b7007fe35.stex" ]
+source_file="res://Sprites/basic_light1.png"
+dest_files=[ "res://.import/basic_light1.png-88ae8e45523a24e5cb17654ad9cc9fd7.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

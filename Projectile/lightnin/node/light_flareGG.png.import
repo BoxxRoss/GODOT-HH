@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/early_lighting.png-e22b747cdf7177b9c1600721dfbe0d4c.stex"
+path="res://.import/light_flareGG.png-830938cfcb3f1e42c648c91389b89dc9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectile/early_lighting.png"
-dest_files=[ "res://.import/early_lighting.png-e22b747cdf7177b9c1600721dfbe0d4c.stex" ]
+source_file="res://Projectile/lightnin/node/light_flareGG.png"
+dest_files=[ "res://.import/light_flareGG.png-830938cfcb3f1e42c648c91389b89dc9.stex" ]
 
 [params]
 

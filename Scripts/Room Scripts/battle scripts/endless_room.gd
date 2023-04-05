@@ -1,4 +1,4 @@
-extends "res://Scripts/Room Scripts/scriptstuff.gd"
+extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1,2,3,4,5]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Rooms/menu_rooms/Pause.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Room Scripts/menu scripts/Pause.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/best_sprite.png" type="Texture" id=2]
 
 [node name="CanvasLayer" type="CanvasLayer"]

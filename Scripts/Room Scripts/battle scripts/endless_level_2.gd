@@ -1,4 +1,4 @@
-extends "res://Scripts/Room Scripts/scriptstuff.gd"
+extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1,2,3,4,5]
@@ -63,5 +63,3 @@ func _on_enemy_spawn_timer_timeout():
 
 
 
-func _on_endless_level_2_timer_reduce():
-	pass # Replace with function body.

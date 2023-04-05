@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Sprites/messy_floor.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Room Scripts/menu scripts/hub_player_level_select.gd" type="Script" id=2]
 
 [node name="hub_player_level_select" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -16.0
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.545098 )
@@ -61,3 +63,5 @@ rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 736, -64 )
 text = "Informational database"
 align = 0
+
+[connection signal="pressed" from="map_button" to="." method="_on_map_button_pressed"]

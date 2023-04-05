@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Tilesets/newwallscustomsssss.tres" type="TileSet" id=1]
 [ext_resource path="res://Tilesets/WALL.tres" type="TileSet" id=2]
-[ext_resource path="res://Scripts/Room Scripts/endless_level_2.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Room Scripts/enemy_spawn_timer.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Room Scripts/battle scripts/endless_level_2.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Room Scripts/battle scripts/enemy_spawn_timer.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/messy_floor.png" type="Texture" id=5]
 
 [sub_resource type="Environment" id=1]

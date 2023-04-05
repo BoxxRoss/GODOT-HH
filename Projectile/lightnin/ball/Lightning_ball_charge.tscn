@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sprites/energy_ball.png" type="Texture" id=1]
-[ext_resource path="res://Projectile/Lightning_ball_charge.gd" type="Script" id=2]
+[ext_resource path="res://Projectile/lightnin/ball/Lightning_ball_charge.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 11.0454

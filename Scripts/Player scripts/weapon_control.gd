@@ -14,13 +14,13 @@ var bullet_speed = 400
 var bullet_speed_lightnin_ball = 150
 var laser_beam = preload("res://laser/LaserBeam.tscn")
 var lightin = preload("res://Projectile/light_spray.tscn")
-
 var beam_crosshair = preload("res://Projectile/Beam_cross_hair.tscn")
 var beam_hittin = false
 var lightnin_ball = preload("res://Projectile/Lightning_ball_charge.tscn")
 var can_fire_light = true
 var can_fire_light_ball = true
 var weapon_select = 1
+
 
 func _on_KinematicBody2D_stamina_change(stamina):
 	stamina = stamina
@@ -29,12 +29,14 @@ func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
 	Global.ply_rotations = self.global_rotation_degrees
 	
-	if Input.is_action_pressed("Switch to flares"):
+	if Input.is_action_pressed("Switch to beam"):
 		weapon_select = 1
 	if Input.is_action_pressed("Switch to flames"):
 		weapon_select = 2
 	if Input.is_action_pressed("switch_to_lightnin_ball"):
 		weapon_select = 3
+	if Input.is_action_pressed("switch_to_eletric_nodes"):
+		weapon_select = 4
 	
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
@@ -62,6 +64,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("right click"):
 		Global.beam_active = false
 	
+	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
 		Global.beam_active = false
 		fire_light_spray()
@@ -79,7 +82,6 @@ func _physics_process(delta):
 		charge_ball = 0.5
 
 func fire_beam():
-	
 	var block_instance = beam_crosshair.instance()
 	block_instance.position = get_global_mouse_position()
 	block_instance.rotation_degrees = rotation_degrees
@@ -109,3 +111,4 @@ func fire_light_spray():
 
 func _on_KinematicBody2D_player_rotation(rotation):
 	rotations = rotation
+

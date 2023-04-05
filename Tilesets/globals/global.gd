@@ -12,7 +12,6 @@ var charge_balls = 0
 var ply_rotations = Vector2()
 var bullet_pos = Vector2()
 var fired = false
-var bul_check = true
 var Playerss = preload("res://player/playernew.tscn")
 
 #score

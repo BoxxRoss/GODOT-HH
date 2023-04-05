@@ -53,10 +53,10 @@ func _physics_process(delta):
 	
 	if slowed == true:
 		speed = 50
-		$Light2D.energy = lerp($Icon.modulate.a, 1.5, .04)
+		$Light2D.energy = lerp($Light2D.energy, 1.5, .04)
 	else:
 		speed = 150
-		$Light2D.energy = lerp($Icon.modulate.a, 0, .04)
+		$Light2D.energy = lerp($Light2D.energy, 0, .04)
 
 
 

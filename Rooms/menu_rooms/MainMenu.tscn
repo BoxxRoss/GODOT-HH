@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Room Scripts/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Room Scripts/menu scripts/MainMenu.gd" type="Script" id=1]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -17,35 +17,42 @@ margin_top = -34.0
 margin_right = 512.0
 margin_bottom = 34.0
 
-[node name="Start_Story" type="Button" parent="VBoxContainer"]
+[node name="random_level" type="Button" parent="VBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 20.0
-text = "Start map 2"
+text = "Random Level"
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="Start_Story" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 44.0
-text = "Start map 1"
+text = "Start map 2"
 
-[node name="Optionsbutton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 1024.0
 margin_bottom = 68.0
-text = "Options"
+text = "Start map 1"
 
-[node name="Quitbutton" type="Button" parent="VBoxContainer"]
+[node name="Optionsbutton" type="Button" parent="VBoxContainer"]
 margin_top = 72.0
 margin_right = 1024.0
 margin_bottom = 92.0
-text = "Quit"
+text = "Options"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Quitbutton" type="Button" parent="VBoxContainer"]
 margin_top = 96.0
 margin_right = 1024.0
 margin_bottom = 116.0
+text = "Quit"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 120.0
+margin_right = 1024.0
+margin_bottom = 140.0
 text = "to test menu"
 
+[connection signal="pressed" from="VBoxContainer/random_level" to="." method="_on_random_level_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start_Story" to="." method="_on_Start_Story_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quitbutton" to="." method="_on_Quitbutton_pressed"]
