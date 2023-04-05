@@ -36,6 +36,8 @@ script = ExtResource( 9 )
 [node name="bulletpoint" type="Position2D" parent="weapon_control"]
 position = Vector2( 35, 0 )
 
+[node name="rotation" type="Position2D" parent="weapon_control"]
+
 [node name="NewPiskel2" type="Sprite" parent="."]
 position = Vector2( 0, -1 )
 texture = ExtResource( 3 )
