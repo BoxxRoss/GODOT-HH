@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var lightnin_node_static = preload("res://Projectile/lightnin/node/electric_node_static.tscn")
+var damage = 1.23
 
 func _process(delta):
 	if Global.bul_check == false:
@@ -12,7 +13,8 @@ func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		spawn_static()
 		queue_free()
-
+	if body.is_in_group("enemys"):
+		body.onhit(damage)
 
 func _on_Timer_timeout():
 	queue_free()

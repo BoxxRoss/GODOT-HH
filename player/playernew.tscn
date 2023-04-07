@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/basic_light1.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scripts/Player scripts/weapon scripts/weapon_control.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player scripts/Upgrade_control.gd" type="Script" id=10]
 [ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Projectile/lightnin/spray/test/Lightnin_BEAM.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -37,6 +38,8 @@ script = ExtResource( 9 )
 position = Vector2( 35, 0 )
 
 [node name="rotation" type="Position2D" parent="weapon_control"]
+
+[node name="LightningBeam" parent="weapon_control" instance=ExtResource( 12 )]
 
 [node name="NewPiskel2" type="Sprite" parent="."]
 position = Vector2( 0, -1 )

@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var lightning := $LightningBeam
+
 signal stamina_change
 export var stamina = 100
 
@@ -100,7 +102,7 @@ func _physics_process(delta):
 		charge_ball = 0.5
 	
 	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == 4:
-		fire_elec_node()
+		lightning.shoot()
 		
 		
 		

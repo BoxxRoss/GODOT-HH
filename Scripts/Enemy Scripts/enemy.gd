@@ -25,6 +25,7 @@ func enemy_death():
 
 func onhit(damage):
 	ENEMYhealth -= damage
+	print(damage)
 
 
 
