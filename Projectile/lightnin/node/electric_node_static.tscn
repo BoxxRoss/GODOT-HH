@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://electric_node_static.gd" type="Script" id=1]
+[ext_resource path="res://Projectile/lightnin/node/light_flareGG.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/basic_light1.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 2 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21, 3 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 86.122
+
+[node name="electric_node_static" type="RigidBody2D"]
+collision_layer = 16384
+collision_mask = 16384
+mode = 1
+mass = 0.00102041
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.239216, 0.517647, 0.87451, 1 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -15, 0 )
+texture = ExtResource( 3 )
+color = Color( 0.372549, 0.690196, 1, 1 )
+
+[node name="node_detection_circle" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 16384
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="node_detection_circle"]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="node_detection_circle" to="." method="_on_node_detection_circle_body_entered"]

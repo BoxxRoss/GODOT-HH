@@ -8,7 +8,7 @@
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/Control.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Room Scripts/battle scripts/kill_counter.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player scripts/high_score.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Player scripts/weapon_control.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player scripts/weapon scripts/weapon_control.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player scripts/Upgrade_control.gd" type="Script" id=10]
 [ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
 

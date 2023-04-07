@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+var lightnin_node_static = preload("res://Projectile/lightnin/node/electric_node_static.tscn")
 
 func _process(delta):
 	modulate.a8 -= 4
@@ -12,3 +13,4 @@ func _on_Area2D_body_entered(body):
 		Global.bul_check = false
 		queue_free()
 		print("ready for landing")
+

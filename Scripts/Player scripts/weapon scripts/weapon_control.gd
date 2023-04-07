@@ -7,20 +7,38 @@ var rotations = self.rotation_degrees
 var breathless = false
 var is_breathing = false
 var Sprint = false
-var charge_ball = 0.5
+
+
+# fire rate numbers
 var fire_rate_lit = 0.5
 var fire_rate_lit_ball = 0.5
+var fire_rate_lit_node = 1
+
+# fire speeds
 var bullet_speed = 400
 var bullet_speed_lightnin_ball = 150
-var laser_beam = preload("res://laser/LaserBeam.tscn")
-var lightin = preload("res://Projectile/light_spray.tscn")
+var node_bul_speed = 300
 
-var beam_crosshair = preload("res://Projectile/Beam_cross_hair.tscn")
-var beam_hittin = false
-var lightnin_ball = preload("res://Projectile/Lightning_ball_charge.tscn")
+# preloads
+var laser_beam = preload("res://laser/LaserBeam.tscn")
+var beam_crosshair = preload("res://Projectile/fire/beam/Beam_cross_hair.tscn")
+
+var lightnin_ball = preload("res://Projectile/lightnin/ball/Lightning_ball_charge.tscn")
+
+var lightnin_node_crosshair = preload("res://Projectile/lightnin/node/Node_cross_hair.tscn")
+var lightnin_node_motion_bullet = preload("res://Projectile/lightnin/node/electric_node_motion.tscn")
+
+
+var lightin = preload("res://Projectile/lightnin/spray/light_spray.tscn")
+# weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
+var can_fire_light_node = true
+#other
 var weapon_select = 1
+var beam_hittin = false
+var charge_ball = 0.5
+
 
 func _on_KinematicBody2D_stamina_change(stamina):
 	stamina = stamina
@@ -29,12 +47,14 @@ func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
 	Global.ply_rotations = self.global_rotation_degrees
 	
-	if Input.is_action_pressed("Switch to flares"):
+	if Input.is_action_pressed("Switch to beam"):
 		weapon_select = 1
 	if Input.is_action_pressed("Switch to flames"):
 		weapon_select = 2
 	if Input.is_action_pressed("switch_to_lightnin_ball"):
 		weapon_select = 3
+	if Input.is_action_pressed("switch_to_eletric_nodes"):
+		weapon_select = 4
 	
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
@@ -62,6 +82,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("right click"):
 		Global.beam_active = false
 	
+	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
 		Global.beam_active = false
 		fire_light_spray()
@@ -77,9 +98,28 @@ func _physics_process(delta):
 
 		fire_light_ball()
 		charge_ball = 0.5
-
-func fire_beam():
 	
+	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == 4:
+		fire_elec_node()
+		
+		
+		
+func fire_elec_node():
+	var node_crosshair_instance = lightnin_node_crosshair.instance()
+	node_crosshair_instance.position = get_global_mouse_position()
+	node_crosshair_instance.rotation_degrees = rotation_degrees
+	get_tree().get_root().call_deferred("add_child", node_crosshair_instance)
+	
+	var node_motion_instance = lightnin_node_motion_bullet.instance()
+	node_motion_instance.position = $bulletpoint.get_global_position()
+	node_motion_instance.rotation_degrees = Global.ply_rotations
+	node_motion_instance.apply_impulse(Vector2(),Vector2(node_bul_speed,0).rotated(rotations))
+	get_tree().get_root().call_deferred("add_child", node_motion_instance)
+	can_fire_light_node = false
+	yield(get_tree().create_timer(fire_rate_lit_node), "timeout")
+	can_fire_light_node = true
+	
+func fire_beam():
 	var block_instance = beam_crosshair.instance()
 	block_instance.position = get_global_mouse_position()
 	block_instance.rotation_degrees = rotation_degrees
@@ -91,7 +131,7 @@ func fire_beam():
 func fire_light_ball():
 	var light_ball_inst = lightnin_ball.instance()
 	light_ball_inst.position = $bulletpoint.get_global_position()
-	light_ball_inst.rotation_degrees = self.rotation_degrees
+	light_ball_inst.rotation_degrees = rotation_degrees
 	light_ball_inst.apply_impulse(Vector2(),Vector2(bullet_speed_lightnin_ball,0).rotated(rotations))
 	get_tree().get_root().call_deferred("add_child", light_ball_inst)
 	can_fire_light_ball = false
@@ -109,3 +149,4 @@ func fire_light_spray():
 
 func _on_KinematicBody2D_player_rotation(rotation):
 	rotations = rotation
+

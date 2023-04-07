@@ -4,17 +4,19 @@
 [ext_resource path="res://electric_node_motion.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20, 4 )
+extents = Vector2( 13.5, 4 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 4 )
 
 [node name="electric_node_motion" type="RigidBody2D"]
+collision_layer = 0
 mass = 0.00102041
 gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -6.5, 0 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
