@@ -110,7 +110,8 @@ func _physics_process(delta):
 
 
 func kill():
-	get_tree().reload_current_scene()
+	Global.died = true
+	get_tree().change_scene("res://Rooms/menu_rooms/death_screen.tscn")
 	health = max_health
 	is_breathing = false
 	emit_signal("damage_taken", health)
@@ -118,6 +119,8 @@ func kill():
 	Engine.time_scale = 1
 	Engine.iterations_per_second = 60
 	emit_signal("player_death")
+	
+	
 
 
 func take_a_hit():

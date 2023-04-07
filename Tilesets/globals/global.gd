@@ -25,7 +25,7 @@ var kill_count = 0
 #level ups
 var stamina_multi = 1
 
-
+var died = false
 
 func instance_node(node, location, parent):
 	var node_instance = node.instance()
