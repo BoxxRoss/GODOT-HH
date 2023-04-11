@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 # health related
-var max_health = 100
-var health = 100
+var max_health = 10000
+var health = 10000
 
 # breathing mechanics
 var breathless = false

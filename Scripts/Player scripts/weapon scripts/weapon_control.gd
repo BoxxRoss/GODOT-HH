@@ -14,7 +14,7 @@ var Sprint = false
 # fire rate numbers
 var fire_rate_lit = 0.5
 var fire_rate_lit_ball = 0.5
-var fire_rate_lit_node = 1
+var fire_rate_lit_node = 0.3
 
 # fire speeds
 var bullet_speed = 400
@@ -22,7 +22,7 @@ var bullet_speed_lightnin_ball = 150
 var node_bul_speed = 300
 
 # preloads
-var laser_beam = preload("res://laser/LaserBeam.tscn")
+var laser_beam = preload("res://Projectile/fire/beam/LaserBeam.tscn")
 var beam_crosshair = preload("res://Projectile/fire/beam/Beam_cross_hair.tscn")
 
 var lightnin_ball = preload("res://Projectile/lightnin/ball/Lightning_ball_charge.tscn")
@@ -102,7 +102,7 @@ func _physics_process(delta):
 		charge_ball = 0.5
 	
 	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == 4:
-		lightning.shoot()
+		fire_elec_node()
 		
 		
 		

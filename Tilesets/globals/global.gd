@@ -6,6 +6,7 @@ var switch = false
 var enemy_hit_by_lightnin = false
 
 
+
 #bullets
 var beam_active = false
 var charge_balls = 0
@@ -15,6 +16,7 @@ var fired = false
 var bul_check = true
 var Playerss = preload("res://player/playernew.tscn")
 
+var place 
 #score
 var enemy_score = 0
 var score = 0
@@ -34,5 +36,7 @@ func instance_node(node, location, parent):
 	return node_instance
 	
 
-
+func update(o_spot):
+	place = o_spot
+	
 

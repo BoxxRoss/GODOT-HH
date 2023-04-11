@@ -7,6 +7,8 @@ export (int, 1, 36) var segments := 36
 
 onready var sparks := $sparks
 
+func _trigger():
+	print("triggerd")
 
 func _ready() -> void:
 	randomize()
