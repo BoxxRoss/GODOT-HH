@@ -26,7 +26,7 @@ scale = Vector2( 0.1875, 0.1875 )
 texture = ExtResource( 3 )
 
 [node name="Beam" type="Sprite" parent="."]
-modulate = Color( 0.4, 0.92549, 0.941176, 1 )
+modulate = Color( 0.592773, 0.988197, 1, 1 )
 material = SubResource( 2 )
 scale = Vector2( 1, 0.166667 )
 texture = ExtResource( 1 )
@@ -62,3 +62,6 @@ texture = ExtResource( 3 )
 position = Vector2( 100, 0 )
 enabled = true
 cast_to = Vector2( 100, 0 )
+
+[connection signal="body_entered" from="Beam/Area2Dbeam" to="." method="_on_Area2Dbeam_body_entered"]
+[connection signal="body_exited" from="Beam/Area2Dbeam" to="." method="_on_Area2Dbeam_body_exited"]

@@ -14,6 +14,7 @@ func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
 	print(weapon_damage)
+	
 func taking_damage_stop():
 	hurt = false
 	

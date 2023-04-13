@@ -13,7 +13,6 @@
 [ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://deprecated/test/Lightnin_BEAM.tscn" type="PackedScene" id=12]
 
-
 [sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -135,7 +134,7 @@ script = ExtResource( 8 )
 [node name="Light2D" type="Light2D" parent="."]
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
-energy = 2.3
+energy = 2.0
 shadow_enabled = true
 shadow_buffer_size = 1000
 shadow_gradient_length = 0.1

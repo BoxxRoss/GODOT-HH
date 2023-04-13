@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var lazer_node = preload("res://Projectile/lightnin/node/eletric_lazer.tscn")
+onready var circle_detect = $node_detection_circle/CollisionShape2D
 var limit = 0
 var spot = self.global_position
 var o_spot
@@ -9,12 +10,16 @@ var check = false
 signal connect
 
 func _ready():
-	pass
+	circle_detect.scale.x = 0
+	circle_detect.scale.y = 0
 
 func _process(delta):
 	if Global.died == true:
 		queue_free()
 	update()
+	if circle_detect.scale.x and circle_detect.scale.y <= 1:
+		circle_detect.scale.x += 0.5
+		circle_detect.scale.y += 0.5
 
 func _on_node_detection_circle_body_entered(body):
 	pass

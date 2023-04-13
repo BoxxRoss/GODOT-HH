@@ -51,5 +51,3 @@ func _on_Area2Dbeam_body_exited(body):
 	if body.is_in_group("enemys"):
 		body.taking_damage_stop()	
 
-
-

@@ -96,12 +96,14 @@ func _physics_process(delta):
 			charge_ball = 4.5
 		
 	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == 3:
+		Global.beam_active = false
 		Global.charge_balls = charge_ball
 
 		fire_light_ball()
 		charge_ball = 0.5
 	
 	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == 4:
+		Global.beam_active = false
 		fire_elec_node()
 		
 		
