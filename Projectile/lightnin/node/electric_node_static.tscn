@@ -12,7 +12,7 @@ extents = Vector2( 20, 2 )
 extents = Vector2( 21, 3 )
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 40.0125
+radius = 31.0644
 
 [node name="electric_node_static" type="RigidBody2D"]
 collision_layer = 1024

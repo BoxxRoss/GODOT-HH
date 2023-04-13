@@ -14,18 +14,19 @@ blend_mode = 1
 extents = Vector2( 2.5, 10 )
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 10.3387
+radius = 4.47214
 
 [node name="eletric_lazer" type="Node2D" groups=["lazer"]]
 script = ExtResource( 2 )
 
 [node name="Begin" type="Sprite" parent="."]
-modulate = Color( 0.329412, 0.329412, 0.329412, 1 )
+modulate = Color( 0.4, 0.92549, 0.941176, 1 )
 material = SubResource( 1 )
-scale = Vector2( 0.375, 0.375 )
+scale = Vector2( 0.1875, 0.1875 )
 texture = ExtResource( 3 )
 
 [node name="Beam" type="Sprite" parent="."]
+modulate = Color( 0.4, 0.92549, 0.941176, 1 )
 material = SubResource( 2 )
 scale = Vector2( 1, 0.166667 )
 texture = ExtResource( 1 )
@@ -53,8 +54,8 @@ collision_mask = 513
 shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="End"]
-modulate = Color( 0, 0, 0, 1 )
-scale = Vector2( 0.5625, 0.5625 )
+modulate = Color( 0.368671, 0.977908, 0.996094, 1 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
