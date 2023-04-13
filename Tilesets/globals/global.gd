@@ -5,6 +5,7 @@ var switch = false
 #enemy
 var enemy_hit_by_lightnin = false
 
+#random vars
 
 
 #bullets

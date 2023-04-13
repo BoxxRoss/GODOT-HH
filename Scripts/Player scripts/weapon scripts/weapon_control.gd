@@ -113,10 +113,10 @@ func _physics_process(delta):
 		fire_elec_node()
 	
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == 5:
-		
+		var rand_chance_for_more_flames = rand_range(0,2)
 		flamethrower()
-		
-		
+		if rand_chance_for_more_flames <= 0:
+			flamethrower()
 
 
 func flamethrower():
@@ -126,6 +126,7 @@ func flamethrower():
 	thrower_instance.position = $bulletpoint.get_global_position()
 	thrower_instance.apply_impulse(Vector2(),Vector2(flame_speed,0).rotated(rotations + rand_angle))
 	get_tree().get_root().call_deferred("add_child", thrower_instance)
+	
 	can_fire_flamethrower = false
 	yield(get_tree().create_timer(fire_rate_flamethrower), "timeout")
 	can_fire_flamethrower = true
