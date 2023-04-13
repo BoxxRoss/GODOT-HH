@@ -14,12 +14,14 @@ var Sprint = false
 # fire rate numbers
 var fire_rate_lit = 0.5
 var fire_rate_lit_ball = 0.5
-var fire_rate_lit_node = 0.3
+var fire_rate_lit_node = 0.8
+var fire_rate_flamethrower = 0.1
 
 # fire speeds
 var bullet_speed = 400
 var bullet_speed_lightnin_ball = 150
 var node_bul_speed = 300
+var flame_speed = 250
 
 # preloads
 var laser_beam = preload("res://Projectile/fire/beam/LaserBeam.tscn")
@@ -30,12 +32,14 @@ var lightnin_ball = preload("res://Projectile/lightnin/ball/Lightning_ball_charg
 var lightnin_node_crosshair = preload("res://Projectile/lightnin/node/Node_cross_hair.tscn")
 var lightnin_node_motion_bullet = preload("res://Projectile/lightnin/node/electric_node_motion.tscn")
 
-
 var lightin = preload("res://Projectile/lightnin/spray/light_spray.tscn")
+
+var flame_particles = preload("res://Projectile/fire/Flamethrower/flame_particles.tscn")
 # weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
 var can_fire_light_node = true
+var can_fire_flamethrower = true
 #other
 var weapon_select = 1
 var beam_hittin = false
@@ -57,6 +61,8 @@ func _physics_process(delta):
 		weapon_select = 3
 	if Input.is_action_pressed("switch_to_eletric_nodes"):
 		weapon_select = 4
+	if Input.is_action_pressed("switch to flamethrower"):
+		weapon_select = 5
 	
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
@@ -105,9 +111,25 @@ func _physics_process(delta):
 	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == 4:
 		Global.beam_active = false
 		fire_elec_node()
+	
+	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == 5:
+		
+		flamethrower()
 		
 		
-		
+
+
+func flamethrower():
+	randomize()
+	var rand_angle = rand_range(-0.8,0.8)
+	var thrower_instance = flame_particles.instance()		
+	thrower_instance.position = $bulletpoint.get_global_position()
+	thrower_instance.apply_impulse(Vector2(),Vector2(flame_speed,0).rotated(rotations + rand_angle))
+	get_tree().get_root().call_deferred("add_child", thrower_instance)
+	can_fire_flamethrower = false
+	yield(get_tree().create_timer(fire_rate_flamethrower), "timeout")
+	can_fire_flamethrower = true
+	
 func fire_elec_node():
 	var node_crosshair_instance = lightnin_node_crosshair.instance()
 	node_crosshair_instance.position = get_global_mouse_position()

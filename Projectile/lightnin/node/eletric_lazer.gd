@@ -14,7 +14,7 @@ func _on_electric_node_static_connect(o_spot,spott):
 	self.global_position = spott
 	end.global_position = o_spot
 	beam.region_rect.end.x = end.position.length()
-	beam.rotation = beam.get_angle_to(o_spot)
+	beam.rotation = beam.get_angle_to(o_spot) 
 	$Beam/Area2Dbeam/CollisionShape2D.shape.extents = Vector2(end.position.length()/2,10)
 	$Beam/Area2Dbeam/CollisionShape2D.position = Vector2(end.position.length()/2,0)
 
