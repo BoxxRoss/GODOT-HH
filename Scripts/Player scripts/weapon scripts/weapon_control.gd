@@ -12,9 +12,9 @@ var Sprint = false
 
 
 # fire rate numbers
-var fire_rate_lit = 0.5
+var fire_rate_lit = 0.25
 var fire_rate_lit_ball = 0.5
-var fire_rate_lit_node = 0.8
+var fire_rate_lit_node = 0.5
 var fire_rate_flamethrower = 0.1
 
 # fire speeds
@@ -94,6 +94,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
 		Global.beam_active = false
 		fire_light_spray()
+		fire_light_spray()
+		fire_light_spray()
+
 		
 	if Input.is_action_pressed("Shoot") and weapon_select == 3 and is_breathing != true:
 		Global.beam_active = false
@@ -166,9 +169,9 @@ func fire_light_ball():
 	can_fire_light_ball = true
 	
 func fire_light_spray():
+
 	var light_instance = lightin.instance()
 	light_instance.position = $bulletpoint.get_global_position()
-	light_instance.rotation_degrees = rotation_degrees
 	get_tree().get_root().call_deferred("add_child", light_instance)
 	can_fire_light = false
 	yield(get_tree().create_timer(fire_rate_lit), "timeout")

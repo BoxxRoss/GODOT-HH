@@ -27,4 +27,4 @@ func _on_random_level_pressed():
 		get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
 	if rand_map == 2:
 		get_tree().change_scene("res://Rooms/battle_rooms/endless_level_2.tscn")
-	print(rand_map)
+

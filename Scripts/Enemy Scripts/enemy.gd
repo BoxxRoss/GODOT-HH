@@ -13,7 +13,7 @@ var ENEMYhealth = ENEMYhealthmax
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
-	print(weapon_damage)
+
 	
 func taking_damage_stop():
 	hurt = false
@@ -26,7 +26,6 @@ func enemy_death():
 
 func onhit(damage):
 	ENEMYhealth -= damage
-	print(damage)
 
 
 
