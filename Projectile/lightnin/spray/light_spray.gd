@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-var damage = 5
+var damage = 2.5
+var charge = 1
 
 var sprite_var_1 = preload("res://Projectile/lightnin/lightning_spray_varient1.png")
 var sprite_var_2 = preload("res://Projectile/lightnin/lightning_spray_varient2.png")
@@ -8,23 +9,22 @@ var sprite_var_3 = preload("res://Projectile/lightnin/lightning_spray_varient3.p
 var sprite_var_4 = preload("res://Projectile/lightnin/lightning_spray_varient4.png")
 var sprite_var_5 = preload("res://Projectile/lightnin/lightning_spray_varient5.png")
 
-var chain = preload("res://Projectile/lightnin/spray/light_spray_chain.tscn")
 
-onready var cicle_detect = $detect_circe_2D/CollisionShape2D
 onready var spray_sprite = get_node("TinyBullet")
 
 var sprite_options = [1,2,3,4,5]
-var rand_angle = rand_range(-50,50)
+var rand_angle = rand_range(-30,30)
 	
 
 func _process(delta):
 	randomize()
 	self.rotation_degrees = Global.ply_rotations + rand_angle
 	self.position = Global.bullet_pos
-	if modulate.a8 <= 0:
+	if $TinyBullet.modulate.a <= 0:
+		print("stop")
 		queue_free()
 
-
+	
 func _ready():
 	var rand_value = sprite_options[randi() % sprite_options.size()]
 	if rand_value == 1:
@@ -41,27 +41,17 @@ func _ready():
 		
 		
 func _on_Timer_timeout():
-	modulate.a8 -= 100
+	$TinyBullet.modulate.a = lerp($TinyBullet.modulate.a, -0.1, 0.8)
 
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		body.onhit(damage)
-		var done = false
-		cicle_detect.global_position = body.global_position
-		if cicle_detect.scale.x and cicle_detect.scale.y < 3 and done == false:
-			cicle_detect.scale.x = 3
-			cicle_detect.scale.y = 3
-			done = true
-
+		body.charge_boom(charge)
+	
 			
 		
 
 
-func _on_detect_circe_2D_body_entered(body):
-	if body.is_in_group("enemys"):
-		print("coolio")
-		body.onhit(damage)
-		var chain_instance = chain.instance()
-		chain_instance.position = body.global_position
-		get_tree().get_root().call_deferred("add_child", chain_instance)
+
+

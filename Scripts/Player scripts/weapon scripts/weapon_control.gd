@@ -96,7 +96,8 @@ func _physics_process(delta):
 		fire_light_spray()
 		fire_light_spray()
 		fire_light_spray()
-
+		fire_light_spray()
+		fire_light_spray()
 		
 	if Input.is_action_pressed("Shoot") and weapon_select == 3 and is_breathing != true:
 		Global.beam_active = false

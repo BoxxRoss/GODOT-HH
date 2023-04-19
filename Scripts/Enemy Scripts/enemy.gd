@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+
+
 var four_coll_checker = 0
 var damage_dealt
 var hurt = false
@@ -8,7 +10,7 @@ var motion = Vector2(0 , 0)
 var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
-
+var current_charge = 0
 
 func taking_damage(weapon_damage):
 	hurt = true
@@ -17,12 +19,16 @@ func taking_damage(weapon_damage):
 	
 func taking_damage_stop():
 	hurt = false
+
+func charge_boom(charge):
+	current_charge += charge
 	
 func enemy_death():
 	queue_free()
 	Global.enemy_score -= 10
 	Global.score += 1
 	Global.kill_count += 1
+
 
 func onhit(damage):
 	ENEMYhealth -= damage
