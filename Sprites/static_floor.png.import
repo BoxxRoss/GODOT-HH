@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Beam.png-44fac2343cdc5c51279a7c0a4232ca33.stex"
+path="res://.import/static_floor.png-dd3eac96ed11debbf50b3bd509120ff9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Beam.png"
-dest_files=[ "res://.import/Beam.png-44fac2343cdc5c51279a7c0a4232ca33.stex" ]
+source_file="res://Sprites/static_floor.png"
+dest_files=[ "res://.import/static_floor.png-dd3eac96ed11debbf50b3bd509120ff9.stex" ]
 
 [params]
 

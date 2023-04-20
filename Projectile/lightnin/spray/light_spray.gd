@@ -1,7 +1,8 @@
 extends RigidBody2D
 
-var damage = 2.5
-var charge = 1
+var damage = 2
+var shock = 1
+var static_floor = 1
 
 var sprite_var_1 = preload("res://Projectile/lightnin/lightning_spray_varient1.png")
 var sprite_var_2 = preload("res://Projectile/lightnin/lightning_spray_varient2.png")
@@ -9,6 +10,7 @@ var sprite_var_3 = preload("res://Projectile/lightnin/lightning_spray_varient3.p
 var sprite_var_4 = preload("res://Projectile/lightnin/lightning_spray_varient4.png")
 var sprite_var_5 = preload("res://Projectile/lightnin/lightning_spray_varient5.png")
 
+var modulate_checker = false
 
 onready var spray_sprite = get_node("TinyBullet")
 
@@ -20,11 +22,11 @@ func _process(delta):
 	randomize()
 	self.rotation_degrees = Global.ply_rotations + rand_angle
 	self.position = Global.bullet_pos
-	if $TinyBullet.modulate.a <= 0:
-		print("stop")
+	if modulate.a8 <= 0:
 		queue_free()
+	if modulate_checker == true and modulate.a8 >= 0:
+		modulate.a8 -= 20
 
-	
 func _ready():
 	var rand_value = sprite_options[randi() % sprite_options.size()]
 	if rand_value == 1:
@@ -41,13 +43,14 @@ func _ready():
 		
 		
 func _on_Timer_timeout():
-	$TinyBullet.modulate.a = lerp($TinyBullet.modulate.a, -0.1, 0.8)
+	modulate_checker = true
 
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		body.onhit(damage)
-		body.charge_boom(charge)
+		body.shock(shock)
+		body.static_floor_charge(static_floor)
 	
 			
 		

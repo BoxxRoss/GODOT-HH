@@ -1,13 +1,20 @@
 extends RigidBody2D
 
-var flame_hurt = 3
+var flame_hurt = 2
+var timer_check = false
+
+func _ready():
+	var rand_time = rand_range(0.45,0.6)
+	$Timer.wait_time = rand_time
+	$Timer.start() 
 
 func _process(delta):
-	modulate.a8 -= 6
+	if timer_check == true:
+		modulate.a8 -= 20
 	if modulate.a8 <= 0:
 		queue_free()
 func _on_Timer_timeout():
-	queue_free()
+	timer_check = true
 
 
 func _on_Area2D_body_entered(body):

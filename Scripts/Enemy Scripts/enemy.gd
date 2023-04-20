@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 
 var four_coll_checker = 0
 var damage_dealt
@@ -11,6 +11,8 @@ var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
 var current_charge = 0
+var shocked = 0
+var weak = 1
 
 func taking_damage(weapon_damage):
 	hurt = true
@@ -20,30 +22,46 @@ func taking_damage(weapon_damage):
 func taking_damage_stop():
 	hurt = false
 
-func charge_boom(charge):
-	current_charge += charge
+# current charge handels the properties of the static pool left behind when enemies die
+
+func shock(shock):
+	shocked += shock
 	
 func enemy_death():
 	queue_free()
 	Global.enemy_score -= 10
 	Global.score += 1
 	Global.kill_count += 1
-
-
+	
+	if current_charge > 0:
+		var static_insatnce = static_floor.instance()
+		static_insatnce.global_position = self.global_position
+		static_insatnce.global_rotation = self.global_rotation
+		get_tree().get_root().call_deferred("add_child", static_insatnce)
+		
 func onhit(damage):
 	ENEMYhealth -= damage
 
+func shocked():
+	speed = 50
+	weak = 1.5
+	
+func static_floor_charge(static_floor):
+	current_charge += static_floor
 
-
+	
 func _physics_process(delta):
+	shocked -= 0.01
 	
 	if ENEMYhealth <= 0:
 		enemy_death()
-
+	
+	if shocked >= 15:
+		shocked()
 
 	if hurt == true:
 		
-		ENEMYhealth -= damage_dealt
+		ENEMYhealth -= damage_dealt * weak
 	
 	if four_coll_checker == 4:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)

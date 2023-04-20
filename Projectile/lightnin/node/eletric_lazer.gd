@@ -4,7 +4,8 @@ onready var beam = $Beam
 onready var end = $End
 onready var rayCast2D = $RayCast2D
 
-var damage = 2.5
+var damage = 0.5
+var shock = 3
 
 func _physics_process(delta):
 	if Global.died == true:
@@ -23,7 +24,7 @@ func _on_Area2Dbeam_body_entered(body):
 	if body.is_in_group("enemys"):
 		var weapon_damage = damage
 		body.taking_damage(weapon_damage)
-
+		body.shock(shock)
 
 func _on_Area2Dbeam_body_exited(body):
 	if body.is_in_group("enemys"):
