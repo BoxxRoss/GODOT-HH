@@ -35,5 +35,3 @@ func spawn_floor_fire():
 	get_tree().get_root().call_deferred("add_child", fire_floor_instance)
 
 
-func _on_Timer2_timeout():
-	pass # Replace with function body.

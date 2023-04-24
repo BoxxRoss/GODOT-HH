@@ -3,6 +3,7 @@ extends Node2D
 onready var heat_circle = get_node("Area2D")
 var weapon_gone = false
 var weapon_damage = 1.5
+var ignite = 1
 
 func _ready():
 	heat_circle.modulate.a8 = 255
@@ -24,12 +25,13 @@ func _process(delta):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		body.taking_damage(weapon_damage)
+		body.being_ignited(ignite)
 
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemys"):
 		body.taking_damage_stop()
-
+		body.not_being_ignited()
 
 func _on_Timer_timeout():
 	if weapon_gone == false:

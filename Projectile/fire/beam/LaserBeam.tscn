@@ -45,6 +45,8 @@ texture = ExtResource( 3 )
 
 [node name="Beam" type="Sprite" parent="."]
 material = SubResource( 1 )
+position = Vector2( 0, -0.5 )
+scale = Vector2( 1, 0.375 )
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 0, -12 )

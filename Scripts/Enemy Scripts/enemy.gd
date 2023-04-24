@@ -2,6 +2,14 @@ extends KinematicBody2D
 
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 
+#debuffs
+var current_charge = 0
+var shocked = 0
+var weak = 1
+var current_flame_status = 0
+var _being_ignited = false
+
+
 var four_coll_checker = 0
 var damage_dealt
 var hurt = false
@@ -10,16 +18,11 @@ var motion = Vector2(0 , 0)
 var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
-var current_charge = 0
-var shocked = 0
-var weak = 1
 
 
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
-
-	
 func taking_damage_stop():
 	hurt = false
 
@@ -28,6 +31,13 @@ func taking_damage_stop():
 func shock(shock):
 	shocked += shock
 	
+	
+func being_ignited(ignite):
+	_being_ignited = true
+	current_flame_status += ignite
+func not_being_ignited():
+	_being_ignited = false
+
 func enemy_death():
 	queue_free()
 	Global.enemy_score -= 10
@@ -54,6 +64,15 @@ func static_floor_charge(static_floor):
 func _physics_process(delta):
 	shocked -= 0.01
 	
+	if _being_ignited == true or current_flame_status > 0:
+		ENEMYhealth -= current_flame_status/10
+		current_flame_status -= 0.001
+		print(current_flame_status)
+
+
+	if current_flame_status <= 0:
+		_being_ignited = false
+		
 	if ENEMYhealth <= 0:
 		enemy_death()
 	

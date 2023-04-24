@@ -16,7 +16,7 @@ var fire_rate_lit = 0.25
 var fire_rate_lit_ball = 0.5
 var fire_rate_lit_node = 0.5
 var fire_rate_flamethrower = 0.1
-var fire_trail_rate = 1
+var fire_trail_rate = 1.5
 
 # bullet move speeds
 var bullet_speed = 400
@@ -147,9 +147,9 @@ func flametrail():
 	flame_trail_instance.rotation_degrees = Global.ply_rotations
 	flame_trail_instance.apply_impulse(Vector2(),Vector2(flame_trail_speed,0).rotated(rotations))
 	get_tree().get_root().call_deferred("add_child", flame_trail_instance)
-	can_fire_light_node = false
+	can_fire_fire_trail = false
 	yield(get_tree().create_timer(fire_trail_rate), "timeout")
-	can_fire_light_node = true
+	can_fire_fire_trail = true
 	
 func flamethrower():
 	randomize()

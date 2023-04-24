@@ -12,5 +12,5 @@ func _on_Area2D_body_entered(body):
 	else:
 		Global.bul_check = false
 		queue_free()
-		print("ready for landing")
+
 

@@ -4,6 +4,8 @@ const MAX_LENGTH = 2000
 
 var beam_damage = 0.75
 var point_damage = 1.5
+var ignite_point = 2
+var ignite_body = 0.25
 
 onready var beam = $Beam
 onready var end = $End
@@ -36,6 +38,7 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		var weapon_damage = point_damage
 		body.taking_damage(weapon_damage)
+		body.being_ignited(ignite_point)
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemys"):
@@ -45,9 +48,10 @@ func _on_Area2Dbeam_body_entered(body):
 	if body.is_in_group("enemys"):
 		var weapon_damage = beam_damage
 		body.taking_damage(weapon_damage)
-
+		body.being_ignited(ignite_body)
 
 func _on_Area2Dbeam_body_exited(body):
 	if body.is_in_group("enemys"):
 		body.taking_damage_stop()	
+		body.not_being_ignited()
 

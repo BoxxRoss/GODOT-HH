@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-var flame_hurt = 2
+var weapon_damage = 2
+var ignite = 0.2
 var timer_check = false
 
 func _ready():
@@ -21,8 +22,8 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		var rand_chance_fire_passthrough = rand_range(0,2)
 		
-		var weapon_damage = flame_hurt
 		body.taking_damage(weapon_damage)
+		body.being_ignited(ignite)
 		if rand_chance_fire_passthrough <= 1:
 			queue_free()
 
@@ -32,3 +33,4 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemys"):
 		body.taking_damage_stop()
+		body.not_being_ignited()

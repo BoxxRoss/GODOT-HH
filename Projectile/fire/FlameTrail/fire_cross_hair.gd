@@ -10,4 +10,4 @@ func _on_Area2D_body_entered(body):
 	else:
 		Global.fire_check = false
 		queue_free()
-		print("ready for landing")
+
