@@ -4,7 +4,7 @@ var weapon_damage = 0.5
 var modulate_checker = false
 
 func _ready():
-	var rand_timer = rand_range(5,10)
+	var rand_timer = rand_range(3,6)
 	$RigidBody2D/Timer.wait_time = rand_timer
 	$RigidBody2D/Timer.start()
 

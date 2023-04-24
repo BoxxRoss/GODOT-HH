@@ -27,7 +27,7 @@ config/icon="res://Sprites/icon.png"
 [autoload]
 
 Betterpause="*res://Rooms/betterpause.tscn"
-Global="*res://Tilesets/globals/global.gd"
+Global="*res://globals/global.gd"
 SaveScript="*res://Scripts/Room Scripts/Save_script.gd"
 
 [debug]
@@ -125,6 +125,11 @@ switch_to_eletric_nodes={
 "switch to flamethrower"={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":53,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+"switch to flametrail"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":54,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -14,6 +14,7 @@ var current_charge = 0
 var shocked = 0
 var weak = 1
 
+
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage

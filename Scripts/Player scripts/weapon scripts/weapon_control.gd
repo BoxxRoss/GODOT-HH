@@ -16,12 +16,14 @@ var fire_rate_lit = 0.25
 var fire_rate_lit_ball = 0.5
 var fire_rate_lit_node = 0.5
 var fire_rate_flamethrower = 0.1
+var fire_trail_rate = 1
 
-# fire speeds
+# bullet move speeds
 var bullet_speed = 400
 var bullet_speed_lightnin_ball = 150
 var node_bul_speed = 300
 var flame_speed = 250
+var flame_trail_speed = 300
 
 # preloads
 var laser_beam = preload("res://Projectile/fire/beam/LaserBeam.tscn")
@@ -35,11 +37,16 @@ var lightnin_node_motion_bullet = preload("res://Projectile/lightnin/node/electr
 var lightin = preload("res://Projectile/lightnin/spray/light_spray.tscn")
 
 var flame_particles = preload("res://Projectile/fire/Flamethrower/flame_particles.tscn")
+
+var flametrail_motion = preload("res://Projectile/fire/FlameTrail/flame_trail_motion.tscn")
+var flametrail_crosshair = preload("res://Projectile/fire/FlameTrail/fire_cross_hair.tscn")
+
 # weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
 var can_fire_light_node = true
 var can_fire_flamethrower = true
+var can_fire_fire_trail = true
 #other
 var weapon_select = 1
 var beam_hittin = false
@@ -63,7 +70,9 @@ func _physics_process(delta):
 		weapon_select = 4
 	if Input.is_action_pressed("switch to flamethrower"):
 		weapon_select = 5
-	
+	if Input.is_action_pressed("switch to flametrail"):
+		weapon_select = 6
+			
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
 		
@@ -117,12 +126,31 @@ func _physics_process(delta):
 		fire_elec_node()
 	
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == 5:
+		Global.beam_active = false
 		var rand_chance_for_more_flames = rand_range(0,2)
 		flamethrower()
 		if rand_chance_for_more_flames <= 0:
 			flamethrower()
 
+	if Input.is_action_just_released("Shoot") and can_fire_fire_trail and stamina > 10 and is_breathing != true and weapon_select == 6:
+		Global.beam_active = false
+		flametrail()
 
+func flametrail():
+	var flame_crosshair_instance = flametrail_crosshair.instance()
+	flame_crosshair_instance.position = get_global_mouse_position()
+	flame_crosshair_instance.rotation_degrees = rotation_degrees
+	get_tree().get_root().call_deferred("add_child", flame_crosshair_instance)
+	
+	var flame_trail_instance = flametrail_motion.instance()
+	flame_trail_instance.position = $bulletpoint.get_global_position()
+	flame_trail_instance.rotation_degrees = Global.ply_rotations
+	flame_trail_instance.apply_impulse(Vector2(),Vector2(flame_trail_speed,0).rotated(rotations))
+	get_tree().get_root().call_deferred("add_child", flame_trail_instance)
+	can_fire_light_node = false
+	yield(get_tree().create_timer(fire_trail_rate), "timeout")
+	can_fire_light_node = true
+	
 func flamethrower():
 	randomize()
 	var rand_angle = rand_range(-0.8,0.8)

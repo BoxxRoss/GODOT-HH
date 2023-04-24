@@ -10,6 +10,7 @@ extents = Vector2( 11, 11 )
 extents = Vector2( 12, 12 )
 
 [node name="Node2D" type="Node2D"]
+z_index = 1
 script = ExtResource( 2 )
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
