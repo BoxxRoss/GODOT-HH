@@ -52,6 +52,40 @@ var weapon_select = 1
 var beam_hittin = false
 var charge_ball = 0.5
 
+var weapon_array = [0,0,0,0,0,0]
+
+func _ready():
+	if Global.flame_thrower_activcated:
+		weapon_array[1] = 1
+	else:
+		weapon_array[1] = 0
+		
+	if Global.flame_beam_activated:
+		weapon_array[2] = 1
+	else:
+		weapon_array[2] = 0
+		
+	if Global.flame_trail_activated:
+		weapon_array[3] = 1
+	else:
+		weapon_array[3] = 0
+		
+	if Global.lightning_ball_activated:
+		weapon_array[4] = 1
+	else:
+		weapon_array[4] = 0
+		
+	if Global.lightning_spray_activated:
+		weapon_array[5] = 1
+	else:
+		weapon_array[5] = 0
+		
+	if Global.lightning_tripwire_activated:
+		weapon_array[6] = 1
+	else:
+		weapon_array[6] = 0
+		
+	
 
 func _on_KinematicBody2D_stamina_change(stamina):
 	stamina = stamina
@@ -60,11 +94,11 @@ func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
 	Global.ply_rotations = self.global_rotation_degrees
 	
-	if Input.is_action_pressed("Switch to beam"):
+	if Input.is_action_pressed("Switch to weapon1"):
 		weapon_select = 1
-	if Input.is_action_pressed("Switch to flames"):
+	if Input.is_action_pressed("Switch to weapon2"):
 		weapon_select = 2
-	if Input.is_action_pressed("switch_to_lightnin_ball"):
+	if Input.is_action_pressed("Switch to weapon3"):
 		weapon_select = 3
 	if Input.is_action_pressed("switch_to_eletric_nodes"):
 		weapon_select = 4
