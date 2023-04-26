@@ -2,6 +2,15 @@ extends Node
 
 var switch = false
 
+#weapon control
+var flame_thrower_activcated = false
+var flame_trail_activated = false
+var flame_beam_activated = false
+
+var lightning_ball_activated = false
+var lightning_spray_activated = false
+var lightning_tripwire_activated = false
+
 #enemy
 var enemy_hit_by_lightnin = false
 

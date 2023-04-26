@@ -23,4 +23,13 @@ margin_bottom = 410.0
 rect_scale = Vector2( 5, 5 )
 text = "Retry"
 
+[node name="Button2" type="Button" parent="."]
+margin_left = 343.0
+margin_top = 522.0
+margin_right = 468.0
+margin_bottom = 542.0
+rect_scale = Vector2( 5, 5 )
+text = "Back to the menu"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

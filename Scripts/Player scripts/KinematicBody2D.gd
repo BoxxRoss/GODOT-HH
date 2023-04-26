@@ -21,9 +21,14 @@ signal camera_zoom_out
 signal player_rotation
 
 var move = false
-var movespeed = 6000 
 var Sprint = false
 
+var move_up = 1.5
+var move_down = 1.5
+var move_left = 1.5
+var move_right = 1.5
+
+var movespeed = 1000
 # death and damage
 signal damage_taken
 signal player_death
@@ -38,27 +43,29 @@ func _physics_process(delta):
 	move = false
 	
 	emit_signal("player_rotation", rotation)
+	
 
+	
 	if Input.is_action_pressed("Up"):
-		motion.y -= 1
+		motion.y -= move_up
 		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Down"):
-		motion.y += 1
+		motion.y += move_down
 		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Left"):
-		motion.x -= 1
+		motion.x -= move_left
 		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 
 	if Input.is_action_pressed("Right"):
-		motion.x += 1
+		motion.x += move_right
 		stamina = stamina - (0.05 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)

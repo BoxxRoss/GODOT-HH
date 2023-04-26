@@ -13,3 +13,9 @@ func _on_Button_pressed():
 		get_tree().change_scene("res://Rooms/battle_rooms/endless_level_2.tscn")
 
 	Global.died = false
+
+
+func _on_Button2_pressed():
+	get_tree().change_scene("res://Rooms/menu_rooms/MainMenu.tscn")
+	
+	Global.died = false

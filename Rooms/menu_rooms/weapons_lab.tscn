@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Rooms/menu_rooms/weapons_lab.gd" type="Script" id=1]
+
+[node name="weapon_lab_control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 448.0
+margin_top = 32.0
+margin_right = 546.0
+margin_bottom = 46.0
+rect_scale = Vector2( 4, 4 )
+text = "Pick 3 weapons"
+
+[node name="flamethrower" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 128.0
+margin_right = 1056.0
+margin_bottom = 148.0
+toggle_mode = true
+text = "Flamethrower"
+
+[node name="heatbeam" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 160.0
+margin_right = 1056.0
+margin_bottom = 180.0
+toggle_mode = true
+text = "HeatBeam"
+
+[node name="flametrail" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 192.0
+margin_right = 1056.0
+margin_bottom = 212.0
+toggle_mode = true
+text = "FlameTrail"
+
+[node name="lightning_spray" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 224.0
+margin_right = 1056.0
+margin_bottom = 244.0
+toggle_mode = true
+text = "Lightning Spray"
+
+[node name="lightning_ball" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 256.0
+margin_right = 1056.0
+margin_bottom = 276.0
+toggle_mode = true
+text = "Lightning Ball"
+
+[node name="lightning_tripwire" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 288.0
+margin_right = 1056.0
+margin_bottom = 308.0
+toggle_mode = true
+text = "Lightning Tripwire"
+
+[connection signal="toggled" from="flamethrower" to="." method="_on_flamethrower_toggled"]
+[connection signal="toggled" from="heatbeam" to="." method="_on_heatbeam_toggled"]
+[connection signal="toggled" from="flametrail" to="." method="_on_flametrail_toggled"]
+[connection signal="toggled" from="lightning_spray" to="." method="_on_lightning_spray_toggled"]

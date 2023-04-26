@@ -3,8 +3,8 @@ extends Node2D
 const MAX_LENGTH = 2000
 
 var beam_damage = 0.75
-var point_damage = 1.5
-var ignite_point = 2
+var point_damage = 2
+var ignite_point = 2.5
 var ignite_body = 0.25
 
 onready var beam = $Beam

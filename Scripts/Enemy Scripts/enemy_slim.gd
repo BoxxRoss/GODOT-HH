@@ -15,7 +15,7 @@ var damage_dealt
 var hurt = false
 var slowed = false
 var motion = Vector2(0 , 0)
-var speed = 175
+var speed = 150
 var ENEMYhealthmax : int = 25
 var ENEMYhealth = ENEMYhealthmax
 
@@ -101,7 +101,7 @@ func _physics_process(delta):
 		speed = 50
 		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
 	else:
-		speed = 175
+		speed = 150
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)
 
 

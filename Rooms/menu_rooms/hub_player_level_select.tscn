@@ -64,4 +64,5 @@ rect_pivot_offset = Vector2( 736, -64 )
 text = "Informational database"
 align = 0
 
+[connection signal="pressed" from="weapons_button" to="." method="_on_weapons_button_pressed"]
 [connection signal="pressed" from="map_button" to="." method="_on_map_button_pressed"]
