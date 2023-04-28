@@ -64,5 +64,14 @@ rect_pivot_offset = Vector2( 736, -64 )
 text = "Informational database"
 align = 0
 
+[node name="Button" type="Button" parent="."]
+margin_left = 32.0
+margin_top = 128.0
+margin_right = 74.0
+margin_bottom = 148.0
+rect_scale = Vector2( 3, 3 )
+text = "Back"
+
 [connection signal="pressed" from="weapons_button" to="." method="_on_weapons_button_pressed"]
 [connection signal="pressed" from="map_button" to="." method="_on_map_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

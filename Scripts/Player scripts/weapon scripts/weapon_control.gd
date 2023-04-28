@@ -52,38 +52,9 @@ var weapon_select = 1
 var beam_hittin = false
 var charge_ball = 0.5
 
-var weapon_array = [0,0,0,0,0,0]
 
-func _ready():
-	if Global.flame_thrower_activcated:
-		weapon_array[1] = 1
-	else:
-		weapon_array[1] = 0
-		
-	if Global.flame_beam_activated:
-		weapon_array[2] = 1
-	else:
-		weapon_array[2] = 0
-		
-	if Global.flame_trail_activated:
-		weapon_array[3] = 1
-	else:
-		weapon_array[3] = 0
-		
-	if Global.lightning_ball_activated:
-		weapon_array[4] = 1
-	else:
-		weapon_array[4] = 0
-		
-	if Global.lightning_spray_activated:
-		weapon_array[5] = 1
-	else:
-		weapon_array[5] = 0
-		
-	if Global.lightning_tripwire_activated:
-		weapon_array[6] = 1
-	else:
-		weapon_array[6] = 0
+
+
 		
 	
 
@@ -100,12 +71,7 @@ func _physics_process(delta):
 		weapon_select = 2
 	if Input.is_action_pressed("Switch to weapon3"):
 		weapon_select = 3
-	if Input.is_action_pressed("switch_to_eletric_nodes"):
-		weapon_select = 4
-	if Input.is_action_pressed("switch to flamethrower"):
-		weapon_select = 5
-	if Input.is_action_pressed("switch to flametrail"):
-		weapon_select = 6
+
 			
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
@@ -125,7 +91,7 @@ func _physics_process(delta):
 		breathless = false
 
 	if Global.beam_active == false:
-		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == 1:
+		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == Global.flamebeam_position:
 			Global.beam_active = true
 			fire_beam()
 			emit_signal("stamina_change", stamina)
@@ -134,7 +100,7 @@ func _physics_process(delta):
 		Global.beam_active = false
 	
 	
-	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == 2:
+	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == Global.lightspray_position:
 		Global.beam_active = false
 		fire_light_spray()
 		fire_light_spray()
@@ -142,31 +108,31 @@ func _physics_process(delta):
 		fire_light_spray()
 		fire_light_spray()
 		
-	if Input.is_action_pressed("Shoot") and weapon_select == 3 and is_breathing != true:
+	if Input.is_action_pressed("Shoot") and weapon_select == Global.lightball_position and is_breathing != true:
 		Global.beam_active = false
 		charge_ball += 0.05
 		if charge_ball >= 4.5:
 			charge_ball = 4.5
 		
-	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == 3:
+	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == Global.lightball_position:
 		Global.beam_active = false
 		Global.charge_balls = charge_ball
 
 		fire_light_ball()
 		charge_ball = 0.5
 	
-	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == 4:
+	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == Global.lighttrip_position:
 		Global.beam_active = false
 		fire_elec_node()
 	
-	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == 5:
+	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.flamethrower_position:
 		Global.beam_active = false
 		var rand_chance_for_more_flames = rand_range(0,2)
 		flamethrower()
 		if rand_chance_for_more_flames <= 0:
 			flamethrower()
 
-	if Input.is_action_just_released("Shoot") and can_fire_fire_trail and stamina > 10 and is_breathing != true and weapon_select == 6:
+	if Input.is_action_just_released("Shoot") and can_fire_fire_trail and stamina > 10 and is_breathing != true and weapon_select == Global.flametrail_position:
 		Global.beam_active = false
 		flametrail()
 

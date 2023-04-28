@@ -63,9 +63,21 @@ margin_bottom = 308.0
 toggle_mode = true
 text = "Lightning Tripwire"
 
+[node name="Button" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "back"
+
+[connection signal="pressed" from="flamethrower" to="." method="_on_flamethrower_pressed"]
 [connection signal="toggled" from="flamethrower" to="." method="_on_flamethrower_toggled"]
+[connection signal="pressed" from="heatbeam" to="." method="_on_heatbeam_pressed"]
 [connection signal="toggled" from="heatbeam" to="." method="_on_heatbeam_toggled"]
+[connection signal="pressed" from="flametrail" to="." method="_on_flametrail_pressed"]
 [connection signal="toggled" from="flametrail" to="." method="_on_flametrail_toggled"]
+[connection signal="pressed" from="lightning_spray" to="." method="_on_lightning_spray_pressed"]
 [connection signal="toggled" from="lightning_spray" to="." method="_on_lightning_spray_toggled"]
+[connection signal="pressed" from="lightning_ball" to="." method="_on_lightning_ball_pressed"]
 [connection signal="toggled" from="lightning_ball" to="." method="_on_lightning_ball_toggled"]
+[connection signal="pressed" from="lightning_tripwire" to="." method="_on_lightning_tripwire_pressed"]
 [connection signal="toggled" from="lightning_tripwire" to="." method="_on_lightning_tripwire_toggled"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -11,6 +11,17 @@ var lightning_ball_activated = false
 var lightning_spray_activated = false
 var lightning_tripwire_activated = false
 
+
+var flamethrower_position = 1
+var flametrail_position = 0
+var flamebeam_position = 2
+var lightspray_position = 0
+var lighttrip_position = 3
+var lightball_position = 0
+
+var what_was_picked = 0
+
+var time_to_go_back = false
 #enemy
 var enemy_hit_by_lightnin = false
 
@@ -46,6 +57,10 @@ func instance_node(node, location, parent):
 	node_instance.global_position = location
 	return node_instance
 	
+func _process(delta):
+	if time_to_go_back == true:
+		get_tree().change_scene("res://Rooms/menu_rooms/weapons_lab.tscn")
+		time_to_go_back = false
 
 func update(o_spot):
 	place = o_spot
