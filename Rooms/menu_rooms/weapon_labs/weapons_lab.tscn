@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Room Scripts/menu scripts/weapons_lab.gd" type="Script" id=1]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/display-weapon3.gd" type="Script" id=1]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon2.gd" type="Script" id=2]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon1.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Room Scripts/menu scripts/weapons_lab.gd" type="Script" id=4]
 
 [node name="weapon_lab_control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 448.0
@@ -67,6 +70,30 @@ text = "Lightning Tripwire"
 margin_right = 12.0
 margin_bottom = 20.0
 text = "back"
+
+[node name="display_weapon1" type="Label" parent="."]
+margin_left = 224.0
+margin_top = 320.0
+margin_right = 336.0
+margin_bottom = 334.0
+rect_scale = Vector2( 4, 4 )
+script = ExtResource( 3 )
+
+[node name="display_weapon2" type="Label" parent="."]
+margin_left = 224.0
+margin_top = 384.0
+margin_right = 336.0
+margin_bottom = 398.0
+rect_scale = Vector2( 4, 4 )
+script = ExtResource( 2 )
+
+[node name="display-weapon3" type="Label" parent="."]
+margin_left = 224.0
+margin_top = 448.0
+margin_right = 336.0
+margin_bottom = 462.0
+rect_scale = Vector2( 4, 4 )
+script = ExtResource( 1 )
 
 [connection signal="pressed" from="flamethrower" to="." method="_on_flamethrower_pressed"]
 [connection signal="toggled" from="flamethrower" to="." method="_on_flamethrower_toggled"]

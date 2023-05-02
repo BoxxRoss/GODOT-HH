@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var weapon_damage = 2
+var weapon_damage = 1.5
 var ignite = 0.2
 var timer_check = false
 

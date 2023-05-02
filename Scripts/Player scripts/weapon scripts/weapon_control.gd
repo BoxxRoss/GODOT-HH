@@ -17,6 +17,9 @@ var fire_rate_lit_ball = 0.5
 var fire_rate_lit_node = 0.5
 var fire_rate_flamethrower = 0.1
 var fire_trail_rate = 1.5
+var vacuum_delay = 0.5
+
+
 
 # bullet move speeds
 var bullet_speed = 400
@@ -41,12 +44,16 @@ var flame_particles = preload("res://Projectile/fire/Flamethrower/flame_particle
 var flametrail_motion = preload("res://Projectile/fire/FlameTrail/flame_trail_motion.tscn")
 var flametrail_crosshair = preload("res://Projectile/fire/FlameTrail/fire_cross_hair.tscn")
 
+var vacuum_base = preload("res://Projectile/Vacuum/suction_base.tscn")
 # weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
 var can_fire_light_node = true
 var can_fire_flamethrower = true
 var can_fire_fire_trail = true
+
+var vacuum_hold = true
+
 #other
 var weapon_select = 1
 var beam_hittin = false
@@ -71,7 +78,8 @@ func _physics_process(delta):
 		weapon_select = 2
 	if Input.is_action_pressed("Switch to weapon3"):
 		weapon_select = 3
-
+	if Input.is_action_pressed("switch to vacuum"):
+		weapon_select = 4
 			
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
@@ -93,15 +101,31 @@ func _physics_process(delta):
 	if Global.beam_active == false:
 		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == Global.flamebeam_position:
 			Global.beam_active = true
+			Global.vacuum_active = false
 			fire_beam()
 			emit_signal("stamina_change", stamina)
 	
 	if Input.is_action_just_pressed("right click"):
 		Global.beam_active = false
+		Global.vacuum_active = false
 	
+	if Input.is_action_pressed("right click") and Global.vacuum_active == false and stamina > 10 and is_breathing != true:
+		Global.beam_active = false
+		Global.vacuum_active = true	
+		
+		vacuum_hold = false
+		yield(get_tree().create_timer(vacuum_delay), "timeout")
+		vacuum_hold = true
+		
+		if Global.vacuum_active == true:
+			trigger_vacuum()
+	
+	if Input.is_action_just_released("right click") and is_breathing != true:
+		Global.vacuum_active = false
 	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == Global.lightspray_position:
 		Global.beam_active = false
+		Global.vacuum_active = false
 		fire_light_spray()
 		fire_light_spray()
 		fire_light_spray()
@@ -110,12 +134,14 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("Shoot") and weapon_select == Global.lightball_position and is_breathing != true:
 		Global.beam_active = false
+		Global.vacuum_active = false
 		charge_ball += 0.05
 		if charge_ball >= 4.5:
 			charge_ball = 4.5
 		
 	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == Global.lightball_position:
 		Global.beam_active = false
+		Global.vacuum_active = false
 		Global.charge_balls = charge_ball
 
 		fire_light_ball()
@@ -123,19 +149,30 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == Global.lighttrip_position:
 		Global.beam_active = false
+		Global.vacuum_active = false
 		fire_elec_node()
 	
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.flamethrower_position:
 		Global.beam_active = false
+		Global.vacuum_active = false
 		var rand_chance_for_more_flames = rand_range(0,2)
 		flamethrower()
-		if rand_chance_for_more_flames <= 0:
+		if rand_chance_for_more_flames < 1:
 			flamethrower()
+			flamethrower()
+			
 
 	if Input.is_action_just_released("Shoot") and can_fire_fire_trail and stamina > 10 and is_breathing != true and weapon_select == Global.flametrail_position:
 		Global.beam_active = false
+		Global.vacuum_active = false
 		flametrail()
+	
+func trigger_vacuum():
+	var vacuum_instance	= vacuum_base.instance()
+	vacuum_instance.position = $bulletpoint.get_global_position()
+	get_tree().get_root().call_deferred("add_child", vacuum_instance)
 
+	
 func flametrail():
 	var flame_crosshair_instance = flametrail_crosshair.instance()
 	flame_crosshair_instance.position = get_global_mouse_position()
