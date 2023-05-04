@@ -8,6 +8,7 @@ var shocked = 0
 var weak = 1
 var current_flame_status = 0
 var _being_ignited = false
+var being_Vac = false
 
 
 var four_coll_checker = 0
@@ -19,6 +20,11 @@ var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
 
+func Vac():
+	being_Vac = true
+
+func Vac_stop():
+	being_Vac = false
 
 func taking_damage(weapon_damage):
 	hurt = true
@@ -31,6 +37,7 @@ func taking_damage_stop():
 func shock(shock):
 	shocked += shock
 	
+
 	
 func being_ignited(ignite):
 	_being_ignited = true
@@ -60,6 +67,12 @@ func shocked():
 func static_floor_charge(static_floor):
 	current_charge += static_floor
 
+func enemy_captured():
+	if being_Vac == true:
+		queue_free()
+		Global.score += 2
+		Global.enemy_score -= 10
+		Global.kill_count += 1
 	
 func _physics_process(delta):
 	shocked -= 0.01
@@ -67,7 +80,17 @@ func _physics_process(delta):
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
 		current_flame_status -= 0.001
-		print(current_flame_status)
+
+	if being_Vac == true:
+		speed = lerp(speed, 0, 0.05)
+		randomize()
+		var rand_struggle_x = rand_range(-5,5)
+		var rand_struggle_y = rand_range(-5,5)
+		
+		global_position += Vector2(rand_struggle_x,rand_struggle_y)
+		
+		if speed == 0:
+			global_position = lerp(global_position, Global.bullet_pos, 0.035)
 
 
 	if current_flame_status <= 0:
@@ -116,9 +139,10 @@ func _on_Area2D_body_entered(body):
 		
 		
 	if "KinematicBody2D" in body.name:
-		enemy_death()
-		Global.score -= 1
-		body.take_a_hit()
+		if being_Vac == false:
+			enemy_death()
+			Global.score -= 1
+			body.take_a_hit()
 
 
 func _on_Area2D_body_exited(body):

@@ -62,16 +62,7 @@ var charge_ball = 0.5
 
 
 
-		
-	
-
-func _on_KinematicBody2D_stamina_change(stamina):
-	stamina = stamina
-
-func _physics_process(delta):
-	Global.bullet_pos = $bulletpoint.get_global_position()
-	Global.ply_rotations = self.global_rotation_degrees
-	
+func _inputchecks():
 	if Input.is_action_pressed("Switch to weapon1"):
 		weapon_select = 1
 	if Input.is_action_pressed("Switch to weapon2"):
@@ -98,7 +89,7 @@ func _physics_process(delta):
 	else:
 		breathless = false
 
-	if Global.beam_active == false:
+	if Global.beam_active == false and Global.vacuum_active == false:
 		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == Global.flamebeam_position:
 			Global.beam_active = true
 			Global.vacuum_active = false
@@ -166,6 +157,15 @@ func _physics_process(delta):
 		Global.beam_active = false
 		Global.vacuum_active = false
 		flametrail()
+
+func _on_KinematicBody2D_stamina_change(stamina):
+	stamina = stamina
+
+func _physics_process(delta):
+	Global.bullet_pos = $bulletpoint.get_global_position()
+	Global.ply_rotations = self.global_rotation_degrees
+	
+	_inputchecks()
 	
 func trigger_vacuum():
 	var vacuum_instance	= vacuum_base.instance()
@@ -246,3 +246,12 @@ func fire_light_spray():
 func _on_KinematicBody2D_player_rotation(rotation):
 	rotations = rotation
 
+
+
+
+
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("enemys"):
+		body.enemy_captured()

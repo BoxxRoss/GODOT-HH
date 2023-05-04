@@ -67,7 +67,7 @@ func _physics_process(delta):
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
 		current_flame_status -= 0.001
-		print(current_flame_status)
+
 
 
 	if current_flame_status <= 0:
