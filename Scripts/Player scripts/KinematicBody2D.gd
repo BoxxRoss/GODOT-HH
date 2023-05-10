@@ -44,6 +44,7 @@ func _physics_process(delta):
 	
 	emit_signal("player_rotation", rotation)
 	
+	Global.player_position = self.global_position
 
 	
 	if Input.is_action_pressed("Up"):

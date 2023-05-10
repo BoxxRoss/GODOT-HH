@@ -7,6 +7,8 @@ signal timer_reduce
 #where enemys are loaded in for the other maps to do their work
 var enemy_1 = preload("res://Enemys/enemy1old.tscn")
 var enemy_slim = preload("res://Enemys/enemy_slim.tscn")
+var enemy_horse = preload("res://Enemys/enemy_horse.tscn")
+
 var Player = preload("res://player/playernew.tscn")
 
 

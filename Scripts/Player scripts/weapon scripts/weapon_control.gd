@@ -18,6 +18,7 @@ var fire_rate_lit_node = 0.5
 var fire_rate_flamethrower = 0.1
 var fire_trail_rate = 1.5
 var vacuum_delay = 0.5
+var vacuum_blast_rate = 1
 
 
 
@@ -44,13 +45,15 @@ var flame_particles = preload("res://Projectile/fire/Flamethrower/flame_particle
 var flametrail_motion = preload("res://Projectile/fire/FlameTrail/flame_trail_motion.tscn")
 var flametrail_crosshair = preload("res://Projectile/fire/FlameTrail/fire_cross_hair.tscn")
 
-var vacuum_base = preload("res://Projectile/Vacuum/suction_base.tscn")
+var vacuum_base = preload("res://Projectile/Vacuum/base_vacuum/suction_base.tscn")
+var vacuum_blast = preload("res://Projectile/Vacuum/vacuum_blast/vacuum_blast.tscn")
 # weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
 var can_fire_light_node = true
 var can_fire_flamethrower = true
 var can_fire_fire_trail = true
+var can_fire_vacuum_blast = true
 
 var vacuum_hold = true
 
@@ -69,8 +72,7 @@ func _inputchecks():
 		weapon_select = 2
 	if Input.is_action_pressed("Switch to weapon3"):
 		weapon_select = 3
-	if Input.is_action_pressed("switch to vacuum"):
-		weapon_select = 4
+
 			
 	if Input.is_action_just_pressed("Breath"):
 		is_breathing = true
@@ -150,9 +152,13 @@ func _inputchecks():
 		flamethrower()
 		if rand_chance_for_more_flames < 1:
 			flamethrower()
-			flamethrower()
-			
-
+	
+	if Input.is_action_just_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumblast_position and can_fire_vacuum_blast == true:
+		Global.beam_active = false
+		Global.vacuum_active = false
+		print("fire")
+		trigger_airblast()
+	
 	if Input.is_action_just_released("Shoot") and can_fire_fire_trail and stamina > 10 and is_breathing != true and weapon_select == Global.flametrail_position:
 		Global.beam_active = false
 		Global.vacuum_active = false
@@ -166,6 +172,14 @@ func _physics_process(delta):
 	Global.ply_rotations = self.global_rotation_degrees
 	
 	_inputchecks()
+	
+func trigger_airblast():
+	var vacuum_blast_instance = vacuum_blast.instance()
+	vacuum_blast_instance.position = $bulletpoint.get_global_position()
+	get_tree().get_root().call_deferred("add_child", vacuum_blast_instance)
+	can_fire_vacuum_blast = false
+	yield(get_tree().create_timer(vacuum_blast_rate), "timeout")
+	can_fire_vacuum_blast = true
 	
 func trigger_vacuum():
 	var vacuum_instance	= vacuum_base.instance()

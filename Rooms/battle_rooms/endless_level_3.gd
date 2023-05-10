@@ -1,9 +1,9 @@
 extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
-var spawn_options = [1,2,3,4,5]
-var enemy_options = [1,1,1,1,3,2]
-var walker_intensity = 17000
+var spawn_options = [1,1,1,1]
+var enemy_options = [1,2,1,2,3,3]
+var walker_intensity = 12000
 
 func _ready():
 	randomize()
@@ -12,15 +12,14 @@ func _ready():
 
 	var rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
-		playerspot = Vector2(1536,1280)
+		playerspot = Vector2(1185,962)
 	if rand_value == 2:
 		playerspot = Vector2(3584, 5120)
 	if rand_value == 3:
 		playerspot = Vector2(10752, 1792)
 	if rand_value == 4:
 		playerspot = Vector2(11200, 5952)
-	if rand_value == 5:
-		playerspot = Vector2(5824, 3360)
+
 	generate_level()
 	
 	
@@ -44,7 +43,6 @@ func _on_enemy_spawn_timer_timeout():
 	rng.randomize()
 	
 	$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
-	$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
 	
 	var instance = enemy_1.instance()
 	var slim_instance = enemy_slim.instance()
@@ -63,8 +61,6 @@ func _on_enemy_spawn_timer_timeout():
 	if Global.enemy_score != 100:
 		add_child(enemy_chosen)
 		Global.enemy_score += 10
-
-
 
 
 

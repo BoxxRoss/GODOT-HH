@@ -5,7 +5,7 @@ var ignite = 0.2
 var timer_check = false
 
 func _ready():
-	var rand_time = rand_range(0.45,0.6)
+	var rand_time = rand_range(0.4,0.5)
 	$Timer.wait_time = rand_time
 	$Timer.start() 
 

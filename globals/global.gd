@@ -11,13 +11,15 @@ var lightning_ball_activated = false
 var lightning_spray_activated = false
 var lightning_tripwire_activated = false
 
+var vacuum_blast_activated = false
 
-var flamethrower_position = 1
+var flamethrower_position = 0
 var flametrail_position = 0
 var flamebeam_position = 2
 var lightspray_position = 0
 var lighttrip_position = 3
 var lightball_position = 0
+var vacuumblast_position = 1
 
 var what_was_picked = 0
 
@@ -29,6 +31,8 @@ var enemy_hit_by_lightnin = false
 
 
 #bullets
+var player_position 
+
 var fire_check = true
 var beam_active = false
 var vacuum_active = false
@@ -41,6 +45,8 @@ var bul_check = true
 var Playerss = preload("res://player/playernew.tscn")
 
 var place 
+
+var enemies_in_Vac = 0
 #score
 var enemy_score = 0
 var score = 0

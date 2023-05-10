@@ -10,6 +10,7 @@ var current_flame_status = 0
 var _being_ignited = false
 var being_Vac = false
 
+onready var col = get_node("CollisionShape2D")
 
 var four_coll_checker = 0
 var damage_dealt
@@ -20,28 +21,34 @@ var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
 
-func Vac():
-	being_Vac = true
+func be_slowed(concussive):
+	var time_concussed = concussive
+	slowed = true
+	yield(get_tree().create_timer(time_concussed), "timeout")
+	slowed = false
 
+func Vac():
+	if Global.enemies_in_Vac <= 1:
+		being_Vac = true
+		
 func Vac_stop():
 	being_Vac = false
+	print("not vac")
 
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
+	
 func taking_damage_stop():
 	hurt = false
-
-# current charge handels the properties of the static pool left behind when enemies die
 
 func shock(shock):
 	shocked += shock
 	
-
-	
 func being_ignited(ignite):
 	_being_ignited = true
 	current_flame_status += ignite
+	
 func not_being_ignited():
 	_being_ignited = false
 
@@ -73,24 +80,32 @@ func enemy_captured():
 		Global.score += 2
 		Global.enemy_score -= 10
 		Global.kill_count += 1
-	
+		
 func _physics_process(delta):
 	shocked -= 0.01
 	
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
 		current_flame_status -= 0.001
-
+	
 	if being_Vac == true:
-		speed = lerp(speed, 0, 0.05)
+		speed = 0
+		
 		randomize()
 		var rand_struggle_x = rand_range(-5,5)
 		var rand_struggle_y = rand_range(-5,5)
+		col.scale.x = 0.01
+		col.scale.y = 0.01
+		
+		global_position = lerp(global_position, get_global_mouse_position(), 0.05)
 		
 		global_position += Vector2(rand_struggle_x,rand_struggle_y)
+
+		global_position = lerp(global_position, Global.player_position, 0.03)
 		
-		if speed == 0:
-			global_position = lerp(global_position, Global.bullet_pos, 0.035)
+	else:
+		col.scale.x = 0.3
+		col.scale.y = 0.3
 
 
 	if current_flame_status <= 0:
@@ -110,47 +125,38 @@ func _physics_process(delta):
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)
 	else:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 1, .05)
+		
+		
+		
+	if slowed == true:
+		speed = lerp(speed, 50, .03)
+		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
+		
+	else:
+		speed = lerp(speed, 150, .01)
+		$Light2D.energy = lerp($Light2D.energy, 0, .03)
 	
-
+	
+	
 	var Player = get_parent().get_node("KinematicBody2D")
 	
 	motion = position.direction_to(Player.position) * speed
 	motion = move_and_slide(motion)
 	look_at(Player.position)
 
-	
-	
-	if slowed == true:
-		speed = 50
-		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
-	else:
-		speed = 100
-		$Light2D.energy = lerp($Light2D.energy, 0, .03)
-
-
-
-
-
-
-
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
-		
 		
 	if "KinematicBody2D" in body.name:
 		if being_Vac == false:
 			enemy_death()
 			Global.score -= 1
 			body.take_a_hit()
-
-
+			
 func _on_Area2D_body_exited(body):
 	if body is TileMap:
 		slowed = false
-
-
-
 
 func _on_Area2Dfront_body_entered(body):
 	if body is TileMap:

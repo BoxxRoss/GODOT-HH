@@ -18,9 +18,14 @@ var damage_dealt
 var hurt = false
 var slowed = false
 var motion = Vector2(0 , 0)
-var speed = 150
-var ENEMYhealthmax : int = 25
+var speed = 350
+var ENEMYhealthmax : int = 33
 var ENEMYhealth = ENEMYhealthmax
+
+func _ready():
+	var Player = get_parent().get_node("KinematicBody2D")
+	motion = position.direction_to(Player.position) * speed
+	look_at(Player.position)
 
 func Vac():
 	if Global.enemies_in_Vac <= 1:
@@ -70,6 +75,7 @@ func shocked():
 	speed = 50
 	weak = 1.5
 	
+	
 func static_floor_charge(static_floor):
 	current_charge += static_floor
 
@@ -118,13 +124,12 @@ func _physics_process(delta):
 	if ENEMYhealth <= 0:
 		enemy_death()
 	
-	if shocked >= 5:
+	if shocked >= 15:
 		shocked()
 
 	if hurt == true:
 		
 		ENEMYhealth -= damage_dealt * weak
-	
 	
 	if four_coll_checker == 4:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)
@@ -134,17 +139,17 @@ func _physics_process(delta):
 
 	var Player = get_parent().get_node("KinematicBody2D")
 	
-	motion = position.direction_to(Player.position) * speed
+	
 	motion = move_and_slide(motion)
-	look_at(Player.position)
+
 
 	
 	
 	if slowed == true:
-		speed = 50
+		speed = 350
 		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
 	else:
-		speed = 150
+		speed = 350
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)
 
 
@@ -159,9 +164,10 @@ func _on_Area2D_body_entered(body):
 		
 		
 	if "KinematicBody2D" in body.name:
-		enemy_death()
-		Global.score -= 1
-		body.take_a_hit()
+		if being_Vac == false:
+			enemy_death()
+			Global.score -= 1
+			body.take_a_hit()
 
 
 func _on_Area2D_body_exited(body):
@@ -202,3 +208,7 @@ func _on_Area2Dback_body_entered(body):
 func _on_Area2Dback_body_exited(body):
 	if body is TileMap:
 		four_coll_checker -= 1
+
+
+func _on_Timer_timeout():
+	queue_free()
