@@ -5,6 +5,8 @@ var spawn_options = [1,1,1,1]
 var enemy_options = [1,2,1,2,3,3]
 var walker_intensity = 12000
 
+var enemy_limit = 200
+
 func _ready():
 	randomize()
 	
@@ -58,7 +60,7 @@ func _on_enemy_spawn_timer_timeout():
 		enemy_chosen = horse_instance
 	
 	enemy_chosen.position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
-	if Global.enemy_score != 100:
+	if Global.enemy_score != enemy_limit:
 		add_child(enemy_chosen)
 		Global.enemy_score += 10
 

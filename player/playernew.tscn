@@ -59,8 +59,8 @@ position = Vector2( 0, -0.5 )
 shape = SubResource( 4 )
 
 [node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 513
-collision_mask = 513
+collision_layer = 641
+collision_mask = 641
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2( 0, -0.5 )
@@ -68,7 +68,7 @@ shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.45, 0.45 )
+zoom = Vector2( 10, 10 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0

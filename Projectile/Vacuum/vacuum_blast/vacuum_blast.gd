@@ -13,12 +13,13 @@ func _ready():
 
 func _process(delta):
 	if timer_check == true:
-		modulate.a8 -= 20
+		modulate.a8 -= 22
 	if modulate.a8 <= 0:
 		queue_free()
 	
 	if static_bod.scale < Vector2(1,1):
-		static_bod.scale += Vector2(0.05,0.05)
+		static_bod.scale = lerp(static_bod.scale, Vector2(1,1), 0.1)
+
 
 func _on_Timer_timeout():
 	timer_check = true

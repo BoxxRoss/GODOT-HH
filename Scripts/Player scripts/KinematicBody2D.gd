@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 # health related
-var max_health = 100
-var health = 100
+var max_health = 100000
+var health = 100000
 
 # breathing mechanics
 var breathless = false
@@ -11,7 +11,7 @@ var is_breathing = false
 
 # stamina 
 signal stamina_change
-export var stamina = 100
+export var stamina = 10000
 
 # camera
 signal camera_zoom
@@ -49,25 +49,25 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("Up"):
 		motion.y -= move_up
-		stamina = stamina - (0.05 * Global.stamina_multi)
+		stamina = stamina - (0 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Down"):
 		motion.y += move_down
-		stamina = stamina - (0.05 * Global.stamina_multi)
+		stamina = stamina - (0 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
 	if Input.is_action_pressed("Left"):
 		motion.x -= move_left
-		stamina = stamina - (0.05 * Global.stamina_multi)
+		stamina = stamina - (0 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 
 	if Input.is_action_pressed("Right"):
 		motion.x += move_right
-		stamina = stamina - (0.05 * Global.stamina_multi)
+		stamina = stamina - (0 * Global.stamina_multi)
 		move = true
 		emit_signal("stamina_change", stamina)
 		
@@ -89,7 +89,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Sprint") and breathless == false:
 		Sprint = true
 		movespeed = 300
-		stamina = stamina - 0.2
+		stamina = stamina - 0
 	else:
 		Sprint = false
 	

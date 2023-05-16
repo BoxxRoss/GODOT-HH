@@ -5,6 +5,9 @@ var spawn_options = [1,2,3,4]
 var enemy_options = [1,1,1,1,1,1]
 var walker_intensity = 13000
 
+var enemy_limit = 500
+
+
 func _ready():
 	randomize()
 	
@@ -13,13 +16,21 @@ func _ready():
 	var rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
 		playerspot = Vector2(1536,1280)
+		end_spot = Vector2(11200,5952)
+		
 	if rand_value == 2:
-		playerspot = Vector2(3584, 5120)
+		playerspot = Vector2(3584,5120)
+		end_spot = Vector2(8960,1952)
+		
 	if rand_value == 3:
-		playerspot = Vector2(8960, 1952)
+		playerspot = Vector2(8960,1952)
+		end_spot = Vector2(3584,5120)
+		
 	if rand_value == 4:
-		playerspot = Vector2(11200, 5952)
+		playerspot = Vector2(11200,5952)
+		end_spot = Vector2(1536,1280)
 	generate_level()
+	
 	
 	
 func generate_level():
@@ -56,8 +67,10 @@ func _on_enemy_spawn_timer_timeout():
 	if rand_enemy_value == 3:
 		enemy_chosen = horse_instance
 	
+	
+	
 	enemy_chosen.position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
-	if Global.enemy_score != 100:
+	if Global.enemy_score != enemy_limit:
 		add_child(enemy_chosen)
 		Global.enemy_score += 10
 
