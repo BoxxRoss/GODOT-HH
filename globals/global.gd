@@ -12,14 +12,20 @@ var lightning_spray_activated = false
 var lightning_tripwire_activated = false
 
 var vacuum_blast_activated = false
+var vacuum_bomb_activated = false
+var vacuum_deploy_activated = false
 
 var flamethrower_position = 0
-var flametrail_position = 0
-var flamebeam_position = 2
-var lightspray_position = 0
-var lighttrip_position = 3
+var flametrail_position = 2
+var flamebeam_position = 0
+
+var lightspray_position = 3
+var lighttrip_position = 0
 var lightball_position = 0
+
 var vacuumblast_position = 1
+var vacuumbomb_position = 0
+var vacuumdeploy_position = 0
 
 var what_was_picked = 0
 
@@ -28,9 +34,10 @@ var time_to_go_back = false
 var enemy_hit_by_lightnin = false
 
 #random vars
-
+var enemy_test = 0
 
 #bullets
+var player_global_position 
 var player_position 
 
 var fire_check = true
@@ -42,6 +49,7 @@ var ply_rotations = Vector2()
 var bullet_pos = Vector2()
 var fired = false
 var bul_check = true
+var bul_vac_check = true
 var Playerss = preload("res://player/playernew.tscn")
 
 var place 
@@ -66,6 +74,7 @@ func instance_node(node, location, parent):
 	return node_instance
 	
 func _process(delta):
+
 	if time_to_go_back == true:
 		get_tree().change_scene("res://Rooms/menu_rooms/weapons_lab.tscn")
 		time_to_go_back = false

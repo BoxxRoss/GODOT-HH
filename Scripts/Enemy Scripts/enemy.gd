@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 
+onready var raycast = $RayCast2D
+
 #debuffs
 var current_charge = 0
 var shocked = 0
@@ -9,7 +11,8 @@ var weak = 1
 var current_flame_status = 0
 var _being_ignited = false
 var being_Vac = false
-
+var stuck_in_vac_bomb = false
+var pos_of_bomb 
 onready var col = get_node("CollisionShape2D")
 
 var four_coll_checker = 0
@@ -20,6 +23,18 @@ var motion = Vector2(0 , 0)
 var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
+
+var num_of_walls = 0
+
+
+var checker = 0
+
+func stuck_in_vac_bomb(bomb_pos):
+	pos_of_bomb = bomb_pos
+	stuck_in_vac_bomb = true
+	
+func unstuck_in_vac_bomb():
+	stuck_in_vac_bomb = false
 
 func be_slowed(concussive):
 	var time_concussed = concussive
@@ -84,10 +99,32 @@ func enemy_captured():
 func _physics_process(delta):
 	shocked -= 0.01
 	
+	
+
+
+	var MAX_LENGTH = 10000
+	
+	
+	
+	var Player = get_parent().get_node("KinematicBody2D")
+
+
+	var player_pos = Global.player_global_position
+	var distance_to_player = global_position.distance_to(Global.player_global_position)
+	var direction_to_player = global_position.direction_to(Global.player_global_position)
+
+	
+	
+			
+	
+
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
 		current_flame_status -= 0.001
 	
+	if stuck_in_vac_bomb == true:
+		global_position = lerp(global_position, pos_of_bomb, 0.1)
+
 	if being_Vac == true:
 		speed = 0
 		
@@ -101,7 +138,7 @@ func _physics_process(delta):
 		
 		global_position += Vector2(rand_struggle_x,rand_struggle_y)
 
-		global_position = lerp(global_position, Global.player_position, 0.03)
+		global_position = lerp(global_position, Global.player_global_position, 0.03)
 		
 	else:
 		col.scale.x = 0.3
@@ -129,21 +166,21 @@ func _physics_process(delta):
 		
 		
 	if slowed == true:
-		speed = lerp(speed, 50, .03)
+		speed = lerp(speed, 33, .1)
 		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
 		
 	else:
-		speed = lerp(speed, 150, .01)
+		speed = lerp(speed, 100, .05)
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)
 	
 	
 	
-	var Player = get_parent().get_node("KinematicBody2D")
 	
 	motion = position.direction_to(Player.position) * speed
 	motion = move_and_slide(motion)
-	look_at(Player.position)
-
+	look_at(Global.player_global_position)
+	
+	num_of_walls = 0
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
@@ -189,3 +226,25 @@ func _on_Area2Dback_body_entered(body):
 func _on_Area2Dback_body_exited(body):
 	if body is TileMap:
 		four_coll_checker -= 1
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

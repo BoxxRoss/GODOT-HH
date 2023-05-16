@@ -52,8 +52,15 @@ margin_right = 1024.0
 margin_bottom = 140.0
 text = "to test menu"
 
+[node name="test_level" type="Button" parent="VBoxContainer"]
+margin_top = 144.0
+margin_right = 1024.0
+margin_bottom = 164.0
+text = "to test level"
+
 [connection signal="pressed" from="VBoxContainer/random_level" to="." method="_on_random_level_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start_Story" to="." method="_on_Start_Story_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quitbutton" to="." method="_on_Quitbutton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/test_level" to="." method="_on_test_level_pressed"]

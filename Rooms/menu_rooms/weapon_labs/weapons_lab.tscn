@@ -66,6 +66,30 @@ margin_bottom = 308.0
 toggle_mode = true
 text = "Lightning Tripwire"
 
+[node name="vacuum_blast" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 320.0
+margin_right = 1056.0
+margin_bottom = 340.0
+toggle_mode = true
+text = "Vacuum Blast"
+
+[node name="vacuum_bomb" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 352.0
+margin_right = 1056.0
+margin_bottom = 372.0
+toggle_mode = true
+text = "Vacuum Bomb"
+
+[node name="vacuum_deploy" type="Button" parent="."]
+margin_left = 224.0
+margin_top = 384.0
+margin_right = 1056.0
+margin_bottom = 404.0
+toggle_mode = true
+text = "Vacuum Deploy"
+
 [node name="Button" type="Button" parent="."]
 margin_right = 12.0
 margin_bottom = 20.0
@@ -73,25 +97,25 @@ text = "back"
 
 [node name="display_weapon1" type="Label" parent="."]
 margin_left = 224.0
-margin_top = 320.0
+margin_top = 512.0
 margin_right = 336.0
-margin_bottom = 334.0
+margin_bottom = 526.0
 rect_scale = Vector2( 4, 4 )
 script = ExtResource( 3 )
 
 [node name="display_weapon2" type="Label" parent="."]
 margin_left = 224.0
-margin_top = 384.0
+margin_top = 576.0
 margin_right = 336.0
-margin_bottom = 398.0
+margin_bottom = 590.0
 rect_scale = Vector2( 4, 4 )
 script = ExtResource( 2 )
 
 [node name="display-weapon3" type="Label" parent="."]
 margin_left = 224.0
-margin_top = 448.0
+margin_top = 640.0
 margin_right = 336.0
-margin_bottom = 462.0
+margin_bottom = 654.0
 rect_scale = Vector2( 4, 4 )
 script = ExtResource( 1 )
 
@@ -107,4 +131,10 @@ script = ExtResource( 1 )
 [connection signal="toggled" from="lightning_ball" to="." method="_on_lightning_ball_toggled"]
 [connection signal="pressed" from="lightning_tripwire" to="." method="_on_lightning_tripwire_pressed"]
 [connection signal="toggled" from="lightning_tripwire" to="." method="_on_lightning_tripwire_toggled"]
+[connection signal="pressed" from="vacuum_blast" to="." method="_on_vacuum_blast_pressed"]
+[connection signal="toggled" from="vacuum_blast" to="." method="_on_vacuum_blast_toggled"]
+[connection signal="pressed" from="vacuum_bomb" to="." method="_on_vacuum_bomb_pressed"]
+[connection signal="toggled" from="vacuum_bomb" to="." method="_on_vacuum_bomb_toggled"]
+[connection signal="pressed" from="vacuum_deploy" to="." method="_on_vacuum_deploy_pressed"]
+[connection signal="toggled" from="vacuum_deploy" to="." method="_on_vacuum_deploy_toggled"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

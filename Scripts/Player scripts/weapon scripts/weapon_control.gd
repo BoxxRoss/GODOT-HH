@@ -19,7 +19,7 @@ var fire_rate_flamethrower = 0.1
 var fire_trail_rate = 1.5
 var vacuum_delay = 0.5
 var vacuum_blast_rate = 1
-
+var vacuum_bomb_fire_rate = 3
 
 
 # bullet move speeds
@@ -28,6 +28,7 @@ var bullet_speed_lightnin_ball = 150
 var node_bul_speed = 300
 var flame_speed = 250
 var flame_trail_speed = 300
+var vacuum_bomb_speed = 250
 
 # preloads
 var laser_beam = preload("res://Projectile/fire/beam/LaserBeam.tscn")
@@ -47,6 +48,9 @@ var flametrail_crosshair = preload("res://Projectile/fire/FlameTrail/fire_cross_
 
 var vacuum_base = preload("res://Projectile/Vacuum/base_vacuum/suction_base.tscn")
 var vacuum_blast = preload("res://Projectile/Vacuum/vacuum_blast/vacuum_blast.tscn")
+
+var vacuum_bomb_crosshair = preload("res://Projectile/Vacuum/vacuum_bomb/vac_bomb_cross_hair.tscn")
+var vacuum_bomb_motion = preload("res://Projectile/Vacuum/vacuum_bomb/vacuum_bomb.tscn")
 # weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
@@ -54,6 +58,7 @@ var can_fire_light_node = true
 var can_fire_flamethrower = true
 var can_fire_fire_trail = true
 var can_fire_vacuum_blast = true
+var can_fire_vacuum_bomb = true
 
 var vacuum_hold = true
 
@@ -163,7 +168,12 @@ func _inputchecks():
 		Global.beam_active = false
 		Global.vacuum_active = false
 		flametrail()
-
+		
+	if Input.is_action_just_released("Shoot") and can_fire_vacuum_bomb and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumbomb_position:
+		Global.beam_active = false
+		Global.vacuum_active = false
+		fire_vac_bomb()
+		
 func _on_KinematicBody2D_stamina_change(stamina):
 	stamina = stamina
 
@@ -171,8 +181,25 @@ func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
 	Global.ply_rotations = self.global_rotation_degrees
 	
+	
 	_inputchecks()
 	
+	
+func fire_vac_bomb():
+	var vacuum_bomb_crosshair_instance = vacuum_bomb_crosshair.instance()
+	vacuum_bomb_crosshair_instance.position = get_global_mouse_position()
+	vacuum_bomb_crosshair_instance.rotation_degrees = rotation_degrees
+	get_tree().get_root().call_deferred("add_child", vacuum_bomb_crosshair_instance)
+	
+	var vacuum_bomb_motion_instance = vacuum_bomb_motion.instance()
+	vacuum_bomb_motion_instance.position = $bulletpoint.get_global_position()
+	vacuum_bomb_motion_instance.rotation_degrees = Global.ply_rotations
+	vacuum_bomb_motion_instance.apply_impulse(Vector2(),Vector2(vacuum_bomb_speed,0).rotated(rotations))
+	get_tree().get_root().call_deferred("add_child", vacuum_bomb_motion_instance)
+	can_fire_vacuum_bomb = false
+	yield(get_tree().create_timer(vacuum_bomb_fire_rate), "timeout")
+	can_fire_vacuum_bomb = true
+
 func trigger_airblast():
 	var vacuum_blast_instance = vacuum_blast.instance()
 	vacuum_blast_instance.position = $bulletpoint.get_global_position()

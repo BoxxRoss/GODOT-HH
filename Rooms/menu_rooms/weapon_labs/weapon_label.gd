@@ -15,5 +15,11 @@ func _process(delta):
 		self.text = ("Weapon in slot " + str(num) + ": Lightning-Spray")
 	elif Global.lighttrip_position == num:
 		self.text = ("Weapon in slot " + str(num) + ": Lightning-Tripwire")
+	elif Global.vacuumblast_position == num:
+		self.text = ("Weapon in slot " + str(num) + ": Vacuum-Blast")
+	elif Global.vacuumbomb_position == num:
+		self.text = ("Weapon in slot " + str(num) + ": Vacuum-Bomb")
+	elif Global.vacuumdeploy_position == num:
+		self.text = ("Weapon in slot " + str(num) + ": Vacuum-Deploy")
 	else:
 		self.text = ("Weapon in slot " + str(num) + ": None")

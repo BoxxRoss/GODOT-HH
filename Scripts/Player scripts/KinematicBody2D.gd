@@ -44,8 +44,8 @@ func _physics_process(delta):
 	
 	emit_signal("player_rotation", rotation)
 	
-	Global.player_position = self.global_position
-
+	Global.player_global_position = self.global_position
+	Global.player_position = self.position
 	
 	if Input.is_action_pressed("Up"):
 		motion.y -= move_up
@@ -90,9 +90,13 @@ func _physics_process(delta):
 		Sprint = true
 		movespeed = 300
 		stamina = stamina - 0.2
-	
 	else:
 		Sprint = false
+	
+	if Input.is_action_just_pressed("test spawn"):
+		Global.enemy_test += 1
+	
+
 	if stamina >= 100:
 		stamina = 100
 			
