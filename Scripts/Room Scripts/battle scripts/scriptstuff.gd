@@ -27,10 +27,8 @@ func _ready():
 	yield(get_tree().create_timer(time), "timeout")
 	can_start = true
 	
-	var end_point_instance = end_point.instance()
-	end_point_instance.position = end_spot
-	get_tree().get_root().call_deferred("add_child", end_point_instance)
-	
+	spawn_end()
+
 func _input(event):
 	if event.is_action_pressed("ui_page_up"):
 		get_tree().reload_current_scene()
@@ -41,4 +39,7 @@ func _process(delta):
 func _on_world_tree_exiting() -> void:
 	SaveScript.save_val(Global.highest_score)
 
-	
+func spawn_end():
+	var end_point_instance = end_point.instance()
+	end_point_instance.position = end_spot
+	get_tree().get_root().call_deferred("add_child", end_point_instance)

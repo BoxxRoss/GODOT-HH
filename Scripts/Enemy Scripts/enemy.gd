@@ -14,12 +14,12 @@ var being_Vac = false
 var stuck_in_vac_bomb = false
 var pos_of_bomb 
 onready var col = get_node("CollisionShape2D")
-
+var damage = 10
 var four_coll_checker = 0
 var damage_dealt
 var hurt = false
 var slowed = false
-var motion = Vector2(0 , 0)
+var motion = Vector2(0,0)
 var speed = 100
 var ENEMYhealthmax : int = 100
 var ENEMYhealth = ENEMYhealthmax
@@ -190,7 +190,9 @@ func _on_Area2D_body_entered(body):
 			enemy_death()
 			Global.score -= 1
 			body.take_a_hit()
-			
+
+
+		
 func _on_Area2D_body_exited(body):
 	if body is TileMap:
 		slowed = false

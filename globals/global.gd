@@ -23,9 +23,9 @@ var lightspray_position = 3
 var lighttrip_position = 0
 var lightball_position = 0
 
-var vacuumblast_position = 1
+var vacuumblast_position = 0
 var vacuumbomb_position = 0
-var vacuumdeploy_position = 0
+var vacuumdeploy_position = 1
 
 var what_was_picked = 0
 
@@ -39,6 +39,9 @@ var enemy_test = 0
 #bullets
 var player_global_position 
 var player_position 
+
+var deploy_ghost_count = 0
+var deploy_ghost_die = false
 
 var fire_check = true
 var beam_active = false

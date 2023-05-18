@@ -5,6 +5,7 @@ var spawn_options = [1]
 var enemy_options = [1]
 var walker_intensity = 0
 
+
 func _ready():
 	randomize()
 	
@@ -13,6 +14,7 @@ func _ready():
 	var rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
 		playerspot = Vector2(640,320)
+		end_spot = Vector2(700,400)
 	if rand_value == 2:
 		playerspot = Vector2(3584, 5120)
 	if rand_value == 3:

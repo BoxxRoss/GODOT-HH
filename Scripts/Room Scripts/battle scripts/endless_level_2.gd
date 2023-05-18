@@ -1,8 +1,8 @@
 extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
-var spawn_options = [1,2,3,4,5]
-var enemy_options = [3,3,3,3,3,2]
+var spawn_options = [1,2,3,4]
+var enemy_options = [1,1,1,1,1,1]
 var walker_intensity = 17000
 
 var enemy_limit = 200
@@ -10,19 +10,24 @@ var enemy_limit = 200
 func _ready():
 	randomize()
 	
-
-
 	var rand_value = spawn_options[randi() % spawn_options.size()]
+	
 	if rand_value == 1:
 		playerspot = Vector2(1536,1280)
+		end_spot = Vector2(11200,5952)
+		
 	if rand_value == 2:
-		playerspot = Vector2(3584, 5120)
+		playerspot = Vector2(10752,1792)
+		end_spot = Vector2(2560,5362)
+		
 	if rand_value == 3:
-		playerspot = Vector2(10752, 1792)
+		playerspot = Vector2(2560,5362)
+		end_spot = Vector2(10752,1792)
+		
 	if rand_value == 4:
-		playerspot = Vector2(11200, 5952)
-	if rand_value == 5:
-		playerspot = Vector2(5824, 3360)
+		playerspot = Vector2(11200,5952)
+		end_spot = Vector2(1536,1280)
+		
 	generate_level()
 	
 	

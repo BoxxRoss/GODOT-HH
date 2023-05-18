@@ -15,11 +15,14 @@ var Sprint = false
 var fire_rate_lit = 0.25
 var fire_rate_lit_ball = 0.5
 var fire_rate_lit_node = 0.5
+
 var fire_rate_flamethrower = 0.1
 var fire_trail_rate = 1.5
+
 var vacuum_delay = 0.5
 var vacuum_blast_rate = 1
 var vacuum_bomb_fire_rate = 3
+var vacuum_deploy_fire_rate = 10
 
 
 # bullet move speeds
@@ -51,14 +54,19 @@ var vacuum_blast = preload("res://Projectile/Vacuum/vacuum_blast/vacuum_blast.ts
 
 var vacuum_bomb_crosshair = preload("res://Projectile/Vacuum/vacuum_bomb/vac_bomb_cross_hair.tscn")
 var vacuum_bomb_motion = preload("res://Projectile/Vacuum/vacuum_bomb/vacuum_bomb.tscn")
+
+var vacuum_deploy_ghost_basic = preload("res://Projectile/Vacuum/vacuum_deploy/deployed_ghost_basic.tscn")
 # weapon checks
 var can_fire_light = true
 var can_fire_light_ball = true
 var can_fire_light_node = true
+
 var can_fire_flamethrower = true
 var can_fire_fire_trail = true
+
 var can_fire_vacuum_blast = true
 var can_fire_vacuum_bomb = true
+var can_fire_vacuum_deploy = true
 
 var vacuum_hold = true
 
@@ -174,8 +182,22 @@ func _inputchecks():
 		Global.vacuum_active = false
 		fire_vac_bomb()
 		
+	if Input.is_action_just_released("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumdeploy_position and can_fire_vacuum_deploy:
+		Global.beam_active = false
+		Global.vacuum_active = false
+		print(Global.deploy_ghost_count)
+		
+		if Global.deploy_ghost_count == 0:
+			deploy_ghost()
+			Global.deploy_ghost_count += 1
+			
+
+		
+
+
 func _on_KinematicBody2D_stamina_change(stamina):
 	stamina = stamina
+
 
 func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
@@ -184,6 +206,15 @@ func _physics_process(delta):
 	
 	_inputchecks()
 	
+func deploy_ghost():
+	var ghost_deploy_instance = vacuum_deploy_ghost_basic.instance()
+	ghost_deploy_instance.position = $bulletpoint.get_global_position()
+	ghost_deploy_instance.rotation_degrees = Global.ply_rotations
+	get_tree().get_root().call_deferred("add_child", ghost_deploy_instance)
+	can_fire_vacuum_deploy = false
+	yield(get_tree().create_timer(vacuum_deploy_fire_rate), "timeout")
+	can_fire_vacuum_deploy = true
+
 	
 func fire_vac_bomb():
 	var vacuum_bomb_crosshair_instance = vacuum_bomb_crosshair.instance()
