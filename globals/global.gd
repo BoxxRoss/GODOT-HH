@@ -32,9 +32,14 @@ var what_was_picked = 0
 var time_to_go_back = false
 #enemy
 var enemy_hit_by_lightnin = false
+var friend_ghost_basic_pos = Vector2(0,0)
+
+# friend ghost
+var friend_ghost_has_died = false
 
 #random vars
 var enemy_test = 0
+
 
 #bullets
 var player_global_position 

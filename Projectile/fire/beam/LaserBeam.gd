@@ -11,7 +11,7 @@ onready var beam = $Beam
 onready var end = $End
 onready var rayCast2D = $RayCast2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if Global.beam_active == false:
 		queue_free()

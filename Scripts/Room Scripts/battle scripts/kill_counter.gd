@@ -3,7 +3,7 @@ var deathcheck = false
 var highest_score = 0
 
 
-func _process(delta):
+func _process(_delta):
 	self.text = str("Ghosts Vanquished: ",Global.score)
 
 func _on_enemy1_dead_enemy():

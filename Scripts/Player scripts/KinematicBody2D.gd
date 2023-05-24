@@ -38,7 +38,7 @@ signal player_death
 func _ready():
 	emit_signal("damage_taken", health)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var motion = Vector2()
 	move = false
 	
@@ -142,3 +142,12 @@ func take_a_hit():
 		kill()
 	if health <= 0:
 		kill()
+
+
+
+
+
+
+
+
+

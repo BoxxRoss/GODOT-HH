@@ -7,7 +7,7 @@ onready var rayCast2D = $RayCast2D
 var damage = 0.5
 var shock = 3
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Global.died == true:
 		queue_free()
 	

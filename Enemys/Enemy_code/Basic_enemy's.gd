@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+var rotation_speed = PI
 
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 
@@ -23,9 +23,13 @@ var motion = Vector2(0,0)
 var damage: int
 var enemy_cost : int
 var speed : int
-var ENEMYhealthmax : int
+var ENEMYhealth : int
 
-var ENEMYhealth := ENEMYhealthmax
+var enemy_is_horse = false
+var enemy_is_horse_go = false
+
+var ENEMYhealth_max : int
+var max_speed : int
 
 var num_of_walls = 0
 
@@ -33,9 +37,16 @@ var checker = 0
 
 var speed_when_slowed = (speed/3.0)
 
+var checker_1 = true
 
-	
-	
+var distracted = false
+var distracted_by_deployed = 0
+
+func find_target(distract_pow):
+	distracted_by_deployed = distract_pow
+	if distracted_by_deployed >= 50:
+		distracted = true
+
 func stuck_in_vac_bomb(bomb_pos):
 	pos_of_bomb = bomb_pos
 	stuck_in_vac_bomb = true
@@ -79,9 +90,7 @@ func enemy_death():
 	Global.enemy_score -= enemy_cost
 	Global.score += 1
 	Global.kill_count += 1
-	
-	print(ENEMYhealthmax)
-	
+
 	if current_charge > 0:
 		var static_insatnce = static_floor.instance()
 		static_insatnce.global_position = self.global_position
@@ -90,7 +99,6 @@ func enemy_death():
 		
 func onhit(damage):
 	ENEMYhealth -= damage
-	print(enemy_cost)
 
 func shocked():
 	speed = speed_when_slowed
@@ -107,10 +115,50 @@ func enemy_captured():
 		Global.kill_count += 1
 		
 func _physics_process(delta):
+	
+	
+	
+	
+	var Player = get_parent().get_node("KinematicBody2D")
+	
+
+	
+
+	if Global.friend_ghost_has_died == true:
+		distracted = false
+
+	
+	var target
+	
+	if checker_1 == true:
+		ENEMYhealth_max = ENEMYhealth
+		max_speed = speed
+		checker_1 = false
+	if enemy_is_horse == true:
+		motion = position.direction_to(Player.position) * speed
+		look_at(Player.position)	
+		enemy_is_horse = false
+		enemy_is_horse_go = true
+
+	if distracted == true:
+		if enemy_is_horse == false:
+			target = Global.friend_ghost_basic_pos
+		else:
+			target = Player.global_position
+	else:
+		target = Player.global_position
+	
 	shocked -= 0.01
 	var MAX_LENGTH = 10000
 
-	var Player = get_parent().get_node("KinematicBody2D")
+	var vector_to_player = target - self.global_position
+	var angle = vector_to_player.angle()
+	var r = global_rotation
+	var angle_delta = rotation_speed * delta
+	angle = lerp_angle(r, angle, 1.0)
+	angle = clamp(angle, r - angle_delta, r + angle_delta)
+	global_rotation = angle
+	
 
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
@@ -161,9 +209,13 @@ func _physics_process(delta):
 		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
 		
 	else:
-		speed = lerp(speed, 100, .05)
+		speed = lerp(speed, max_speed, .05)
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)
 	
-	motion = position.direction_to(Player.position) * speed
-	motion = move_and_slide(motion)
-	look_at(Global.player_global_position)
+	
+	
+	if enemy_is_horse_go == false:
+		motion = position.direction_to(target) * speed
+		motion = move_and_slide(motion)
+	elif enemy_is_horse_go == true:
+		motion = move_and_slide(motion)

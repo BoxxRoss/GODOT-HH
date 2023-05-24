@@ -11,7 +11,7 @@ var zoomed = false
 var zoom_speed = Vector2(0.35, 0.35)
 var des_zoom = zoom
 
-func _process(delta):
+func _process(_delta):
 	zoom = lerp(zoom, des_zoom, .05)
 
 
@@ -43,4 +43,7 @@ func _on_KinematicBody2D_camera_zoom():
 func _on_KinematicBody2D_camera_zoom_out():
 	des_zoom = Vector2(0.45, 0.45)
 	zoomed = false
+
+
+
 

@@ -2,7 +2,7 @@ extends Label
 
 
 
-func _process(delta):
+func _process(_delta):
 	self.text = str("Most Ghosts Vanquished: ",Global.highest_score)
 
 

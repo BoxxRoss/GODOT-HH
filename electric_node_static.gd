@@ -13,7 +13,7 @@ func _ready():
 	circle_detect.scale.x = 0
 	circle_detect.scale.y = 0
 
-func _process(delta):
+func _process(_delta):
 	if Global.died == true:
 		queue_free()
 	update()

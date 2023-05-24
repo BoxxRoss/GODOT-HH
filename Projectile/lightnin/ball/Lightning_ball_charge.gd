@@ -23,7 +23,7 @@ func _on_Area2D_body_exited(body):
 		
 		
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	scale.x = current_charge
 	scale.y = current_charge

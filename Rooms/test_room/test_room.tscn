@@ -49,5 +49,3 @@ scale = Vector2( 2, 2 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
-
-[connection signal="timer_reduce" from="." to="enemy_spawn_timer" method="_on_Node2D_timer_reduce"]

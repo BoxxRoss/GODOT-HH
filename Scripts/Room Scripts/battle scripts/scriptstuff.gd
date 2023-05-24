@@ -2,9 +2,9 @@ extends Node2D
 
 var borders = Rect2(1, 1, 132,82)
 onready var tileMap = $TileMap2
-signal timer_reduce
 
-var end_spot
+
+var end_spot = Vector2(0,0)
 var can_start = false
 var time = 1
 
@@ -33,8 +33,7 @@ func _input(event):
 	if event.is_action_pressed("ui_page_up"):
 		get_tree().reload_current_scene()
 
-func _process(delta):
-	emit_signal("timer_reduce")
+
 
 func _on_world_tree_exiting() -> void:
 	SaveScript.save_val(Global.highest_score)
@@ -43,3 +42,4 @@ func spawn_end():
 	var end_point_instance = end_point.instance()
 	end_point_instance.position = end_spot
 	get_tree().get_root().call_deferred("add_child", end_point_instance)
+

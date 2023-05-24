@@ -8,15 +8,21 @@ var ENEMYhealthmax : int = 30
 var ENEMYhealth = ENEMYhealthmax
 var target_pos = Vector2(0,0)
 var enemy_spotted
+var rotation_speed = PI
 onready var circle = get_node("Area2Dcirce/CollisionShape2D")
 
 var targets = 0
 
+var distract_pow = rand_range(0.0,100.0)
+
 var array_of_enemies = []
 
+func _ready():
+	Global.friend_ghost_has_died = false
 
 func enemy_death():
 	queue_free()
+	Global.friend_ghost_has_died = true
 	Global.deploy_ghost_count -= 1
 
 
@@ -32,6 +38,7 @@ func _on_Area2Dcirce_body_entered(body):
 	if body.is_in_group("enemys"):
 		targets += 1
 		array_of_enemies.append(body)
+		body.find_target(distract_pow)
 
 func _on_Area2Dcirce_body_exited(body):
 	if body.is_in_group("enemys"):
@@ -40,6 +47,19 @@ func _on_Area2Dcirce_body_exited(body):
 
 
 func _physics_process(delta):
+	
+	if targets != 0:
+		var vector_to_enemy = target_pos - self.global_position
+		var angle = vector_to_enemy.angle()
+		var r = global_rotation
+		var angle_delta = rotation_speed * delta
+		angle = lerp_angle(r, angle, 1.0)
+		angle = clamp(angle, r - angle_delta, r + angle_delta)
+		global_rotation = angle
+	
+		
+	
+	Global.friend_ghost_basic_pos = self.global_position
 	
 	if circle.scale < Vector2(5,5):
 		circle.scale += Vector2(0.5,0.5)
@@ -77,7 +97,6 @@ func _physics_process(delta):
 	else:
 		motion = position.direction_to(target_pos) * speed
 		motion = move_and_slide(motion)
-		look_at(target_pos)
 
 
 
@@ -99,7 +118,12 @@ func _on_Area2D_body_entered(body):
 		
 		if "enemy1" in body.name:
 			damage_taken = 10
-		
+		if "enemy_snake" in body.name:
+			damage_taken = 5
+		if "enemy_horse" in body.name:
+			damage_taken = 10
+			
+			
 		colided_with_enemy(damage_taken)
 
 func _on_Area2D_body_exited(body):
