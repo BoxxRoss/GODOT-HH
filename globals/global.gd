@@ -39,7 +39,7 @@ var friend_ghost_has_died = false
 
 #random vars
 var enemy_test = 0
-
+var level_id_picked = 0
 
 #bullets
 var player_global_position 

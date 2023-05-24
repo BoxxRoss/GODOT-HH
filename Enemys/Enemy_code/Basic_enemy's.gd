@@ -4,6 +4,8 @@ var rotation_speed = PI
 
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 
+
+
 var current_charge = 0
 var shocked = 0
 var weak = 1
@@ -32,15 +34,18 @@ var ENEMYhealth_max : int
 var max_speed : int
 
 var num_of_walls = 0
-
 var checker = 0
 
-var speed_when_slowed = (speed/3.0)
+var speed_when_slowed : int
 
 var checker_1 = true
 
 var distracted = false
 var distracted_by_deployed = 0
+
+func _ready():
+	var Player = get_parent().get_node("KinematicBody2D")
+	look_at(Player.position)
 
 func find_target(distract_pow):
 	distracted_by_deployed = distract_pow
@@ -116,13 +121,7 @@ func enemy_captured():
 		
 func _physics_process(delta):
 	
-	
-	
-	
 	var Player = get_parent().get_node("KinematicBody2D")
-	
-
-	
 
 	if Global.friend_ghost_has_died == true:
 		distracted = false
@@ -133,6 +132,7 @@ func _physics_process(delta):
 	if checker_1 == true:
 		ENEMYhealth_max = ENEMYhealth
 		max_speed = speed
+		speed_when_slowed = (speed/3.0)
 		checker_1 = false
 	if enemy_is_horse == true:
 		motion = position.direction_to(Player.position) * speed
