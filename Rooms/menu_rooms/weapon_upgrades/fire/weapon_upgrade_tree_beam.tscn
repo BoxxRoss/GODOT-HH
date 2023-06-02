@@ -1,0 +1,159 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Rooms/menu_rooms/weapon_upgrades/fire/weapon_upgrade_tree_beam.gd" type="Script" id=1]
+
+[node name="weapon_upgrade_tree" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="teir1" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 256.0
+margin_top = -208.0
+margin_right = 296.0
+margin_bottom = -140.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 0, 28 )
+
+[node name="upgrade1T1" type="Button" parent="teir1"]
+margin_right = 40.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="upgrade2T1" type="Button" parent="teir1"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 44.0
+toggle_mode = true
+
+[node name="upgrade3T1" type="Button" parent="teir1"]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 68.0
+toggle_mode = true
+
+[node name="teir2" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 416.0
+margin_top = -208.0
+margin_right = 456.0
+margin_bottom = -140.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 0, 28 )
+
+[node name="upgrade1T2" type="Button" parent="teir2"]
+margin_right = 40.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="upgrade2T2" type="Button" parent="teir2"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 44.0
+toggle_mode = true
+
+[node name="upgrade3T2" type="Button" parent="teir2"]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 68.0
+toggle_mode = true
+
+[node name="teir3" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 576.0
+margin_top = -208.0
+margin_right = 616.0
+margin_bottom = -140.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 0, 28 )
+
+[node name="upgrade1T3" type="Button" parent="teir3"]
+margin_right = 40.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="upgrade2T3" type="Button" parent="teir3"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 44.0
+toggle_mode = true
+
+[node name="upgrade3T3" type="Button" parent="teir3"]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 68.0
+toggle_mode = true
+
+[node name="teir4" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 736.0
+margin_top = -208.0
+margin_right = 776.0
+margin_bottom = -140.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 0, 28 )
+
+[node name="upgrade1T4" type="Button" parent="teir4"]
+margin_right = 40.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="upgrade2T4" type="Button" parent="teir4"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 44.0
+toggle_mode = true
+
+[node name="upgrade3T4" type="Button" parent="teir4"]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 68.0
+toggle_mode = true
+
+[node name="teir5" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 896.0
+margin_top = -208.0
+margin_right = 936.0
+margin_bottom = -140.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 0, 28 )
+
+[node name="upgrade1T5" type="Button" parent="teir5"]
+margin_right = 40.0
+margin_bottom = 20.0
+toggle_mode = true
+
+[node name="upgrade2T5" type="Button" parent="teir5"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 44.0
+toggle_mode = true
+
+[node name="upgrade3T5" type="Button" parent="teir5"]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 68.0
+toggle_mode = true
+
+[connection signal="toggled" from="teir1/upgrade1T1" to="." method="_on_upgrade1T1_toggled"]
+[connection signal="toggled" from="teir1/upgrade2T1" to="." method="_on_upgrade2T1_toggled"]
+[connection signal="toggled" from="teir1/upgrade3T1" to="." method="_on_upgrade3T1_toggled"]
+[connection signal="toggled" from="teir2/upgrade1T2" to="." method="_on_upgrade1T2_toggled"]
+[connection signal="toggled" from="teir2/upgrade2T2" to="." method="_on_upgrade2T2_toggled"]
+[connection signal="toggled" from="teir2/upgrade3T2" to="." method="_on_upgrade3T2_toggled"]
+[connection signal="toggled" from="teir3/upgrade1T3" to="." method="_on_upgrade1T3_toggled"]
+[connection signal="toggled" from="teir3/upgrade2T3" to="." method="_on_upgrade2T3_toggled"]
+[connection signal="toggled" from="teir3/upgrade3T3" to="." method="_on_upgrade3T3_toggled"]
+[connection signal="toggled" from="teir4/upgrade1T4" to="." method="_on_upgrade1T4_toggled"]
+[connection signal="toggled" from="teir4/upgrade2T4" to="." method="_on_upgrade2T4_toggled"]
+[connection signal="toggled" from="teir4/upgrade3T4" to="." method="_on_upgrade3T4_toggled"]
+[connection signal="toggled" from="teir5/upgrade1T5" to="." method="_on_upgrade1T5_toggled"]
+[connection signal="toggled" from="teir5/upgrade2T5" to="." method="_on_upgrade2T5_toggled"]
+[connection signal="toggled" from="teir5/upgrade3T5" to="." method="_on_upgrade3T5_toggled"]

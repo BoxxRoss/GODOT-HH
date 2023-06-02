@@ -19,7 +19,7 @@ var fire_rate_lit_node = 0.5
 var fire_rate_flamethrower = 0.1
 var fire_trail_rate = 1.5
 
-var vacuum_delay = 0.5
+
 var vacuum_blast_rate = 1
 var vacuum_bomb_fire_rate = 3
 var vacuum_deploy_fire_rate = 10
@@ -49,7 +49,6 @@ var flame_particles = preload("res://Projectile/fire/Flamethrower/flame_particle
 var flametrail_motion = preload("res://Projectile/fire/FlameTrail/flame_trail_motion.tscn")
 var flametrail_crosshair = preload("res://Projectile/fire/FlameTrail/fire_cross_hair.tscn")
 
-var vacuum_base = preload("res://Projectile/Vacuum/base_vacuum/suction_base.tscn")
 var vacuum_blast = preload("res://Projectile/Vacuum/vacuum_blast/vacuum_blast.tscn")
 
 var vacuum_bomb_crosshair = preload("res://Projectile/Vacuum/vacuum_bomb/vac_bomb_cross_hair.tscn")
@@ -68,7 +67,7 @@ var can_fire_vacuum_blast = true
 var can_fire_vacuum_bomb = true
 var can_fire_vacuum_deploy = true
 
-var vacuum_hold = true
+
 
 #other
 var weapon_select = 1
@@ -107,31 +106,19 @@ func _inputchecks():
 	if Global.beam_active == false and Global.vacuum_active == false:
 		if Input.is_action_just_pressed("Shoot") and Global.beam_active == false and stamina > 10 and is_breathing != true and weapon_select == Global.flamebeam_position:
 			Global.beam_active = true
-			Global.vacuum_active = false
 			fire_beam()
 			emit_signal("stamina_change", stamina)
 	
 	if Input.is_action_just_pressed("right click"):
 		Global.beam_active = false
-		Global.vacuum_active = false
 	
-	if Input.is_action_pressed("right click") and Global.vacuum_active == false and stamina > 10 and is_breathing != true:
-		Global.beam_active = false
-		Global.vacuum_active = true	
-		
-		vacuum_hold = false
-		yield(get_tree().create_timer(vacuum_delay), "timeout")
-		vacuum_hold = true
-		
-		if Global.vacuum_active == true:
-			trigger_vacuum()
+
 	
-	if Input.is_action_just_released("right click") and is_breathing != true:
-		Global.vacuum_active = false
+
 	
 	if Input.is_action_pressed("Shoot") and can_fire_light and stamina > 10 and is_breathing != true and weapon_select == Global.lightspray_position:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		fire_light_spray()
 		fire_light_spray()
 		fire_light_spray()
@@ -140,14 +127,14 @@ func _inputchecks():
 		
 	if Input.is_action_pressed("Shoot") and weapon_select == Global.lightball_position and is_breathing != true:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		charge_ball += 0.05
 		if charge_ball >= 4.5:
 			charge_ball = 4.5
 		
 	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == Global.lightball_position:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		Global.charge_balls = charge_ball
 
 		fire_light_ball()
@@ -155,12 +142,12 @@ func _inputchecks():
 	
 	if Input.is_action_just_released("Shoot") and can_fire_light_node and stamina > 10 and is_breathing != true and weapon_select == Global.lighttrip_position:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		fire_elec_node()
 	
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.flamethrower_position:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		var rand_chance_for_more_flames = rand_range(0,2)
 		flamethrower()
 		if rand_chance_for_more_flames < 1:
@@ -168,23 +155,23 @@ func _inputchecks():
 	
 	if Input.is_action_just_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumblast_position and can_fire_vacuum_blast == true:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		print("fire")
 		trigger_airblast()
 	
 	if Input.is_action_just_released("Shoot") and can_fire_fire_trail and stamina > 10 and is_breathing != true and weapon_select == Global.flametrail_position:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		flametrail()
 		
 	if Input.is_action_just_released("Shoot") and can_fire_vacuum_bomb and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumbomb_position:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		fire_vac_bomb()
 		
 	if Input.is_action_just_released("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumdeploy_position and can_fire_vacuum_deploy:
 		Global.beam_active = false
-		Global.vacuum_active = false
+
 		print(Global.deploy_ghost_count)
 		
 		if Global.deploy_ghost_count == 0:
@@ -239,10 +226,6 @@ func trigger_airblast():
 	yield(get_tree().create_timer(vacuum_blast_rate), "timeout")
 	can_fire_vacuum_blast = true
 	
-func trigger_vacuum():
-	var vacuum_instance	= vacuum_base.instance()
-	vacuum_instance.position = $bulletpoint.get_global_position()
-	get_tree().get_root().call_deferred("add_child", vacuum_instance)
 
 	
 func flametrail():
@@ -317,13 +300,3 @@ func fire_light_spray():
 
 func _on_KinematicBody2D_player_rotation(rotation):
 	rotations = rotation
-
-
-
-
-
-
-
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("enemys"):
-		body.enemy_captured()

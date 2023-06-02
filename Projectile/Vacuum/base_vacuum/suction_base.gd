@@ -1,25 +1,16 @@
-extends Node2D
+extends Node
 
 
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
 
-func _process(delta):
-	if Global.vacuum_active == false:
-		queue_free()
-	
-	self.rotation_degrees = Global.ply_rotations 
-	self.position = get_global_mouse_position()
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
 
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("enemys"):
-		Global.enemies_in_Vac += 1
-		body.Vac()
-		
-
-
-func _on_Area2D_body_exited(body):
-	if body.is_in_group("enemys"):
-		Global.enemies_in_Vac = 0
-		body.Vac_stop()
-		
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass

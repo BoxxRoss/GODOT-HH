@@ -4,11 +4,11 @@ extends Control
 
 
 func _on_flamethrower_pressed():
-	get_tree().change_scene("res://Rooms/menu_rooms/weapon_upgrades/weapon_upgrade_tree.tscn")
+	get_tree().change_scene("res://Rooms/menu_rooms/weapon_upgrades/fire/weapon_upgrade_tree_flamethrower.tscn")
 
 
 func _on_heatbeam_pressed():
-	get_tree().change_scene("res://Rooms/menu_rooms/weapon_upgrades/weapon_upgrade_tree.tscn")
+	get_tree().change_scene("res://Rooms/menu_rooms/weapon_upgrades/fire/weapon_upgrade_tree_beam.tscn")
 
 
 func _on_flametrail_pressed():

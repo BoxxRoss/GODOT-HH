@@ -2,6 +2,26 @@ extends Node
 
 var switch = false
 
+#rewards/rescource managment
+
+var upgrade1 = false
+var upgrade2 = false
+var upgrade3 = false
+var upgrade4 = false
+var upgrade5 = false
+var upgrade6 = false
+var upgrade7 = false
+var upgrade8 = false
+var upgrade9 = false
+var upgrade10 = false
+var upgrade11 = false
+var upgrade12 = false
+var upgrade13 = false
+var upgrade14 = false
+var upgrade15 = false
+
+var loot_soul : int
+
 #weapon control
 var flame_thrower_activcated = false
 var flame_trail_activated = false
@@ -40,6 +60,8 @@ var friend_ghost_has_died = false
 #random vars
 var enemy_test = 0
 var level_id_picked = 0
+
+var upgrade_weapon_picked = 0
 
 #bullets
 var player_global_position 

@@ -8,7 +8,7 @@ var timerss = 100
 var min_zoom = Vector2(0.100001, 0.100001)
 
 var zoomed = false
-var zoom_speed = Vector2(0.35, 0.35)
+var zoom_speed = Vector2(0.5, 0.5)
 var des_zoom = zoom
 
 func _process(_delta):
@@ -41,7 +41,7 @@ func _on_KinematicBody2D_camera_zoom():
 
 
 func _on_KinematicBody2D_camera_zoom_out():
-	des_zoom = Vector2(0.45, 0.45)
+	des_zoom = Vector2(0.6, 0.6)
 	zoomed = false
 
 
