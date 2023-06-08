@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://traps/Base_trap/Placeable_trap.gd" type="Script" id=1]
+[ext_resource path="res://traps/Base_trap/basic_trap_closed_doors.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 56, 24 )
+
+[node name="basic_trap" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+scale = Vector2( 0.693333, 0.586667 )
+texture = ExtResource( 2 )

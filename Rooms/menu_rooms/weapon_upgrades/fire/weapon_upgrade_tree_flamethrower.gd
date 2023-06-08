@@ -1,7 +1,7 @@
 extends "res://Rooms/menu_rooms/weapon_upgrades/weapon_upgrade_tree.gd"
 
-onready var weapon_description = get_node("description_of_weapon")
-onready var cost_of_weapon = get_node("cost_of_weapon")
+onready var upgrade_title = get_node("title_of_upgrade")
+onready var upgrade_description = get_node("upgrade_description")
 
 var upgrade_initatied = 0
 
@@ -18,48 +18,77 @@ func _ready() -> void:
 	upgrade_to_be_shown = 0
 
 func show_upgrade(upgrade_to_be_shown):
-	cost_of_weapon.rect_position = lerp(cost_of_weapon.rect_position, Vector2(256,512), 0.1)
-	weapon_description.rect_position = lerp(weapon_description.rect_position, Vector2(768,512), 0.1)
+	upgrade_description.visible_characters = -1
+	upgrade_title.visible_characters = -1
+	upgrade_description.rect_position = lerp(upgrade_description.rect_position, Vector2(50,300), 0.1)
+	upgrade_title.rect_position = lerp(upgrade_title.rect_position, Vector2(50,200), 0.1)
 	if upgrade_to_be_shown == 1:
-		cost_of_weapon.text = "cost1"
+		upgrade_description.text = "Adds an additional flame particle"
+		upgrade_title.text = "Extra Flames"
 	if upgrade_to_be_shown == 2:
-		cost_of_weapon.text = "cost2"
+		upgrade_description.text = "Size of flames increased by 20%"
+		upgrade_title.text = "Bigger Flames"
 	if upgrade_to_be_shown == 3:
-		cost_of_weapon.text = "cost3"
+		upgrade_description.text = "Increases the time it takes for the flamethrower to overheat by 20%"
+		upgrade_title.text = "Optimized Venting"
 	if upgrade_to_be_shown == 4:
-		cost_of_weapon.text = "cost4"
+		upgrade_description.text = "cost4"
+		upgrade_title.text = "title4"
 	if upgrade_to_be_shown == 5:
-		cost_of_weapon.text = "cost5"
+		upgrade_description.text = "cost5"
+		upgrade_title.text = "title5"
 	if upgrade_to_be_shown == 6:
-		cost_of_weapon.text = "cost6"
+		upgrade_description.text = "cost6"
+		upgrade_title.text = "title6"
 	if upgrade_to_be_shown == 7:
-		cost_of_weapon.text = "cost7"
+		upgrade_description.text = "cost7"
+		upgrade_title.text = "title7"
 	if upgrade_to_be_shown == 8:
-		cost_of_weapon.text = "cost8"
+		upgrade_description.text = "cost8"
+		upgrade_title.text = "title8"
 	if upgrade_to_be_shown == 9:
-		cost_of_weapon.text = "cost9"
+		upgrade_description.text = "cost9"
+		upgrade_title.text = "title9"
 	if upgrade_to_be_shown == 10:
-		cost_of_weapon.text = "cost10"
+		upgrade_description.text = "cost10"
+		upgrade_title.text = "title10"
 	if upgrade_to_be_shown == 11:
-		cost_of_weapon.text = "cost11"
+		upgrade_description.text = "cost11"
+		upgrade_title.text = "title11"
 	if upgrade_to_be_shown == 12:
-		cost_of_weapon.text = "cost12"
+		upgrade_description.text = "cost12"
+		upgrade_title.text = "title12"
 	if upgrade_to_be_shown == 13:
-		cost_of_weapon.text = "cost13"
+		upgrade_description.text = "cost13"
+		upgrade_title.text = "title13"
 	if upgrade_to_be_shown == 14:
-		cost_of_weapon.text = "cost14"
+		upgrade_description.text = "cost14"
+		upgrade_title.text = "title14"
 	if upgrade_to_be_shown == 15:
-		cost_of_weapon.text = "cost15"
+		upgrade_description.text = "doubles Fire rate, doubles overheat rate"
+		upgrade_title.text = "Unstable Venting"
+	
 		
 func hide_upgrade():
-
-	cost_of_weapon.rect_position = lerp(cost_of_weapon.rect_position, Vector2(256,1280), 0.15)
-	weapon_description.rect_position = lerp(weapon_description.rect_position, Vector2(768,1280), 0.15)
+	upgrade_description.visible_characters = 0
+	upgrade_title.visible_characters = 0
+	upgrade_description.rect_position = lerp(upgrade_description.rect_position, Vector2(50,2000), 1)
+	upgrade_title.rect_position = lerp(upgrade_title.rect_position, Vector2(50,2000), 1)
 
 func _process(delta):
 	if upgrade_to_be_shown == 0:
 		hide_upgrade()
-	
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+		hide_upgrade()
+
+		
 	if upgrade1T1_pressed == true:
 		show_upgrade(upgrade_to_be_shown)
 		apply_U1T1_buff()
@@ -278,3 +307,7 @@ func _on_buy_teir_five_pressed():
 		$teir5/upgrade1T5.disabled = false
 		$teir5/upgrade2T5.disabled = false
 		$teir5/upgrade3T5.disabled = false
+
+
+func _on_Back_pressed():
+	get_tree().change_scene("res://Rooms/menu_rooms/weapon_upgrades/weapon_upgrades_control.tscn")
