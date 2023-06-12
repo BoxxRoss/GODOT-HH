@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Rooms/menu_rooms/weapon_upgrades/fire/weapon_upgrade_tree_flamethrower.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Menu_icons/fire_icons/T1/flamethrower_upgrade_base_T1U1.png" type="Texture" id=2]
@@ -19,6 +19,26 @@
 [ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_selected_T2U1.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_hover_T2U1.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_base_T2U1.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_selected_T2U2.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_hover_T2U2.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_selected_T2U3.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_selected_T3U1.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_disabledT3U3.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_hover_T3U3.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_disabledT2U3.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_selected_T3U2.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_hover_T2U3.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_base_T3U1.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_hover_T3U1.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_disabledT3U2.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_base_T3U2.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_disabledT3U1.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_base_T2U3.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_hover_T3U2.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_selected_T3U3.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T3/flamethrower_upgrade_base_T3U3.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_base_T2U2_T2.png" type="Texture" id=38]
+[ext_resource path="res://Sprites/Menu_icons/fire_icons/T2/flamethrower_upgrade_disabledT2U2.png" type="Texture" id=39]
 
 [sub_resource type="DynamicFont" id=2]
 size = 80
@@ -112,52 +132,72 @@ texture_disabled = ExtResource( 16 )
 [node name="upgrade2T2" type="TextureButton" parent="teir2"]
 margin_top = 68.0
 margin_right = 64.0
-margin_bottom = 68.0
+margin_bottom = 132.0
 mouse_default_cursor_shape = 2
 disabled = true
 toggle_mode = true
+texture_normal = ExtResource( 38 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 21 )
+texture_disabled = ExtResource( 39 )
 
 [node name="upgrade3T2" type="TextureButton" parent="teir2"]
-margin_top = 72.0
+margin_top = 136.0
 margin_right = 64.0
-margin_bottom = 72.0
+margin_bottom = 200.0
 mouse_default_cursor_shape = 2
 disabled = true
 toggle_mode = true
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 28 )
+texture_disabled = ExtResource( 26 )
 
 [node name="teir3" type="VBoxContainer" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 800.0
-margin_top = -24.0
-margin_right = 840.0
-margin_bottom = 44.0
+margin_left = 768.0
+margin_top = -152.0
+margin_right = 832.0
+margin_bottom = 48.0
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 0, 28 )
 mouse_default_cursor_shape = 2
 
-[node name="upgrade1T3" type="Button" parent="teir3"]
-margin_right = 40.0
-margin_bottom = 20.0
+[node name="upgrade1T3" type="TextureButton" parent="teir3"]
+margin_right = 64.0
+margin_bottom = 64.0
 mouse_default_cursor_shape = 2
 disabled = true
 toggle_mode = true
+texture_normal = ExtResource( 29 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 30 )
+texture_disabled = ExtResource( 33 )
 
-[node name="upgrade2T3" type="Button" parent="teir3"]
-margin_top = 24.0
-margin_right = 40.0
-margin_bottom = 44.0
+[node name="upgrade2T3" type="TextureButton" parent="teir3"]
+margin_top = 68.0
+margin_right = 64.0
+margin_bottom = 132.0
 mouse_default_cursor_shape = 2
 disabled = true
 toggle_mode = true
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 35 )
+texture_disabled = ExtResource( 31 )
 
-[node name="upgrade3T3" type="Button" parent="teir3"]
-margin_top = 48.0
-margin_right = 40.0
-margin_bottom = 68.0
+[node name="upgrade3T3" type="TextureButton" parent="teir3"]
+margin_top = 136.0
+margin_right = 64.0
+margin_bottom = 200.0
 mouse_default_cursor_shape = 2
 disabled = true
 toggle_mode = true
+texture_normal = ExtResource( 37 )
+texture_pressed = ExtResource( 36 )
+texture_hover = ExtResource( 25 )
+texture_disabled = ExtResource( 24 )
 
 [node name="teir4" type="VBoxContainer" parent="."]
 anchor_top = 0.5
@@ -268,18 +308,18 @@ text = "buy teir 1"
 
 [node name="buy_teir_two" type="Button" parent="."]
 margin_left = 624.0
-margin_top = 128.0
+margin_top = 192.0
 margin_right = 709.0
-margin_bottom = 149.0
+margin_bottom = 213.0
 rect_scale = Vector2( 1.5, 1.5 )
 mouse_default_cursor_shape = 2
 text = "buy teir 2"
 
 [node name="buy_teir_three" type="Button" parent="."]
-margin_left = 800.0
-margin_top = 224.0
-margin_right = 885.0
-margin_bottom = 245.0
+margin_left = 768.0
+margin_top = 144.0
+margin_right = 853.0
+margin_bottom = 165.0
 rect_scale = Vector2( 1.5, 1.5 )
 mouse_default_cursor_shape = 2
 text = "buy teir 3"

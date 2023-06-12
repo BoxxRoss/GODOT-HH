@@ -162,7 +162,8 @@ func _physics_process(delta):
 
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
-		current_flame_status -= 0.001
+		current_flame_status -= 0.009
+
 	
 	if stuck_in_vac_bomb == true:
 		global_position = lerp(global_position, pos_of_bomb, 0.1)

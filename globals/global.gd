@@ -22,6 +22,9 @@ var upgrade15 = false
 
 var loot_soul : int
 
+var upgrade5_effect = 0
+
+
 #weapon control
 var flame_thrower_activcated = false
 var flame_trail_activated = false

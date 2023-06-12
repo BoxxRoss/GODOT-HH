@@ -35,20 +35,20 @@ func show_upgrade(upgrade_to_be_shown):
 		upgrade_description.text = "Flames stick around by an extra second"
 		upgrade_title.text = "Lingering Flames"
 	if upgrade_to_be_shown == 5:
-		upgrade_description.text = "cost5"
-		upgrade_title.text = "title5"
+		upgrade_description.text = "increases the chance that flames peirce enemies by 25%"
+		upgrade_title.text = "Peircing Flames"
 	if upgrade_to_be_shown == 6:
-		upgrade_description.text = "cost6"
-		upgrade_title.text = "title6"
+		upgrade_description.text = "5% chance that flames fired will be tripled"
+		upgrade_title.text = "Triple Flames"
 	if upgrade_to_be_shown == 7:
-		upgrade_description.text = "cost7"
-		upgrade_title.text = "title7"
+		upgrade_description.text = "Adds 2 additional flame particles"
+		upgrade_title.text = "More Flames"
 	if upgrade_to_be_shown == 8:
-		upgrade_description.text = "cost8"
-		upgrade_title.text = "title8"
+		upgrade_description.text = "Burn damage is increased by 33%, increasing the speed objects melt"
+		upgrade_title.text = "Hotter Flames"
 	if upgrade_to_be_shown == 9:
-		upgrade_description.text = "cost9"
-		upgrade_title.text = "title9"
+		upgrade_description.text = "Flames fly forward 50% faster"
+		upgrade_title.text = "Aerodynamic Flames"
 	if upgrade_to_be_shown == 10:
 		upgrade_description.text = "cost10"
 		upgrade_title.text = "title10"
@@ -224,8 +224,10 @@ func remove_U1T2_buff():
 
 func apply_U2T2_buff():
 	Global.upgrade5 = true
+	Global.upgrade5_effect = 0.25
 func remove_U2T2_buff():
 	Global.upgrade5 = false
+	Global.upgrade5_effect = 0
 	
 func apply_U3T2_buff():
 	Global.upgrade6 = true
