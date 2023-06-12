@@ -16,7 +16,8 @@ var fire_rate_lit = 0.25
 var fire_rate_lit_ball = 0.5
 var fire_rate_lit_node = 0.5
 
-var fire_rate_flamethrower = 0.1
+var fire_rate_flamethrower = 4
+
 var fire_trail_rate = 1.5
 
 
@@ -148,10 +149,12 @@ func _inputchecks():
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.flamethrower_position:
 		Global.beam_active = false
 
+
 		var rand_chance_for_more_flames = rand_range(0,2)
-		flamethrower()
-		if rand_chance_for_more_flames < 1:
+		if Engine.get_idle_frames() % fire_rate_flamethrower == 0:
 			flamethrower()
+			if rand_chance_for_more_flames < 1.5:
+				flamethrower()
 	
 	if Input.is_action_just_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumblast_position and can_fire_vacuum_blast == true:
 		Global.beam_active = false
@@ -251,9 +254,7 @@ func flamethrower():
 	thrower_instance.apply_impulse(Vector2(),Vector2(flame_speed,0).rotated(rotations + rand_angle))
 	get_tree().get_root().call_deferred("add_child", thrower_instance)
 	
-	can_fire_flamethrower = false
-	yield(get_tree().create_timer(fire_rate_flamethrower), "timeout")
-	can_fire_flamethrower = true
+
 	
 func fire_elec_node():
 	var node_crosshair_instance = lightnin_node_crosshair.instance()

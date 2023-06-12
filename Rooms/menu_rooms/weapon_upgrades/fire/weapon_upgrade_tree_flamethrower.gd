@@ -32,8 +32,8 @@ func show_upgrade(upgrade_to_be_shown):
 		upgrade_description.text = "Increases the time it takes for the flamethrower to overheat by 20%"
 		upgrade_title.text = "Optimized Venting"
 	if upgrade_to_be_shown == 4:
-		upgrade_description.text = "cost4"
-		upgrade_title.text = "title4"
+		upgrade_description.text = "Flames stick around by an extra second"
+		upgrade_title.text = "Lingering Flames"
 	if upgrade_to_be_shown == 5:
 		upgrade_description.text = "cost5"
 		upgrade_title.text = "title5"
