@@ -30,7 +30,7 @@ var vacuum_deploy_fire_rate = 10
 var bullet_speed = 400
 var bullet_speed_lightnin_ball = 150
 var node_bul_speed = 300
-var flame_speed = 250
+var flame_speed = 350
 var flame_trail_speed = 300
 var vacuum_bomb_speed = 250
 
@@ -46,6 +46,8 @@ var lightnin_node_motion_bullet = preload("res://Projectile/lightnin/node/electr
 var lightin = preload("res://Projectile/lightnin/spray/light_spray.tscn")
 
 var flame_particles = preload("res://Projectile/fire/Flamethrower/flame_particles.tscn")
+
+
 
 var flametrail_motion = preload("res://Projectile/fire/FlameTrail/flame_trail_motion.tscn")
 var flametrail_crosshair = preload("res://Projectile/fire/FlameTrail/fire_cross_hair.tscn")
@@ -153,6 +155,8 @@ func _inputchecks():
 		var rand_chance_for_more_flames = rand_range(0,2)
 		if Engine.get_idle_frames() % fire_rate_flamethrower == 0:
 			flamethrower()
+			flamethrower()
+
 			if rand_chance_for_more_flames < 1.5:
 				flamethrower()
 	
@@ -248,7 +252,7 @@ func flametrail():
 	
 func flamethrower():
 	randomize()
-	var rand_angle = rand_range(-0.8,0.8)
+	var rand_angle = rand_range(-0.35,0.35)
 	var thrower_instance = flame_particles.instance()		
 	thrower_instance.position = $bulletpoint.get_global_position()
 	thrower_instance.apply_impulse(Vector2(),Vector2(flame_speed,0).rotated(rotations + rand_angle))

@@ -2,7 +2,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1,2,3,4]
-var enemy_options = [1,1,1,1,1,1]
+var enemy_options = [1,2,1,2,1,1]
 var walker_intensity = 13000
 
 var enemy_limit = 500
