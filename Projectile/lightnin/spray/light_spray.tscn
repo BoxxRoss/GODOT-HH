@@ -4,14 +4,14 @@
 [ext_resource path="res://Projectile/lightnin/lightning_spray_varient1.png" type="Texture" id=2]
 [ext_resource path="res://Projectile/lightnin/spray/light_spray.gd" type="Script" id=3]
 
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10.1427, 1.10282 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 58.6875, 4.25005 )
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 19.0263
 
 [node name="light_spray" type="RigidBody2D"]
 collision_layer = 512
@@ -21,7 +21,8 @@ gravity_scale = 0.0
 script = ExtResource( 3 )
 
 [node name="TinyBullet" type="Sprite" parent="."]
-position = Vector2( 62, 0 )
+material = SubResource( 3 )
+position = Vector2( 63, 0 )
 scale = Vector2( 0.5, 0.3 )
 texture = ExtResource( 2 )
 
@@ -30,18 +31,17 @@ position = Vector2( -25, -1 )
 collision_layer = 513
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="external_collision" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 83.5, 1 )
 scale = Vector2( 5.86626, 4.53383 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
-autostart = true
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 66, -1.52588e-05 )
-scale = Vector2( 0.734374, 0.737201 )
+position = Vector2( 58, -5.96046e-08 )
+scale = Vector2( 1, 0.2 )
 texture = ExtResource( 1 )
 energy = 0.3
 
@@ -49,16 +49,8 @@ energy = 0.3
 position = Vector2( 58.3125, 0 )
 shape = SubResource( 2 )
 
-[node name="detect_circe_2D" type="Area2D" parent="."]
-position = Vector2( 88, 0 )
-collision_layer = 513
-collision_mask = 513
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_circe_2D"]
-position = Vector2( -30, -26 )
-scale = Vector2( 1e-05, 1e-05 )
-shape = SubResource( 3 )
+[node name="appeartimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="detect_circe_2D" to="." method="_on_detect_circe_2D_body_entered"]
+[connection signal="timeout" from="appeartimer" to="." method="_on_appeartimer_timeout"]

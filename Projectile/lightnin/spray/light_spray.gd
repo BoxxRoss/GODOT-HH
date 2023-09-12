@@ -28,6 +28,15 @@ func _process(delta):
 		modulate.a8 -= 20
 
 func _ready():
+	disable()
+	
+	var rand_appear_time = rand_range(0,0.29)
+	$appeartimer.wait_time = rand_appear_time
+	$appeartimer.start()
+	var rand_time = rand_range(0.3,0.5)
+	$Timer.wait_time = rand_time
+	$Timer.start()
+	
 	var rand_value = sprite_options[randi() % sprite_options.size()]
 	if rand_value == 1:
 		spray_sprite.set_texture(sprite_var_1)
@@ -52,9 +61,18 @@ func _on_Area2D_body_entered(body):
 		body.shock(shock)
 		body.static_floor_charge(static_floor)
 	
-			
-		
+func disable():
+	$TinyBullet.visible = false
+	$Area2D/external_collision.disabled = true
+	$Light2D.enabled = false
+	$CollisionShape2D.disabled = true
+	
+func enable():
+	$TinyBullet.visible = true
+	$Area2D/external_collision.disabled = false
+	$Light2D.enabled = true
+	$CollisionShape2D.disabled = false
 
 
-
-
+func _on_appeartimer_timeout():
+	enable()

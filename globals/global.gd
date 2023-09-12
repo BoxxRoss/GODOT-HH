@@ -39,16 +39,16 @@ var vacuum_bomb_activated = false
 var vacuum_deploy_activated = false
 
 var flamethrower_position = 1
-var flametrail_position = 0
+var flametrail_position = 2
 var flamebeam_position = 0
 
-var lightspray_position = 3
+var lightspray_position = 0
 var lighttrip_position = 0
-var lightball_position = 0
+var lightball_position = 3
 
 var vacuumblast_position = 0
 var vacuumbomb_position = 0
-var vacuumdeploy_position = 2
+var vacuumdeploy_position = 0
 
 var what_was_picked = 0
 

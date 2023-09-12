@@ -12,8 +12,8 @@ var passthrough_threshold = 0.25 + Global.upgrade5_effect
 func _ready():
 	var rand_time = rand_range(0.3,0.5)
 	var rand_angle = rand_range(-360,360)
-	var rand_scale_x = rand_range(0.2,2)
-	var rand_scale_y = rand_range(0.2,2)
+	var rand_scale_x = rand_range(0.2,0.7)
+	var rand_scale_y = rand_range(0.2,0.7)
 	$Timer.wait_time = rand_time
 	$Timer.start()
 	self.rotation_degrees = rand_angle
