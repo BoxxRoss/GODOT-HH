@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Enemy Scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/icon.png" type="Texture" id=2]
@@ -9,6 +9,9 @@ extents = Vector2( 48.3331, 43.3336 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 19.75, 1.50006 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 366.15
 
 [node name="enemy1" type="KinematicBody2D" groups=["enemys", "tiles"]]
 z_index = 2
@@ -32,62 +35,72 @@ position = Vector2( -0.500008, 0 )
 scale = Vector2( 0.640625, 0.625 )
 texture = ExtResource( 2 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Collision_node" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Node2D"]
+[node name="Area2D" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
 collision_layer = 545
 collision_mask = 545
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2D"]
 position = Vector2( -1, 3.19679e-06 )
 scale = Vector2( 1, 12 )
 shape = SubResource( 2 )
 
-[node name="Area2Dfront" type="Area2D" parent="Node2D"]
+[node name="Area2Dfront" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
 collision_layer = 513
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2Dfront"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dfront"]
 position = Vector2( -0.499881, 19 )
 shape = SubResource( 2 )
 
-[node name="Area2Dleft" type="Area2D" parent="Node2D"]
+[node name="Area2Dleft" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
 collision_layer = 513
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2Dleft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dleft"]
 position = Vector2( 18.5, -0.00012207 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
-[node name="Area2Dright" type="Area2D" parent="Node2D"]
+[node name="Area2Dright" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
 collision_layer = 513
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2Dright"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dright"]
 position = Vector2( -19.5, -0.749828 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
-[node name="Area2Dback" type="Area2D" parent="Node2D"]
+[node name="Area2Dback" type="Area2D" parent="Collision_node"]
 collision_layer = 513
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2Dback"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dback"]
 position = Vector2( -0.000120163, -19 )
 shape = SubResource( 2 )
 
-[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Node2D/Area2D" to="." method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="Node2D/Area2Dfront" to="." method="_on_Area2Dfront_body_entered"]
-[connection signal="body_exited" from="Node2D/Area2Dfront" to="." method="_on_Area2Dfront_body_exited"]
-[connection signal="body_entered" from="Node2D/Area2Dleft" to="." method="_on_Area2Dleft_body_entered"]
-[connection signal="body_exited" from="Node2D/Area2Dleft" to="." method="_on_Area2Dleft_body_exited"]
-[connection signal="body_entered" from="Node2D/Area2Dright" to="." method="_on_Area2Dright_body_entered"]
-[connection signal="body_exited" from="Node2D/Area2Dright" to="." method="_on_Area2Dright_body_exited"]
-[connection signal="body_entered" from="Node2D/Area2Dback" to="." method="_on_Area2Dback_body_entered"]
-[connection signal="body_exited" from="Node2D/Area2Dback" to="." method="_on_Area2Dback_body_exited"]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area2D_detection_circle" type="Area2D" parent="Node2D"]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D_detection_circle"]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="Collision_node/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2Dfront" to="." method="_on_Area2Dfront_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2Dfront" to="." method="_on_Area2Dfront_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2Dleft" to="." method="_on_Area2Dleft_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2Dleft" to="." method="_on_Area2Dleft_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2Dright" to="." method="_on_Area2Dright_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2Dright" to="." method="_on_Area2Dright_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2Dback" to="." method="_on_Area2Dback_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2Dback" to="." method="_on_Area2Dback_body_exited"]
+[connection signal="body_entered" from="Node2D/Area2D_detection_circle" to="." method="_on_Area2D_detection_circle_body_entered"]

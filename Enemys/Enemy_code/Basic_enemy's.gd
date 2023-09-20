@@ -4,7 +4,7 @@ var rotation_speed = PI
 
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 
-
+var unaware = true
 
 var current_charge = 0
 var shocked = 0
@@ -40,12 +40,18 @@ var speed_when_slowed : int
 
 var checker_1 = true
 
+var rand_x_patrol = rand_range(100,12000)
+var rand_y_patrol = rand_range(100,6500)
+
+
 var distracted = false
 var distracted_by_deployed = 0
 
 func _ready():
 	var Player = get_parent().get_node("KinematicBody2D")
 	look_at(Player.position)
+	
+
 
 func find_target(distract_pow):
 	distracted_by_deployed = distract_pow
@@ -125,6 +131,7 @@ func _physics_process(delta):
 
 	if Global.friend_ghost_has_died == true:
 		distracted = false
+	
 
 	
 	var target
@@ -132,7 +139,7 @@ func _physics_process(delta):
 	if checker_1 == true:
 		ENEMYhealth_max = ENEMYhealth
 		max_speed = speed
-		speed_when_slowed = (speed/3.0)
+		speed_when_slowed = (speed/2.0)
 		checker_1 = false
 	if enemy_is_horse == true:
 		motion = position.direction_to(Player.position) * speed
@@ -145,8 +152,11 @@ func _physics_process(delta):
 			target = Global.friend_ghost_basic_pos
 		else:
 			target = Player.global_position
-	else:
+		
+	if unaware == false:
 		target = Player.global_position
+	else:
+		target = Vector2(rand_x_patrol,rand_y_patrol)
 	
 	shocked -= 0.01
 	var MAX_LENGTH = 10000

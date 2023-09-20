@@ -142,12 +142,3 @@ func take_a_hit():
 		kill()
 	if health <= 0:
 		kill()
-
-
-
-
-
-
-
-
-

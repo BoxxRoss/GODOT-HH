@@ -10,6 +10,8 @@ var passthrough_threshold = 0.25 + Global.upgrade5_effect
 
 
 func _ready():
+
+	
 	var rand_time = rand_range(0.3,0.5)
 	var rand_angle = rand_range(-360,360)
 	var rand_scale_x = rand_range(0.2,0.7)
@@ -19,6 +21,7 @@ func _ready():
 	self.rotation_degrees = rand_angle
 	self.scale.x = rand_scale_x
 	self.scale.y = rand_scale_y
+
 
 func _process(delta):
 	
@@ -52,3 +55,5 @@ func _on_Area2D_body_exited(body):
 		print("stoped")
 		body.taking_damage_stop()
 		body.not_being_ignited()
+		
+

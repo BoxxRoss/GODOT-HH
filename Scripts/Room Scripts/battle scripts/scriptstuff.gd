@@ -3,7 +3,6 @@ extends Node2D
 var borders = Rect2(1, 1, 132,82)
 onready var tileMap = $TileMap2
 
-
 var end_spot = Vector2(0,0)
 var can_start = false
 var time = 1

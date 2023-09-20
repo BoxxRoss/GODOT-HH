@@ -6,7 +6,7 @@ extends "res://Enemys/Enemy_code/Basic_enemy's.gd"
 
 func _ready() -> void:
 	damage = 10
-	speed = 160
+	speed = 150
 	ENEMYhealth = 25
 	enemy_cost = 10
 	enemy_is_horse = false

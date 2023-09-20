@@ -2,12 +2,16 @@ extends "res://Enemys/Enemy_code/Basic_enemy's.gd"
 
 func _ready() -> void:
 	damage = 10
-	speed = 100
+	speed = 90
 	ENEMYhealth = 100
 	enemy_cost = 10
 	enemy_is_horse = false
 	
+	
 func _physics_process(delta):
+
+	if unaware:
+		speed = 70
 
 	var player_pos = Global.player_global_position
 	var distance_to_player = global_position.distance_to(Global.player_global_position)
@@ -59,21 +63,7 @@ func _on_Area2Dback_body_exited(body):
 	if body is TileMap:
 		four_coll_checker -= 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+func _on_Area2D_detection_circle_body_entered(body):
+	if "KinematicBody2D" in body.name:
+		unaware = false
+		print("nice")
