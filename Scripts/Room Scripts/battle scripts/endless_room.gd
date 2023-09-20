@@ -8,10 +8,17 @@ var walker_intensity = 13000
 var enemy_limit = 500
 
 var rand_value 
+var rand_time = null
+
+var swarm = false
+
+var lowest_time : float = 60.0
+var longest_time : float = 120.0
 
 func _ready():
 	randomize()
 	
+	rand_time = rand_range(lowest_time,longest_time)
 
 
 	rand_value = spawn_options[randi() % spawn_options.size()]
@@ -32,8 +39,15 @@ func _ready():
 		end_spot = Vector2(1536,1280)
 	generate_level()
 	
-	
-	
+	$swarm_timer.wait_time = rand_time
+	$swarm_timer.start()
+	print($swarm_timer.wait_time)
+func _physics_process(delta):
+	if lowest_time <= 20:
+		lowest_time = 20
+	if longest_time <= 30:
+		longest_time = 30
+		
 func generate_level():
 	var walker = Walker.new(Vector2(76,41), borders)
 	var map = walker.walk(walker_intensity)	
@@ -71,8 +85,9 @@ func _on_enemy_spawn_timer_timeout():
 	
 	
 	enemy_chosen.position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
-	if Global.enemy_score != enemy_limit:
-		#add_child(enemy_chosen)
+	if Global.enemy_score != enemy_limit and swarm:
+		add_child(enemy_chosen)
+		enemy_chosen.unaware = false
 		Global.enemy_score += 10
 
 func _on_world_timer_reduce():
@@ -107,5 +122,24 @@ func _on_Timer_timeout():
 	enemy_chosen.position = Vector2(rand_1_x,rand_1_y)
 	if count != 50:
 		add_child(enemy_chosen)
+		enemy_chosen.unaware = true
 		count = count + 1
 
+
+
+func _on_swarm_timer_timeout():
+	randomize()
+	print("SWARM TIME")
+	var rand_swarm_time = rand_range(20.0,35.0)
+	swarm = true
+	yield(get_tree().create_timer(rand_swarm_time), "timeout")
+	swarm = false
+	
+	var rand_buffer_swarm = rand_range(20.0,30.0)
+	yield(get_tree().create_timer(rand_buffer_swarm), "timeout")
+	lowest_time = lowest_time - 2.5
+	longest_time = longest_time - 2.5
+	rand_time = rand_range(lowest_time,longest_time)
+	$swarm_timer.wait_time = rand_time
+	$swarm_timer.start()
+	

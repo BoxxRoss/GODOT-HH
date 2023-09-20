@@ -77,7 +77,6 @@ func Vac():
 		
 func Vac_stop():
 	being_Vac = false
-	print("not vac")
 
 func taking_damage(weapon_damage):
 	hurt = true

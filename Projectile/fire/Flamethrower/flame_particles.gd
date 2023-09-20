@@ -52,7 +52,6 @@ func _on_Area2D_body_entered(body):
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemys"):
-		print("stoped")
 		body.taking_damage_stop()
 		body.not_being_ignited()
 		

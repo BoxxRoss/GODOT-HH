@@ -30,6 +30,7 @@ texture = ExtResource( 5 )
 environment = SubResource( 4 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.784314, 0.784314, 0.784314, 1 )
 
 [node name="enemy_spawn_timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -57,6 +58,11 @@ tile_data = PoolIntArray( 1441824, 0, 0, 1441825, 0, 0, 1441826, 0, 0, 1441827, 
 wait_time = 0.05
 autostart = true
 
+[node name="swarm_timer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+
 [connection signal="tree_exiting" from="." to="." method="_on_world_tree_exiting"]
 [connection signal="timeout" from="enemy_spawn_timer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="swarm_timer" to="." method="_on_swarm_timer_timeout"]

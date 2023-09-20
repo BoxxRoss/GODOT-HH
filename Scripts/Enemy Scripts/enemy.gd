@@ -9,10 +9,9 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta):
-
 	if unaware:
 		speed = 70
-
+		
 	var player_pos = Global.player_global_position
 	var distance_to_player = global_position.distance_to(Global.player_global_position)
 	var direction_to_player = global_position.direction_to(Global.player_global_position)
@@ -66,4 +65,4 @@ func _on_Area2Dback_body_exited(body):
 func _on_Area2D_detection_circle_body_entered(body):
 	if "KinematicBody2D" in body.name:
 		unaware = false
-		print("nice")
+		
