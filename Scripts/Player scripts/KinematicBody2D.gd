@@ -28,7 +28,8 @@ var move_down = 1.5
 var move_left = 1.5
 var move_right = 1.5
 
-var movespeed = 1000
+var movespeed = 500
+
 # death and damage
 signal damage_taken
 signal player_death
@@ -41,10 +42,11 @@ func _ready():
 func _physics_process(_delta):
 	var motion = Vector2()
 	move = false
-	
 	emit_signal("player_rotation", rotation)
 	
 	Global.player_global_position = self.global_position
+	Global.player_global_position_y = self.global_position.y
+	Global.player_global_position_x = self.global_position.x
 	Global.player_position = self.position
 	
 	if Input.is_action_pressed("Up"):
@@ -81,14 +83,14 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Cancel"):
 		if is_breathing == true:
 			is_breathing = false
-			movespeed = 200
+			movespeed = 100
 			emit_signal("camera_zoom_out")
 			Engine.time_scale = 1
 			Engine.iterations_per_second = 60
 			
 	if Input.is_action_pressed("Sprint") and breathless == false:
 		Sprint = true
-		movespeed = 300
+		movespeed = 200
 		stamina = stamina - 0
 	else:
 		Sprint = false
@@ -110,7 +112,7 @@ func _physics_process(_delta):
 		movespeed = movespeed + 1
 		breathless = false
 		if movespeed >= 200 and Sprint == false:
-			movespeed = 200
+			movespeed = 100
 
 	if move == false:
 		stamina = stamina + 0.22

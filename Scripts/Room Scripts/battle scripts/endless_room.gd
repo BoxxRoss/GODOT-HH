@@ -5,15 +5,15 @@ var spawn_options = [1]
 var enemy_options = [1,1,1,1,1,1]
 var walker_intensity = 13000
 
-var enemy_limit = 500
+var enemy_limit = 300
 
 var rand_value 
 var rand_time = null
 
 var swarm = false
 
-var lowest_time : float = 60.0
-var longest_time : float = 120.0
+var lowest_time : float = 50.0
+var longest_time : float = 90.0
 
 func _ready():
 	randomize()
@@ -43,10 +43,10 @@ func _ready():
 	$swarm_timer.start()
 	print($swarm_timer.wait_time)
 func _physics_process(delta):
-	if lowest_time <= 20:
-		lowest_time = 20
-	if longest_time <= 30:
-		longest_time = 30
+	if lowest_time <= 30:
+		lowest_time = 30
+	if longest_time <= 60:
+		longest_time = 60
 		
 func generate_level():
 	var walker = Walker.new(Vector2(76,41), borders)
@@ -120,7 +120,7 @@ func _on_Timer_timeout():
 	
 	
 	enemy_chosen.position = Vector2(rand_1_x,rand_1_y)
-	if count != 50:
+	if count != 100:
 		add_child(enemy_chosen)
 		enemy_chosen.unaware = true
 		count = count + 1
@@ -130,9 +130,14 @@ func _on_Timer_timeout():
 func _on_swarm_timer_timeout():
 	randomize()
 	print("SWARM TIME")
-	var rand_swarm_time = rand_range(20.0,35.0)
+	Global.swarm_just_started = true
+	
+
+	
+	var rand_swarm_time = rand_range(25.0,35.0)
 	swarm = true
 	yield(get_tree().create_timer(rand_swarm_time), "timeout")
+	Global.swarm_just_ended = true
 	swarm = false
 	
 	var rand_buffer_swarm = rand_range(20.0,30.0)

@@ -11,7 +11,7 @@ extents = Vector2( 48.3331, 43.3336 )
 extents = Vector2( 19.75, 1.50006 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 366.15
+radius = 549.091
 
 [node name="enemy1" type="KinematicBody2D" groups=["enemys", "tiles"]]
 z_index = 2

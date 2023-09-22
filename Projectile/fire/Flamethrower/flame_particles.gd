@@ -1,8 +1,8 @@
 extends RigidBody2D
 
 
-var weapon_damage = 0.5
-var ignite = 0.5
+var weapon_damage = 0.1
+var ignite = 0.1
 var timer_check = false
 var passthrough_threshold = 0.25 + Global.upgrade5_effect
 
@@ -10,7 +10,8 @@ var passthrough_threshold = 0.25 + Global.upgrade5_effect
 
 
 func _ready():
-
+	var rand_rotation = rand_range(100,200)
+	
 	
 	var rand_time = rand_range(0.3,0.5)
 	var rand_angle = rand_range(-360,360)

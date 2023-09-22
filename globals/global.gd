@@ -2,6 +2,10 @@ extends Node
 
 var switch = false
 
+
+var swarm_just_started = false
+var swarm_just_ended = false
+
 #rewards/rescource managment
 
 var upgrade1 = false
@@ -68,6 +72,8 @@ var upgrade_weapon_picked = 0
 
 #bullets
 var player_global_position 
+var player_global_position_x
+var player_global_position_y
 var player_position 
 
 var deploy_ghost_count = 0
@@ -90,6 +96,7 @@ var place
 var enemies_in_Vac = 0
 #score
 var enemy_score = 0
+var unaware_enemy_score = 0
 var score = 0
 var highest_score = 0
 var last_score = 0

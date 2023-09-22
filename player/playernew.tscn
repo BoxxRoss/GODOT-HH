@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/basic_light1.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/Player scripts/Upgrade_control.gd" type="Script" id=10]
 [ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://deprecated/test/Lightnin_BEAM.tscn" type="PackedScene" id=12]
+[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=13]
 
 [sub_resource type="CircleShape2D" id=7]
 
@@ -24,6 +25,11 @@ extents = Vector2( 14, 12.5 )
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 288, 133.333, 0, 0, 0, 0, -149.248, 131.021, 0, 0, 0, 0, -362.667, 133.333, 0, 0, 0, 0, -364.924, -3.80392, 0, 0, 0, 0, -364.12, -92.1789, 0, 0, 0, 0, -362.667, -261.333, 0, 0, 0, 0, 288, -261.333, 0, 0, 0, 0, 289.007, -185.651, 0, 0, 0, 0, 288.301, -155.016, 0, 0, 0, 0, 290.774, 90.8426, 0, 0, 0, 0, 288, 133.333 )
 }
+
+[sub_resource type="DynamicFont" id=8]
+size = 80
+outline_size = 1
+font_data = ExtResource( 13 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
 collision_layer = 515
@@ -68,7 +74,7 @@ shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 8, 8 )
+zoom = Vector2( 0.6, 0.6 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -125,6 +131,21 @@ texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 5 )
 tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.392157, 0.847059, 0.231373, 1 )
+
+[node name="SWARM_warning" type="Label" parent="Path2D/CanvasLayer/Control"]
+margin_left = -0.999998
+margin_top = -128.0
+margin_right = 159.0
+margin_bottom = -48.0
+rect_scale = Vector2( 1.71749, 1.71749 )
+custom_colors/font_color = Color( 0.507813, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+custom_constants/shadow_offset_x = -1
+custom_constants/shadow_offset_y = -3
+custom_fonts/font = SubResource( 8 )
+text = "SWARM"
+align = 2
 
 [node name="kill_counter" type="Label" parent="Path2D/CanvasLayer"]
 margin_left = 969.0
