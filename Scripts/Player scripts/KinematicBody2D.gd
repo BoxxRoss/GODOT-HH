@@ -94,7 +94,7 @@ func _physics_process(_delta):
 		stamina = stamina - 0
 	else:
 		Sprint = false
-	
+		movespeed = 150
 	if Input.is_action_just_pressed("test spawn"):
 		Global.enemy_test += 1
 	
@@ -108,11 +108,8 @@ func _physics_process(_delta):
 		breathless = true
 		if movespeed <= 100:	
 			movespeed = 100
-	elif stamina > 10 and is_breathing == false:
-		movespeed = movespeed + 1
-		breathless = false
-		if movespeed >= 200 and Sprint == false:
-			movespeed = 100
+
+
 
 	if move == false:
 		stamina = stamina + 0.22
@@ -144,3 +141,7 @@ func take_a_hit():
 		kill()
 	if health <= 0:
 		kill()
+
+
+func _on_Area2D3_body_entered(body):
+	body.turn_on_coll()

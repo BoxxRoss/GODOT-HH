@@ -66,6 +66,7 @@ func _process(delta):
 		enemy_chosen.position = get_global_mouse_position()
 		if Global.enemy_score != 100:
 			add_child(enemy_chosen)
+			enemy_chosen.unaware = false
 			Global.enemy_score += 10
 
 

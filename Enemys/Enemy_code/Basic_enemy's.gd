@@ -47,6 +47,10 @@ var rand_y_patrol = rand_range(100,6500)
 var distracted = false
 var distracted_by_deployed = 0
 
+
+
+var target = null
+
 func _ready():
 	var Player = get_parent().get_node("KinematicBody2D")
 	look_at(Player.position)
@@ -133,7 +137,7 @@ func _physics_process(delta):
 	
 
 	
-	var target
+
 	
 	if checker_1 == true:
 		ENEMYhealth_max = ENEMYhealth
@@ -171,7 +175,7 @@ func _physics_process(delta):
 
 	if _being_ignited == true or current_flame_status > 0:
 		ENEMYhealth -= current_flame_status/10
-		current_flame_status -= 0.009
+		current_flame_status -= 0.09
 
 	
 	if stuck_in_vac_bomb == true:
@@ -216,7 +220,7 @@ func _physics_process(delta):
 		
 	if slowed == true:
 		speed = lerp(speed, 33, .1)
-		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
+		$Light2D.energy = lerp($Light2D.energy, 0.5, .03)
 		
 	else:
 		speed = lerp(speed, max_speed, .05)

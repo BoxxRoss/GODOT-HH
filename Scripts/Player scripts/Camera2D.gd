@@ -41,7 +41,7 @@ func _on_KinematicBody2D_camera_zoom():
 
 
 func _on_KinematicBody2D_camera_zoom_out():
-	des_zoom = Vector2(0.6, 0.6)
+	des_zoom = Vector2(1.15, 1.15)
 	zoomed = false
 
 

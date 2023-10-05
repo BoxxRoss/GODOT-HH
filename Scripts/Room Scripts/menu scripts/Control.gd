@@ -26,19 +26,19 @@ func _physics_process(delta):
 	
 func alert_to_swarm():
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(0,-10),0.1)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-208),0.1)
 	var display_time = 2.5
 	yield(get_tree().create_timer(display_time), "timeout")
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(0,-128),0.1)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-276),0.1)
 	Global.swarm_just_started = false
 	
 	
 func alert_to_swarm_end():
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(0,-10),0.1)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-208),0.1)
 	var display_time = 2.5
 	yield(get_tree().create_timer(display_time), "timeout")
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(0,-128),0.1)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-276),0.1)
 	Global.swarm_just_ended = false
 
 func change_colors():

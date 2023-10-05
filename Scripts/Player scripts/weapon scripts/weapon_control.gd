@@ -253,7 +253,7 @@ func flametrail():
 	
 func flamethrower():
 	randomize()
-	var flame_speed = rand_range(260,360)
+	var flame_speed = rand_range(400,500)
 	var rand_angle = rand_range(-0.5,0.5)
 	var thrower_instance = flame_particles.instance()		
 	thrower_instance.position = $bulletpoint.get_global_position()

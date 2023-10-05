@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 var weapon_damage = 0.1
-var ignite = 0.1
+var ignite = 0.05
 var timer_check = false
 var passthrough_threshold = 0.25 + Global.upgrade5_effect
 
@@ -25,11 +25,16 @@ func _ready():
 
 
 func _process(delta):
-	
+
 	if timer_check == true:
-		modulate.a8 -= 15
+		weapon_damage = lerp(weapon_damage,0,0.01)
+		ignite = lerp(weapon_damage,0,0.01)
+		$Sprite.scale.x = lerp($Sprite.scale.x, 0, 0.15)
+		$Sprite.scale.y = lerp($Sprite.scale.y, 0, 0.15)
+		$Sprite.modulate.a8 -= 10
 		$Sprite.modulate = Color(1.5,0.0,0.0,1.0)
-	if modulate.a8 <= 0:
+
+	if $Sprite.scale == Vector2(0,0):
 		queue_free()
 
 

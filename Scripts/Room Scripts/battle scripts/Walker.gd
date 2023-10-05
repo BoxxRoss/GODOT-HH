@@ -3,6 +3,8 @@ class_name Walker
 
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
 
+var rand_steps = rand_range(2,15)
+
 var position = Vector2.ZERO
 var direction = Vector2.RIGHT
 var borders = Rect2()
@@ -17,7 +19,7 @@ func _init(starting_position, new_border):
 	
 func walk(steps):
 	for step in steps:
-		if randf() <= 0.2 or steps_since_turn >= 4:
+		if randf() <= 0.2 or steps_since_turn >= rand_steps:
 			change_direction()
 		if step():
 			step_history.append(position)

@@ -3,9 +3,9 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
 var enemy_options = [1,1,1,1,1,1]
-var walker_intensity = 13000
+var walker_intensity = 15000
 
-var enemy_limit = 300
+var enemy_limit = 250
 
 var rand_value 
 var rand_time = null
@@ -87,7 +87,7 @@ func _on_enemy_spawn_timer_timeout():
 	enemy_chosen.position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
 	if Global.enemy_score != enemy_limit and swarm:
 		add_child(enemy_chosen)
-		enemy_chosen.unaware = false
+		enemy_chosen.turn_on_coll()
 		Global.enemy_score += 10
 
 func _on_world_timer_reduce():
@@ -120,7 +120,7 @@ func _on_Timer_timeout():
 	
 	
 	enemy_chosen.position = Vector2(rand_1_x,rand_1_y)
-	if count != 100:
+	if count != 200:
 		add_child(enemy_chosen)
 		enemy_chosen.unaware = true
 		count = count + 1
