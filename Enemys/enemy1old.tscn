@@ -1,61 +1,63 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Enemy Scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Projectile/fire/Flamethrower/light_32x32.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/basic_light1.png" type="Texture" id=3]
-[ext_resource path="res://Enemys/enemy_sprites/basic_new_ghost_4.png" type="Texture" id=4]
-[ext_resource path="res://Enemys/enemy_sprites/basic_new_ghost_3.png" type="Texture" id=5]
-[ext_resource path="res://Enemys/enemy_sprites/basic_new_ghost_2.png" type="Texture" id=6]
-[ext_resource path="res://Enemys/enemy_sprites/basic_new_ghost_1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/static_floor.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/roman_numeral_1.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 48.3331, 43.3336 )
-
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 10.0
-} ]
+extents = Vector2( 58.3333, 60 )
 
 [sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 0.431373, 0.431373, 0.431373, 0.266667, 0.392157, 0.392157, 0.392157, 0.396078 )
+offsets = PoolRealArray( 0, 0.993151, 1 )
+colors = PoolColorArray( 0.423529, 0.423529, 0.423529, 0.882353, 0.393446, 0.393446, 0.393446, 0.261886, 0.392157, 0.392157, 0.392157, 0.235294 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=8]
 gradient = SubResource( 5 )
 
 [sub_resource type="Curve" id=7]
 max_value = 3.0
-_data = [ Vector2( 0, 3 ), 0.0, 0.372591, 0, 0, Vector2( 1, 0.411043 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 3 ), 0.0, 0.372591, 0, 0, Vector2( 1, 1.97853 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=8]
+[sub_resource type="CurveTexture" id=9]
 curve = SubResource( 7 )
 
 [sub_resource type="ParticlesMaterial" id=4]
 flag_rotate_y = true
 flag_disable_z = true
-direction = Vector3( 20, 0, 0 )
+direction = Vector3( 0, 0, 0 )
 spread = 180.0
 flatness = 1.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 10.0
 angular_velocity = 10.0
-angular_velocity_random = 1.0
-orbit_velocity = 1.0
+orbit_velocity = 1.5
 orbit_velocity_random = 1.0
 linear_accel = 100.0
-linear_accel_random = 1.0
-radial_accel = 50.0
+radial_accel = 100.0
 radial_accel_random = 1.0
 tangential_accel = 1.98
 damping = 100.0
 damping_random = 1.0
 angle = 720.0
+scale_random = 1.0
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+orbit_velocity = 1.5
+orbit_velocity_random = 1.0
+angle = 5.0
 angle_random = 1.0
-scale_curve = SubResource( 8 )
-color_ramp = SubResource( 6 )
+scale = 1.5
+color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 19.75, 1.50006 )
@@ -72,24 +74,21 @@ color = Color( 1, 0, 0, 1 )
 energy = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.499999, 1.31924e-06 )
+position = Vector2( -0.5, 2.38419e-07 )
 scale = Vector2( 0.3, 0.3 )
 shape = SubResource( 1 )
 
-[node name="Icon" type="AnimatedSprite" parent="."]
+[node name="Icon" type="Sprite" parent="."]
 position = Vector2( 2.86102e-06, 1.90735e-06 )
 rotation = 3.14159
-scale = Vector2( 0.411772, 0.401729 )
-frames = SubResource( 3 )
-frame = 2
-speed_scale = 2.0
-playing = true
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="Icon"]
+position = Vector2( 6.94806e-06, 4.74787e-06 )
 scale = Vector2( 2, 2 )
-amount = 20
+amount = 12
 lifetime = 2.0
-explosiveness = 0.16
 randomness = 1.0
 process_material = SubResource( 4 )
 texture = ExtResource( 2 )
@@ -99,6 +98,12 @@ modulate = Color( 1, 1, 1, 0.588235 )
 rotation = 1.5708
 scale = Vector2( 0.3, 0.4 )
 texture = ExtResource( 8 )
+
+[node name="rocks" type="Particles2D" parent="Icon"]
+visible = false
+amount = 5
+process_material = SubResource( 10 )
+texture = ExtResource( 4 )
 
 [node name="Collision_node" type="Node2D" parent="."]
 

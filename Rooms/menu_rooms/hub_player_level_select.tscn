@@ -72,6 +72,35 @@ margin_bottom = 92.0
 rect_scale = Vector2( 3, 3 )
 text = "Back"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 1072.0
+margin_top = 16.0
+margin_right = 1121.0
+margin_bottom = 84.0
+rect_scale = Vector2( 4, 4 )
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_right = 49.0
+margin_bottom = 20.0
+text = "EASY"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 49.0
+margin_bottom = 44.0
+text = "MED"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 49.0
+margin_bottom = 68.0
+text = "HARD"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 49.0
+margin_bottom = 86.0
+
 [connection signal="pressed" from="weapons_button" to="." method="_on_weapons_button_pressed"]
 [connection signal="pressed" from="map_button" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

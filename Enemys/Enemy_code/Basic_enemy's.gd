@@ -14,6 +14,8 @@ var _being_ignited = false
 var being_Vac = false
 var stuck_in_vac_bomb = false
 var pos_of_bomb 
+
+
 onready var col = get_node("CollisionShape2D")
 
 var four_coll_checker = 0
@@ -25,12 +27,15 @@ var motion = Vector2(0,0)
 var damage: int
 var enemy_cost : int
 var speed : int
-var ENEMYhealth : int
+var ENEMYhealth : float
+var ENEMY_rock_health : int
+
+var rock : bool
 
 var enemy_is_horse = false
 var enemy_is_horse_go = false
 
-var ENEMYhealth_max : int
+var ENEMYhealth_max : float
 var max_speed : int
 
 var num_of_walls = 0
@@ -47,9 +52,22 @@ var rand_y_patrol = rand_range(100,6500)
 var distracted = false
 var distracted_by_deployed = 0
 
-
-
 var target = null
+
+onready var particles = get_node("Icon/Particles2D")
+
+func Ignite(): 
+	
+	if current_flame_status > 1:
+		if particles.modulate.g > 0.35:
+			particles.modulate.g -= 0.015
+		if particles.modulate.b > 0.05:
+			particles.modulate.b -= 0.015
+	else:
+		if particles.modulate.g < 1:
+			particles.modulate.g += 0.015
+		if particles.modulate.b < 1:
+			particles.modulate.b += 0.015
 
 func _ready():
 	var Player = get_parent().get_node("KinematicBody2D")
@@ -85,6 +103,7 @@ func Vac_stop():
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
+
 	
 func taking_damage_stop():
 	hurt = false
@@ -110,10 +129,14 @@ func enemy_death():
 		static_insatnce.global_position = self.global_position
 		static_insatnce.global_rotation = self.global_rotation
 		get_tree().get_root().call_deferred("add_child", static_insatnce)
-		
+"""
 func onhit(damage):
-	ENEMYhealth -= damage
-
+	if rock == true:
+		ENEMY_rock_health -= 2
+		ENEMYhealth -= damage/ENEMY_rock_health
+	else:
+		ENEMYhealth -= damage
+"""
 func shocked():
 	speed = speed_when_slowed
 	weak = 1.5
@@ -131,7 +154,11 @@ func enemy_captured():
 func _physics_process(delta):
 	
 	var Player = get_parent().get_node("KinematicBody2D")
-
+	
+	if ENEMY_rock_health <= 0:
+		ENEMY_rock_health = 0
+		rock = false
+	
 	if Global.friend_ghost_has_died == true:
 		distracted = false
 	
@@ -171,12 +198,21 @@ func _physics_process(delta):
 	angle = lerp_angle(r, angle, 1.0)
 	angle = clamp(angle, r - angle_delta, r + angle_delta)
 	global_rotation = angle
+
+	if current_flame_status > 0.2:
+		current_flame_status -= 0.2
 	
-
 	if _being_ignited == true or current_flame_status > 0:
-		ENEMYhealth -= current_flame_status/10
-		current_flame_status -= 0.09
-
+		if rock == true:
+			ENEMY_rock_health -= 1
+			ENEMYhealth -= current_flame_status/100
+			print(current_flame_status)
+			Ignite()
+		else:
+			ENEMYhealth -= current_flame_status/5.5
+			print(current_flame_status)
+			Ignite()
+			
 	
 	if stuck_in_vac_bomb == true:
 		global_position = lerp(global_position, pos_of_bomb, 0.1)
@@ -210,9 +246,12 @@ func _physics_process(delta):
 	if shocked >= 15:
 		shocked()
 
-	if hurt == true:
+	if hurt == true and rock == true:
+		var new_damage = damage_dealt/100
+		ENEMYhealth -= new_damage * weak
+	if hurt == true and rock == false:
 		ENEMYhealth -= damage_dealt * weak
-	
+
 	if four_coll_checker == 4:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)
 	else:
@@ -225,8 +264,6 @@ func _physics_process(delta):
 	else:
 		speed = lerp(speed, max_speed, .05)
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)
-	
-	
 	
 	if enemy_is_horse_go == false:
 		motion = position.direction_to(target) * speed

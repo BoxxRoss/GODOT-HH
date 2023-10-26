@@ -6,25 +6,9 @@ onready var back_col = get_node("Collision_node/Area2Dback/CollisionShape2D")
 onready var left_col = get_node("Collision_node/Area2Dleft/CollisionShape2D")
 onready var right_col = get_node("Collision_node/Area2Dright/CollisionShape2D")
 
-
-onready var rock_particles = get_node("Icon/rocks")
-
-
-
+onready var particles = get_node("Icon/Particles2D")
 
 func _ready() -> void:
-	var rand_chance_for_rock = rand_range(0,2)
-
-	if rand_chance_for_rock <= 1.9:
-		rock = true
-		ENEMY_rock_health = Global.base_rock_health
-		
-		rock_particles.emitting = true
-	else:
-		rock = false
-		rock_particles.emitting = false
-		ENEMY_rock_health = 0
-		
 	var rand_timer = rand_range(10,15)
 	$Timer.wait_time = rand_timer
 	$Timer.start()
@@ -33,22 +17,32 @@ func _ready() -> void:
 	else:
 		turn_on_coll()
 	
+	
+	print(particles.modulate.r)
+	print(particles.modulate.g)
+	print(particles.modulate.b)
 	damage = 10
 	speed = Global.base_enemy_speed
 	ENEMYhealth = Global.base_enemy_health
 	enemy_cost = 10
 	enemy_is_horse = false
+
+func Ignite(): 
+	
+
+	if particles.modulate.g > 0.35:
+		particles.modulate.g -= 0.02
+
+	if particles.modulate.b > 0.05:
+		particles.modulate.b -= 0.02
+
 	
 func _physics_process(delta):
-	
-	if rock != true:
-		rock_particles.emitting = false
-	
-	rock_particles.modulate.a8 = ENEMY_rock_health * 2.5
-		
+	print(current_flame_status)
 	if unaware:
 		speed = 70
-		
+	if _being_ignited == true or current_flame_status > 0:
+		Ignite()
 
 
 
@@ -105,7 +99,7 @@ func _on_Area2Dback_body_exited(body):
 func turn_on_coll():
 	
 	unaware = false
-	particles.emitting = true
+	
 	
 	front_col.disabled = false
 	back_col.disabled = false
@@ -114,7 +108,7 @@ func turn_on_coll():
 	
 
 func disable():
-	particles.emitting = false
+	
 	
 	
 	front_col.disabled = true

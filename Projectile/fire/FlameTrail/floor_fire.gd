@@ -1,8 +1,8 @@
 extends RigidBody2D
 
-var ignite = 0.5
+var ignite = 0.1
 
-var weapon_damage = 1
+var weapon_damage = 0.2
 func _ready():
 	var rand_time = rand_range(2,2)
 	$Timer.wait_time = rand_time

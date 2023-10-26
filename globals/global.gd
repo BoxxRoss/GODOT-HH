@@ -42,13 +42,13 @@ var vacuum_blast_activated = false
 var vacuum_bomb_activated = false
 var vacuum_deploy_activated = false
 
-var flamethrower_position = 1
-var flametrail_position = 2
-var flamebeam_position = 0
+var flamethrower_position = 0
+var flametrail_position = 0
+var flamebeam_position = 3
 
-var lightspray_position = 0
-var lighttrip_position = 0
-var lightball_position = 3
+var lightspray_position = 2
+var lighttrip_position = 1
+var lightball_position = 0
 
 var vacuumblast_position = 0
 var vacuumbomb_position = 0
@@ -60,6 +60,17 @@ var time_to_go_back = false
 #enemy
 var enemy_hit_by_lightnin = false
 var friend_ghost_basic_pos = Vector2(0,0)
+
+#difficulty
+var diff_selected = "normal"
+
+var diffiuclty_speed = {"easy":80, "normal":90, "Hard":100 }
+var diffiuclty_health = {"easy":90, "normal":100, "Hard":115 }
+var diffiuclty_rock_health = {"easy":90, "normal":100, "Hard":115 }
+
+var base_enemy_speed = diffiuclty_speed[diff_selected]
+var base_enemy_health = diffiuclty_health[diff_selected]
+var base_rock_health = diffiuclty_rock_health[diff_selected]
 
 # friend ghost
 var friend_ghost_has_died = false

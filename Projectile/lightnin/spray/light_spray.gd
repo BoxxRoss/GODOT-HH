@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var damage = 2
+var weapon_damage = 50.0
 var shock = 1
 var static_floor = 1
 
@@ -57,10 +57,14 @@ func _on_Timer_timeout():
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
-		body.onhit(damage)
+		body.taking_damage(weapon_damage)
 		body.shock(shock)
 		body.static_floor_charge(static_floor)
-	
+		
+func _on_Area2D_body_exited(body):
+	if body.is_in_group("enemys"):
+		body.taking_damage_stop()	
+
 func disable():
 	$TinyBullet.visible = false
 	$Area2D/external_collision.disabled = true
@@ -76,3 +80,6 @@ func enable():
 
 func _on_appeartimer_timeout():
 	enable()
+
+
+

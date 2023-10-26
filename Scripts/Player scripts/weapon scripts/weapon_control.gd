@@ -124,9 +124,7 @@ func _inputchecks():
 
 		fire_light_spray()
 		fire_light_spray()
-		fire_light_spray()
-		fire_light_spray()
-		fire_light_spray()
+
 		
 	if Input.is_action_pressed("Shoot") and weapon_select == Global.lightball_position and is_breathing != true:
 		Global.beam_active = false

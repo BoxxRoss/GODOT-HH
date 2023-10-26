@@ -69,9 +69,9 @@ one_shot = true
 
 [node name="Particles2D" type="Particles2D" parent="."]
 scale = Vector2( 0.125, 0.125 )
-amount = 50
-lifetime = 2.0
-speed_scale = 2.0
+amount = 20
+lifetime = 2.15
+speed_scale = 2.5
 randomness = 1.0
 process_material = SubResource( 6 )
 texture = ExtResource( 1 )

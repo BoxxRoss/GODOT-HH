@@ -1,10 +1,11 @@
 extends RigidBody2D
 
 
-var weapon_damage = 0.1
-var ignite = 0.05
+var weapon_damage = 0.2
+var ignite = 0.3
 var timer_check = false
-var passthrough_threshold = 0.25 + Global.upgrade5_effect
+var passthrough_threshold = 0.6
+
 
 
 
@@ -12,8 +13,9 @@ var passthrough_threshold = 0.25 + Global.upgrade5_effect
 func _ready():
 	var rand_rotation = rand_range(100,200)
 	
+
 	
-	var rand_time = rand_range(0.3,0.5)
+	var rand_time = rand_range(0.3,0.4)
 	var rand_angle = rand_range(-360,360)
 	var rand_scale_x = rand_range(0.2,0.7)
 	var rand_scale_y = rand_range(0.2,0.7)
@@ -27,10 +29,8 @@ func _ready():
 func _process(delta):
 
 	if timer_check == true:
-		weapon_damage = lerp(weapon_damage,0,0.01)
-		ignite = lerp(weapon_damage,0,0.01)
-		$Sprite.scale.x = lerp($Sprite.scale.x, 0, 0.15)
-		$Sprite.scale.y = lerp($Sprite.scale.y, 0, 0.15)
+		$Sprite.scale.x = lerp($Sprite.scale.x, 0, 0.35)
+		$Sprite.scale.y = lerp($Sprite.scale.y, 0, 0.35)
 		$Sprite.modulate.a8 -= 10
 		$Sprite.modulate = Color(1.5,0.0,0.0,1.0)
 

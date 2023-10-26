@@ -12,14 +12,14 @@ func _on_Area2D_body_entered(body):
 		body.shock(shock)
 		dec_charge += 0.01
 	if body is TileMap:
-		dec_charge += 0.01
+		dec_charge += 0.05
 		
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemys"):
 		body.taking_damage_stop()
 		dec_charge -= 0.01
 	if body is TileMap:
-		dec_charge -= 0.01
+		dec_charge -= 0.05
 		
 		
 		

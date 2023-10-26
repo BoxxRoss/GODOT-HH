@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display-weapon3.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon2.gd" type="Script" id=2]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon1.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/weapons_lab.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Menu_backgrounds/BG_upgrade_blueprint.png" type="Texture" id=5]
 
 [node name="weapon_lab_control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 640.0
+margin_bottom = 344.0
 rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 640, 360 )
+texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 448.0
@@ -92,7 +99,7 @@ toggle_mode = true
 text = "Vacuum Deploy"
 
 [node name="Button" type="Button" parent="."]
-margin_right = 12.0
+margin_right = 41.0
 margin_bottom = 20.0
 text = "back"
 
