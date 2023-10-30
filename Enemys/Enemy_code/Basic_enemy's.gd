@@ -26,9 +26,9 @@ var motion = Vector2(0,0)
 
 var damage: int
 var enemy_cost : int
-var speed : int
+var speed : int = Global.base_enemy_speed
 var ENEMYhealth : float
-var ENEMY_rock_health : int
+var ENEMY_rock_health : float
 
 var rock : bool
 
@@ -101,7 +101,9 @@ func Vac_stop():
 	being_Vac = false
 
 func taking_damage(weapon_damage):
+
 	hurt = true
+
 	damage_dealt = weapon_damage
 
 	
@@ -167,9 +169,9 @@ func _physics_process(delta):
 
 	
 	if checker_1 == true:
-		ENEMYhealth_max = ENEMYhealth
-		max_speed = speed
-		speed_when_slowed = (speed/2.0)
+		ENEMYhealth_max = Global.base_enemy_health
+		max_speed = Global.base_enemy_speed
+		speed_when_slowed = (Global.base_enemy_speed/2.0)
 		checker_1 = false
 	if enemy_is_horse == true:
 		motion = position.direction_to(Player.position) * speed
@@ -246,11 +248,12 @@ func _physics_process(delta):
 	if shocked >= 15:
 		shocked()
 
-	if hurt == true and rock == true:
+	elif hurt == true and rock == true:
 		var new_damage = damage_dealt/100
 		ENEMYhealth -= new_damage * weak
-	if hurt == true and rock == false:
+	if hurt == true:
 		ENEMYhealth -= damage_dealt * weak
+		print(ENEMYhealth)
 
 	if four_coll_checker == 4:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)

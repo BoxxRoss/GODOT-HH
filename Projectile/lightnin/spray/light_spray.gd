@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-var weapon_damage = 50.0
-var shock = 1
+var weapon_damage = 1.5
+var shock = 1.0
 var static_floor = 1
 
 var sprite_var_1 = preload("res://Projectile/lightnin/lightning_spray_varient1.png")
@@ -57,7 +57,10 @@ func _on_Timer_timeout():
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
+		
+		print(weapon_damage)
 		body.taking_damage(weapon_damage)
+		
 		body.shock(shock)
 		body.static_floor_charge(static_floor)
 		
@@ -67,15 +70,13 @@ func _on_Area2D_body_exited(body):
 
 func disable():
 	$TinyBullet.visible = false
-	$Area2D/external_collision.disabled = true
 	$Light2D.enabled = false
-	$CollisionShape2D.disabled = true
+
 	
 func enable():
 	$TinyBullet.visible = true
-	$Area2D/external_collision.disabled = false
 	$Light2D.enabled = true
-	$CollisionShape2D.disabled = false
+
 
 
 func _on_appeartimer_timeout():

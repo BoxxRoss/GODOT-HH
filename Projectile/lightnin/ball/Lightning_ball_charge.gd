@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-var shock = 1.5
-var damage = 1
+var shock = 3.5
+var damage = 0.25
 var current_charge = Global.charge_balls
 var dec_charge = 0.01
 
@@ -24,7 +24,7 @@ func _on_Area2D_body_exited(body):
 		
 		
 func _physics_process(_delta):
-
+	print(current_charge)
 	scale.x = current_charge
 	scale.y = current_charge
 	

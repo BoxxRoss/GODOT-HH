@@ -14,7 +14,7 @@ extents = Vector2( 10.1427, 1.10282 )
 extents = Vector2( 58.6875, 4.25005 )
 
 [node name="light_spray" type="RigidBody2D"]
-collision_layer = 512
+collision_layer = 516
 collision_mask = 512
 mass = 0.00102041
 gravity_scale = 0.0

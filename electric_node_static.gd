@@ -2,7 +2,7 @@ extends RigidBody2D
 
 var lazer_node = preload("res://Projectile/lightnin/node/eletric_lazer.tscn")
 onready var circle_detect = $node_detection_circle/CollisionShape2D
-var limit = 0
+var limit = false
 var spot = self.global_position
 var o_spot
 var check = false
@@ -25,10 +25,10 @@ func _on_node_detection_circle_body_entered(body):
 	pass
 	
 func _on_node_detection_circle_area_entered(area):
-	if self == self and limit == 0:
+	if limit == false:
 		o_spot = area.global_position
 		var spott = self.global_position
-		limit = 1
+		limit = true
 		check = true
 		emit_signal("connect", o_spot, spott)
 		

@@ -47,8 +47,8 @@ var flametrail_position = 0
 var flamebeam_position = 3
 
 var lightspray_position = 2
-var lighttrip_position = 1
-var lightball_position = 0
+var lighttrip_position = 0
+var lightball_position = 1
 
 var vacuumblast_position = 0
 var vacuumbomb_position = 0
@@ -64,9 +64,9 @@ var friend_ghost_basic_pos = Vector2(0,0)
 #difficulty
 var diff_selected = "normal"
 
-var diffiuclty_speed = {"easy":80, "normal":90, "Hard":100 }
-var diffiuclty_health = {"easy":90, "normal":100, "Hard":115 }
-var diffiuclty_rock_health = {"easy":90, "normal":100, "Hard":115 }
+var diffiuclty_speed = {"easy":40, "normal":50, "Hard":50 }
+var diffiuclty_health = {"easy":50, "normal":60, "Hard":65 }
+var diffiuclty_rock_health = {"easy":50, "normal":60, "Hard":65 }
 
 var base_enemy_speed = diffiuclty_speed[diff_selected]
 var base_enemy_health = diffiuclty_health[diff_selected]
