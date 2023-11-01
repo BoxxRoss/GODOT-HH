@@ -2,7 +2,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1,2,3,4]
-var enemy_options = [2,2,2,2,2,2]
+var enemy_options = [1]
 var walker_intensity = 17000
 
 var enemy_limit = 200
@@ -30,6 +30,13 @@ func _ready():
 		
 	generate_level()
 	
+	Rand_enemy_choice()
+	
+func Rand_enemy_choice():
+	var rand_enemy_choice_1_float = rand_range(1,3.999)
+	var rand_enemy_choice_1_int = int(rand_enemy_choice_1_float)
+	print(rand_enemy_choice_1_float)
+	print(rand_enemy_choice_1_int)
 	
 func generate_level():
 	var walker = Walker.new(Vector2(76,41), borders)

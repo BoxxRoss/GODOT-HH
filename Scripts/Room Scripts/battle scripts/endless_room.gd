@@ -2,7 +2,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [1,1,1,1,1,1]
+var enemy_options = [1]
 var walker_intensity = 15000
 
 var enemy_limit = 250
@@ -38,10 +38,20 @@ func _ready():
 		playerspot = Vector2(11200,5952)
 		end_spot = Vector2(1536,1280)
 	generate_level()
-	
 	$swarm_timer.wait_time = rand_time
 	$swarm_timer.start()
 	print($swarm_timer.wait_time)
+	
+	Rand_enemy_choice()
+	
+func Rand_enemy_choice():
+	for i in range(6):
+		var rand_enemy_choice_float = rand_range(1,2.999)
+		var rand_enemy_choice_int = int(rand_enemy_choice_float)
+		print(rand_enemy_choice_int)
+		enemy_options.insert(i + 1,rand_enemy_choice_int)
+		print(enemy_options)
+	
 func _physics_process(delta):
 	if lowest_time <= 30:
 		lowest_time = 30
