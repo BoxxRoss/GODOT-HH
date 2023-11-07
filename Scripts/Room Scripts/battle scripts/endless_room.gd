@@ -1,8 +1,10 @@
 extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
+
+
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [1]
+var enemy_options = [1,1,1,1]
 var walker_intensity = 15000
 
 var enemy_limit = 250
@@ -15,8 +17,35 @@ var swarm = false
 var lowest_time : float = 50.0
 var longest_time : float = 90.0
 
+var rand_enemy_value = null
+var tile_selected = null
+
 func _ready():
 	randomize()
+	
+	var map_options = [1,2,3,4,5]
+	var rand_map_value = map_options[randi() % map_options.size()]
+	print(rand_map_value)
+	if rand_map_value == 1:
+		var TILE_1 = Tile_preset_1.instance()
+		add_child(TILE_1)
+		tile_selected = TILE_1
+	if rand_map_value == 2:
+		var TILE_2 = Tile_preset_2.instance()
+		add_child(TILE_2)
+		tile_selected = TILE_2
+	if rand_map_value == 3:
+		var TILE_3 = Tile_preset_3.instance()
+		add_child(TILE_3)
+		tile_selected = TILE_3
+	if rand_map_value == 4:
+		var TILE_4 = Tile_preset_4.instance()
+		add_child(TILE_4)
+		tile_selected = TILE_4
+	if rand_map_value == 5:
+		var TILE_5 = Tile_preset_5.instance()
+		add_child(TILE_5)
+		tile_selected = TILE_5
 	
 	rand_time = rand_range(lowest_time,longest_time)
 
@@ -40,7 +69,7 @@ func _ready():
 	generate_level()
 	$swarm_timer.wait_time = rand_time
 	$swarm_timer.start()
-	print($swarm_timer.wait_time)
+
 	
 	Rand_enemy_choice()
 	
@@ -48,9 +77,10 @@ func Rand_enemy_choice():
 	for i in range(6):
 		var rand_enemy_choice_float = rand_range(1,2.999)
 		var rand_enemy_choice_int = int(rand_enemy_choice_float)
-		print(rand_enemy_choice_int)
-		enemy_options.insert(i + 1,rand_enemy_choice_int)
+
+		#enemy_options.insert(i + 1,rand_enemy_choice_int)
 		print(enemy_options)
+
 	
 func _physics_process(delta):
 	if lowest_time <= 30:
@@ -59,6 +89,9 @@ func _physics_process(delta):
 		longest_time = 60
 		
 func generate_level():
+	
+	
+	
 	var walker = Walker.new(Vector2(76,41), borders)
 	var map = walker.walk(walker_intensity)	
 	
@@ -69,11 +102,12 @@ func generate_level():
 	walker.queue_free()
 	
 	for location in map:
-		tileMap.set_cellv(location, -1)
-	tileMap.update_bitmask_region(borders.position, borders.end)
+		tile_selected.set_cellv(location, -1)
+	tile_selected.update_bitmask_region(borders.position, borders.end)
 
 func _on_enemy_spawn_timer_timeout():
-	var rand_enemy_value = enemy_options[randi() % enemy_options.size()]
+	rand_enemy_value = enemy_options[randi() % enemy_options.size()]
+	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
@@ -109,8 +143,8 @@ var rand_1_y = null
 var count : int = 0
 
 func _on_Timer_timeout():
-	var rand_enemy_value = enemy_options[randi() % enemy_options.size()]
-	
+	rand_enemy_value = enemy_options[randi() % enemy_options.size()]
+	print(rand_enemy_value)
 	var instance = enemy_1.instance()
 	var slim_instance = enemy_slim.instance()
 	var horse_instance = enemy_horse.instance()
@@ -139,7 +173,6 @@ func _on_Timer_timeout():
 
 func _on_swarm_timer_timeout():
 	randomize()
-	print("SWARM TIME")
 	Global.swarm_just_started = true
 	
 

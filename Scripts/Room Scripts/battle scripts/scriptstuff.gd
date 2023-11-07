@@ -16,6 +16,12 @@ var Player = preload("res://player/playernew.tscn")
 
 var end_point = preload("res://Rooms/battle_rooms/escape_item.tscn")
 
+var Tile_preset_1 = preload("res://Rooms/battle_rooms/TILEMAP_PRESETS/TILEMAP_PRESET_1.tscn")
+var Tile_preset_2 = preload("res://Rooms/battle_rooms/TILEMAP_PRESETS/TILEMAP_PRESET_2.tscn")
+var Tile_preset_3 = preload("res://Rooms/battle_rooms/TILEMAP_PRESETS/TILEMAP_PRESET_3.tscn")
+var Tile_preset_4 = preload("res://Rooms/battle_rooms/TILEMAP_PRESETS/TILEMAP_PRESET_4.tscn")
+var Tile_preset_5 = preload("res://Rooms/battle_rooms/TILEMAP_PRESETS/TILEMAP_PRESET_5.tscn")
+
 func _ready():
 	if SaveScript.is_file_there():
 		Global.highest_score = SaveScript.load_val()

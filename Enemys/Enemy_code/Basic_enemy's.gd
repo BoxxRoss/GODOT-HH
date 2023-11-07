@@ -70,6 +70,9 @@ func Ignite():
 			particles.modulate.b += 0.015
 
 func _ready():
+	
+	yield(get_tree().create_timer(1.0), "timeout")
+	
 	var Player = get_parent().get_node("KinematicBody2D")
 	look_at(Player.position)
 	

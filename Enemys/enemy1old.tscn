@@ -24,14 +24,16 @@ _data = [ Vector2( 0, 3 ), 0.0, 0.372591, 0, 0, Vector2( 1, 1.97853 ), 0.0, 0.0,
 curve = SubResource( 7 )
 
 [sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.1
 flag_rotate_y = true
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
 flatness = 1.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 500, 0 )
 initial_velocity = 10.0
 angular_velocity = 10.0
+angular_velocity_random = 1.0
 orbit_velocity = 1.5
 orbit_velocity_random = 1.0
 linear_accel = 100.0
@@ -86,9 +88,11 @@ texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="Icon"]
 position = Vector2( 6.94806e-06, 4.74787e-06 )
+rotation = -0.778293
 scale = Vector2( 2, 2 )
-amount = 12
-lifetime = 2.0
+amount = 15
+lifetime = 0.6
+speed_scale = 0.5
 randomness = 1.0
 process_material = SubResource( 4 )
 texture = ExtResource( 2 )
