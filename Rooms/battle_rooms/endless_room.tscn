@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/RandomLevelGenTileset.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Room Scripts/battle scripts/enemy_spawn_timer.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Room Scripts/battle scripts/endless_room.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/messy_floor.png" type="Texture" id=5]
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -83,9 +82,8 @@ __meta__ = {
 
 [node name="Sprite2" type="Sprite" parent="."]
 modulate = Color( 0.678431, 0.666667, 0.670588, 1 )
-position = Vector2( 6687, 3296 )
-scale = Vector2( 26.896, 26.768 )
-texture = ExtResource( 5 )
+position = Vector2( 6207, 3306 )
+scale = Vector2( 10, 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )

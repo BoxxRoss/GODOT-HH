@@ -45,6 +45,6 @@ func _on_world_tree_exiting() -> void:
 
 func spawn_end():
 	var end_point_instance = end_point.instance()
-	end_point_instance.position = end_spot
+	end_point_instance.global_position = end_spot
 	get_tree().get_root().call_deferred("add_child", end_point_instance)
 

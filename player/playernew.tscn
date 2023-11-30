@@ -36,7 +36,7 @@ font_data = ExtResource( 13 )
 polygon = PoolVector2Array( -32, 0, -32, 0, -28, 20, -32, 0, -28, -20 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
-collision_layer = 515
+collision_layer = 643
 collision_mask = 515
 script = ExtResource( 4 )
 

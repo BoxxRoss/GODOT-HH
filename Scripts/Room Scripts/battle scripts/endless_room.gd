@@ -5,7 +5,9 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
 var enemy_options = [1,1,1,1]
-var walker_intensity = 15000
+var walker_intensity_float = null
+var walker_intensity = null
+
 
 var enemy_limit = 250
 
@@ -22,10 +24,13 @@ var tile_selected = null
 
 func _ready():
 	randomize()
+
+	walker_intensity_float = rand_range(13000.0, 17000.0)
+	walker_intensity = int(walker_intensity_float)
 	
 	var map_options = [1,2,3,4,5]
 	var rand_map_value = map_options[randi() % map_options.size()]
-	print(rand_map_value)
+
 	if rand_map_value == 1:
 		var TILE_1 = Tile_preset_1.instance()
 		add_child(TILE_1)
@@ -52,8 +57,8 @@ func _ready():
 
 	rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
-		playerspot = Vector2(1536,1280)
-		end_spot = Vector2(11200,5952)
+		playerspot = Vector2(256,256)
+		end_spot = Vector2(12020,6040)
 		
 	if rand_value == 2:
 		playerspot = Vector2(3584,5120)
@@ -70,6 +75,7 @@ func _ready():
 	$swarm_timer.wait_time = rand_time
 	$swarm_timer.start()
 
+
 	
 	Rand_enemy_choice()
 	
@@ -79,7 +85,6 @@ func Rand_enemy_choice():
 		var rand_enemy_choice_int = int(rand_enemy_choice_float)
 
 		#enemy_options.insert(i + 1,rand_enemy_choice_int)
-		print(enemy_options)
 
 	
 func _physics_process(delta):
@@ -144,7 +149,6 @@ var count : int = 0
 
 func _on_Timer_timeout():
 	rand_enemy_value = enemy_options[randi() % enemy_options.size()]
-	print(rand_enemy_value)
 	var instance = enemy_1.instance()
 	var slim_instance = enemy_slim.instance()
 	var horse_instance = enemy_horse.instance()
