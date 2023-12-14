@@ -9,7 +9,7 @@ var walker_intensity_float = null
 var walker_intensity = null
 
 
-var enemy_limit = 250
+var enemy_limit = 150
 
 var rand_value 
 var rand_time = null

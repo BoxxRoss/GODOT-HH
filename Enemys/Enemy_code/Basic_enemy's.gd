@@ -209,13 +209,11 @@ func _physics_process(delta):
 	
 	if _being_ignited == true or current_flame_status > 0:
 		if rock == true:
-			ENEMY_rock_health -= 1
+			ENEMY_rock_health -= 0.25
 			ENEMYhealth -= current_flame_status/100
-			print(current_flame_status)
 			Ignite()
 		else:
 			ENEMYhealth -= current_flame_status/5.5
-			print(current_flame_status)
 			Ignite()
 			
 	
@@ -252,11 +250,13 @@ func _physics_process(delta):
 		shocked()
 
 	elif hurt == true and rock == true:
-		var new_damage = damage_dealt/100
+		
+		var new_damage = damage_dealt/50
 		ENEMYhealth -= new_damage * weak
-	if hurt == true:
+
+	if hurt == true and rock != true:
 		ENEMYhealth -= damage_dealt * weak
-		print(ENEMYhealth)
+		
 
 	if four_coll_checker == 4:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)

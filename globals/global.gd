@@ -66,7 +66,7 @@ var diff_selected = "normal"
 
 var diffiuclty_speed = {"easy":40, "normal":50, "Hard":50 }
 var diffiuclty_health = {"easy":50, "normal":60, "Hard":65 }
-var diffiuclty_rock_health = {"easy":50, "normal":60, "Hard":65 }
+var diffiuclty_rock_health = {"easy":50, "normal":50, "Hard":50 }
 
 var base_enemy_speed = diffiuclty_speed[diff_selected]
 var base_enemy_health = diffiuclty_health[diff_selected]

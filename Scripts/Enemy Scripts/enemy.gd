@@ -11,11 +11,11 @@ onready var rock_particles = get_node("Icon/rocks")
 
 
 
+		
 
 func _ready() -> void:
 	var rand_chance_for_rock = rand_range(0,2)
-
-	if rand_chance_for_rock <= 1.9:
+	if rand_chance_for_rock >= 0.1:
 		rock = true
 		ENEMY_rock_health = Global.base_rock_health
 		
@@ -43,8 +43,11 @@ func _physics_process(delta):
 	
 	if rock != true:
 		rock_particles.emitting = false
+
+	rock_particles.modulate.a8 = ENEMY_rock_health * 5.0
 	
-	rock_particles.modulate.a8 = ENEMY_rock_health * 2.5
+	if rock_particles.amount == 1:
+		rock_particles.visible = false
 		
 	if unaware:
 		speed = 70

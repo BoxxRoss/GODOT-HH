@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Enemy Scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Projectile/fire/Flamethrower/light_32x32.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58.3333, 60 )
+
+[sub_resource type="CanvasItemMaterial" id=11]
+blend_mode = 1
+light_mode = 1
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.993151, 1 )
@@ -87,6 +91,8 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="Icon"]
+modulate = Color( 0.670588, 0.694118, 0.941176, 1 )
+material = SubResource( 11 )
 position = Vector2( 6.94806e-06, 4.74787e-06 )
 rotation = -0.778293
 scale = Vector2( 2, 2 )
@@ -104,12 +110,15 @@ scale = Vector2( 0.3, 0.4 )
 texture = ExtResource( 8 )
 
 [node name="rocks" type="Particles2D" parent="Icon"]
-visible = false
-amount = 5
+modulate = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+amount = 10
+preprocess = 5.0
 process_material = SubResource( 10 )
 texture = ExtResource( 4 )
 
 [node name="Collision_node" type="Node2D" parent="."]
+visible = false
 
 [node name="Area2D" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
