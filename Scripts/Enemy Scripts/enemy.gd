@@ -1,11 +1,15 @@
 extends "res://Enemys/Enemy_code/Basic_enemy's.gd"
 
 onready var main_col = get_node("Collision_node/Area2D/CollisionShape2D")
-onready var front_col = get_node("Collision_node/Area2Dfront/CollisionShape2D")
-onready var back_col = get_node("Collision_node/Area2Dback/CollisionShape2D")
-onready var left_col = get_node("Collision_node/Area2Dleft/CollisionShape2D")
-onready var right_col = get_node("Collision_node/Area2Dright/CollisionShape2D")
+onready var front_col = get_node("Collision_node/Area2Dfront")
+onready var back_col = get_node("Collision_node/Area2Dback")
+onready var left_col = get_node("Collision_node/Area2Dleft")
+onready var right_col = get_node("Collision_node/Area2Dright")
 
+onready var front_colly = get_node("Collision_node/Area2Dfront/CollisionShape2D")
+onready var back_colly = get_node("Collision_node/Area2Dback/CollisionShape2D")
+onready var left_colly = get_node("Collision_node/Area2Dleft/CollisionShape2D")
+onready var right_colly = get_node("Collision_node/Area2Dright/CollisionShape2D")
 
 onready var rock_particles = get_node("Icon/rocks")
 
@@ -15,7 +19,7 @@ onready var rock_particles = get_node("Icon/rocks")
 
 func _ready() -> void:
 	var rand_chance_for_rock = rand_range(0,2)
-	if rand_chance_for_rock >= 0.1:
+	if rand_chance_for_rock >= 1.4:
 		rock = true
 		ENEMY_rock_health = Global.base_rock_health
 		
@@ -34,7 +38,6 @@ func _ready() -> void:
 		turn_on_coll()
 	
 	damage = 10
-	speed = Global.base_enemy_speed
 	ENEMYhealth = Global.base_enemy_health
 	enemy_cost = 10
 	enemy_is_horse = false
@@ -52,12 +55,16 @@ func _physics_process(delta):
 	if unaware:
 		speed = 70
 		
-
-
+	if unaware == false:
+		front_colly.disabled = false
+		back_colly.disabled = false
+		left_colly.disabled = false
+		right_colly.disabled = false
 
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
+		print("slow")
 		
 	if "out_of_bounds" in body.name:
 		turn_on_coll()
@@ -71,10 +78,12 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if body is TileMap:
 		slowed = false
-
+		print("left")
 func _on_Area2Dfront_body_entered(body):
 	if body is TileMap:
 		four_coll_checker += 1
+		print("front")
+		
 
 func _on_Area2Dfront_body_exited(body):
 	if body is TileMap:
@@ -106,24 +115,25 @@ func _on_Area2Dback_body_exited(body):
 
 		
 func turn_on_coll():
-	
+	print("turned o")
 	unaware = false
 	particles.emitting = true
 	
-	front_col.disabled = false
-	back_col.disabled = false
-	left_col.disabled = false
-	right_col.disabled = false
+	front_col.monitoring = true
+	back_col.monitoring = true
+	left_col.monitoring = true
+	right_col.monitoring = true
 	
 
 func disable():
+	print("turned off")
+	
 	particles.emitting = false
 	
-	
-	front_col.disabled = true
-	back_col.disabled = true
-	left_col.disabled = true
-	right_col.disabled = true
+	front_col.monitoring = false
+	back_col.monitoring = false
+	left_col.monitoring = false
+	right_col.monitoring = false
 
 
 func _on_Timer_timeout():

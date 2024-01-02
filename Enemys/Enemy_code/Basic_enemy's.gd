@@ -134,14 +134,7 @@ func enemy_death():
 		static_insatnce.global_position = self.global_position
 		static_insatnce.global_rotation = self.global_rotation
 		get_tree().get_root().call_deferred("add_child", static_insatnce)
-"""
-func onhit(damage):
-	if rock == true:
-		ENEMY_rock_health -= 2
-		ENEMYhealth -= damage/ENEMY_rock_health
-	else:
-		ENEMYhealth -= damage
-"""
+		
 func shocked():
 	speed = speed_when_slowed
 	weak = 1.5
@@ -213,7 +206,7 @@ func _physics_process(delta):
 			ENEMYhealth -= current_flame_status/100
 			Ignite()
 		else:
-			ENEMYhealth -= current_flame_status/5.5
+			ENEMYhealth -= current_flame_status/8.5
 			Ignite()
 			
 	
@@ -238,22 +231,19 @@ func _physics_process(delta):
 	else:
 		col.scale.x = 0.3
 		col.scale.y = 0.3
-
-
 	if current_flame_status <= 0:
-		_being_ignited = false
-		
+		_being_ignited = false	
 	if ENEMYhealth <= 0:
 		enemy_death()
 	
 	if shocked >= 15:
 		shocked()
 
-	elif hurt == true and rock == true:
-		
+	if hurt == true and rock == true:
+		ENEMY_rock_health -= 0.1
 		var new_damage = damage_dealt/50
 		ENEMYhealth -= new_damage * weak
-
+		
 	if hurt == true and rock != true:
 		ENEMYhealth -= damage_dealt * weak
 		
@@ -264,12 +254,12 @@ func _physics_process(delta):
 		$Icon.modulate.a = lerp($Icon.modulate.a, 1, .05)
 		
 	if slowed == true:
-		speed = lerp(speed, 33, .1)
-		$Light2D.energy = lerp($Light2D.energy, 0.5, .03)
+		speed = lerp(speed, speed_when_slowed, .15)
+		$Light2D.energy = lerp($Light2D.energy, 0.5, .1)
 		
 	else:
-		speed = lerp(speed, max_speed, .05)
-		$Light2D.energy = lerp($Light2D.energy, 0, .03)
+		speed = lerp(speed, max_speed, .10)
+		$Light2D.energy = lerp($Light2D.energy, 0, .1)
 	
 	if enemy_is_horse_go == false:
 		motion = position.direction_to(target) * speed

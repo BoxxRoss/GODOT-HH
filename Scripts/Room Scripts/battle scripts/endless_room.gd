@@ -28,7 +28,7 @@ func _ready():
 	walker_intensity_float = rand_range(13000.0, 17000.0)
 	walker_intensity = int(walker_intensity_float)
 	
-	var map_options = [1,2,3,4,5]
+	var map_options = [1,1,1,1,1]
 	var rand_map_value = map_options[randi() % map_options.size()]
 
 	if rand_map_value == 1:
