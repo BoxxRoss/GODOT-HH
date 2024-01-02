@@ -130,53 +130,18 @@ position = Vector2( -1, 3.19679e-06 )
 scale = Vector2( 1, 12 )
 shape = SubResource( 2 )
 
-[node name="Area2Dfront" type="Area2D" parent="Collision_node"]
-position = Vector2( 0.5, 0 )
+[node name="Area2DLine" type="Area2D" parent="Collision_node"]
 collision_layer = 513
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dfront"]
-position = Vector2( -0.499881, 19 )
-shape = SubResource( 2 )
-
-[node name="Area2Dleft" type="Area2D" parent="Collision_node"]
-position = Vector2( 0.5, 0 )
-collision_layer = 513
-collision_mask = 513
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dleft"]
-position = Vector2( 18.5, -0.00012207 )
-rotation = 1.5708
-shape = SubResource( 2 )
-
-[node name="Area2Dright" type="Area2D" parent="Collision_node"]
-position = Vector2( 0.5, 0 )
-collision_layer = 513
-collision_mask = 513
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dright"]
-position = Vector2( -19.5, -0.749828 )
-rotation = 1.5708
-shape = SubResource( 2 )
-
-[node name="Area2Dback" type="Area2D" parent="Collision_node"]
-collision_layer = 513
-collision_mask = 513
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dback"]
-position = Vector2( -0.000120163, -19 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2DLine"]
+scale = Vector2( 0.7, 0.1 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Collision_node/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Collision_node/Area2D" to="." method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="Collision_node/Area2Dfront" to="." method="_on_Area2Dfront_body_entered"]
-[connection signal="body_exited" from="Collision_node/Area2Dfront" to="." method="_on_Area2Dfront_body_exited"]
-[connection signal="body_entered" from="Collision_node/Area2Dleft" to="." method="_on_Area2Dleft_body_entered"]
-[connection signal="body_exited" from="Collision_node/Area2Dleft" to="." method="_on_Area2Dleft_body_exited"]
-[connection signal="body_entered" from="Collision_node/Area2Dright" to="." method="_on_Area2Dright_body_entered"]
-[connection signal="body_exited" from="Collision_node/Area2Dright" to="." method="_on_Area2Dright_body_exited"]
-[connection signal="body_entered" from="Collision_node/Area2Dback" to="." method="_on_Area2Dback_body_entered"]
-[connection signal="body_exited" from="Collision_node/Area2Dback" to="." method="_on_Area2Dback_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2DLine" to="." method="_on_Area2DLine_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2DLine" to="." method="_on_Area2DLine_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

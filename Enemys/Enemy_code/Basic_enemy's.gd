@@ -18,7 +18,7 @@ var pos_of_bomb
 
 onready var col = get_node("CollisionShape2D")
 
-var four_coll_checker = 0
+var four_coll_checker = false
 var damage_dealt
 var hurt = false
 var slowed = false
@@ -248,8 +248,8 @@ func _physics_process(delta):
 		ENEMYhealth -= damage_dealt * weak
 		
 
-	if four_coll_checker == 4:
-		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)
+	if four_coll_checker:
+		$Icon.modulate.a = lerp($Icon.modulate.a, 0.2, .05)
 	else:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 1, .05)
 		
