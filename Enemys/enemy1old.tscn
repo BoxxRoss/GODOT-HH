@@ -138,7 +138,6 @@ collision_mask = 513
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dfront"]
 position = Vector2( -0.499881, 19 )
 shape = SubResource( 2 )
-disabled = true
 
 [node name="Area2Dleft" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
@@ -149,7 +148,6 @@ collision_mask = 513
 position = Vector2( 18.5, -0.00012207 )
 rotation = 1.5708
 shape = SubResource( 2 )
-disabled = true
 
 [node name="Area2Dright" type="Area2D" parent="Collision_node"]
 position = Vector2( 0.5, 0 )
@@ -160,7 +158,6 @@ collision_mask = 513
 position = Vector2( -19.5, -0.749828 )
 rotation = 1.5708
 shape = SubResource( 2 )
-disabled = true
 
 [node name="Area2Dback" type="Area2D" parent="Collision_node"]
 collision_layer = 513
@@ -169,7 +166,6 @@ collision_mask = 513
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2Dback"]
 position = Vector2( -0.000120163, -19 )
 shape = SubResource( 2 )
-disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -36,6 +36,7 @@ func _ready() -> void:
 		disable()
 	else:
 		turn_on_coll()
+
 	
 	damage = 10
 	ENEMYhealth = Global.base_enemy_health
@@ -55,16 +56,13 @@ func _physics_process(delta):
 	if unaware:
 		speed = 70
 		
-	if unaware == false:
-		front_colly.disabled = false
-		back_colly.disabled = false
-		left_colly.disabled = false
-		right_colly.disabled = false
+
+
 
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
-		print("slow")
+	
 		
 	if "out_of_bounds" in body.name:
 		turn_on_coll()
@@ -78,11 +76,11 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if body is TileMap:
 		slowed = false
-		print("left")
+		
 func _on_Area2Dfront_body_entered(body):
 	if body is TileMap:
 		four_coll_checker += 1
-		print("front")
+		
 		
 
 func _on_Area2Dfront_body_exited(body):
@@ -123,6 +121,8 @@ func turn_on_coll():
 	back_col.monitoring = true
 	left_col.monitoring = true
 	right_col.monitoring = true
+	
+
 	
 
 func disable():
