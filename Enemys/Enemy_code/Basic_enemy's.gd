@@ -6,6 +6,7 @@ var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static
 onready var Player = get_parent().get_node("KinematicBody2D")
 var unaware = true
 
+var checker_1_horse = false
 var current_charge = 0
 var shocked = 0
 var weak = 1

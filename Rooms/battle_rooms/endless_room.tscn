@@ -124,6 +124,10 @@ wait_time = 2.0
 autostart = true
 script = ExtResource( 3 )
 
+[node name="special_enemy_spawn_timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.001
 autostart = true
@@ -173,5 +177,6 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -6
 
 [connection signal="tree_exiting" from="." to="." method="_on_world_tree_exiting"]
 [connection signal="timeout" from="enemy_spawn_timer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="special_enemy_spawn_timer" to="." method="_on_special_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="swarm_timer" to="." method="_on_swarm_timer_timeout"]

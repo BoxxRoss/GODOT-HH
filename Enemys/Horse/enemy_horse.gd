@@ -1,11 +1,10 @@
 extends "res://Enemys/Enemy_code/Basic_enemy's.gd"
 
-var set_rotation = 0
-var checker_1_horse = false
+
 
 func _ready() -> void:
 	damage = 10
-	speed = 450
+	speed = 500
 	ENEMYhealth = 50
 	enemy_cost = 15
 	enemy_is_horse = true
@@ -17,7 +16,7 @@ func _physics_process(delta):
 	
 	if checker_1_horse == false:
 		look_at(Player.position)
-		checker_1_horse = true
+		
 	
 	var player_pos = Global.player_global_position
 	var distance_to_player = global_position.distance_to(Global.player_global_position)
@@ -27,6 +26,7 @@ func _physics_process(delta):
 func turn_on_coll():
 	unaware = false
 	particles.emitting = true
+	checker_1_horse = true
 
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
