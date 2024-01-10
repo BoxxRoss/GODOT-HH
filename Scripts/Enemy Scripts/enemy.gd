@@ -54,7 +54,6 @@ func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
 	
-		
 	if "out_of_bounds" in body.name:
 		turn_on_coll()
 	
@@ -71,31 +70,21 @@ func _on_Area2D_body_exited(body):
 
 		
 func turn_on_coll():
-	print("turned o")
 	unaware = false
 	particles.emitting = true
-	
-
-	
 
 func disable():
-	print("turned off")
-	
 	particles.emitting = false
 	
-
-
 
 func _on_Timer_timeout():
 	randomize()
 	rand_x_patrol = rand_range(100,12000)
 	rand_y_patrol = rand_range(100,6500)
 
-
 func _on_Area2DLine_body_entered(body):
 	if body is TileMap:
 		four_coll_checker = true
-
 
 func _on_Area2DLine_body_exited(body):
 	if body is TileMap:

@@ -3,7 +3,7 @@ extends KinematicBody2D
 var rotation_speed = PI
 
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
-
+onready var Player = get_parent().get_node("KinematicBody2D")
 var unaware = true
 
 var current_charge = 0
@@ -69,15 +69,8 @@ func Ignite():
 		if particles.modulate.b < 1:
 			particles.modulate.b += 0.015
 
-func _ready():
-	
-	yield(get_tree().create_timer(1.0), "timeout")
-	
-	var Player = get_parent().get_node("KinematicBody2D")
-	look_at(Player.position)
-	
 
-
+	
 func find_target(distract_pow):
 	distracted_by_deployed = distract_pow
 	if distracted_by_deployed >= 50:
@@ -104,12 +97,9 @@ func Vac_stop():
 	being_Vac = false
 
 func taking_damage(weapon_damage):
-
 	hurt = true
-
 	damage_dealt = weapon_damage
 
-	
 func taking_damage_stop():
 	hurt = false
 
@@ -150,7 +140,6 @@ func enemy_captured():
 		Global.kill_count += 1
 		
 func _physics_process(delta):
-	
 	var Player = get_parent().get_node("KinematicBody2D")
 	
 	if ENEMY_rock_health <= 0:
@@ -160,18 +149,14 @@ func _physics_process(delta):
 	if Global.friend_ghost_has_died == true:
 		distracted = false
 	
-
-	
-
-	
 	if checker_1 == true:
 		ENEMYhealth_max = Global.base_enemy_health
 		max_speed = Global.base_enemy_speed
 		speed_when_slowed = (Global.base_enemy_speed/2.0)
 		checker_1 = false
+		
 	if enemy_is_horse == true:
 		motion = position.direction_to(Player.position) * speed
-		look_at(Player.position)	
 		enemy_is_horse = false
 		enemy_is_horse_go = true
 
@@ -188,15 +173,15 @@ func _physics_process(delta):
 	
 	shocked -= 0.01
 	var MAX_LENGTH = 10000
-
-	var vector_to_player = target - self.global_position
-	var angle = vector_to_player.angle()
-	var r = global_rotation
-	var angle_delta = rotation_speed * delta
-	angle = lerp_angle(r, angle, 1.0)
-	angle = clamp(angle, r - angle_delta, r + angle_delta)
-	global_rotation = angle
-
+	if enemy_is_horse_go == false:
+		var vector_to_player = target - self.global_position
+		var angle = vector_to_player.angle()
+		var r = global_rotation
+		var angle_delta = rotation_speed * delta
+		angle = lerp_angle(r, angle, 1.0)
+		angle = clamp(angle, r - angle_delta, r + angle_delta)
+		global_rotation = angle
+	
 	if current_flame_status > 0.2:
 		current_flame_status -= 0.2
 	

@@ -17,39 +17,36 @@ light_mode = 1
 offsets = PoolRealArray( 0, 0.993151, 1 )
 colors = PoolColorArray( 0.423529, 0.423529, 0.423529, 0.882353, 0.393446, 0.393446, 0.393446, 0.261886, 0.392157, 0.392157, 0.392157, 0.235294 )
 
-[sub_resource type="GradientTexture" id=8]
+[sub_resource type="GradientTexture" id=12]
 gradient = SubResource( 5 )
 
 [sub_resource type="Curve" id=7]
 max_value = 3.0
 _data = [ Vector2( 0, 3 ), 0.0, 0.372591, 0, 0, Vector2( 1, 1.97853 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
+[sub_resource type="CurveTexture" id=13]
 curve = SubResource( 7 )
 
 [sub_resource type="ParticlesMaterial" id=4]
-lifetime_randomness = 0.1
+lifetime_randomness = 0.3
 flag_rotate_y = true
 flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
 spread = 180.0
 flatness = 1.0
-gravity = Vector3( 0, 500, 0 )
-initial_velocity = 10.0
-angular_velocity = 10.0
-angular_velocity_random = 1.0
-orbit_velocity = 1.5
+gravity = Vector3( 0, 1000, 0 )
+initial_velocity = 163.16
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
 orbit_velocity_random = 1.0
 linear_accel = 100.0
-radial_accel = 100.0
 radial_accel_random = 1.0
-tangential_accel = 1.98
 damping = 100.0
 damping_random = 1.0
-angle = 720.0
 scale_random = 1.0
-scale_curve = SubResource( 9 )
-color_ramp = SubResource( 8 )
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 12 )
+hue_variation = -0.01
+hue_variation_random = 1.0
 
 [sub_resource type="ParticlesMaterial" id=10]
 flag_disable_z = true
@@ -94,7 +91,7 @@ texture = ExtResource( 2 )
 modulate = Color( 0.670588, 0.694118, 0.941176, 1 )
 material = SubResource( 11 )
 position = Vector2( 6.94806e-06, 4.74787e-06 )
-rotation = -0.778293
+rotation = 4.71239
 scale = Vector2( 2, 2 )
 amount = 15
 lifetime = 0.6
