@@ -197,14 +197,14 @@ func _on_swarm_timer_timeout():
 
 
 func _on_special_enemy_spawn_timer_timeout():
-	var new_time_float = rand_range(1.0,2.0)
+	var new_time_float = rand_range(5.0,5.0)
 	var new_time = int(new_time_float)
 	$special_enemy_spawn_timer.wait_time = new_time
 	$special_enemy_spawn_timer.start()
 	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 2000)
+	$KinematicBody2D/Path2D2_special/PathFollow2D.offset = rng.randi_range(0, 2000)
 	
 	rand_special_enemy_value = special_enemy_options[randi() % special_enemy_options.size()]
 	var horse_instance = enemy_horse.instance()
@@ -215,7 +215,7 @@ func _on_special_enemy_spawn_timer_timeout():
 		enemy_chosen = horse_instance
 		
 	
-	var enemy_spawn_point = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
+	var enemy_spawn_point = $KinematicBody2D/Path2D2_special/PathFollow2D.global_position
 	enemy_chosen.position = enemy_spawn_point/1
 	
 	

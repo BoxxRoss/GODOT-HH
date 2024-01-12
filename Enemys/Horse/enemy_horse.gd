@@ -16,13 +16,11 @@ func _physics_process(delta):
 	
 	if checker_1_horse == false:
 		look_at(Player.position)
-		
-	
+
 	var player_pos = Global.player_global_position
 	var distance_to_player = global_position.distance_to(Global.player_global_position)
 	var direction_to_player = global_position.direction_to(Global.player_global_position)
 
-	
 func turn_on_coll():
 	unaware = false
 	particles.emitting = true

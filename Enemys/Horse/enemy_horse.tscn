@@ -102,6 +102,7 @@ rotation = -0.000206232
 scale = Vector2( 4, 4 )
 amount = 35
 lifetime = 0.9
+preprocess = 3.0
 speed_scale = 0.7
 randomness = 1.0
 process_material = SubResource( 14 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/New Piskel.png" type="Texture" id=3]
@@ -34,6 +34,11 @@ font_data = ExtResource( 13 )
 
 [sub_resource type="OccluderPolygon2D" id=10]
 polygon = PoolVector2Array( -32, 0, -32, 0, -28, 20, -32, 0, -28, -20 )
+
+[sub_resource type="Curve2D" id=11]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -448, -448, 0, 0, 0, 0, 448, -448, 0, 0, 0, 0, 448, 448, 0, 0, 0, 0, -448, 448, 0, 0, 0, 0, -448, -448 )
+}
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
 collision_layer = 643
@@ -194,6 +199,17 @@ shadow_gradient_length = 2.0
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( 8, 0 )
 occluder = SubResource( 10 )
+
+[node name="Path2D2_special" type="Path2D" parent="."]
+curve = SubResource( 11 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2_special"]
+position = Vector2( -448, -448 )
+rotation = -3.14159
+rotate = false
+
+[node name="Position2D" type="Position2D" parent="Path2D2_special/PathFollow2D"]
+position = Vector2( -1.85709, -0.388626 )
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
 [connection signal="camera_zoom_out" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]
