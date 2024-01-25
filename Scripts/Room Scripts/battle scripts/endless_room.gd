@@ -197,7 +197,7 @@ func _on_swarm_timer_timeout():
 
 
 func _on_special_enemy_spawn_timer_timeout():
-	var new_time_float = rand_range(5.0,5.0)
+	var new_time_float = rand_range(25.0,35.0)
 	var new_time = int(new_time_float)
 	$special_enemy_spawn_timer.wait_time = new_time
 	$special_enemy_spawn_timer.start()

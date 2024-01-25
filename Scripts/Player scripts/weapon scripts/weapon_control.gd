@@ -148,16 +148,11 @@ func _inputchecks():
 	
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.flamethrower_position:
 		Global.beam_active = false
-
-
-		var rand_chance_for_more_flames = rand_range(0,2)
 		if Engine.get_idle_frames() % fire_rate_flamethrower == 0:
 			flamethrower()
 			flamethrower()
-			flamethrower()
 
-			if rand_chance_for_more_flames < 1.5:
-				flamethrower()
+
 	
 	if Input.is_action_just_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.vacuumblast_position and can_fire_vacuum_blast == true:
 		Global.beam_active = false

@@ -1,23 +1,33 @@
 extends RigidBody2D
 
 
-var weapon_damage = 0.5
+var weapon_damage = 0.2
 var ignite = 0.3
 var timer_check = false
-var passthrough_threshold = 0.9
+var passthrough_threshold = 0.6
+
+
+
+
 
 func _ready():
 	var rand_rotation = rand_range(100,200)
+	
+
+	
 	var rand_time = rand_range(0.3,0.4)
 	var rand_angle = rand_range(-360,360)
-
+	var rand_scale_x = rand_range(0.2,0.7)
+	var rand_scale_y = rand_range(0.2,0.7)
 	$Timer.wait_time = rand_time
 	$Timer.start()
 	self.rotation_degrees = rand_angle
+	self.scale.x = rand_scale_x
+	self.scale.y = rand_scale_y
 
 
 func _process(delta):
-	
+
 	if timer_check == true:
 		$Sprite.scale.x = lerp($Sprite.scale.x, 0, 0.35)
 		$Sprite.scale.y = lerp($Sprite.scale.y, 0, 0.35)
@@ -26,6 +36,9 @@ func _process(delta):
 
 	if $Sprite.scale == Vector2(0,0):
 		queue_free()
+
+
+	
 
 func _on_Timer_timeout():
 	timer_check = true

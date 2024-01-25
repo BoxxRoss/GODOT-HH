@@ -100,6 +100,7 @@ func Vac_stop():
 func taking_damage(weapon_damage):
 	hurt = true
 	damage_dealt = weapon_damage
+	
 
 func taking_damage_stop():
 	hurt = false
@@ -142,7 +143,7 @@ func enemy_captured():
 		
 func _physics_process(delta):
 	var Player = get_parent().get_node("KinematicBody2D")
-	
+
 	if ENEMY_rock_health <= 0:
 		ENEMY_rock_health = 0
 		rock = false
@@ -192,6 +193,7 @@ func _physics_process(delta):
 			ENEMYhealth -= current_flame_status/100
 			Ignite()
 		else:
+			
 			ENEMYhealth -= current_flame_status/8.5
 			Ignite()
 			
@@ -231,6 +233,7 @@ func _physics_process(delta):
 		ENEMYhealth -= new_damage * weak
 		
 	if hurt == true and rock != true:
+		print(ENEMYhealth)
 		ENEMYhealth -= damage_dealt * weak
 		
 
