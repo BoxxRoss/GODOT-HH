@@ -16,7 +16,7 @@ var being_Vac = false
 var stuck_in_vac_bomb = false
 var pos_of_bomb 
 
-
+var is_wall_walker = false
 onready var col = get_node("CollisionShape2D")
 
 var four_coll_checker = false
@@ -153,8 +153,12 @@ func _physics_process(delta):
 	
 	if checker_1 == true:
 		ENEMYhealth_max = Global.base_enemy_health
-		max_speed = Global.base_enemy_speed
-		speed_when_slowed = (Global.base_enemy_speed/2.0)
+		if is_wall_walker:
+			max_speed = (Global.base_enemy_speed/2.0) + 50
+			speed_when_slowed = Global.base_enemy_speed + 80
+		else:
+			max_speed = Global.base_enemy_speed
+			speed_when_slowed = (Global.base_enemy_speed/2.0) 
 		checker_1 = false
 		
 	if enemy_is_horse == true:

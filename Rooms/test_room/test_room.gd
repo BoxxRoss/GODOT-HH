@@ -2,7 +2,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [1]
+var enemy_options = [4]
 var walker_intensity = 0
 
 
@@ -53,6 +53,7 @@ func _process(delta):
 		var instance = enemy_1.instance()
 		var slim_instance = enemy_slim.instance()
 		var horse_instance = enemy_horse.instance()
+		var wall_walker = enemy_wall_walker.instance()
 		
 		var enemy_chosen = null
 		
@@ -62,6 +63,8 @@ func _process(delta):
 			enemy_chosen = slim_instance
 		if rand_enemy_value == 3:
 			enemy_chosen = horse_instance
+		if rand_enemy_value == 4:
+			enemy_chosen = wall_walker
 		
 		enemy_chosen.position = get_global_mouse_position()
 		if Global.enemy_score != 100:
