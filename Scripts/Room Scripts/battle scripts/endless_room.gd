@@ -4,7 +4,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [1,1,1,1]
+var enemy_options = [1,1,1,3]
 var special_enemy_options = [3,3,3]
 var walker_intensity_float = null
 var walker_intensity = null
@@ -122,7 +122,7 @@ func _on_enemy_spawn_timer_timeout():
 	
 	var instance = enemy_1.instance()
 	var slim_instance = enemy_slim.instance()
-
+	var wall_walker_instance = enemy_wall_walker.instance()
 	
 	var enemy_chosen = null
 	
@@ -130,6 +130,8 @@ func _on_enemy_spawn_timer_timeout():
 		enemy_chosen = instance
 	if rand_enemy_value == 2:
 		enemy_chosen = slim_instance
+	if rand_enemy_value == 3:
+		enemy_chosen = wall_walker_instance
 
 	
 	
@@ -164,6 +166,8 @@ func _on_Timer_timeout():
 		enemy_chosen = instance
 	if rand_enemy_value == 2:
 		enemy_chosen = slim_instance
+	if rand_enemy_value == 3:
+		enemy_chosen = instance
 
 
 	enemy_chosen.position = Vector2(rand_1_x,rand_1_y)
@@ -180,13 +184,13 @@ func _on_swarm_timer_timeout():
 	
 
 	
-	var rand_swarm_time = rand_range(25.0,35.0)
+	var rand_swarm_time = rand_range(45.0,60.0)
 	swarm = true
 	yield(get_tree().create_timer(rand_swarm_time), "timeout")
 	Global.swarm_just_ended = true
 	swarm = false
 	
-	var rand_buffer_swarm = rand_range(20.0,30.0)
+	var rand_buffer_swarm = rand_range(5.0,5.0)
 	yield(get_tree().create_timer(rand_buffer_swarm), "timeout")
 	lowest_time = lowest_time - 2.5
 	longest_time = longest_time - 2.5

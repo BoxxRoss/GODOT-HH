@@ -154,8 +154,8 @@ func _physics_process(delta):
 	if checker_1 == true:
 		ENEMYhealth_max = Global.base_enemy_health
 		if is_wall_walker:
-			max_speed = (Global.base_enemy_speed/2.0) + 50
-			speed_when_slowed = Global.base_enemy_speed + 80
+			max_speed = (Global.base_enemy_speed/2.0) + 30
+			speed_when_slowed = Global.base_enemy_speed + 130
 		else:
 			max_speed = Global.base_enemy_speed
 			speed_when_slowed = (Global.base_enemy_speed/2.0) 

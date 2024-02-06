@@ -61,7 +61,7 @@ scale = 1.5
 color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 73.3125, 3.125 )
+extents = Vector2( 73.3125, 3.14583 )
 
 [node name="wall_walker" type="KinematicBody2D" groups=["enemys", "tiles"]]
 collision_layer = 8
@@ -69,7 +69,7 @@ collision_mask = 768
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -6.5, -1.5 )
+position = Vector2( -27, -1 )
 shape = SubResource( 14 )
 
 [node name="Icon" type="Sprite" parent="."]
@@ -113,7 +113,7 @@ collision_layer = 513
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2D"]
-position = Vector2( -6.8125, -1.5 )
+position = Vector2( -26.5, -1.25 )
 scale = Vector2( 1, 12 )
 shape = SubResource( 21 )
 
@@ -122,6 +122,7 @@ collision_layer = 513
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2DLine"]
+position = Vector2( -12, 0 )
 scale = Vector2( 0.7, 0.1 )
 shape = SubResource( 21 )
 
