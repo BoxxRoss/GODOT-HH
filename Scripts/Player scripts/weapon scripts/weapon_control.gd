@@ -150,7 +150,7 @@ func _inputchecks():
 		Global.beam_active = false
 		if Engine.get_idle_frames() % fire_rate_flamethrower == 0:
 			flamethrower()
-			flamethrower()
+
 
 
 	

@@ -4,7 +4,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [1,1,1,3]
+var enemy_options = [5,5,5,1,5]
 var special_enemy_options = [3,3,3]
 var walker_intensity_float = null
 var walker_intensity = null
@@ -120,22 +120,26 @@ func _on_enemy_spawn_timer_timeout():
 	
 	$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
 	
-	var instance = enemy_1.instance()
-	var slim_instance = enemy_slim.instance()
-	var wall_walker_instance = enemy_wall_walker.instance()
-	
+	var base = enemy_1.instance()
+	var slim = enemy_slim.instance()
+	var horse = enemy_horse.instance()
+	var wall_walker = enemy_wall_walker.instance()
+	var wimp = enemy_wimp.instance()
+		
 	var enemy_chosen = null
-	
+		
 	if rand_enemy_value == 1:
-		enemy_chosen = instance
+		enemy_chosen = base
 	if rand_enemy_value == 2:
-		enemy_chosen = slim_instance
+		enemy_chosen = slim
 	if rand_enemy_value == 3:
-		enemy_chosen = wall_walker_instance
+		enemy_chosen = horse
+	if rand_enemy_value == 4:
+		enemy_chosen = wall_walker
+	if rand_enemy_value == 5:
+		enemy_chosen = wimp
 
-	
-	
-	
+
 	enemy_chosen.position = $KinematicBody2D/Path2D/PathFollow2D/Position2D.global_position
 	if Global.enemy_score != enemy_limit and swarm:
 		add_child(enemy_chosen)
@@ -153,21 +157,30 @@ var count : int = 0
 func _on_Timer_timeout():
 	#spawns idle enemies
 	rand_enemy_value = enemy_options[randi() % enemy_options.size()]
-	var instance = enemy_1.instance()
-	var slim_instance = enemy_slim.instance()
+
 	
 	if rand_value == 1:
 		rand_1_x = rand_range(2000,12000)
 		rand_1_y = rand_range(2000,6000)
 	
+	var base = enemy_1.instance()
+	var slim = enemy_slim.instance()
+	var horse = enemy_horse.instance()
+	var wall_walker = enemy_wall_walker.instance()
+	var wimp = enemy_wimp.instance()
+		
 	var enemy_chosen = null
-	
+		
 	if rand_enemy_value == 1:
-		enemy_chosen = instance
+		enemy_chosen = base
 	if rand_enemy_value == 2:
-		enemy_chosen = slim_instance
+		enemy_chosen = slim
 	if rand_enemy_value == 3:
-		enemy_chosen = instance
+		enemy_chosen = horse
+	if rand_enemy_value == 4:
+		enemy_chosen = wall_walker
+	if rand_enemy_value == 5:
+		enemy_chosen = wimp
 
 
 	enemy_chosen.position = Vector2(rand_1_x,rand_1_y)

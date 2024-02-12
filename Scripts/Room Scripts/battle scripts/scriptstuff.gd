@@ -12,8 +12,12 @@ var enemy_1 = preload("res://Enemys/enemy1old.tscn")
 var enemy_slim = preload("res://Enemys/enemy_slim.tscn")
 var enemy_horse = preload("res://Enemys/Horse/enemy_horse.tscn")
 var enemy_wall_walker = preload("res://Enemys/enemy_wall_walker.tscn")
+var enemy_wimp = preload("res://Enemys/Enemy_wimp/enemy_wimp.tscn")
 
 var Player = preload("res://player/playernew.tscn")
+
+
+
 
 var end_point = preload("res://Rooms/battle_rooms/escape_item.tscn")
 

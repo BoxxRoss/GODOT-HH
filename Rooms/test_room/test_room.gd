@@ -2,14 +2,12 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [4]
+var enemy_options = [5]
 var walker_intensity = 0
 
 
 func _ready():
 	randomize()
-	
-
 
 	var rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
@@ -50,21 +48,24 @@ func _process(delta):
 		$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
 		$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
 		
-		var instance = enemy_1.instance()
-		var slim_instance = enemy_slim.instance()
-		var horse_instance = enemy_horse.instance()
+		var base = enemy_1.instance()
+		var slim = enemy_slim.instance()
+		var horse = enemy_horse.instance()
 		var wall_walker = enemy_wall_walker.instance()
+		var wimp = enemy_wimp.instance()
 		
 		var enemy_chosen = null
 		
 		if rand_enemy_value == 1:
-			enemy_chosen = instance
+			enemy_chosen = base
 		if rand_enemy_value == 2:
-			enemy_chosen = slim_instance
+			enemy_chosen = slim
 		if rand_enemy_value == 3:
-			enemy_chosen = horse_instance
+			enemy_chosen = horse
 		if rand_enemy_value == 4:
 			enemy_chosen = wall_walker
+		if rand_enemy_value == 5:
+			enemy_chosen = wimp
 		
 		enemy_chosen.position = get_global_mouse_position()
 		if Global.enemy_score != 100:

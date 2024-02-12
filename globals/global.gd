@@ -72,6 +72,7 @@ var base_enemy_speed = diffiuclty_speed[diff_selected]
 var base_enemy_health = diffiuclty_health[diff_selected]
 var base_rock_health = diffiuclty_rock_health[diff_selected]
 
+var base_enemy_wimp_health = base_enemy_health/2.2
 # friend ghost
 var friend_ghost_has_died = false
 

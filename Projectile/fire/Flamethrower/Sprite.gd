@@ -10,12 +10,9 @@ var timer = false
 func _process(delta):
 	if timer:
 		if modulate.a8 > 0:
-			modulate.a8 -= 5
+			modulate.a8 -= 10
 		if $Light2D.energy > 0:
 			$Light2D.energy -= 0.05
-		
-	
-
 
 func _on_Timer_timeout():
 	timer = true
