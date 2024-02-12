@@ -9,6 +9,7 @@ onready var rock_particles = get_node("Icon/rocks")
 		
 
 func _ready() -> void:
+	is_wimp = true
 	var rand_chance_for_rock = rand_range(0,2)
 	if rand_chance_for_rock >= 1.4:
 		rock = true

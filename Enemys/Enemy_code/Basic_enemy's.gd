@@ -6,6 +6,7 @@ var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static
 onready var Player = get_parent().get_node("KinematicBody2D")
 var unaware = true
 
+var is_wimp = false
 var checker_1_horse = false
 var current_charge = 0
 var shocked = 0
@@ -58,17 +59,17 @@ var target = null
 onready var particles = get_node("Icon/Particles2D")
 
 func Ignite(): 
-	
-	if current_flame_status > 1:
-		if particles.modulate.g > 0.35:
-			particles.modulate.g -= 0.015
-		if particles.modulate.b > 0.05:
-			particles.modulate.b -= 0.015
-	else:
-		if particles.modulate.g < 1:
-			particles.modulate.g += 0.015
-		if particles.modulate.b < 1:
-			particles.modulate.b += 0.015
+	if is_wimp == false:
+		if current_flame_status > 1:
+			if particles.modulate.g > 0.35:
+				particles.modulate.g -= 0.015
+			if particles.modulate.b > 0.05:
+				particles.modulate.b -= 0.015
+		else:
+			if particles.modulate.g < 1:
+				particles.modulate.g += 0.015
+			if particles.modulate.b < 1:
+				particles.modulate.b += 0.015
 
 
 	

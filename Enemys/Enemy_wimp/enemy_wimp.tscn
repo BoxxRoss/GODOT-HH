@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Enemys/Enemy_wimp/enemy_wimp.gd" type="Script" id=1]
 [ext_resource path="res://Projectile/fire/Flamethrower/light_32x32.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/basic_light1.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/static_floor.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/roman_numeral_1.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58.3333, 60 )
@@ -94,23 +93,17 @@ material = SubResource( 11 )
 position = Vector2( 6.94806e-06, 4.74787e-06 )
 rotation = 4.71239
 scale = Vector2( 2, 2 )
-amount = 15
-lifetime = 0.6
+amount = 10
+lifetime = 0.4
 speed_scale = 0.5
 randomness = 1.0
 process_material = SubResource( 4 )
 texture = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="Icon"]
-modulate = Color( 1, 1, 1, 0.588235 )
-rotation = 1.5708
-scale = Vector2( 0.3, 0.4 )
-texture = ExtResource( 8 )
-
 [node name="rocks" type="Particles2D" parent="Icon"]
 modulate = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 self_modulate = Color( 0, 0, 0, 1 )
-amount = 10
+amount = 6
 preprocess = 5.0
 process_material = SubResource( 10 )
 texture = ExtResource( 4 )
