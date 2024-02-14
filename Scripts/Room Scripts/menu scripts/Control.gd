@@ -6,8 +6,6 @@ var checker = false
 func _on_KinematicBody2D_stamina_change(stamina):
 	$TextureProgress.value = stamina
 
-func _on_KinematicBody2D_damage_taken(health):
-	$TextureProgress2.value = health
 
 func _physics_process(delta):
 	if Global.swarm_just_started == true:

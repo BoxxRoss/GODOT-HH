@@ -88,7 +88,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="Icon"]
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color( 1, 0.635294, 0.635294, 1 )
 material = SubResource( 11 )
 position = Vector2( 6.94806e-06, 4.74787e-06 )
 rotation = 4.71239
@@ -125,7 +125,8 @@ collision_layer = 513
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2DLine"]
-scale = Vector2( 0.7, 0.1 )
+position = Vector2( -0.5, 0 )
+scale = Vector2( 0.99, 0.1 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]

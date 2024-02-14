@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://player/health.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/New Piskel.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Player scripts/KinematicBody2D.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/bar.png" type="Texture" id=5]
@@ -30,6 +31,12 @@ _data = {
 [sub_resource type="DynamicFont" id=8]
 size = 80
 outline_size = 1
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 50
+outline_size = 2
+outline_color = Color( 0.14902, 0.14902, 0.14902, 1 )
 font_data = ExtResource( 13 )
 
 [sub_resource type="OccluderPolygon2D" id=10]
@@ -140,17 +147,6 @@ texture_progress = ExtResource( 5 )
 tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.819608, 0.180392, 0.113725, 1 )
 
-[node name="TextureProgress2" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
-margin_left = 448.0
-margin_top = 352.0
-margin_right = 704.0
-margin_bottom = 392.0
-step = 0.01
-texture_under = ExtResource( 5 )
-texture_progress = ExtResource( 5 )
-tint_under = Color( 0, 0, 0, 1 )
-tint_progress = Color( 0.392157, 0.847059, 0.231373, 1 )
-
 [node name="SWARM_warning" type="Label" parent="Path2D/CanvasLayer/Control"]
 margin_left = -1184.0
 margin_top = -808.0
@@ -166,18 +162,47 @@ custom_fonts/font = SubResource( 8 )
 text = "SWARM"
 align = 2
 
+[node name="health" type="Control" parent="Path2D/CanvasLayer/Control"]
+margin_left = 448.0
+margin_top = 192.0
+margin_right = 488.0
+margin_bottom = 232.0
+script = ExtResource( 2 )
+
+[node name="health_remaining" type="Label" parent="Path2D/CanvasLayer/Control/health"]
+margin_top = 16.0
+margin_right = 320.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 12 )
+text = "Health Remaining"
+
+[node name="max_health" type="Label" parent="Path2D/CanvasLayer/Control/health"]
+margin_left = 152.0
+margin_top = 80.0
+margin_right = 192.0
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 12 )
+text = "/5"
+
+[node name="health_itself" type="Label" parent="Path2D/CanvasLayer/Control/health"]
+margin_left = 136.0
+margin_top = 72.0
+margin_right = 176.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 12 )
+
 [node name="kill_counter" type="Label" parent="Path2D/CanvasLayer"]
 margin_left = 448.0
-margin_top = 216.0
+margin_top = 4.0
 margin_right = 576.0
-margin_bottom = 271.0
+margin_bottom = 59.0
 script = ExtResource( 7 )
 
 [node name="high_score" type="Label" parent="Path2D/CanvasLayer"]
 margin_left = 448.0
-margin_top = 248.0
+margin_top = 32.0
 margin_right = 576.0
-margin_bottom = 303.0
+margin_bottom = 87.0
 script = ExtResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -213,7 +238,7 @@ position = Vector2( -1.85709, -0.388626 )
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
 [connection signal="camera_zoom_out" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]
-[connection signal="damage_taken" from="." to="Path2D/CanvasLayer/Control" method="_on_KinematicBody2D_damage_taken"]
+[connection signal="damage_taken" from="." to="Path2D/CanvasLayer/Control/health" method="_on_KinematicBody2D_damage_taken"]
 [connection signal="player_death" from="." to="Path2D/CanvasLayer/kill_counter" method="_on_KinematicBody2D_player_death"]
 [connection signal="player_death" from="." to="Path2D/CanvasLayer/high_score" method="_on_KinematicBody2D_player_death"]
 [connection signal="player_rotation" from="." to="weapon_control" method="_on_KinematicBody2D_player_rotation"]

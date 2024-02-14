@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 # health related
-var max_health = 100000
-var health = 100000
+var max_health = 5
+var health = 5
 
 # breathing mechanics
 var breathless = false
@@ -135,8 +135,8 @@ func kill():
 
 
 func take_a_hit():
-	health -= 10
-	emit_signal("damage_taken", health)
+	health -= 1
+	emit_signal("damage_taken")
 	if is_breathing == true:
 		kill()
 	if health <= 0:

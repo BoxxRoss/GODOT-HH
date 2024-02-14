@@ -2,24 +2,7 @@ extends "res://Enemys/Enemy_code/Basic_enemy's.gd"
 
 onready var main_col = get_node("Collision_node/Area2D/CollisionShape2D")
 
-onready var rock_particles = get_node("Icon/rocks")
-
-
-
-		
-
-func _ready() -> void:
-	var rand_chance_for_rock = rand_range(0,2)
-	if rand_chance_for_rock >= 1.4:
-		rock = true
-		ENEMY_rock_health = Global.base_rock_health
-		
-		rock_particles.emitting = true
-	else:
-		rock = false
-		rock_particles.emitting = false
-		ENEMY_rock_health = 0
-		
+func _ready():
 	var rand_timer = rand_range(10,15)
 	$Timer.wait_time = rand_timer
 	$Timer.start()
@@ -36,13 +19,7 @@ func _ready() -> void:
 	
 func _physics_process(delta):
 	
-	if rock != true:
-		rock_particles.emitting = false
 
-	rock_particles.modulate.a8 = ENEMY_rock_health * 5.0
-	
-	if rock_particles.amount == 1:
-		rock_particles.visible = false
 		
 	if unaware:
 		speed = 70
