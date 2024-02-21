@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://Rooms/menu_rooms/Pause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Projectile/fire/Flamethrower/light_32x32.png" type="Texture" id=12]
 [ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://player/base_hud.png" type="Texture" id=14]
+[ext_resource path="res://player/base_hud2.png" type="Texture" id=14]
+[ext_resource path="res://player/base_hud_popup.png" type="Texture" id=15]
 
 [sub_resource type="CircleShape2D" id=7]
 
@@ -26,7 +27,7 @@ extents = Vector2( 14, 12.5 )
 
 [sub_resource type="Curve2D" id=6]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 288, 133.333, 0, 0, 0, 0, -149.248, 131.021, 0, 0, 0, 0, -362.667, 133.333, 0, 0, 0, 0, -364.924, -3.80392, 0, 0, 0, 0, -364.12, -92.1789, 0, 0, 0, 0, -364.741, -259.486, 0, 0, 0, 0, 288, -261.333, 0, 0, 0, 0, 289.007, -185.651, 0, 0, 0, 0, 288.301, -155.016, 0, 0, 0, 0, 297.069, -64.1732, 0, 0, 0, 0, 290.774, 90.8426, 0, 0, 0, 0, 288, 133.333 )
+"points": PoolVector2Array( 0, 0, 0, 0, 288, 133.333, 0, 0, 0, 0, -149.248, 131.021, 0, 0, 0, 0, -362.667, 133.333, 0, 0, 0, 0, -364.924, -3.80392, 0, 0, 0, 0, -364.12, -92.1789, 0, 0, 0, 0, -364.741, -259.486, 0, 0, 0, 0, 288, -261.333, 0, 0, 0, 0, 289.007, -185.651, 0, 0, 0, 0, 288.301, -155.016, 0, 0, 0, 0, 290.909, -64, 0, 0, 0, 0, 290.774, 90.8426, 0, 0, 0, 0, 288, 133.333 )
 }
 
 [sub_resource type="DynamicFont" id=8]
@@ -138,20 +139,26 @@ rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Path2D/CanvasLayer/Control"]
-position = Vector2( 192, 190 )
-scale = Vector2( 2, 1.54444 )
+modulate = Color( 1, 1, 1, 0.666667 )
+position = Vector2( 192, 144 )
+scale = Vector2( 2, 1.8 )
 texture = ExtResource( 14 )
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
 margin_left = 568.0
-margin_top = 424.0
+margin_top = 344.0
 margin_right = 824.0
-margin_bottom = 464.0
+margin_bottom = 384.0
 step = 0.01
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 5 )
 tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.819608, 0.180392, 0.113725, 1 )
+
+[node name="popup" type="Sprite" parent="Path2D/CanvasLayer/Control"]
+position = Vector2( -1048, -704 )
+scale = Vector2( 2.14688, 2.14688 )
+texture = ExtResource( 15 )
 
 [node name="SWARM_warning" type="Label" parent="Path2D/CanvasLayer/Control"]
 margin_left = -1184.0
@@ -176,26 +183,26 @@ margin_bottom = 312.0
 script = ExtResource( 2 )
 
 [node name="health_remaining" type="Label" parent="Path2D/CanvasLayer/Control/health"]
-margin_left = 56.0
-margin_top = 24.0
-margin_right = 196.0
-margin_bottom = 74.0
+margin_left = 72.0
+margin_top = -40.0
+margin_right = 212.0
+margin_bottom = 10.0
 custom_fonts/font = SubResource( 12 )
 text = "Health:"
 
 [node name="max_health" type="Label" parent="Path2D/CanvasLayer/Control/health"]
-margin_left = 232.0
-margin_top = 24.0
-margin_right = 272.0
-margin_bottom = 74.0
+margin_left = 240.0
+margin_top = -40.0
+margin_right = 280.0
+margin_bottom = 10.0
 custom_fonts/font = SubResource( 12 )
 text = "/5"
 
 [node name="health_itself" type="Label" parent="Path2D/CanvasLayer/Control/health"]
-margin_left = 208.0
-margin_top = 16.0
-margin_right = 248.0
-margin_bottom = 66.0
+margin_left = 216.0
+margin_top = -40.0
+margin_right = 256.0
+margin_bottom = 10.0
 custom_fonts/font = SubResource( 12 )
 
 [node name="kill_counter" type="Label" parent="Path2D/CanvasLayer"]

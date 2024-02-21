@@ -17,8 +17,8 @@ var rand_time = null
 
 var swarm = false
 
-var lowest_time : float = 50.0
-var longest_time : float = 90.0
+var lowest_time : float = 5.0
+var longest_time : float = 5.0
 
 var rand_enemy_value = null
 var rand_special_enemy_value = null

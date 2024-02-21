@@ -1,8 +1,14 @@
 extends Control
 
 onready var swarm = get_node("SWARM_warning")
+onready var popup = get_node("popup")
 var checker = false
+var display_time = 2.5
 
+func _ready():
+	swarm.rect_position = Vector2(-368,-400)
+	popup.position = Vector2(-230,-400)
+	
 func _on_KinematicBody2D_stamina_change(stamina):
 	$TextureProgress.value = stamina
 
@@ -24,19 +30,22 @@ func _physics_process(delta):
 	
 func alert_to_swarm():
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-208),0.1)
-	var display_time = 2.5
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-250),0.1)
+	popup.position = lerp(popup.position, Vector2(-230,-208),0.15)
+
 	yield(get_tree().create_timer(display_time), "timeout")
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-276),0.1)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-400),0.1)
+	popup.position = lerp(popup.position, Vector2(-230,-400),0.07)
 	Global.swarm_just_started = false
 	
 	
 func alert_to_swarm_end():
 	
 	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-208),0.1)
-	var display_time = 2.5
+	popup.position = lerp(popup.position, Vector2(-368,-208),0.1 )
 	yield(get_tree().create_timer(display_time), "timeout")
 	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-276),0.1)
+	popup.position = lerp(popup.position, Vector2(-368,-276),0.1)
 	Global.swarm_just_ended = false
 
 func change_colors():
