@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://player/base_hud2.png" type="Texture" id=14]
 [ext_resource path="res://player/base_hud_popup.png" type="Texture" id=15]
+[ext_resource path="res://player/hud_flamethrower.png" type="Texture" id=16]
+[ext_resource path="res://player/health_hud.gd" type="Script" id=17]
 
 [sub_resource type="CircleShape2D" id=7]
 
@@ -138,11 +140,23 @@ margin_bottom = 168.0
 rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="Path2D/CanvasLayer/Control"]
-modulate = Color( 1, 1, 1, 0.666667 )
+[node name="health_hud" type="Sprite" parent="Path2D/CanvasLayer/Control"]
 position = Vector2( 192, 144 )
 scale = Vector2( 2, 1.8 )
 texture = ExtResource( 14 )
+script = ExtResource( 17 )
+
+[node name="weapon_1" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
+position = Vector2( 157.5, 71 )
+texture = ExtResource( 16 )
+
+[node name="weapon_2" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
+position = Vector2( 157.5, 106.75 )
+texture = ExtResource( 16 )
+
+[node name="weapon_3" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
+position = Vector2( 157.5, 143 )
+texture = ExtResource( 16 )
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
 margin_left = 568.0
@@ -258,6 +272,7 @@ position = Vector2( -1.85709, -0.388626 )
 [connection signal="player_rotation" from="." to="weapon_control" method="_on_KinematicBody2D_player_rotation"]
 [connection signal="stamina_change" from="." to="weapon_control" method="_on_KinematicBody2D_stamina_change"]
 [connection signal="stamina_change" from="." to="Path2D/CanvasLayer/Control" method="_on_KinematicBody2D_stamina_change"]
+[connection signal="weapon_changed" from="weapon_control" to="Path2D/CanvasLayer/Control/health_hud" method="_on_weapon_control_weapon_changed"]
 [connection signal="body_entered" from="weapon_control/bulletpoint/Area2D" to="weapon_control" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
 [connection signal="body_entered" from="Area2D3" to="." method="_on_Area2D3_body_entered"]

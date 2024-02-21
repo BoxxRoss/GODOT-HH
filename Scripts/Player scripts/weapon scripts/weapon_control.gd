@@ -77,16 +77,22 @@ var weapon_select = 1
 var beam_hittin = false
 var charge_ball = 0.5
 
+signal weapon_changed
 
-
+func _ready():
+	emit_signal("weapon_changed", weapon_select)
+	
 
 func _inputchecks():
 	if Input.is_action_pressed("Switch to weapon1"):
 		weapon_select = 1
+		emit_signal("weapon_changed", weapon_select)
 	if Input.is_action_pressed("Switch to weapon2"):
 		weapon_select = 2
+		emit_signal("weapon_changed", weapon_select)
 	if Input.is_action_pressed("Switch to weapon3"):
 		weapon_select = 3
+		emit_signal("weapon_changed", weapon_select)
 
 			
 	if Input.is_action_just_pressed("Breath"):
