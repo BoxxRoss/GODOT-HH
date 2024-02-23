@@ -12,6 +12,9 @@ func _process(delta):
 		weapon_slot_2.scale = lerp(weapon_slot_2.scale, Vector2(0.9,0.9), 0.2)
 		weapon_slot_3.scale = lerp(weapon_slot_3.scale, Vector2(0.9,0.9), 0.2)
 		
+		weapon_slot_1.playing = true
+		weapon_slot_2.playing = false
+		
 		weapon_slot_1.modulate.a8 = 255
 		weapon_slot_2.modulate.a8 = 127
 		weapon_slot_3.modulate.a8 = 127
@@ -21,6 +24,9 @@ func _process(delta):
 		weapon_slot_1.scale = lerp(weapon_slot_1.scale, Vector2(0.9,0.9), 0.2)
 		weapon_slot_3.scale = lerp(weapon_slot_3.scale, Vector2(0.9,0.9), 0.2)
 		
+		weapon_slot_2.playing = true
+		weapon_slot_1.playing = false
+		
 		weapon_slot_2.modulate.a8 = 255
 		weapon_slot_1.modulate.a8 = 127
 		weapon_slot_3.modulate.a8 = 127
@@ -29,6 +35,9 @@ func _process(delta):
 		weapon_slot_3.scale = lerp(weapon_slot_3.scale, Vector2(1.2,1.2), 0.2)
 		weapon_slot_1.scale = lerp(weapon_slot_1.scale, Vector2(0.9,0.9), 0.2)
 		weapon_slot_2.scale = lerp(weapon_slot_2.scale, Vector2(0.9,0.9), 0.2)
+		
+		weapon_slot_1.playing = false
+		weapon_slot_2.playing = false
 		
 		weapon_slot_3.modulate.a8 = 255
 		weapon_slot_1.modulate.a8 = 127

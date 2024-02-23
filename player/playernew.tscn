@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://player/base_hud_popup.png" type="Texture" id=15]
 [ext_resource path="res://player/hud_flamethrower.png" type="Texture" id=16]
 [ext_resource path="res://player/health_hud.gd" type="Script" id=17]
+[ext_resource path="res://1.png" type="Texture" id=18]
+[ext_resource path="res://2.png" type="Texture" id=19]
 
 [sub_resource type="CircleShape2D" id=7]
 
@@ -31,6 +33,54 @@ extents = Vector2( 14, 12.5 )
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 288, 133.333, 0, 0, 0, 0, -149.248, 131.021, 0, 0, 0, 0, -362.667, 133.333, 0, 0, 0, 0, -364.924, -3.80392, 0, 0, 0, 0, -364.12, -92.1789, 0, 0, 0, 0, -364.741, -259.486, 0, 0, 0, 0, 288, -261.333, 0, 0, 0, 0, 289.007, -185.651, 0, 0, 0, 0, 288.301, -155.016, 0, 0, 0, 0, 290.909, -64, 0, 0, 0, 0, 290.774, 90.8426, 0, 0, 0, 0, 288, 133.333 )
 }
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 18 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 18 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 19 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 19 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 19 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [sub_resource type="DynamicFont" id=8]
 size = 80
@@ -146,13 +196,16 @@ scale = Vector2( 2, 1.8 )
 texture = ExtResource( 14 )
 script = ExtResource( 17 )
 
-[node name="weapon_1" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
+[node name="weapon_1" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 71 )
-texture = ExtResource( 16 )
+frames = SubResource( 17 )
+frame = 1
+playing = true
 
-[node name="weapon_2" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
+[node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
-texture = ExtResource( 16 )
+frames = SubResource( 22 )
+playing = true
 
 [node name="weapon_3" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
