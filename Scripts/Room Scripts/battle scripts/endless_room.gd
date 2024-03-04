@@ -197,7 +197,7 @@ func _on_swarm_timer_timeout():
 	
 
 	
-	var rand_swarm_time = rand_range(45.0,60.0)
+	var rand_swarm_time = rand_range(5.0,6.0)
 	swarm = true
 	yield(get_tree().create_timer(rand_swarm_time), "timeout")
 	Global.swarm_just_ended = true

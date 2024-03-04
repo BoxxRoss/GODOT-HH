@@ -251,7 +251,4 @@ func _on_vacuum_deploy_pressed():
 func _on_move_to_level_pressed():
 	if Global.level_id_picked == 1:
 		get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
-	if Global.level_id_picked == 2:
-		get_tree().change_scene("res://Rooms/battle_rooms/endless_level_2.tscn")
-	if Global.level_id_picked == 3:
-		get_tree().change_scene("res://Rooms/battle_rooms/endless_level_3.tscn")
+

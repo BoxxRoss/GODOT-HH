@@ -19,7 +19,7 @@ func _physics_process(delta):
 		alert_to_swarm()
 	
 	if Global.swarm_just_ended == true:
-		swarm.text = "SWARM OVER"
+		swarm.text = "SWARM\nOVER"
 		alert_to_swarm_end()
 
 	
@@ -34,18 +34,23 @@ func alert_to_swarm():
 	popup.position = lerp(popup.position, Vector2(-230,-208),0.15)
 
 	yield(get_tree().create_timer(display_time), "timeout")
+	
 	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-400),0.1)
 	popup.position = lerp(popup.position, Vector2(-230,-400),0.07)
+	
 	Global.swarm_just_started = false
 	
 	
 func alert_to_swarm_end():
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-208),0.1)
-	popup.position = lerp(popup.position, Vector2(-368,-208),0.1 )
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-260),0.1)
+	popup.position = lerp(popup.position, Vector2(-230,-130),0.15)
+	
 	yield(get_tree().create_timer(display_time), "timeout")
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-276),0.1)
-	popup.position = lerp(popup.position, Vector2(-368,-276),0.1)
+	
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-500),0.1)
+	popup.position = lerp(popup.position, Vector2(-230,-400),0.07)
+	
 	Global.swarm_just_ended = false
 
 func change_colors():

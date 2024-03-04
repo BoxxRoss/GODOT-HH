@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
@@ -15,7 +15,7 @@
 [ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://player/base_hud2.png" type="Texture" id=14]
 [ext_resource path="res://player/base_hud_popup.png" type="Texture" id=15]
-[ext_resource path="res://player/hud_flamethrower.png" type="Texture" id=16]
+[ext_resource path="res://traps/flare.png" type="Texture" id=16]
 [ext_resource path="res://player/health_hud.gd" type="Script" id=17]
 [ext_resource path="res://1.png" type="Texture" id=18]
 [ext_resource path="res://2.png" type="Texture" id=19]
@@ -77,6 +77,30 @@ region = Rect2( 32, 0, 32, 32 )
 [sub_resource type="SpriteFrames" id=22]
 animations = [ {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 16 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 16 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
@@ -152,7 +176,7 @@ shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.2, 1.2 )
+zoom = Vector2( 10, 10 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -199,17 +223,20 @@ script = ExtResource( 17 )
 [node name="weapon_1" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 71 )
 frames = SubResource( 17 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
 frames = SubResource( 22 )
+frame = 1
 playing = true
 
-[node name="weapon_3" type="Sprite" parent="Path2D/CanvasLayer/Control/health_hud"]
+[node name="weapon_3" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
-texture = ExtResource( 16 )
+frames = SubResource( 27 )
+frame = 2
+playing = true
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
 margin_left = 568.0
@@ -237,10 +264,12 @@ custom_colors/font_color = Color( 0.507813, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
 custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -25
 custom_constants/shadow_offset_y = -3
 custom_fonts/font = SubResource( 8 )
 text = "SWARM"
-align = 2
+align = 1
+valign = 1
 
 [node name="health" type="Control" parent="Path2D/CanvasLayer/Control"]
 margin_left = 504.0

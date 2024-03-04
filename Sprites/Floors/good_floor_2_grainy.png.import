@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sprite-0t2.png-dc94a01c4ce7c0ccecadebf3090a70ce.stex"
+path="res://.import/good_floor_2_grainy.png-a72d32aad0f3bc9cf5d0398821f371b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Floors/Sprite-0t2.png"
-dest_files=[ "res://.import/Sprite-0t2.png-dc94a01c4ce7c0ccecadebf3090a70ce.stex" ]
+source_file="res://Sprites/Floors/good_floor_2_grainy.png"
+dest_files=[ "res://.import/good_floor_2_grainy.png-a72d32aad0f3bc9cf5d0398821f371b9.stex" ]
 
 [params]
 
