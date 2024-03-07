@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/New Piskel.png" type="Texture" id=3]
+[ext_resource path="res://player/player.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Player scripts/KinematicBody2D.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/bar.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/Control.gd" type="Script" id=6]
@@ -137,7 +137,7 @@ script = ExtResource( 10 )
 script = ExtResource( 9 )
 
 [node name="bulletpoint" type="Position2D" parent="weapon_control"]
-position = Vector2( 35, 0 )
+position = Vector2( 30, 13 )
 
 [node name="Area2D" type="Area2D" parent="weapon_control/bulletpoint"]
 collision_layer = 513
@@ -150,6 +150,8 @@ shape = SubResource( 7 )
 
 [node name="NewPiskel2" type="Sprite" parent="."]
 position = Vector2( 0, -1 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -318,7 +320,7 @@ script = ExtResource( 8 )
 [node name="Light2D" type="Light2D" parent="."]
 scale = Vector2( 16, 16 )
 texture = ExtResource( 12 )
-energy = 1.2
+energy = 0.8
 shadow_enabled = true
 shadow_gradient_length = 0.1
 
@@ -326,7 +328,6 @@ shadow_gradient_length = 0.1
 light_mask = 32
 scale = Vector2( 4, 4 )
 texture = ExtResource( 12 )
-energy = 0.6
 shadow_gradient_length = 2.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 11 )]
