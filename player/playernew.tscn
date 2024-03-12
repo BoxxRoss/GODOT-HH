@@ -136,6 +136,9 @@ script = ExtResource( 10 )
 [node name="weapon_control" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
+[node name="projecitlepoint" type="Position2D" parent="weapon_control"]
+position = Vector2( 35, 13 )
+
 [node name="bulletpoint" type="Position2D" parent="weapon_control"]
 position = Vector2( 30, 13 )
 
@@ -149,6 +152,7 @@ shape = SubResource( 7 )
 [node name="rotation" type="Position2D" parent="weapon_control"]
 
 [node name="NewPiskel2" type="Sprite" parent="."]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
 position = Vector2( 0, -1 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.4 )
@@ -178,7 +182,7 @@ shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 10, 10 )
+zoom = Vector2( 1.2, 1.2 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -225,7 +229,6 @@ script = ExtResource( 17 )
 [node name="weapon_1" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 71 )
 frames = SubResource( 17 )
-frame = 3
 playing = true
 
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
@@ -318,8 +321,9 @@ margin_bottom = 87.0
 script = ExtResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="."]
-scale = Vector2( 16, 16 )
 texture = ExtResource( 12 )
+texture_scale = 24.0
+color = Color( 1, 1, 1, 0.909804 )
 energy = 0.8
 shadow_enabled = true
 shadow_gradient_length = 0.1
@@ -328,12 +332,16 @@ shadow_gradient_length = 0.1
 light_mask = 32
 scale = Vector2( 4, 4 )
 texture = ExtResource( 12 )
-shadow_gradient_length = 2.0
+texture_scale = 2.0
+color = Color( 1, 0.996078, 0.627451, 1 )
+energy = 0.5
+range_height = 30.0
+shadow_enabled = true
+shadow_gradient_length = 0.1
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 11 )]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2( 8, 0 )
 occluder = SubResource( 10 )
 
 [node name="Path2D2_special" type="Path2D" parent="."]

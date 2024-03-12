@@ -19,5 +19,5 @@ func tilemap_randomization(random_input: int):
 		for cell_position in get_used_cells():
 			var num: int = 0
 			if random_int != 0:
-				num = rng.randi_range(0, 15)
+				num = rng.randi_range(0, 63)
 			set_cellv(cell_position, num)

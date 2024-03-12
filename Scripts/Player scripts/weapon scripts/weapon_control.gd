@@ -195,6 +195,7 @@ func _on_KinematicBody2D_stamina_change(stamina):
 
 func _physics_process(delta):
 	Global.bullet_pos = $bulletpoint.get_global_position()
+	
 	Global.ply_rotations = self.global_rotation_degrees
 	
 	
@@ -255,7 +256,7 @@ func flamethrower():
 	var flame_speed = rand_range(400,500)
 	var rand_angle = rand_range(-0.5,0.5)
 	var thrower_instance = flame_particles.instance()		
-	thrower_instance.position = $bulletpoint.get_global_position()
+	thrower_instance.position = $projecitlepoint.get_global_position()
 	thrower_instance.apply_impulse(Vector2(),Vector2(flame_speed,0).rotated(rotations + rand_angle))
 	get_tree().get_root().call_deferred("add_child", thrower_instance)
 	
@@ -287,7 +288,7 @@ func fire_beam():
 
 func fire_light_ball():
 	var light_ball_inst = lightnin_ball.instance()
-	light_ball_inst.position = $bulletpoint.get_global_position()
+	light_ball_inst.position = $projecitlepoint.get_global_position()
 	light_ball_inst.rotation_degrees = rotation_degrees
 	light_ball_inst.apply_impulse(Vector2(),Vector2(bullet_speed_lightnin_ball,0).rotated(rotations))
 	get_tree().get_root().call_deferred("add_child", light_ball_inst)

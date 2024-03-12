@@ -1,5 +1,10 @@
 extends RigidBody2D
 
+var scaler_sprite_x : float = 0.00
+var scaler_sprite_y : float = 0.00
+
+var scaler_coll_x : float = 0
+var scaler_coll_y : float = 0
 
 var large_check = false
 var weapon_damage = 0.5
@@ -16,17 +21,30 @@ func _ready():
 	$Timer.wait_time = rand_time
 	$Timer.start()
 	self.rotation_degrees = rand_angle
-
+	large_check = true
 	yield(get_tree().create_timer(0.1), "timeout")
 	large_check = true
 	
 	linear_damp = rand_damp
 		
+	yield(get_tree().create_timer(0.7), "timeout")
+	queue_free()
 func _process(delta):
 	if $Sprite.modulate.a8 < 0:
-		queue_free()
+		self.queue_free()
+		
 	if large_check and timer_check == false:
-		$Sprite.scale = Vector2(0.14,0.14)
+		scaler_sprite_x = lerp(scaler_sprite_x, 0.2,0.18)
+		scaler_sprite_y = lerp(scaler_sprite_y, 0.2,0.18)
+				
+		scaler_coll_x = lerp(scaler_coll_x, 2.5,0.18)
+		scaler_coll_y = lerp(scaler_coll_y, 2.5,0.18)
+		
+		$Area2D/CollisionShape2D.scale = Vector2(scaler_coll_x,scaler_coll_y)
+		$CollisionShape2D.scale = Vector2(scaler_coll_x,scaler_coll_y)
+		
+		$Sprite.scale = Vector2(scaler_sprite_x,scaler_sprite_y)
+		
 		
 func _on_Timer_timeout():
 	timer_check = true

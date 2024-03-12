@@ -127,7 +127,7 @@ func instance_node(node, location, parent):
 	return node_instance
 	
 func _process(delta):
-
+	
 	if time_to_go_back == true:
 		get_tree().change_scene("res://Rooms/menu_rooms/weapons_lab.tscn")
 		time_to_go_back = false

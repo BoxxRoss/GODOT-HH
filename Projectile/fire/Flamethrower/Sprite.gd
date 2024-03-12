@@ -10,7 +10,7 @@ var timer = false
 func _process(delta):
 	if timer:
 		if modulate.a8 > 0:
-			modulate.a8 -= 10
+			modulate.a8 -= 10.1
 		if $Light2D.energy > 0:
 			$Light2D.energy -= 0.05
 

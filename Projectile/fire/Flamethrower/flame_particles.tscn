@@ -19,31 +19,29 @@ gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-scale = Vector2( 2, 2 )
+scale = Vector2( 1e-05, 1e-05 )
 shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.356863, 0, 0.980392 )
-scale = Vector2( 0.09, 0.09 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="Sprite"]
 scale = Vector2( 25.4464, 23.6607 )
 texture = ExtResource( 3 )
-color = Color( 1, 0.223529, 0, 1 )
-energy = 2.0
+color = Color( 1, 0.156863, 0, 1 )
+energy = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
+scale = Vector2( 1e-05, 1e-05 )
 collision_layer = 513
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2( 2, 2 )
 shape = SubResource( 4 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
