@@ -86,6 +86,7 @@ var upgrade_weapon_picked = 0
 var player_global_position 
 var player_global_position_x
 var player_global_position_y
+var player_rotation_degrees
 var player_position 
 
 var deploy_ghost_count = 0

@@ -5,6 +5,8 @@ extends KinematicBody2D
 var max_health = 5
 var health = 5
 
+var boot = preload("res://player/boot/boot_prints.tscn")
+
 # breathing mechanics
 var breathless = false
 var is_breathing = false
@@ -22,7 +24,7 @@ signal player_rotation
 
 var move = false
 var Sprint = false
-
+var checker_1 = false
 var move_up = 1.5
 var move_down = 1.5
 var move_left = 1.5
@@ -36,6 +38,11 @@ signal player_death
 
 # bullets and weapons
 
+var selected_boot_num = 1
+var selected_boot
+
+var placehold = 0
+
 func _ready():
 	emit_signal("damage_taken", health)
 
@@ -44,6 +51,15 @@ func _physics_process(_delta):
 	move = false
 	emit_signal("player_rotation", rotation)
 	
+	
+	if selected_boot_num == 1:
+		selected_boot = get_node("boot_control/left_boot")
+		selected_boot_num = 0
+	elif selected_boot_num == 0:
+		selected_boot = get_node("boot_control/right_boot")
+		selected_boot_num = 1
+	
+	Global.player_rotation_degrees = self.rotation_degrees
 	Global.player_global_position = self.global_position
 	Global.player_global_position_y = self.global_position.y
 	Global.player_global_position_x = self.global_position.x
@@ -110,7 +126,7 @@ func _physics_process(_delta):
 			movespeed = 100
 
 
-
+		
 	if move == false:
 		stamina = stamina + 0.22
 		emit_signal("stamina_change", stamina)
@@ -118,8 +134,26 @@ func _physics_process(_delta):
 	motion = motion.normalized()
 	motion = move_and_slide(motion * movespeed)
 	look_at(get_global_mouse_position())
+	
+	
+	
+	if move == true:
+		placehold += 1
+		if placehold == 15:
+			placehold = 0
+			var boot_instance = boot.instance()
+			boot_instance.position = selected_boot.global_position
 
+			boot_instance.rotation_degrees = global_rotation_degrees
+			get_tree().get_root().call_deferred("add_child", boot_instance)
+			
+			
 
+	
+
+	
+	
+	
 func kill():
 	Global.died = true
 	get_tree().change_scene("res://Rooms/menu_rooms/death_screen.tscn")
