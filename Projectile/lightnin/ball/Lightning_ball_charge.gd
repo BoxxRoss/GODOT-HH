@@ -1,9 +1,10 @@
 extends RigidBody2D
 
 var shock = 3.5
-var damage = 0.25
+var damage = 1
 var current_charge = Global.charge_balls
 var dec_charge = 0.01
+
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
@@ -21,10 +22,9 @@ func _on_Area2D_body_exited(body):
 	if body is TileMap:
 		dec_charge -= 0.05
 		
-		
-		
+
 func _physics_process(_delta):
-	print(current_charge)
+
 	scale.x = current_charge
 	scale.y = current_charge
 	

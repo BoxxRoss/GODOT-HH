@@ -114,7 +114,10 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("test spawn"):
 		Global.enemy_test += 1
 	
-
+	if Global.using_weapon:
+		Sprint = false
+		movespeed = 100
+	
 	if stamina >= 100:
 		stamina = 100
 			
@@ -143,7 +146,6 @@ func _physics_process(_delta):
 			placehold = 0
 			var boot_instance = boot.instance()
 			boot_instance.position = selected_boot.global_position
-
 			boot_instance.rotation_degrees = global_rotation_degrees
 			get_tree().get_root().call_deferred("add_child", boot_instance)
 			

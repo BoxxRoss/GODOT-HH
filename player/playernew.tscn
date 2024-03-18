@@ -1,8 +1,8 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
-[ext_resource path="res://player/player.png" type="Texture" id=3]
+[ext_resource path="res://player.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Player scripts/KinematicBody2D.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/bar.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/Control.gd" type="Script" id=6]
@@ -20,12 +20,16 @@
 [ext_resource path="res://1.png" type="Texture" id=18]
 [ext_resource path="res://2.png" type="Texture" id=19]
 
+[sub_resource type="OccluderPolygon2D" id=28]
+polygon = PoolVector2Array( -3, -5, -6, 0, -3, 5, -7, 0 )
+
 [sub_resource type="CircleShape2D" id=7]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=29]
+radius = 18.0
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 14, 12.5 )
+[sub_resource type="CircleShape2D" id=30]
+radius = 21.0
 
 [sub_resource type="CircleShape2D" id=9]
 
@@ -138,10 +142,25 @@ script = ExtResource( 10 )
 script = ExtResource( 9 )
 
 [node name="projecitlepoint" type="Position2D" parent="weapon_control"]
-position = Vector2( 35, 13 )
+position = Vector2( 40, 0 )
+
+[node name="Light2D" type="Light2D" parent="weapon_control/projecitlepoint"]
+position = Vector2( -7, 0 )
+texture = ExtResource( 12 )
+texture_scale = 0.01
+color = Color( 0, 0.959636, 0.988281, 1 )
+energy = 2.5
+shadow_enabled = true
+shadow_item_cull_mask = 257
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="weapon_control/projecitlepoint"]
+light_mask = 256
+position = Vector2( -7, 0 )
+occluder = SubResource( 28 )
+light_mask = 256
 
 [node name="bulletpoint" type="Position2D" parent="weapon_control"]
-position = Vector2( 30, 13 )
+position = Vector2( 30, 0 )
 
 [node name="Area2D" type="Area2D" parent="weapon_control/bulletpoint"]
 collision_layer = 513
@@ -162,22 +181,22 @@ position = Vector2( 0, 10 )
 
 [node name="NewPiskel2" type="Sprite" parent="."]
 modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
-position = Vector2( 0, -1 )
+position = Vector2( 0, -5.96046e-08 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 4 )
+position = Vector2( -7, -1 )
+shape = SubResource( 29 )
 
 [node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 641
 collision_mask = 641
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 5 )
+position = Vector2( -6, 0 )
+shape = SubResource( 30 )
 
 [node name="Area2D3" type="Area2D" parent="."]
 collision_layer = 0
@@ -244,13 +263,13 @@ playing = true
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
 frames = SubResource( 22 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="weapon_3" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
 frames = SubResource( 27 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
@@ -340,6 +359,7 @@ shadow_gradient_length = 0.1
 
 [node name="Light2D2" type="Light2D" parent="."]
 light_mask = 32
+position = Vector2( -1, 0 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 12 )
 texture_scale = 2.0

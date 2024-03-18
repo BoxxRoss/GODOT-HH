@@ -42,13 +42,13 @@ var vacuum_blast_activated : bool = false
 var vacuum_bomb_activated : bool = false
 var vacuum_deploy_activated : bool = false
 
-var flamethrower_position = 1
-var flametrail_position = 0
-var flamebeam_position = 0
+var flamethrower_position = 0
+var flametrail_position = 1
+var flamebeam_position = 2
 
-var lightspray_position = 2
-var lighttrip_position = 0
-var lightball_position = 3
+var lightspray_position = 0
+var lighttrip_position = 3
+var lightball_position = 0
 
 var vacuumblast_position = 0
 var vacuumbomb_position = 0
@@ -88,6 +88,8 @@ var player_global_position_x
 var player_global_position_y
 var player_rotation_degrees
 var player_position 
+
+var using_weapon = false
 
 var deploy_ghost_count = 0
 var deploy_ghost_die : bool = false

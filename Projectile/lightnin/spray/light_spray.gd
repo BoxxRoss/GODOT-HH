@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var weapon_damage = 1.5
+var weapon_damage = 1.0
 var shock = 1.0
 var static_floor = 1
 
@@ -15,7 +15,7 @@ var modulate_checker = false
 onready var spray_sprite = get_node("TinyBullet")
 
 var sprite_options = [1,2,3,4,5]
-var rand_angle = rand_range(-30,30)
+var rand_angle = rand_range(-40,40)
 	
 
 func _process(delta):
@@ -58,7 +58,6 @@ func _on_Timer_timeout():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemys"):
 		
-		print(weapon_damage)
 		body.taking_damage(weapon_damage)
 		
 		body.shock(shock)
