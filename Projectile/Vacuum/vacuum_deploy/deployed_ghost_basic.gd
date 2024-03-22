@@ -29,7 +29,7 @@ func enemy_death():
 
 	
 func colided_with_enemy(damage):
-	ENEMYhealth -= damage
+	ENEMYhealth -= 5
 
 	
 
@@ -61,7 +61,7 @@ func _physics_process(delta):
 	
 	Global.friend_ghost_basic_pos = self.global_position
 	
-	if circle.scale < Vector2(5,5):
+	if circle.scale < Vector2(15,15):
 		circle.scale += Vector2(0.5,0.5)
 	
 
@@ -93,11 +93,11 @@ func _physics_process(delta):
 		target_pos = Vector2(0,0)
 	
 	if target_pos == Vector2(0, 0):
-		pass
+		$Icon/Particles2D.modulate.a8 = lerp($Icon/Particles2D.modulate.a8,100,0.05)
 	else:
 		motion = position.direction_to(target_pos) * speed
 		motion = move_and_slide(motion)
-
+		$Icon/Particles2D.modulate.a8 = lerp($Icon/Particles2D.modulate.a8,255,0.05)
 
 
 

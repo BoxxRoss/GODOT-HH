@@ -11,6 +11,8 @@ onready var beam = $Beam
 onready var end = $End
 onready var rayCast2D = $RayCast2D
 
+var reduce = false
+
 func _physics_process(_delta):
 	
 	if Global.beam_active == false:
@@ -31,6 +33,14 @@ func _physics_process(_delta):
 	$Beam/Area2Dbeam/CollisionShape2D.shape.extents = Vector2(end.position.length()/2,10)
 	$Beam/Area2Dbeam/CollisionShape2D.position = Vector2(end.position.length()/2,0)
 
+	if beam.scale.y < 0.500 and reduce == false:
+		beam.scale.y = lerp(beam.scale.y, 0.500,0.2)
+	if beam.scale.y > 0.490:
+		reduce = true
+	if reduce == true:
+		beam.scale.y = lerp(beam.scale.y, 0.300,0.2)
+	if beam.scale.y < 0.310:
+		reduce = false
 
 
 

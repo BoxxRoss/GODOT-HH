@@ -4,12 +4,22 @@ onready var beam = $Beam
 onready var end = $End
 onready var rayCast2D = $RayCast2D
 
-var damage = 0.1
-var shock = 15
+var damage = 0.3
+var shock = 25
+var reduce = false
 
 func _physics_process(_delta):
 	if Global.died == true:
 		queue_free()
+		
+	if beam.scale.y < 0.300 and reduce == false:
+		beam.scale.y = lerp(beam.scale.y, 0.300,0.09)
+	if beam.scale.y > 0.290:
+		reduce = true
+	if reduce == true:
+		beam.scale.y = lerp(beam.scale.y, 0.100,0.09)
+	if beam.scale.y < 0.110:
+		reduce = false
 	
 func _on_electric_node_static_connect(o_spot,spott):
 	self.global_position = spott

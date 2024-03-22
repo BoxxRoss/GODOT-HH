@@ -1,53 +1,54 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Projectile/fire/beam/LaserBeam.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Beam.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Begin.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/static_floor.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=1]
-blend_mode = 1
-
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 2.5, 10 )
+extents = Vector2( 2.5, 6.74998 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
 
-[sub_resource type="Gradient" id=4]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0.00645161, 1 )
+colors = PoolColorArray( 1, 0.576471, 0.0666667, 1, 1, 0.121569, 0, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 
 [sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
+direction = Vector3( -50, 0, 0 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
+initial_velocity = 142.11
+initial_velocity_random = 0.4
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 5 )
+angle = 720.0
+angle_random = 1.0
+scale = 0.4
+color = Color( 1, 0.963531, 0.0664063, 1 )
+color_ramp = SubResource( 10 )
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 10.3387
+radius = 27.6923
 
 [node name="LaserBeam" type="Node2D"]
-modulate = Color( 1, 0.141176, 0, 1 )
-position = Vector2( -3, 1 )
 script = ExtResource( 1 )
 
 [node name="Begin" type="Sprite" parent="."]
 material = SubResource( 2 )
-position = Vector2( 0, -1 )
-texture = ExtResource( 3 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Beam" type="Sprite" parent="."]
-material = SubResource( 1 )
-position = Vector2( 0, -1 )
-scale = Vector2( 1, 0.375 )
+modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
+position = Vector2( 0, -5.96046e-08 )
+scale = Vector2( 0.97, 0.375 )
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 0, -12 )
@@ -59,28 +60,32 @@ collision_layer = 513
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/Area2Dbeam"]
-position = Vector2( 5.5, -1 )
+position = Vector2( 3.09278, 0 )
 shape = SubResource( 8 )
 
 [node name="End" type="Position2D" parent="."]
 position = Vector2( 100, -1 )
+scale = Vector2( 0.65, 0.65 )
 
 [node name="Particles2D" type="Particles2D" parent="End"]
 material = SubResource( 3 )
-lifetime = 0.25
-preprocess = 0.25
+position = Vector2( -3.07692, 0 )
+amount = 10
+lifetime = 0.1
+preprocess = 1.0
+speed_scale = 1.2
 process_material = SubResource( 6 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="End"]
 collision_layer = 513
 collision_mask = 513
 
 [node name="end_point" type="CollisionShape2D" parent="End/Area2D"]
+position = Vector2( -3.07692, 0 )
 shape = SubResource( 7 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 3, -1 )
 enabled = true
 cast_to = Vector2( 100, 0 )
 

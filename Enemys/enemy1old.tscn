@@ -82,7 +82,7 @@ scale = Vector2( 0.3, 0.3 )
 shape = SubResource( 1 )
 
 [node name="Icon" type="Sprite" parent="."]
-position = Vector2( 2.86102e-06, 1.90735e-06 )
+position = Vector2( -2.27374e-13, 1 )
 rotation = 3.14159
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )

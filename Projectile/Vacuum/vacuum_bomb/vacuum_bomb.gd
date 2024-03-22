@@ -13,8 +13,8 @@ func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		spawn_vac_static_bomb()
 		queue_free()
-	if body.is_in_group("enemys"):
-		body.onhit(damage)
+
+		
 
 func _on_Timer_timeout():
 	queue_free()
