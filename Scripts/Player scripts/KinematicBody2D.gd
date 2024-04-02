@@ -38,8 +38,8 @@ signal player_death
 
 # bullets and weapons
 
-var selected_boot_num = 1
-var selected_boot
+var selected_boot = null
+
 
 var placehold = 0
 
@@ -52,12 +52,12 @@ func _physics_process(_delta):
 	emit_signal("player_rotation", rotation)
 	
 	
-	if selected_boot_num == 1:
+	if Global.selected_boot_num == 1:
 		selected_boot = get_node("boot_control/left_boot")
-		selected_boot_num = 0
-	elif selected_boot_num == 0:
+		Global.selected_boot_num = 0
+	elif Global.selected_boot_num == 0:
 		selected_boot = get_node("boot_control/right_boot")
-		selected_boot_num = 1
+		Global.selected_boot_num = 1
 	
 	Global.player_rotation_degrees = self.rotation_degrees
 	Global.player_global_position = self.global_position
@@ -145,6 +145,7 @@ func _physics_process(_delta):
 		if placehold == 15:
 			placehold = 0
 			var boot_instance = boot.instance()
+			
 			boot_instance.position = selected_boot.global_position
 			boot_instance.rotation_degrees = global_rotation_degrees
 			get_tree().get_root().call_deferred("add_child", boot_instance)

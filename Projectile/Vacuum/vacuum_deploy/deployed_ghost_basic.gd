@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var speed = 110
+var speed = 120
 var slowed = false
 var four_coll_checker = 0
 var motion = Vector2(0,0)
@@ -14,11 +14,19 @@ onready var circle = get_node("Area2Dcirce/CollisionShape2D")
 var targets = 0
 
 var distract_pow = rand_range(0.0,100.0)
-
+var following_player : bool = false
 var array_of_enemies = []
+var target_pos_follow_decider = rand_range(0,1)
+var target_pos_follow = null
+var target_pos_player_distance
 
 func _ready():
 	Global.friend_ghost_has_died = false
+	if target_pos_follow_decider > 0.5:
+		target_pos_follow = -50
+	else:
+		target_pos_follow = 50
+	target_pos_player_distance = Vector2(50,target_pos_follow)
 
 func enemy_death():
 	queue_free()
@@ -48,7 +56,7 @@ func _on_Area2Dcirce_body_exited(body):
 
 func _physics_process(delta):
 	
-	if targets != 0:
+	if targets != 0 or following_player:
 		var vector_to_enemy = target_pos - self.global_position
 		var angle = vector_to_enemy.angle()
 		var r = global_rotation
@@ -77,24 +85,32 @@ func _physics_process(delta):
 		
 		
 	if slowed == true:
-		speed = lerp(speed, 40, .1)
+		speed = lerp(speed, 60, .1)
 		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
 		
 	else:
-		speed = lerp(speed, 110, .05)
+		speed = lerp(speed, 120, .05)
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)
 
-	
+
+
 
 	if targets > 0:
 		var target_posi = array_of_enemies[0]
 		target_pos = target_posi.global_position
 	else:
 		target_pos = Vector2(0,0)
+		
 	
-	if target_pos == Vector2(0, 0):
-		$Icon/Particles2D.modulate.a8 = lerp($Icon/Particles2D.modulate.a8,100,0.05)
+	if target_pos == Vector2(0, 0) or target_pos == Global.player_global_position - target_pos_player_distance:
+		
+		$Icon/Particles2D.modulate.a8 = lerp($Icon/Particles2D.modulate.a8,100,0.1)
+		target_pos = Global.player_global_position - target_pos_player_distance
+		following_player = true
+		motion = position.direction_to(target_pos) * speed
+		motion = move_and_slide(motion)
 	else:
+		following_player = false
 		motion = position.direction_to(target_pos) * speed
 		motion = move_and_slide(motion)
 		$Icon/Particles2D.modulate.a8 = lerp($Icon/Particles2D.modulate.a8,255,0.05)

@@ -54,6 +54,8 @@ var vacuumblast_position = 1
 var vacuumbomb_position = 2
 var vacuumdeploy_position = 3
 
+var selected_boot_num = 1
+
 var what_was_picked = 0
 
 var time_to_go_back = false
