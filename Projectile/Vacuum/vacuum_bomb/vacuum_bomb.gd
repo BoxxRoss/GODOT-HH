@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+onready var activated_sprite = preload("res://Projectile/Vacuum/vacuum_bomb/Sprite-00012.png") 
+
 var vac_bomb_static = preload("res://Projectile/Vacuum/vacuum_bomb/vac_bomb_static.tscn")
 var damage = 1
 

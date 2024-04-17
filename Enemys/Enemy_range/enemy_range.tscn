@@ -1,0 +1,150 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Enemys/Enemy_range/enemy_range.gd" type="Script" id=1]
+[ext_resource path="res://Projectile/fire/Flamethrower/light_32x32.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/basic_light1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/static_floor.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 58.3333, 60 )
+
+[sub_resource type="CanvasItemMaterial" id=11]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.993151, 1 )
+colors = PoolColorArray( 0.423529, 0.423529, 0.423529, 0.882353, 0.393446, 0.393446, 0.393446, 0.261886, 0.392157, 0.392157, 0.392157, 0.235294 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+max_value = 3.0
+_data = [ Vector2( 0, 3 ), 0.0, 0.372591, 0, 0, Vector2( 1, 1.97853 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.3
+flag_rotate_y = true
+flag_disable_z = true
+spread = 90.0
+flatness = 1.0
+gravity = Vector3( 0, 500, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+linear_accel = 100.0
+radial_accel_random = 1.0
+damping = 100.0
+damping_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 12 )
+hue_variation = -0.01
+hue_variation_random = 1.0
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+orbit_velocity = 1.5
+orbit_velocity_random = 1.0
+angle = 5.0
+angle_random = 1.0
+scale = 1.5
+color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19.75, 1.50006 )
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 76.269
+
+[node name="enemy_range" type="KinematicBody2D" groups=["enemys", "tiles"]]
+scale = Vector2( 1.5, 1.25 )
+z_index = 2
+collision_layer = 8
+collision_mask = 768
+script = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+color = Color( 1, 0, 0, 1 )
+energy = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 2.38419e-07 )
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 2.86102e-06, 1.90735e-06 )
+rotation = 3.14159
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="Icon"]
+modulate = Color( 0, 0.921569, 0.129412, 1 )
+material = SubResource( 11 )
+position = Vector2( 6.94806e-06, 4.74787e-06 )
+rotation = 4.97419
+scale = Vector2( 2, 2 )
+amount = 10
+lifetime = 0.4
+speed_scale = 0.5
+randomness = 1.0
+process_material = SubResource( 4 )
+texture = ExtResource( 2 )
+
+[node name="rocks" type="Particles2D" parent="Icon"]
+modulate = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+emitting = false
+preprocess = 5.0
+process_material = SubResource( 10 )
+texture = ExtResource( 4 )
+
+[node name="Collision_node" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Collision_node"]
+position = Vector2( 0.5, 0 )
+collision_layer = 513
+collision_mask = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2D"]
+position = Vector2( -1, 3.19679e-06 )
+scale = Vector2( 1, 12 )
+shape = SubResource( 2 )
+
+[node name="Area2DLine" type="Area2D" parent="Collision_node"]
+collision_layer = 513
+collision_mask = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2DLine"]
+position = Vector2( -0.5, 0 )
+scale = Vector2( 0.99, 0.1 )
+shape = SubResource( 2 )
+
+[node name="Area2DDetection" type="Area2D" parent="Collision_node"]
+collision_layer = 513
+collision_mask = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2DDetection"]
+shape = SubResource( 14 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Collision_node/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2DLine" to="." method="_on_Area2DLine_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2DLine" to="." method="_on_Area2DLine_body_exited"]
+[connection signal="body_entered" from="Collision_node/Area2DDetection" to="." method="_on_Area2DDetection_body_entered"]
+[connection signal="body_exited" from="Collision_node/Area2DDetection" to="." method="_on_Area2DDetection_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

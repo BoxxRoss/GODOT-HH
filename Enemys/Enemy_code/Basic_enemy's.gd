@@ -5,7 +5,7 @@ var rotation_speed = PI
 var static_floor = preload("res://Projectile/lightnin/spray/eletric_floor_static.tscn")
 onready var Player = get_parent().get_node("KinematicBody2D")
 var unaware = true
-
+var is_range = false
 var is_wimp = false
 var checker_1_horse = false
 var current_charge = 0
@@ -250,13 +250,17 @@ func _physics_process(delta):
 	if slowed == true:
 		speed = lerp(speed, speed_when_slowed, .15)
 		$Light2D.energy = lerp($Light2D.energy, 0.5, .1)
-		
 	else:
 		speed = lerp(speed, max_speed, .10)
 		$Light2D.energy = lerp($Light2D.energy, 0, .1)
+		
+
+
 	
-	if enemy_is_horse_go == false:
+	if enemy_is_horse_go == false and is_range == false:
 		motion = position.direction_to(target) * speed
 		motion = move_and_slide(motion)
-	elif enemy_is_horse_go == true:
+	elif enemy_is_horse_go == true and is_range == false:
 		motion = move_and_slide(motion)
+	elif is_range == true:
+		pass

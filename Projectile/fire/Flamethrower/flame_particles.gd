@@ -7,10 +7,10 @@ var scaler_coll_x : float = 0
 var scaler_coll_y : float = 0
 
 var large_check = false
-var weapon_damage = 0.5
-var ignite = 0.3
+var weapon_damage : float = 0.5
+var ignite : float = 0.3
 var timer_check = false
-var passthrough_threshold = 0.9
+var passthrough_threshold : float = 0.9
 var rand_time = rand_range(0.1,0.4)
 
 func _ready():

@@ -32,15 +32,9 @@ func enemy_death():
 	queue_free()
 	Global.friend_ghost_has_died = true
 	Global.deploy_ghost_count -= 1
-
-
-
 	
 func colided_with_enemy(damage):
 	ENEMYhealth -= 5
-
-	
-
 
 func _on_Area2Dcirce_body_entered(body):
 	if body.is_in_group("enemys"):
@@ -81,13 +75,10 @@ func _physics_process(delta):
 		$Icon.modulate.a = lerp($Icon.modulate.a, 0, .05)
 	else:
 		$Icon.modulate.a = lerp($Icon.modulate.a, 1, .05)
-		
-		
-		
+
 	if slowed == true:
 		speed = lerp(speed, 60, .1)
 		$Light2D.energy = lerp($Light2D.energy, 1.2, .03)
-		
 	else:
 		speed = lerp(speed, 120, .05)
 		$Light2D.energy = lerp($Light2D.energy, 0, .03)

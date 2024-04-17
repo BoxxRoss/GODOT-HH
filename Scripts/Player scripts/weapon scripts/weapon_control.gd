@@ -239,6 +239,7 @@ func fire_vac_bomb():
 func trigger_airblast():
 	var vacuum_blast_instance = vacuum_blast.instance()
 	vacuum_blast_instance.position = $bulletpoint.get_global_position()
+	
 	get_tree().get_root().call_deferred("add_child", vacuum_blast_instance)
 	can_fire_vacuum_blast = false
 	yield(get_tree().create_timer(vacuum_blast_rate), "timeout")
