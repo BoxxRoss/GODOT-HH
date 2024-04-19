@@ -42,10 +42,10 @@ text = "Fullscreen"
 flat = true
 
 [node name="quit" type="Button" parent="."]
-margin_left = 304.0
-margin_top = 209.0
-margin_right = 344.0
-margin_bottom = 229.0
+margin_left = 221.0
+margin_top = 156.0
+margin_right = 261.0
+margin_bottom = 176.0
 text = "Quit"
 flat = true
 

@@ -142,7 +142,7 @@ script = ExtResource( 10 )
 script = ExtResource( 9 )
 
 [node name="projecitlepoint" type="Position2D" parent="weapon_control"]
-position = Vector2( 40, 0 )
+position = Vector2( 44, 0 )
 
 [node name="Light2D" type="Light2D" parent="weapon_control/projecitlepoint"]
 position = Vector2( -7, 0 )
@@ -160,7 +160,7 @@ occluder = SubResource( 28 )
 light_mask = 256
 
 [node name="bulletpoint" type="Position2D" parent="weapon_control"]
-position = Vector2( 30, 0 )
+position = Vector2( 31, 0 )
 
 [node name="Area2D" type="Area2D" parent="weapon_control/bulletpoint"]
 collision_layer = 513
@@ -210,7 +210,7 @@ shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.2, 1.2 )
+zoom = Vector2( 1.5, 1.5 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -257,19 +257,18 @@ script = ExtResource( 17 )
 [node name="weapon_1" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 71 )
 frames = SubResource( 17 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
 frames = SubResource( 22 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="weapon_3" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
 frames = SubResource( 27 )
-frame = 3
 playing = true
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
@@ -393,6 +392,8 @@ position = Vector2( -1.85709, -0.388626 )
 [connection signal="player_rotation" from="." to="weapon_control" method="_on_KinematicBody2D_player_rotation"]
 [connection signal="stamina_change" from="." to="weapon_control" method="_on_KinematicBody2D_stamina_change"]
 [connection signal="stamina_change" from="." to="Path2D/CanvasLayer/Control" method="_on_KinematicBody2D_stamina_change"]
+[connection signal="add_trauma" from="weapon_control" to="Camera2D" method="add_trauma"]
+[connection signal="add_trauma_minor" from="weapon_control" to="Camera2D" method="add_trauma_minor"]
 [connection signal="weapon_changed" from="weapon_control" to="Path2D/CanvasLayer/Control/health_hud" method="_on_weapon_control_weapon_changed"]
 [connection signal="body_entered" from="weapon_control/bulletpoint/Area2D" to="weapon_control" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]

@@ -44,14 +44,14 @@ var vacuum_deploy_activated : bool = false
 
 var flamethrower_position = 0
 var flametrail_position = 0
-var flamebeam_position = 0
+var flamebeam_position = 2
 
 var lightspray_position = 0
 var lighttrip_position = 0
-var lightball_position = 0
+var lightball_position = 1
 
-var vacuumblast_position = 1
-var vacuumbomb_position = 2
+var vacuumblast_position = 0
+var vacuumbomb_position = 0
 var vacuumdeploy_position = 3
 
 var selected_boot_num = 1

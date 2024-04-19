@@ -65,7 +65,7 @@ color = Color( 0, 0, 0, 1 )
 extents = Vector2( 19.75, 1.50006 )
 
 [sub_resource type="CircleShape2D" id=14]
-radius = 76.269
+radius = 160.392
 
 [node name="enemy_range" type="KinematicBody2D" groups=["enemys", "tiles"]]
 scale = Vector2( 1.5, 1.25 )
@@ -138,6 +138,9 @@ collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_node/Area2DDetection"]
 shape = SubResource( 14 )
+
+[node name="Position2D" type="Position2D" parent="Collision_node"]
+position = Vector2( 20, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -29,6 +29,7 @@ func _ready():
 		
 	yield(get_tree().create_timer(0.7), "timeout")
 	queue_free()
+	
 func _process(delta):
 	if $Sprite.modulate.a8 < 0:
 		self.queue_free()

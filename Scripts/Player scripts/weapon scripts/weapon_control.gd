@@ -2,10 +2,12 @@ extends Node2D
 
 onready var lightning := $LightningBeam
 
+signal add_trauma_minor
+signal add_trauma
 signal stamina_change
 export var stamina = 100
 
-var rotations = self.rotation_degrees
+var rotations = null
 var breathless = false
 var is_breathing = false
 var Sprint = false
@@ -144,6 +146,7 @@ func _inputchecks():
 		Global.using_weapon = true
 		buildup_light_ball()
 		
+		emit_signal("add_trauma_minor", 0.045)
 		charge_ball += 0.05
 
 		if charge_ball >= 4.0:
@@ -154,7 +157,7 @@ func _inputchecks():
 		Global.beam_active = false
 
 		Global.charge_balls = charge_ball
-		
+		emit_signal("add_trauma", charge_ball/10)
 		fire_light_ball()
 		
 		charge_ball = 0.5
@@ -167,8 +170,9 @@ func _inputchecks():
 	if Input.is_action_pressed("Shoot") and stamina > 10 and is_breathing != true and weapon_select == Global.flamethrower_position:
 		Global.beam_active = false
 		Global.using_weapon = true
-		if Engine.get_idle_frames() % fire_rate_flamethrower == 0:
+		if Engine.get_idle_frames() % fire_rate_flamethrower == 1:
 			flamethrower()
+			emit_signal("add_trauma_minor", 0.1)
 
 
 
@@ -231,6 +235,7 @@ func fire_vac_bomb():
 	vacuum_bomb_motion_instance.position = $bulletpoint.get_global_position()
 	vacuum_bomb_motion_instance.rotation_degrees = Global.ply_rotations
 	vacuum_bomb_motion_instance.apply_impulse(Vector2(),Vector2(vacuum_bomb_speed,0).rotated(rotations))
+	
 	get_tree().get_root().call_deferred("add_child", vacuum_bomb_motion_instance)
 	can_fire_vacuum_bomb = false
 	yield(get_tree().create_timer(vacuum_bomb_fire_rate), "timeout")
@@ -264,6 +269,9 @@ func flametrail():
 	
 func flamethrower():
 	randomize()
+	
+	
+	
 	var flame_speed = rand_range(400,500)
 	var rand_angle = rand_range(-0.5,0.5)
 	var thrower_instance = flame_particles.instance()		

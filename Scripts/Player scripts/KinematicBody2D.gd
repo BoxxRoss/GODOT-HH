@@ -19,6 +19,7 @@ export var stamina = 10000
 signal camera_zoom
 signal camera_zoom_out
 
+
 # movement
 signal player_rotation
 
@@ -117,6 +118,7 @@ func _physics_process(_delta):
 	if Global.using_weapon:
 		Sprint = false
 		movespeed = 100
+
 	
 	if stamina >= 100:
 		stamina = 100

@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Projectile/fire/beam/LaserBeam.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Beam.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/static_floor.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=11]
 blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -47,6 +50,7 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Beam" type="Sprite" parent="."]
 modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
+material = SubResource( 11 )
 position = Vector2( 0, -5.96046e-08 )
 scale = Vector2( 0.97, 0.375 )
 texture = ExtResource( 2 )

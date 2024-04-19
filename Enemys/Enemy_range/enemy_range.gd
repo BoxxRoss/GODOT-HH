@@ -1,8 +1,9 @@
 extends "res://Enemys/Enemy_code/Basic_enemy's.gd"
 
 onready var main_col = get_node("Collision_node/Area2D/CollisionShape2D")
-
+var projectile = preload("res://Enemys/Enemy_range/enemy_range_projectile.tscn")
 onready var rock_particles = get_node("Icon/rocks")
+var firing = false
 
 func _ready() -> void:
 	is_wimp = false
@@ -32,8 +33,21 @@ func _ready() -> void:
 	enemy_is_horse = false
 	
 func _physics_process(delta):
-	
-	
+	if is_range and firing == false:
+		firing = true
+		
+		yield(get_tree().create_timer(0.5), "timeout")
+		
+		var range_ball = projectile.instance()
+		get_tree().get_root().call_deferred("add_child", range_ball)
+		range_ball.position = $Collision_node/Position2D.get_global_position()
+		range_ball.apply_impulse(Vector2(),Vector2(450.0,0).rotated(self.rotation))
+		range_ball.rotation_degrees = self.global_rotation_degrees
+		
+		
+		
+		firing = false
+		
 	if rock != true:
 		rock_particles.emitting = false
 
@@ -89,7 +103,7 @@ func _on_Area2DLine_body_exited(body):
 		four_coll_checker = false
 
 func _on_Area2DDetection_body_entered(body):
-	print("enter_detect")
+
 	if body.is_in_group("player"):
 		is_range = true
 
