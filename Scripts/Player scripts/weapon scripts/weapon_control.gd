@@ -90,6 +90,9 @@ func _physics_process(delta):
 	Global.using_weapon = false
 	Global.ply_rotations = self.global_rotation_degrees
 
+	if Global.beam_active:
+		emit_signal("add_trauma_minor", 0.1)
+		
 func _inputchecks():
 	if Input.is_action_pressed("Switch to weapon1"):
 		weapon_select = 1
@@ -124,6 +127,7 @@ func _inputchecks():
 			Global.beam_active = true
 			Global.using_weapon = true
 			fire_beam()
+			
 			emit_signal("stamina_change", stamina)
 	
 	if Input.is_action_just_pressed("right click"):
@@ -302,6 +306,7 @@ func fire_beam():
 	var beam_o_laser = laser_beam.instance()
 	beam_o_laser.position = $bulletpoint.get_global_position()
 	get_tree().get_root().call_deferred("add_child", beam_o_laser)
+	
 
 
 func buildup_light_ball():

@@ -42,7 +42,9 @@ func shake():
 	offset.x = max_offset.x * amount * noise.get_noise_2d(noise.seed*2, noise_y)
 	offset.y = max_offset.y * amount * noise.get_noise_2d(noise.seed*3, noise_y)
 
-var min_zoom = Vector2(0.100001, 0.100001)
+
+
+var min_zoom = Vector2(0.11, 0.11)
 
 var zoomed = false
 var zoom_speed = Vector2(0.5, 0.5)
@@ -53,6 +55,7 @@ var des_zoom = zoom
 func _input(event):
 
 	if event is InputEventMouseMotion:
+		
 		var delta = event.relative
 		var mouse_position = get_global_mouse_position()
 		var mouse_delta = mouse_position - global_position
@@ -77,6 +80,7 @@ func _on_KinematicBody2D_camera_zoom():
 
 func _on_KinematicBody2D_camera_zoom_out():
 	des_zoom = Vector2(1.15, 1.15)
+	
 	zoomed = false
 
 

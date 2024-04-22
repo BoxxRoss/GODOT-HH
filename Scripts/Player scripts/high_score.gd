@@ -3,7 +3,7 @@ extends Label
 
 
 func _process(_delta):
-	self.text = str("Most Ghosts Vanquished: ",Global.highest_score)
+	self.text = str("Highscore: ",Global.highest_score)
 
 
 func _on_KinematicBody2D_player_death():
