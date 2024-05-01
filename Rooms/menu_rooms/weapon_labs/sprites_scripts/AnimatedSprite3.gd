@@ -18,4 +18,4 @@ func _on_flametrail_mouse_entered():
 
 func _on_flametrail_mouse_exited():
 	if selected == false:
-		self.modulate.a8 = 200
+		self.modulate.a8 = 155

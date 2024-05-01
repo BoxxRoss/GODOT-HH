@@ -11,7 +11,7 @@ func _process(delta):
 
 func _on_heatbeam_mouse_exited():
 	if selected == false:
-		self.modulate.a8 = 200
+		self.modulate.a8 = 155
 
 
 func _on_heatbeam_mouse_entered():

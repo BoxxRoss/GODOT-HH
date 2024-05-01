@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display-weapon3.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon2.gd" type="Script" id=2]
@@ -10,7 +10,19 @@
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite1.gd" type="Script" id=8]
 [ext_resource path="res://spritesheets/2.png" type="Texture" id=9]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite3.gd" type="Script" id=10]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite4.gd" type="Script" id=11]
 [ext_resource path="res://spritesheets/3.png" type="Texture" id=12]
+[ext_resource path="res://spritesheets/4.png" type="Texture" id=13]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite5.gd" type="Script" id=14]
+[ext_resource path="res://spritesheets/5.png" type="Texture" id=15]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite6.gd" type="Script" id=16]
+[ext_resource path="res://spritesheets/6.png" type="Texture" id=17]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite7.gd" type="Script" id=18]
+[ext_resource path="res://spritesheets/7.png" type="Texture" id=19]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite8.gd" type="Script" id=20]
+[ext_resource path="res://spritesheets/8.png" type="Texture" id=21]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite9.gd" type="Script" id=22]
+[ext_resource path="res://spritesheets/9.png" type="Texture" id=23]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
@@ -84,6 +96,150 @@ animations = [ {
 "speed": 8.0
 } ]
 
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 13 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 13 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 13 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "spray",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=25]
+animations = [ {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "ball",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 17 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 17 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 17 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "tripwire",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 19 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 19 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 19 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 21 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 21 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 21 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=40]
+animations = [ {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 23 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 23 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 23 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 23 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=45]
+animations = [ {
+"frames": [ SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
 [node name="weapon_lab_control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -94,6 +250,7 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 640, 360 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="."]
@@ -114,7 +271,7 @@ rect_scale = Vector2( 6, 6 )
 toggle_mode = true
 
 [node name="AnimatedSprite1" type="AnimatedSprite" parent="flamethrower"]
-modulate = Color( 1, 1, 1, 0.784314 )
+modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 5 )
 animation = "Flamebeam"
@@ -132,7 +289,7 @@ rect_scale = Vector2( 6, 6 )
 toggle_mode = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="heatbeam"]
-modulate = Color( 1, 1, 1, 0.784314 )
+modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 10 )
 animation = "Flamebeam"
@@ -150,60 +307,117 @@ rect_scale = Vector2( 6, 6 )
 toggle_mode = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="flametrail"]
-modulate = Color( 1, 1, 1, 0.784314 )
+modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 15 )
 frame = 2
 playing = true
 script = ExtResource( 10 )
 
-[node name="lightning_spray" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 224.0
-margin_right = 1056.0
-margin_bottom = 244.0
+[node name="lightning_spray" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 88.0
+margin_top = 300.0
+margin_right = 118.0
+margin_bottom = 330.0
+rect_scale = Vector2( 6, 6 )
 toggle_mode = true
-text = "Lightning Spray"
 
-[node name="lightning_ball" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 256.0
-margin_right = 1056.0
-margin_bottom = 276.0
-toggle_mode = true
-text = "Lightning Ball"
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="lightning_spray"]
+modulate = Color( 1, 1, 1, 0.607843 )
+position = Vector2( 15, 15 )
+frames = SubResource( 20 )
+animation = "spray"
+playing = true
+script = ExtResource( 11 )
 
-[node name="lightning_tripwire" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 288.0
-margin_right = 1056.0
-margin_bottom = 308.0
+[node name="lightning_ball" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+margin_left = 550.0
+margin_top = 300.0
+margin_right = 580.0
+margin_bottom = 330.0
+rect_scale = Vector2( 6, 6 )
 toggle_mode = true
-text = "Lightning Tripwire"
 
-[node name="vacuum_blast" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 320.0
-margin_right = 1056.0
-margin_bottom = 340.0
-toggle_mode = true
-text = "Vacuum Blast"
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="lightning_ball"]
+modulate = Color( 1, 1, 1, 0.607843 )
+position = Vector2( 15, 15 )
+frames = SubResource( 25 )
+animation = "ball"
+frame = 2
+playing = true
+script = ExtResource( 14 )
 
-[node name="vacuum_bomb" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 352.0
-margin_right = 1056.0
-margin_bottom = 372.0
+[node name="lightning_tripwire" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1012.0
+margin_top = 300.0
+margin_right = 1042.0
+margin_bottom = 330.0
+rect_scale = Vector2( 6, 6 )
 toggle_mode = true
-text = "Vacuum Bomb"
 
-[node name="vacuum_deploy" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 384.0
-margin_right = 1056.0
-margin_bottom = 404.0
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="lightning_tripwire"]
+modulate = Color( 1, 1, 1, 0.607843 )
+position = Vector2( 15, 15 )
+frames = SubResource( 30 )
+animation = "tripwire"
+frame = 1
+playing = true
+script = ExtResource( 16 )
+
+[node name="vacuum_blast" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+margin_left = 88.0
+margin_top = 520.0
+margin_right = 118.0
+margin_bottom = 550.0
+rect_scale = Vector2( 6, 6 )
 toggle_mode = true
-text = "Vacuum Deploy"
+
+[node name="AnimatedSprite7" type="AnimatedSprite" parent="vacuum_blast"]
+modulate = Color( 1, 1, 1, 0.607843 )
+position = Vector2( 15, 15 )
+frames = SubResource( 35 )
+animation = "air"
+frame = 2
+playing = true
+script = ExtResource( 18 )
+
+[node name="vacuum_bomb" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 550.0
+margin_top = 520.0
+margin_right = 580.0
+margin_bottom = 550.0
+rect_scale = Vector2( 6, 6 )
+toggle_mode = true
+
+[node name="AnimatedSprite8" type="AnimatedSprite" parent="vacuum_bomb"]
+modulate = Color( 1, 1, 1, 0.607843 )
+position = Vector2( 15, 15 )
+frames = SubResource( 40 )
+frame = 2
+playing = true
+script = ExtResource( 20 )
+
+[node name="vacuum_deploy" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1012.0
+margin_top = 520.0
+margin_right = 1042.0
+margin_bottom = 550.0
+rect_scale = Vector2( 6, 6 )
+toggle_mode = true
+
+[node name="AnimatedSprite9" type="AnimatedSprite" parent="vacuum_deploy"]
+modulate = Color( 1, 1, 1, 0.607843 )
+position = Vector2( 15, 15 )
+frames = SubResource( 45 )
+frame = 2
+playing = true
+script = ExtResource( 22 )
 
 [node name="Button" type="Button" parent="."]
 margin_right = 41.0
@@ -254,16 +468,28 @@ text = "Start"
 [connection signal="mouse_exited" from="flametrail" to="flametrail/AnimatedSprite3" method="_on_flametrail_mouse_exited"]
 [connection signal="pressed" from="flametrail" to="." method="_on_flametrail_pressed"]
 [connection signal="toggled" from="flametrail" to="." method="_on_flametrail_toggled"]
+[connection signal="mouse_entered" from="lightning_spray" to="lightning_spray/AnimatedSprite4" method="_on_lightning_spray_mouse_entered"]
+[connection signal="mouse_exited" from="lightning_spray" to="lightning_spray/AnimatedSprite4" method="_on_lightning_spray_mouse_exited"]
 [connection signal="pressed" from="lightning_spray" to="." method="_on_lightning_spray_pressed"]
 [connection signal="toggled" from="lightning_spray" to="." method="_on_lightning_spray_toggled"]
+[connection signal="mouse_entered" from="lightning_ball" to="lightning_ball/AnimatedSprite5" method="_on_lightning_ball_mouse_entered"]
+[connection signal="mouse_exited" from="lightning_ball" to="lightning_ball/AnimatedSprite5" method="_on_lightning_ball_mouse_exited"]
 [connection signal="pressed" from="lightning_ball" to="." method="_on_lightning_ball_pressed"]
 [connection signal="toggled" from="lightning_ball" to="." method="_on_lightning_ball_toggled"]
+[connection signal="mouse_entered" from="lightning_tripwire" to="lightning_tripwire/AnimatedSprite6" method="_on_lightning_tripwire_mouse_entered"]
+[connection signal="mouse_exited" from="lightning_tripwire" to="lightning_tripwire/AnimatedSprite6" method="_on_lightning_tripwire_mouse_exited"]
 [connection signal="pressed" from="lightning_tripwire" to="." method="_on_lightning_tripwire_pressed"]
 [connection signal="toggled" from="lightning_tripwire" to="." method="_on_lightning_tripwire_toggled"]
+[connection signal="mouse_entered" from="vacuum_blast" to="vacuum_blast/AnimatedSprite7" method="_on_vacuum_blast_mouse_entered"]
+[connection signal="mouse_exited" from="vacuum_blast" to="vacuum_blast/AnimatedSprite7" method="_on_vacuum_blast_mouse_exited"]
 [connection signal="pressed" from="vacuum_blast" to="." method="_on_vacuum_blast_pressed"]
 [connection signal="toggled" from="vacuum_blast" to="." method="_on_vacuum_blast_toggled"]
+[connection signal="mouse_entered" from="vacuum_bomb" to="vacuum_bomb/AnimatedSprite8" method="_on_vacuum_bomb_mouse_entered"]
+[connection signal="mouse_exited" from="vacuum_bomb" to="vacuum_bomb/AnimatedSprite8" method="_on_vacuum_bomb_mouse_exited"]
 [connection signal="pressed" from="vacuum_bomb" to="." method="_on_vacuum_bomb_pressed"]
 [connection signal="toggled" from="vacuum_bomb" to="." method="_on_vacuum_bomb_toggled"]
+[connection signal="mouse_entered" from="vacuum_deploy" to="vacuum_deploy/AnimatedSprite9" method="_on_vacuum_deploy_mouse_entered"]
+[connection signal="mouse_exited" from="vacuum_deploy" to="vacuum_deploy/AnimatedSprite9" method="_on_vacuum_deploy_mouse_exited"]
 [connection signal="pressed" from="vacuum_deploy" to="." method="_on_vacuum_deploy_pressed"]
 [connection signal="toggled" from="vacuum_deploy" to="." method="_on_vacuum_deploy_toggled"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
