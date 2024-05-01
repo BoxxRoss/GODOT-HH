@@ -1,10 +1,88 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display-weapon3.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon2.gd" type="Script" id=2]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon1.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/weapons_lab.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/Menu_backgrounds/BG_upgrade_blueprint.png" type="Texture" id=5]
+[ext_resource path="res://spritesheets/1.png" type="Texture" id=6]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite2.gd" type="Script" id=7]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite1.gd" type="Script" id=8]
+[ext_resource path="res://spritesheets/2.png" type="Texture" id=9]
+[ext_resource path="res://Rooms/menu_rooms/weapon_labs/sprites_scripts/AnimatedSprite3.gd" type="Script" id=10]
+[ext_resource path="res://spritesheets/3.png" type="Texture" id=12]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Flamebeam",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Flamebeam",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 12 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 12 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 12 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
 
 [node name="weapon_lab_control" type="Control"]
 anchor_right = 1.0
@@ -20,35 +98,64 @@ texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 448.0
-margin_top = 32.0
+margin_top = 20.0
 margin_right = 546.0
-margin_bottom = 46.0
+margin_bottom = 34.0
 rect_scale = Vector2( 4, 4 )
 text = "Pick 3 weapons"
 
-[node name="flamethrower" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 128.0
-margin_right = 1056.0
-margin_bottom = 148.0
+[node name="flamethrower" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 88.0
+margin_top = 80.0
+margin_right = 118.0
+margin_bottom = 110.0
+rect_scale = Vector2( 6, 6 )
 toggle_mode = true
-text = "Flamethrower"
 
-[node name="heatbeam" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 160.0
-margin_right = 1056.0
-margin_bottom = 180.0
-toggle_mode = true
-text = "HeatBeam"
+[node name="AnimatedSprite1" type="AnimatedSprite" parent="flamethrower"]
+modulate = Color( 1, 1, 1, 0.784314 )
+position = Vector2( 15, 15 )
+frames = SubResource( 5 )
+animation = "Flamebeam"
+frame = 2
+playing = true
+script = ExtResource( 8 )
 
-[node name="flametrail" type="Button" parent="."]
-margin_left = 224.0
-margin_top = 192.0
-margin_right = 1056.0
-margin_bottom = 212.0
+[node name="heatbeam" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 550.0
+margin_top = 80.0
+margin_right = 580.0
+margin_bottom = 110.0
+rect_scale = Vector2( 6, 6 )
 toggle_mode = true
-text = "FlameTrail"
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="heatbeam"]
+modulate = Color( 1, 1, 1, 0.784314 )
+position = Vector2( 15, 15 )
+frames = SubResource( 10 )
+animation = "Flamebeam"
+frame = 3
+playing = true
+script = ExtResource( 7 )
+
+[node name="flametrail" type="TextureButton" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1012.0
+margin_top = 80.0
+margin_right = 1042.0
+margin_bottom = 110.0
+rect_scale = Vector2( 6, 6 )
+toggle_mode = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="flametrail"]
+modulate = Color( 1, 1, 1, 0.784314 )
+position = Vector2( 15, 15 )
+frames = SubResource( 15 )
+frame = 2
+playing = true
+script = ExtResource( 10 )
 
 [node name="lightning_spray" type="Button" parent="."]
 margin_left = 224.0
@@ -135,10 +242,16 @@ margin_bottom = 436.0
 rect_scale = Vector2( 4, 4 )
 text = "Start"
 
+[connection signal="mouse_entered" from="flamethrower" to="flamethrower/AnimatedSprite1" method="_on_flamethrower_mouse_entered"]
+[connection signal="mouse_exited" from="flamethrower" to="flamethrower/AnimatedSprite1" method="_on_flamethrower_mouse_exited"]
 [connection signal="pressed" from="flamethrower" to="." method="_on_flamethrower_pressed"]
 [connection signal="toggled" from="flamethrower" to="." method="_on_flamethrower_toggled"]
+[connection signal="mouse_entered" from="heatbeam" to="heatbeam/AnimatedSprite2" method="_on_heatbeam_mouse_entered"]
+[connection signal="mouse_exited" from="heatbeam" to="heatbeam/AnimatedSprite2" method="_on_heatbeam_mouse_exited"]
 [connection signal="pressed" from="heatbeam" to="." method="_on_heatbeam_pressed"]
 [connection signal="toggled" from="heatbeam" to="." method="_on_heatbeam_toggled"]
+[connection signal="mouse_entered" from="flametrail" to="flametrail/AnimatedSprite3" method="_on_flametrail_mouse_entered"]
+[connection signal="mouse_exited" from="flametrail" to="flametrail/AnimatedSprite3" method="_on_flametrail_mouse_exited"]
 [connection signal="pressed" from="flametrail" to="." method="_on_flametrail_pressed"]
 [connection signal="toggled" from="flametrail" to="." method="_on_flametrail_toggled"]
 [connection signal="pressed" from="lightning_spray" to="." method="_on_lightning_spray_pressed"]

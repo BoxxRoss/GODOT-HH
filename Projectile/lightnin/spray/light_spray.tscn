@@ -41,7 +41,7 @@ wait_time = 0.2
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 128, 0 )
-scale = Vector2( 2, 0.5 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 color = Color( 0.4, 0.92549, 0.941176, 1 )
 
