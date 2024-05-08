@@ -392,19 +392,21 @@ script = ExtResource( 17 )
 position = Vector2( 157.5, 71 )
 frames = SubResource( 37 )
 animation = "air_blast"
+frame = 2
 playing = true
 
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
 frames = SubResource( 37 )
 animation = "air_blast"
-frame = 3
+frame = 1
 playing = true
 
 [node name="weapon_3" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
 frames = SubResource( 37 )
 animation = "air_blast"
+frame = 2
 playing = true
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]

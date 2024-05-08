@@ -1,5 +1,4 @@
 extends Light2D
-
 var target : float = 20
 var timer_checker : bool = false
 var target_alpha = 1.00
@@ -7,7 +6,7 @@ var target_alpha = 1.00
 func _ready():
 	randomize()
 	_on_Timer_timeout()
-
+	
 func _process(delta):
 	if target != texture_scale:
 		texture_scale = lerp(texture_scale,target,0.5)
@@ -18,7 +17,7 @@ func _process(delta):
 		_get_target()
 		
 		timer_checker = false
-
+		
 func _get_target():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -26,9 +25,6 @@ func _get_target():
 	var alpha = rand_range(0.7,0.9)
 	target = num
 	target_alpha = alpha
-	
-
-
 func _on_Timer_timeout():
 	timer_checker = true
 	var timer_time = rand_range(0.05,0.10)

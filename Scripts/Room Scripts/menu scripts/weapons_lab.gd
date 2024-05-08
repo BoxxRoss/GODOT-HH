@@ -3,6 +3,17 @@ extends Control
 var weapons_limit = 3
 var weapons_picked = 0
 
+var hand = preload("res://Sprites/Menu_backgrounds/hand.png")
+var hand2 = preload("res://Sprites/Menu_backgrounds/hand-expor2t.png")
+
+var timer_check = false
+var rand_y = 360
+var rand_e = 360
+
+var rand_ene = 1
+var rand_vis = 255
+
+
 var flamethrower = 0
 var lightspray = 0
 var heatbeam = 0
@@ -22,6 +33,8 @@ func _on_Button_pressed():
 	get_tree().change_scene("res://Rooms/menu_rooms/hub_player_level_select.tscn")
 
 func _ready():
+	_on_flicker_timeout()
+	
 	if Global.flame_thrower_activcated == true:
 		$flamethrower.pressed = true
 	if Global.flame_beam_activated == true:
@@ -63,6 +76,33 @@ func _ready():
 		$vacuum_bomb.pressed = false
 	if Global.vacuumdeploy_position == 0:
 		$vacuum_deploy.pressed = false
+
+func _process(delta):
+	$hand.global_position = get_global_mouse_position()
+
+	if Input.is_action_pressed("Shoot"):
+		$hand.texture = hand2
+		if Input.is_action_pressed("Shoot"):
+			$hand.texture = hand2
+	if Input.is_action_just_released("Shoot"):
+		$hand.texture = hand
+		
+	
+	
+	if timer_check:
+		rand_y = rand_range(260,460)
+		rand_e = rand_range(260,460)
+		
+		rand_ene = rand_range(0.5,1.0)
+		rand_vis = rand_range(25,75)
+		
+		timer_check = false
+		
+	$static.position.y = lerp($static.position.y,rand_y,0.5) 
+	$static.modulate.a8 = lerp($static.modulate.a8,rand_vis,0.5)
+	
+	$Light2D.position.y = lerp($Light2D.position.y ,rand_e,0.5) 
+	$Light2D.energy = lerp($Light2D.energy,rand_ene,0.5)
 
 func _on_flamethrower_toggled(button_pressed):
 	
@@ -253,4 +293,11 @@ func _on_move_to_level_pressed():
 		get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
 
 
+
+
+
+func _on_flicker_timeout():
+	timer_check = true
+	$flicker.wait_time = rand_range(0.15,0.3)
+	$flicker.start()
 

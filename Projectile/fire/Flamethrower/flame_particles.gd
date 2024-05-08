@@ -21,8 +21,8 @@ func _ready():
 	$Timer.wait_time = rand_time
 	$Timer.start()
 	self.rotation_degrees = rand_angle
-	large_check = true
-	yield(get_tree().create_timer(0.1), "timeout")
+	large_check = false
+	yield(get_tree().create_timer(0.02), "timeout")
 	large_check = true
 	
 	linear_damp = rand_damp
@@ -37,7 +37,7 @@ func _process(delta):
 	if large_check and timer_check == false:
 		scaler_sprite_x = lerp(scaler_sprite_x, 0.2,0.18)
 		scaler_sprite_y = lerp(scaler_sprite_y, 0.2,0.18)
-				
+		
 		scaler_coll_x = lerp(scaler_coll_x, 2.5,0.18)
 		scaler_coll_y = lerp(scaler_coll_y, 2.5,0.18)
 		

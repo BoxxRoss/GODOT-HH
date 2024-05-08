@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crosshair_GD.png-b2224e5691c7a876e953ea7b4b9b6543.stex"
+path="res://.import/hand-expor2t.png-4da6859e87e5e4b0245d225112fb530f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/crosshair_GD.png"
-dest_files=[ "res://.import/crosshair_GD.png-b2224e5691c7a876e953ea7b4b9b6543.stex" ]
+source_file="res://Sprites/Menu_backgrounds/hand-expor2t.png"
+dest_files=[ "res://.import/hand-expor2t.png-4da6859e87e5e4b0245d225112fb530f.stex" ]
 
 [params]
 

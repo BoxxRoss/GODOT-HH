@@ -39,6 +39,7 @@ settings/fps/force_fps=60
 window/size/width=480
 window/size/height=270
 window/size/fullscreen=true
+mouse_cursor/custom_image="res://Sprites/Menu_backgrounds/Sprite-0004.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

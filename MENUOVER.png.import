@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crosshair_GD.png-b2224e5691c7a876e953ea7b4b9b6543.stex"
+path="res://.import/MENUOVER.png-d953c2260da318928a966beebeb1cde3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/crosshair_GD.png"
-dest_files=[ "res://.import/crosshair_GD.png-b2224e5691c7a876e953ea7b4b9b6543.stex" ]
+source_file="res://MENUOVER.png"
+dest_files=[ "res://.import/MENUOVER.png-d953c2260da318928a966beebeb1cde3.stex" ]
 
 [params]
 
