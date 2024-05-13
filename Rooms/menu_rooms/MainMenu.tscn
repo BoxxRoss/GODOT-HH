@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Menu_backgrounds/MENUOVERLAYE2_black.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sprites/Menu_buttons/menu_button-export1.png" type="Texture" id=8]
 [ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://animations/menu_roomsslide (copy).tres" type="Animation" id=10]
+[ext_resource path="res://Sprites/Menu_backgrounds/logo_rought_t.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -117,10 +118,11 @@ scale = Vector2( 2, 1 )
 texture = ExtResource( 5 )
 texture_scale = 25.0
 
-[node name="static" type="Sprite" parent="."]
-position = Vector2( 0, 360 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
+[node name="logo" type="Sprite" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 0 )
+position = Vector2( 2, 226 )
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 11 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.4
@@ -134,6 +136,7 @@ margin_bottom = 288.0
 rect_scale = Vector2( 8, 2 )
 
 [node name="StartButton" type="TextureButton" parent="VBoxContainer"]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_right = 64.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 8 )
@@ -156,6 +159,7 @@ anims/RESET = SubResource( 2 )
 "anims/slide (copy)" = ExtResource( 10 )
 
 [node name="Optionsbutton" type="TextureButton" parent="VBoxContainer"]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_top = 36.0
 margin_right = 64.0
 margin_bottom = 68.0
@@ -180,6 +184,7 @@ anims/RESET = SubResource( 3 )
 anims/options_slide = SubResource( 4 )
 
 [node name="Quitbutton" type="TextureButton" parent="VBoxContainer"]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_top = 72.0
 margin_right = 64.0
 margin_bottom = 104.0
@@ -204,6 +209,7 @@ anims/quit_slide = SubResource( 6 )
 
 [node name="test_level" type="TextureButton" parent="VBoxContainer"]
 visible = false
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_top = 108.0
 margin_right = 64.0
 margin_bottom = 140.0
@@ -221,6 +227,12 @@ custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 1 )
 text = "test"
 align = 1
+
+[node name="static" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.419608 )
+position = Vector2( 0, 360 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
 
 [node name="back" type="Sprite" parent="."]
 modulate = Color( 0.588235, 0.588235, 0.588235, 1 )

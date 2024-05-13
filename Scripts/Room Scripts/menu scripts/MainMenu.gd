@@ -33,6 +33,7 @@ func enter():
 		start_button.modulate.a += 0.09
 		options_button.modulate.a += 0.09
 		quit_button.modulate.a += 0.09
+		$logo.modulate.a += 0.09
 		
 
 func _ready():
@@ -59,7 +60,7 @@ func _process(delta):
 		rand_e = rand_range(260,460)
 		
 		rand_ene = rand_range(0.5,1.0)
-		rand_vis = rand_range(25,250)
+		rand_vis = rand_range(25,100)
 		
 		timer_check = false
 		
@@ -100,6 +101,7 @@ func transition():
 		start_button.modulate.a -= 0.09
 		options_button.modulate.a -= 0.09
 		quit_button.modulate.a -= 0.09
+		$logo.modulate.a -= 0.2
 		
 		
 			

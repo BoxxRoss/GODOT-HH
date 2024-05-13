@@ -215,6 +215,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="back" type="TextureButton" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_left = -8.0
 margin_top = 450.0
 margin_right = 56.0
@@ -237,6 +238,7 @@ anims/RESET = SubResource( 3 )
 anims/down_slide = SubResource( 4 )
 
 [node name="1" type="TextureButton" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_left = 64.0
 margin_top = 128.0
 margin_right = 128.0
@@ -259,6 +261,7 @@ anims/RESET = SubResource( 7 )
 "anims/slide down" = SubResource( 8 )
 
 [node name="2" type="TextureButton" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_left = 64.0
 margin_top = 128.0
 margin_right = 128.0
@@ -282,6 +285,7 @@ anims/RESET = SubResource( 9 )
 "anims/slide down middle" = SubResource( 11 )
 
 [node name="3" type="TextureButton" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_left = 64.0
 margin_top = 128.0
 margin_right = 128.0
@@ -323,6 +327,7 @@ texture = ExtResource( 10 )
 texture_scale = 15.0
 
 [node name="instructions" type="Label" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_left = 123.0
 margin_top = 14.0
 margin_right = 1145.0
@@ -335,6 +340,7 @@ text = "Pick which slot the weapon goes in"
 align = 1
 
 [node name="selected" type="Label" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 margin_left = 180.0
 margin_top = 384.0
 margin_right = 780.0
