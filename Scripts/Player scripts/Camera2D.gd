@@ -9,6 +9,9 @@ func _ready():
 	noise.seed = randi()
 	noise.period = 4
 	noise.octaves = 2
+	
+	zoom = Vector2(0.5,0.5)
+	zoomout()
 
 var spd = 0.1
 var radius_req = 150
@@ -22,6 +25,13 @@ export var max_roll = 0.0  # Maximum rotation in radians (use sparingly).
 
 var trauma = 0.0  # Current shake strength.
 var trauma_power = 2  # Trauma exponent. Use [2, 3].
+
+func zoomout():
+	while zoom < Vector2(1.5,1.5):
+		yield(get_tree().create_timer(0.025), "timeout")
+		zoom.x = lerp(zoom.x,1.5,0.1)
+		zoom.y = lerp(zoom.y,1.5,0.1)
+		print(zoom)
 
 func add_trauma_minor(amount):
 	trauma = min(trauma + amount, 0.15)

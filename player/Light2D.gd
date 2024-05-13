@@ -3,9 +3,13 @@ var target : float = 20
 var timer_checker : bool = false
 var target_alpha = 1.00
 
+var start_checker = false
+
 func _ready():
 	randomize()
 	_on_Timer_timeout()
+	modulate.a = 0
+	lighten()
 	
 func _process(delta):
 	if target != texture_scale:
@@ -18,6 +22,13 @@ func _process(delta):
 		
 		timer_checker = false
 		
+func lighten():
+	
+	while modulate.a < 1.0:
+		yield(get_tree().create_timer(0.05), "timeout")
+		modulate.a += 0.001
+		
+		
 func _get_target():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -25,6 +36,7 @@ func _get_target():
 	var alpha = rand_range(0.7,0.9)
 	target = num
 	target_alpha = alpha
+	
 func _on_Timer_timeout():
 	timer_checker = true
 	var timer_time = rand_range(0.05,0.10)

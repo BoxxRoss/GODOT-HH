@@ -4,22 +4,22 @@ var num
 
 func _process(delta):
 	if Global.flamethrower_position == num:
-		self.text = ("Slot " + str(num) + ":\nFlame-Thrower")
+		self.text = (str(num) + ":Flame-Thrower")
 	elif Global.flamebeam_position == num:
-		self.text = ("Slot " + str(num) + ":\nFlame-Beam")
+		self.text = (str(num) + ":Flame-Beam")
 	elif Global.flametrail_position == num:
-		self.text = ("Slot " + str(num) + ":\nFlame-Trail")
+		self.text = (str(num) + ":Flame-Trail")
 	elif Global.lightball_position == num:
-		self.text = ("Slot " + str(num) + ":\nLightning-Ball")
+		self.text = (str(num) + ":Lightning-Ball")
 	elif Global.lightspray_position == num:
-		self.text = ("Slot " + str(num) + ":\nLightning-Spray")
+		self.text = (str(num) + ":Lightning-Spray")
 	elif Global.lighttrip_position == num:
-		self.text = ("Slot " + str(num) + ":\nLightning-Tripwire")
+		self.text = (str(num) + ":Lightning-Tripwire")
 	elif Global.vacuumblast_position == num:
-		self.text = ("Slot " + str(num) + ":\nVacuum-Blast")
+		self.text = (str(num) + ":Vacuum-Blast")
 	elif Global.vacuumbomb_position == num:
-		self.text = ("Slot " + str(num) + ":\nVacuum-Bomb")
+		self.text = (str(num) + ":Vacuum-Bomb")
 	elif Global.vacuumdeploy_position == num:
-		self.text = ("Slot " + str(num) + ":\nVacuum-Deploy")
+		self.text = (str(num) + ":Vacuum-Deploy")
 	else:
-		self.text = ("Slot " + str(num) + ":\nNone")
+		self.text = (str(num) + ":None")

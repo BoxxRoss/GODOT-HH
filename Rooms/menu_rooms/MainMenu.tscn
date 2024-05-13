@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Room Scripts/menu scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Menu_backgrounds/MENUOVERLAYE2_black.png" type="Texture" id=2]
@@ -6,6 +6,93 @@
 [ext_resource path="res://Sprites/Menu_backgrounds/MENUOVERLAYER1.png" type="Texture" id=4]
 [ext_resource path="res://Projectile/fire/Flamethrower/light_32x32.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Menu_backgrounds/hand.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Menu_buttons/Better_menu-expor_hovort.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Menu_buttons/menu_button-export1.png" type="Texture" id=8]
+[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://animations/menu_roomsslide (copy).tres" type="Animation" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 36 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "options_slide"
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.96 ),
+"transitions": PoolRealArray( 0.341511, 2.92817, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 36 ), Vector2( 10, 36 ), Vector2( -90, 36 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 72 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "quit_slide"
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.96 ),
+"transitions": PoolRealArray( 0.341511, 2.92817, 2.92817 ),
+"update": 0,
+"values": [ Vector2( 0, 72 ), Vector2( -10, 72 ), Vector2( 90, 72 ) ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_left = 0.5
@@ -24,76 +111,122 @@ position = Vector2( 0, 360 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -2, 346 )
+scale = Vector2( 2, 1 )
+texture = ExtResource( 5 )
+texture_scale = 25.0
+
 [node name="static" type="Sprite" parent="."]
 position = Vector2( 0, 360 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
-[node name="back" type="Sprite" parent="."]
-modulate = Color( 0.53418, 0.53418, 0.53418, 1 )
-position = Vector2( 0, 360 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( -4, 348 )
-scale = Vector2( 2, 1 )
-texture = ExtResource( 5 )
-texture_scale = 25.0
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.4
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.671
 anchor_bottom = 0.5
-margin_left = -258.0
-margin_top = 210.0
-margin_right = -8.0
-margin_bottom = 374.0
-rect_scale = Vector2( 2, 2 )
+margin_left = -250.0
+margin_top = 148.0
+margin_right = -186.0
+margin_bottom = 288.0
+rect_scale = Vector2( 8, 2 )
 
-[node name="random_level" type="Button" parent="VBoxContainer"]
-visible = false
-margin_right = 250.0
-margin_bottom = 20.0
-text = "Random Level"
+[node name="StartButton" type="TextureButton" parent="VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 7 )
 
-[node name="Start_Story" type="Button" parent="VBoxContainer"]
-visible = false
-margin_top = 24.0
-margin_right = 250.0
-margin_bottom = 44.0
-text = "Start map 2"
+[node name="Label" type="Label" parent="VBoxContainer/StartButton"]
+margin_left = 19.25
+margin_top = 3.0
+margin_right = 119.25
+margin_bottom = 53.0
+rect_scale = Vector2( 0.25, 0.5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
+text = "Start"
+align = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-margin_right = 250.0
-margin_bottom = 20.0
-text = "Start map 1"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/StartButton"]
+anims/RESET = SubResource( 2 )
+"anims/slide (copy)" = ExtResource( 10 )
 
-[node name="Optionsbutton" type="Button" parent="VBoxContainer"]
-margin_top = 24.0
-margin_right = 250.0
-margin_bottom = 44.0
+[node name="Optionsbutton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 64.0
+margin_bottom = 68.0
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Optionsbutton"]
+margin_left = 13.5
+margin_top = 3.0
+margin_right = 153.5
+margin_bottom = 53.0
+rect_scale = Vector2( 0.25, 0.5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
 text = "Options"
+align = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-visible = false
-margin_top = 48.0
-margin_right = 250.0
-margin_bottom = 68.0
-text = "to test menu"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Optionsbutton"]
+anims/RESET = SubResource( 3 )
+"anims/menu_roomsslide (copy)" = ExtResource( 10 )
+anims/options_slide = SubResource( 4 )
 
-[node name="test_level" type="Button" parent="VBoxContainer"]
-margin_top = 48.0
-margin_right = 250.0
-margin_bottom = 68.0
-text = "to test level"
-
-[node name="Quitbutton" type="Button" parent="VBoxContainer"]
+[node name="Quitbutton" type="TextureButton" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 250.0
-margin_bottom = 92.0
+margin_right = 64.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Quitbutton"]
+margin_left = 19.25
+margin_top = 3.0
+margin_right = 119.25
+margin_bottom = 53.0
+rect_scale = Vector2( 0.25, 0.5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
 text = "Quit"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Quitbutton"]
+anims/RESET = SubResource( 5 )
+anims/quit_slide = SubResource( 6 )
+
+[node name="test_level" type="TextureButton" parent="VBoxContainer"]
+visible = false
+margin_top = 108.0
+margin_right = 64.0
+margin_bottom = 140.0
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="VBoxContainer/test_level"]
+margin_left = 19.25
+margin_top = 3.0
+margin_right = 119.25
+margin_bottom = 53.0
+rect_scale = Vector2( 0.25, 0.5 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
+text = "test"
+align = 1
+
+[node name="back" type="Sprite" parent="."]
+modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
+position = Vector2( 0, 360 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
 
 [node name="hand" type="Sprite" parent="."]
 position = Vector2( 620, 168 )
@@ -103,9 +236,6 @@ centered = false
 offset = Vector2( -20, -15 )
 
 [connection signal="timeout" from="flicker" to="." method="_on_flicker_timeout"]
-[connection signal="pressed" from="VBoxContainer/random_level" to="." method="_on_random_level_pressed"]
-[connection signal="pressed" from="VBoxContainer/Start_Story" to="." method="_on_Start_Story_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/test_level" to="." method="_on_test_level_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quitbutton" to="." method="_on_Quitbutton_pressed"]
+[connection signal="pressed" from="VBoxContainer/test_level" to="." method="_on_test_level_pressed"]

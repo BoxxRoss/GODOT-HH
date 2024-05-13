@@ -27,55 +27,86 @@ var vacuumbomb = 0
 var vacuumdeploy = 0
 
 func to_weapon_select():
+	exit()
+	yield(get_tree().create_timer(1.5), "timeout")	
 	get_tree().change_scene("res://Rooms/menu_rooms/weapon_labs/weapon_position_pick.tscn")
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://Rooms/menu_rooms/hub_player_level_select.tscn")
+	exit()
+	yield(get_tree().create_timer(1.5), "timeout")
+	get_tree().change_scene("res://Rooms/menu_rooms/MainMenu.tscn")
 
+func exit():
+	$move_to_level/AnimationPlayer.play("up_slide")
+	$Button/AnimationPlayer.play("down_slide")
+	
+	while $Control.modulate.a > 0 or $move_to_level.modulate.a > 0 or $Button.modulate.a > 0:
+		yield(get_tree().create_timer(0.08), "timeout")
+		$Control.modulate.a -= 0.1
+		$move_to_level.modulate.a -= 0.1
+		$Button.modulate.a -= 0.1
+		$Control2.modulate.a -= 0.1
+		
+func enter():
+	$move_to_level/AnimationPlayer.play_backwards("up_slide")
+	$Button/AnimationPlayer.play_backwards("down_slide")
+	
+	while $Control.modulate.a < 1.0 or $move_to_level.modulate.a < 1.0 or $Button.modulate.a < 1.0:
+		yield(get_tree().create_timer(0.08), "timeout")
+		$Control.modulate.a += 0.1
+		$move_to_level.modulate.a += 0.1
+		$Button.modulate.a += 0.1
+		$Control2.modulate.a += 0.1
+		
 func _ready():
 	_on_flicker_timeout()
+	$Control.modulate.a = 0
+	$Control2.modulate.a = 0
+	$move_to_level.modulate.a = 0
+	$Button.modulate.a = 0
+	enter()
 	
 	if Global.flame_thrower_activcated == true:
-		$flamethrower.pressed = true
+		$Control/flamethrower.pressed = true
 	if Global.flame_beam_activated == true:
-		$heatbeam.pressed = true
+		$Control/heatbeam.pressed = true
 	if Global.flame_trail_activated == true:
-		$flametrail.pressed = true
+		$Control/flametrail.pressed = true
 		
 	if Global.lightning_ball_activated == true:
-		$lightning_ball.pressed = true	
+		$Control/lightning_ball.pressed = true	
 	if Global.lightning_spray_activated == true:
-		$lightning_spray.pressed = true
+		$Control/lightning_spray.pressed = true
 	if Global.lightning_tripwire_activated == true:
-		$lightning_tripwire.pressed = true
+		$Control/lightning_tripwire.pressed = true
 		
 	if Global.vacuum_blast_activated == true:
-		$vacuum_blast.pressed = true
+		$Control/vacuum_blast.pressed = true
 	if Global.vacuum_bomb_activated == true:
-		$vacuum_bomb.pressed = true
+		$Control/vacuum_bomb.pressed = true
 	if Global.vacuum_deploy_activated == true:
-		$vacuum_deploy.pressed = true
+		$Control/vacuum_deploy.pressed = true
 		
 	if Global.flamethrower_position == 0:
-		$flamethrower.pressed = false
+		$Control/flamethrower.pressed = false
 	if Global.flamebeam_position == 0:
-		$heatbeam.pressed = false
+		$Control/heatbeam.pressed = false
 	if Global.flametrail_position == 0:
-		$flametrail.pressed = false
+		$Control/flametrail.pressed = false
 		
 	if Global.lightspray_position == 0:
-		$lightning_spray.pressed = false
+		$Control/lightning_spray.pressed = false
 	if Global.lightball_position == 0:
-		$lightning_ball.pressed = false
+		$Control/lightning_ball.pressed = false
 	if Global.lighttrip_position == 0:
-		$lightning_tripwire.pressed = false
+		$Control/lightning_tripwire.pressed = false
 		
 	if Global.vacuumblast_position == 0:
-		$vacuum_blast.pressed = false
+		$Control/vacuum_blast.pressed = false
 	if Global.vacuumbomb_position == 0:
-		$vacuum_bomb.pressed = false
+		$Control/vacuum_bomb.pressed = false
 	if Global.vacuumdeploy_position == 0:
-		$vacuum_deploy.pressed = false
+		$Control/vacuum_deploy.pressed = false
 
 func _process(delta):
 	$hand.global_position = get_global_mouse_position()
@@ -137,7 +168,7 @@ func _on_heatbeam_toggled(button_pressed):
 		Global.flame_beam_activated = false
 		Global.flamebeam_position = 0
 	else:
-		$heatbeam.pressed = false
+		$Control/heatbeam.pressed = false
 
 func _on_flametrail_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -153,7 +184,7 @@ func _on_flametrail_toggled(button_pressed):
 		Global.flame_trail_activated = false
 		Global.flametrail_position = 0
 	else:
-		$flametrail.pressed = false
+		$Control/flametrail.pressed = false
 
 func _on_lightning_spray_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -169,7 +200,7 @@ func _on_lightning_spray_toggled(button_pressed):
 		Global.lightning_spray_activated = false
 		Global.lightspray_position = 0
 	else:
-		$lightning_spray.pressed = false
+		$Control/lightning_spray.pressed = false
 
 func _on_lightning_ball_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -185,7 +216,7 @@ func _on_lightning_ball_toggled(button_pressed):
 		Global.lightning_ball_activated = false
 		Global.lightball_position = 0
 	else:
-		$lightning_ball.pressed = false
+		$Control/lightning_ball.pressed = false
 
 func _on_lightning_tripwire_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -201,7 +232,7 @@ func _on_lightning_tripwire_toggled(button_pressed):
 		Global.lightning_tripwire_activated = false
 		Global.lighttrip_position = 0
 	else:
-		$lightning_tripwire.pressed = false
+		$Control/lightning_tripwire.pressed = false
 
 func _on_vacuum_blast_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -217,7 +248,7 @@ func _on_vacuum_blast_toggled(button_pressed):
 		Global.vacuum_blast_activated = false
 		Global.vacuumblast_position = 0
 	else:
-		$vacuum_blast.pressed = false
+		$Control/vacuum_blast.pressed = false
 
 func _on_vacuum_bomb_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -232,7 +263,7 @@ func _on_vacuum_bomb_toggled(button_pressed):
 		Global.vacuum_bomb_activated = false
 		Global.vacuumbomb_position = 0
 	else:
-		$vacuum_bomb.pressed = false
+		$Control/vacuum_bomb.pressed = false
 
 func _on_vacuum_deploy_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -247,9 +278,7 @@ func _on_vacuum_deploy_toggled(button_pressed):
 		Global.vacuum_deploy_activated = false
 		Global.vacuumdeploy_position = 0
 	else:
-		$vacuum_deploy.pressed = false
-
-
+		$Control/vacuum_deploy.pressed = false
 
 func _on_flamethrower_pressed():
 	if flamethrower == 1:
@@ -287,17 +316,14 @@ func _on_vacuum_deploy_pressed():
 	if vacuumdeploy == 1:
 		to_weapon_select()
 
-
 func _on_move_to_level_pressed():
-	if Global.level_id_picked == 1:
-		get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
-
-
-
-
+	exit()
+	yield(get_tree().create_timer(1.5), "timeout")
+	get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
 
 func _on_flicker_timeout():
 	timer_check = true
 	$flicker.wait_time = rand_range(0.15,0.3)
 	$flicker.start()
+
 
