@@ -28,12 +28,12 @@ var vacuumdeploy = 0
 
 func to_weapon_select():
 	exit()
-	yield(get_tree().create_timer(1.5), "timeout")	
+	yield(get_tree().create_timer(1), "timeout")	
 	get_tree().change_scene("res://Rooms/menu_rooms/weapon_labs/weapon_position_pick.tscn")
 
 func _on_Button_pressed():
 	exit()
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	get_tree().change_scene("res://Rooms/menu_rooms/MainMenu.tscn")
 
 func exit():
@@ -318,7 +318,9 @@ func _on_vacuum_deploy_pressed():
 
 func _on_move_to_level_pressed():
 	exit()
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
+	darken()
+	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
 
 func _on_flicker_timeout():
@@ -326,4 +328,7 @@ func _on_flicker_timeout():
 	$flicker.wait_time = rand_range(0.15,0.3)
 	$flicker.start()
 
-
+func darken():
+	while $Sprite.modulate.a != 1.0:
+		yield(get_tree().create_timer(0.01), "timeout")
+		$Sprite.modulate.a += 0.05

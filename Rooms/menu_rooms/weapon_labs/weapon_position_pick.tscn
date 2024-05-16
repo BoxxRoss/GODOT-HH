@@ -324,7 +324,7 @@ texture = ExtResource( 2 )
 position = Vector2( 512, 256 )
 scale = Vector2( 2, 1 )
 texture = ExtResource( 10 )
-texture_scale = 15.0
+texture_scale = 25.0
 
 [node name="instructions" type="Label" parent="."]
 modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
@@ -350,6 +350,7 @@ text = "Slot curretnly selected:"
 script = ExtResource( 11 )
 
 [node name="hand" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 1600, 64 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 8 )

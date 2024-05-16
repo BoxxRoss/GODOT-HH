@@ -74,7 +74,7 @@ func _on_StartButton_pressed():
 	
 	transition()
 	
-	yield(get_tree().create_timer(1.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	get_tree().change_scene("res://Rooms/menu_rooms/weapon_labs/weapons_lab.tscn")
 	level_chosen_from_menu = 1
 	Global.level_id_picked = level_chosen_from_menu

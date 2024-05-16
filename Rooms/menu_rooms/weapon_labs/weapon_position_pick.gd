@@ -307,7 +307,9 @@ func _on_1_pressed():
 	if weapon_selected == 9:
 		num = 1
 		change_deploy(num)
-	
+	exit()
+	yield(get_tree().create_timer(1), "timeout")
+	get_tree().change_scene("res://Rooms/menu_rooms/weapon_labs/weapons_lab.tscn")
 func _on_2_pressed():
 	emit_signal("num_change", 2)
 	if weapon_selected == 1:
@@ -345,7 +347,9 @@ func _on_2_pressed():
 	if weapon_selected == 9:
 		num = 2
 		change_deploy(num)
-		
+	exit()
+	yield(get_tree().create_timer(1), "timeout")
+	get_tree().change_scene("res://Rooms/menu_rooms/weapon_labs/weapons_lab.tscn")
 func _on_3_pressed():
 	emit_signal("num_change", 3)
 	if weapon_selected == 1:
@@ -383,7 +387,9 @@ func _on_3_pressed():
 	if weapon_selected == 9:
 		num = 3
 		change_deploy(num)
-		
+	exit()
+	yield(get_tree().create_timer(1), "timeout")
+	get_tree().change_scene("res://Rooms/menu_rooms/weapon_labs/weapons_lab.tscn")
 func _on_back_pressed():
 	exit()
 	yield(get_tree().create_timer(1), "timeout")

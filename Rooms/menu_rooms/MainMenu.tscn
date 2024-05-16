@@ -235,12 +235,12 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="back" type="Sprite" parent="."]
-modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
 position = Vector2( 0, 360 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 
 [node name="hand" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 620, 168 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 6 )

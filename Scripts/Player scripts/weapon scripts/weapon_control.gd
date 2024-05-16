@@ -97,12 +97,15 @@ func _inputchecks():
 	if Input.is_action_pressed("Switch to weapon1"):
 		weapon_select = 1
 		emit_signal("weapon_changed", weapon_select)
+		$projecitlepoint/Light2D.texture_scale = 0
 	if Input.is_action_pressed("Switch to weapon2"):
 		weapon_select = 2
 		emit_signal("weapon_changed", weapon_select)
+		$projecitlepoint/Light2D.texture_scale = 0
 	if Input.is_action_pressed("Switch to weapon3"):
 		weapon_select = 3
 		emit_signal("weapon_changed", weapon_select)
+		$projecitlepoint/Light2D.texture_scale = 0
 
 			
 	if Input.is_action_just_pressed("Breath"):
@@ -158,6 +161,7 @@ func _inputchecks():
 			
 		
 	if Input.is_action_just_released("Shoot") and can_fire_light_ball and stamina > 10 and is_breathing != true and weapon_select == Global.lightball_position:
+		$projecitlepoint/Light2D.texture_scale = 0
 		Global.beam_active = false
 
 		Global.charge_balls = charge_ball

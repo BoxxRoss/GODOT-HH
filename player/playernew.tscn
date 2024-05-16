@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Scripts/Player scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://player/health.gd" type="Script" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://spritesheets/9.png" type="Texture" id=25]
 [ext_resource path="res://spritesheets/7.png" type="Texture" id=26]
 [ext_resource path="res://spritesheets/8.png" type="Texture" id=27]
+[ext_resource path="res://icon.png" type="Texture" id=28]
 
 [sub_resource type="OccluderPolygon2D" id=28]
 polygon = PoolVector2Array( -3, -5, -6, 0, -3, 5, -7, 0 )
@@ -392,22 +393,25 @@ script = ExtResource( 17 )
 position = Vector2( 157.5, 71 )
 frames = SubResource( 37 )
 animation = "air_blast"
+frame = 3
 playing = true
 
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
 frames = SubResource( 37 )
 animation = "air_blast"
-frame = 3
+frame = 2
 playing = true
 
 [node name="weapon_3" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
 frames = SubResource( 37 )
 animation = "air_blast"
+frame = 3
 playing = true
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
+visible = false
 margin_left = 581.333
 margin_top = 282.667
 margin_right = 837.333
@@ -527,6 +531,11 @@ rotate = false
 
 [node name="Position2D" type="Position2D" parent="Path2D2_special/PathFollow2D"]
 position = Vector2( -1.85709, -0.388626 )
+
+[node name="black_effect" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 18, 10 )
+texture = ExtResource( 28 )
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
 [connection signal="camera_zoom_out" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]

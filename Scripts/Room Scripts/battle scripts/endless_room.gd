@@ -17,8 +17,8 @@ var rand_time = null
 
 var swarm = false
 
-var lowest_time : float = 5.0
-var longest_time : float = 5.0
+var lowest_time : float = 35.0
+var longest_time : float = 65.0
 
 var rand_enemy_value = null
 var rand_special_enemy_value = null
@@ -197,13 +197,13 @@ func _on_swarm_timer_timeout():
 	
 
 	
-	var rand_swarm_time = rand_range(5.0,6.0)
+	var rand_swarm_time = rand_range(25.0,35.0)
 	swarm = true
 	yield(get_tree().create_timer(rand_swarm_time), "timeout")
 	Global.swarm_just_ended = true
 	swarm = false
 	
-	var rand_buffer_swarm = rand_range(5.0,5.0)
+	var rand_buffer_swarm = rand_range(25.0,35.0)
 	yield(get_tree().create_timer(rand_buffer_swarm), "timeout")
 	lowest_time = lowest_time - 2.5
 	longest_time = longest_time - 2.5

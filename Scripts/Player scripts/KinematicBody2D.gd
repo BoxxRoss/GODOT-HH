@@ -46,7 +46,7 @@ var placehold = 0
 
 func _ready():
 	emit_signal("damage_taken", health)
-
+	light()
 func _physics_process(_delta):
 	var motion = Vector2()
 	move = false
@@ -185,3 +185,8 @@ func take_a_hit():
 
 func _on_Area2D3_body_entered(body):
 	body.turn_on_coll()
+	
+func light():
+	while $black_effect.modulate.a != 0:
+		yield(get_tree().create_timer(0.03), "timeout")
+		$black_effect.modulate.a -= 0.05
