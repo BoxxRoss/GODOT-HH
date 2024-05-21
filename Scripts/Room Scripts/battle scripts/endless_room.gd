@@ -4,7 +4,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [5,5,5,1,5]
+var enemy_options = [3,3,3,3,3]
 var special_enemy_options = [3,3,3]
 var walker_intensity_float = null
 var walker_intensity = null
@@ -17,8 +17,8 @@ var rand_time = null
 
 var swarm = false
 
-var lowest_time : float = 35.0
-var longest_time : float = 65.0
+var lowest_time : float = 5.0
+var longest_time : float = 5.0
 
 var rand_enemy_value = null
 var rand_special_enemy_value = null
@@ -30,7 +30,7 @@ func _ready():
 	walker_intensity_float = rand_range(13000.0, 17000.0)
 	walker_intensity = int(walker_intensity_float)
 	
-	var map_options = [1,2,3,4,5]
+	var map_options = [3,3,3,3,3]
 	var rand_map_value = map_options[randi() % map_options.size()]
 
 	if rand_map_value == 1:
@@ -55,7 +55,7 @@ func _ready():
 		tile_selected = TILE_5
 	
 	rand_time = rand_range(lowest_time,longest_time)
-
+	Global.enemy_score = 0
 
 	rand_value = spawn_options[randi() % spawn_options.size()]
 	if rand_value == 1:
@@ -82,19 +82,20 @@ func _ready():
 	Rand_enemy_choice()
 	
 func Rand_enemy_choice():
-	for i in range(6):
-		var rand_enemy_choice_float = rand_range(1,2.999)
+	for i in range(9):
+		var rand_enemy_choice_float = rand_range(1,5.999)
 		var rand_enemy_choice_int = int(rand_enemy_choice_float)
 
 		#enemy_options.insert(i + 1,rand_enemy_choice_int)
-		#reenable when its time for enemy pattern's to be randomized
+	
+	print(enemy_options)
 	
 func _physics_process(delta):
-	if lowest_time <= 30:
-		lowest_time = 30
-	if longest_time <= 60:
-		longest_time = 60
-		
+	pass
+	#if lowest_time <= 30:
+		#lowest_time = 30
+	#if longest_time <= 60:
+		#longest_time = 60
 func generate_level():
 
 	var walker = Walker.new(Vector2(76,41), borders)
@@ -121,7 +122,7 @@ func _on_enemy_spawn_timer_timeout():
 	$KinematicBody2D/Path2D/PathFollow2D.offset = rng.randi_range(0, 1750)
 	
 	var base = enemy_1.instance()
-	var slim = enemy_slim.instance()
+	var _range = enemy_range.instance()
 	var horse = enemy_horse.instance()
 	var wall_walker = enemy_wall_walker.instance()
 	var wimp = enemy_wimp.instance()
@@ -131,9 +132,9 @@ func _on_enemy_spawn_timer_timeout():
 	if rand_enemy_value == 1:
 		enemy_chosen = base
 	if rand_enemy_value == 2:
-		enemy_chosen = slim
+		enemy_chosen = _range
 	if rand_enemy_value == 3:
-		enemy_chosen = horse
+		enemy_chosen = wimp
 	if rand_enemy_value == 4:
 		enemy_chosen = wall_walker
 	if rand_enemy_value == 5:
@@ -164,7 +165,7 @@ func _on_Timer_timeout():
 		rand_1_y = rand_range(2000,6000)
 	
 	var base = enemy_1.instance()
-	var slim = enemy_slim.instance()
+	var _range = enemy_range.instance()
 	var horse = enemy_horse.instance()
 	var wall_walker = enemy_wall_walker.instance()
 	var wimp = enemy_wimp.instance()
@@ -174,9 +175,9 @@ func _on_Timer_timeout():
 	if rand_enemy_value == 1:
 		enemy_chosen = base
 	if rand_enemy_value == 2:
-		enemy_chosen = slim
+		enemy_chosen = _range
 	if rand_enemy_value == 3:
-		enemy_chosen = horse
+		enemy_chosen = wimp
 	if rand_enemy_value == 4:
 		enemy_chosen = wall_walker
 	if rand_enemy_value == 5:
@@ -212,7 +213,7 @@ func _on_swarm_timer_timeout():
 	$swarm_timer.start()
 	
 
-
+"""
 func _on_special_enemy_spawn_timer_timeout():
 	var new_time_float = rand_range(25.0,35.0)
 	var new_time = int(new_time_float)
@@ -235,8 +236,9 @@ func _on_special_enemy_spawn_timer_timeout():
 	var enemy_spawn_point = $KinematicBody2D/Path2D2_special/PathFollow2D.global_position
 	enemy_chosen.position = enemy_spawn_point/1
 	
-	
+
 	
 	if Global.enemy_score != enemy_limit:
 		add_child(enemy_chosen)
 		Global.enemy_score += 20
+"""

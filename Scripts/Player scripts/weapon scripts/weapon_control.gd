@@ -83,6 +83,7 @@ signal weapon_changed
 
 func _ready():
 	emit_signal("weapon_changed", weapon_select)
+	Global.beam_active = false
 	
 
 func _physics_process(delta):

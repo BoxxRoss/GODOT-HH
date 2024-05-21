@@ -27,7 +27,6 @@ func _ready():
 func generate_level():
 	var walker = Walker.new(Vector2(76,41), borders)
 	var map = walker.walk(walker_intensity)	
-	print(playerspot)
 	var player = Player.instance()
 	add_child(player)
 	player.position = playerspot

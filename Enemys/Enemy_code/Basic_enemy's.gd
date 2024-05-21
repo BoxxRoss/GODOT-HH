@@ -50,6 +50,7 @@ var checker_1 = true
 var rand_x_patrol = rand_range(100,12000)
 var rand_y_patrol = rand_range(100,6500)
 
+var hit_by_blast
 
 var distracted = false
 var distracted_by_deployed = 0
@@ -86,10 +87,17 @@ func unstuck_in_vac_bomb():
 	stuck_in_vac_bomb = false
 
 func be_slowed(concussive):
+	
+	if enemy_is_horse_go == true or enemy_is_horse == true:
+		enemy_death()
+		
+	print(enemy_is_horse_go)
 	var time_concussed = concussive
 	slowed = true
+	
 	yield(get_tree().create_timer(time_concussed), "timeout")
 	slowed = false
+
 
 func Vac():
 	if Global.enemies_in_Vac <= 1:
@@ -238,7 +246,7 @@ func _physics_process(delta):
 		ENEMYhealth -= new_damage * weak
 		
 	if hurt == true and rock != true:
-		print(ENEMYhealth)
+	
 		ENEMYhealth -= damage_dealt * weak
 		
 

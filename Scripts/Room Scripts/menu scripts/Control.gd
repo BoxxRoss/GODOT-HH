@@ -30,26 +30,26 @@ func _physics_process(delta):
 	
 func alert_to_swarm():
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-250),0.1)
-	popup.position = lerp(popup.position, Vector2(-230,-208),0.15)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-250),0.2)
+	popup.position = lerp(popup.position, Vector2(-230,-208),0.25)
 
 	yield(get_tree().create_timer(display_time), "timeout")
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-400),0.1)
-	popup.position = lerp(popup.position, Vector2(-230,-400),0.07)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-400),0.2)
+	popup.position = lerp(popup.position, Vector2(-230,-400),0.17)
 	
 	Global.swarm_just_started = false
 	
 	
 func alert_to_swarm_end():
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-260),0.1)
-	popup.position = lerp(popup.position, Vector2(-230,-130),0.15)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-260),0.2)
+	popup.position = lerp(popup.position, Vector2(-230,-130),0.25)
 	
 	yield(get_tree().create_timer(display_time), "timeout")
 	
-	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-500),0.1)
-	popup.position = lerp(popup.position, Vector2(-230,-400),0.07)
+	swarm.rect_position = lerp(swarm.rect_position, Vector2(-368,-500),0.2)
+	popup.position = lerp(popup.position, Vector2(-230,-400),0.17)
 	
 	Global.swarm_just_ended = false
 

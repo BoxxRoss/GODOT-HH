@@ -14,8 +14,9 @@ func _ready() -> void:
 	
 func _physics_process(delta):
 	
-	if checker_1_horse == false:
+	if checker_1_horse == true:
 		look_at(Player.position)
+		checker_1_horse = false
 
 	var player_pos = Global.player_global_position
 	var distance_to_player = global_position.distance_to(Global.player_global_position)
@@ -29,6 +30,9 @@ func turn_on_coll():
 func _on_Area2D_body_entered(body):
 	if body is TileMap:
 		slowed = true
+	
+	if body.is_in_group("blast"):
+		enemy_death()
 	
 	if "out_of_bounds" in body.name:
 		turn_on_coll()

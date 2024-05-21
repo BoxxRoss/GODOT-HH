@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 # health related
-var max_health = 5
-var health = 5
+var max_health = 500
+var health = 500
 
 var boot = preload("res://player/boot/boot_prints.tscn")
 

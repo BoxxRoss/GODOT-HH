@@ -44,7 +44,19 @@ func _process(delta):
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake()
+	
+	
+	if self.position.x > 50:
+		self.position.x = 50
+	if self.position.x < -50:
+		self.position.x = -50
 		
+	if self.position.y > 20:
+		self.position.y = 20
+	if self.position.y < -20:
+		self.position.y = -20
+	
+
 func shake():
 	var amount = pow(trauma, trauma_power)
 	noise_y += 1
@@ -73,10 +85,11 @@ func _input(event):
 			if timerss != 0:
 				self.position += (mouse_delta / radius_req) * spd * delta
 				timerss = timerss - 1
+				print(self.position)
 		else:
 			self.position = Vector2(0,0)
 			timerss = 100
-	
+
 
 func _on_KinematicBody2D_camera_zoom():
 	if des_zoom > min_zoom and zoomed == false:

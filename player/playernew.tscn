@@ -257,13 +257,13 @@ outline_size = 1
 outline_color = Color( 0.14902, 0.14902, 0.14902, 1 )
 font_data = ExtResource( 13 )
 
-[sub_resource type="OccluderPolygon2D" id=10]
-polygon = PoolVector2Array( -32, 0, -32, 0, -28, 20, -32, 0, -28, -20 )
-
 [sub_resource type="Curve2D" id=11]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -448, -448, 0, 0, 0, 0, 448, -448, 0, 0, 0, 0, 448, 448, 0, 0, 0, 0, -448, 448, 0, 0, 0, 0, -448, -448 )
 }
+
+[sub_resource type="OccluderPolygon2D" id=69]
+polygon = PoolVector2Array( -29, 0, -27, -9, -18, -19, -13, -22, -32, -19, -32, 0, -32, 19, -13, 23, -21, 18, -27, 8 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
 z_index = 10
@@ -346,7 +346,7 @@ shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 5, 5 )
 smoothing_enabled = true
 smoothing_speed = 10.0
 drag_margin_left = 0.02
@@ -518,9 +518,6 @@ shadow_gradient_length = 0.1
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 11 )]
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 10 )
-
 [node name="Path2D2_special" type="Path2D" parent="."]
 curve = SubResource( 11 )
 
@@ -533,9 +530,13 @@ rotate = false
 position = Vector2( -1.85709, -0.388626 )
 
 [node name="black_effect" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 scale = Vector2( 18, 10 )
 texture = ExtResource( 28 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 69 )
 
 [connection signal="camera_zoom" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom"]
 [connection signal="camera_zoom_out" from="." to="Camera2D" method="_on_KinematicBody2D_camera_zoom_out"]

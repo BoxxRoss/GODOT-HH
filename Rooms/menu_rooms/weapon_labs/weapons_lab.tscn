@@ -405,7 +405,6 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 5 )
 animation = "Flamebeam"
-frame = 3
 playing = true
 script = ExtResource( 8 )
 
@@ -437,7 +436,6 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 10 )
 animation = "Flamebeam"
-frame = 3
 playing = true
 script = ExtResource( 7 )
 
@@ -468,7 +466,6 @@ toggle_mode = true
 modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 15 )
-frame = 3
 playing = true
 script = ExtResource( 10 )
 
@@ -500,6 +497,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 20 )
 animation = "spray"
+frame = 1
 playing = true
 script = ExtResource( 11 )
 
@@ -531,6 +529,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 25 )
 animation = "ball"
+frame = 1
 playing = true
 script = ExtResource( 14 )
 
@@ -562,7 +561,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 30 )
 animation = "tripwire"
-frame = 1
+frame = 2
 playing = true
 script = ExtResource( 16 )
 
@@ -594,6 +593,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 35 )
 animation = "air"
+frame = 1
 playing = true
 script = ExtResource( 18 )
 
@@ -624,7 +624,6 @@ toggle_mode = true
 modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 40 )
-frame = 3
 playing = true
 script = ExtResource( 20 )
 
@@ -655,6 +654,7 @@ toggle_mode = true
 modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 45 )
+frame = 1
 playing = true
 script = ExtResource( 22 )
 
