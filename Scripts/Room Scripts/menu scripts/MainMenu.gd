@@ -44,6 +44,7 @@ func _ready():
 	quit_button.modulate.a = 0
 	enter()
 	
+	
 func _process(delta):
 	
 	if Input.is_action_pressed("Shoot"):
@@ -109,3 +110,9 @@ func transition():
 	
 	
 	
+
+
+func _on_Optionsbutton_pressed():
+	transition()
+	yield(get_tree().create_timer(1), "timeout")
+	get_tree().change_scene("res://Rooms/menu_rooms/Tutorial.tscn")

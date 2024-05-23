@@ -6,7 +6,7 @@ onready var bomb = get_node("Sprite")
 func _on_Timer_timeout():
 	$Area2D/CollisionShape2D.disabled = false
 	bomb.set_texture(activated_sprite)
-	$Light2D.energy = 1.5
+	$Light2D.energy = 1
 
 	
 
@@ -17,7 +17,8 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Timer2_timeout():
-	queue_free()
+	$Area2D/CollisionShape2D.disabled = true
+	$Light2D.energy = 0
 
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemys"):

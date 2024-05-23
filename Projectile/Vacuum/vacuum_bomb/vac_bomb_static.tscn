@@ -8,7 +8,7 @@
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 63.0
+radius = 241.033
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 0
@@ -40,13 +40,13 @@ one_shot = true
 autostart = true
 
 [node name="Timer2" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 8.0
 one_shot = true
 autostart = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
-texture_scale = 5.0
+texture_scale = 15.0
 color = Color( 0.976471, 1, 0.219608, 1 )
 energy = 0.0
 

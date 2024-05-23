@@ -41,7 +41,7 @@ func _physics_process(delta):
 		var range_ball = projectile.instance()
 		get_tree().get_root().call_deferred("add_child", range_ball)
 		range_ball.position = $Collision_node/Position2D.get_global_position()
-		range_ball.apply_impulse(Vector2(),Vector2(450.0,0).rotated(self.rotation))
+		range_ball.apply_impulse(Vector2(),Vector2(250.0,0).rotated(self.rotation))
 		range_ball.rotation_degrees = self.global_rotation_degrees
 		
 		

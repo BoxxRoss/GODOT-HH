@@ -98,6 +98,12 @@ func be_slowed(concussive):
 	yield(get_tree().create_timer(time_concussed), "timeout")
 	slowed = false
 
+func slow_down():
+	speed = max_speed
+	
+func speed_up():
+	speed = speed * 50
+
 
 func Vac():
 	if Global.enemies_in_Vac <= 1:

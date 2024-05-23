@@ -4,7 +4,7 @@ extends "res://Scripts/Room Scripts/battle scripts/scriptstuff.gd"
 
 var playerspot = Vector2(0,0)
 var spawn_options = [1]
-var enemy_options = [3,3,3,3,3]
+var enemy_options = [1,2,3,4,]
 var special_enemy_options = [3,3,3]
 var walker_intensity_float = null
 var walker_intensity = null
@@ -86,16 +86,16 @@ func Rand_enemy_choice():
 		var rand_enemy_choice_float = rand_range(1,5.999)
 		var rand_enemy_choice_int = int(rand_enemy_choice_float)
 
-		#enemy_options.insert(i + 1,rand_enemy_choice_int)
+		enemy_options.insert(i + 1,rand_enemy_choice_int)
 	
 	print(enemy_options)
 	
 func _physics_process(delta):
-	pass
-	#if lowest_time <= 30:
-		#lowest_time = 30
-	#if longest_time <= 60:
-		#longest_time = 60
+	
+	if lowest_time <= 30:
+		lowest_time = 30
+	if longest_time <= 60:
+		longest_time = 60
 func generate_level():
 
 	var walker = Walker.new(Vector2(76,41), borders)

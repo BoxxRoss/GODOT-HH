@@ -59,7 +59,9 @@ func enter():
 		$Control2.modulate.a += 0.1
 		
 func _ready():
+	
 	_on_flicker_timeout()
+	$Warning.modulate.a = 0
 	$Control.modulate.a = 0
 	$Control2.modulate.a = 0
 	$move_to_level.modulate.a = 0
@@ -136,23 +138,21 @@ func _process(delta):
 	$Light2D.energy = lerp($Light2D.energy,rand_ene,0.5)
 
 func _on_flamethrower_toggled(button_pressed):
-	
+
 	if button_pressed and weapons_picked < weapons_limit:
 		weapons_picked += 1
 		flamethrower = 1
 		Global.flame_thrower_activcated = true
 		Global.what_was_picked = 1
 		
-		
 	elif button_pressed == false and flamethrower == 1:
 		weapons_picked -= 1
 		flamethrower = 0
 		Global.flame_thrower_activcated = false
 		Global.flamethrower_position = 0
-	
+
 		
-	else:
-		$flamethrower.pressed = false
+
 
 func _on_heatbeam_toggled(button_pressed):
 	if button_pressed and weapons_picked < weapons_limit:
@@ -283,39 +283,49 @@ func _on_vacuum_deploy_toggled(button_pressed):
 func _on_flamethrower_pressed():
 	if flamethrower == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_heatbeam_pressed():
 	if heatbeam == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_flametrail_pressed():
 	if firetrail == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_lightning_spray_pressed():
 	if lightspray == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_lightning_ball_pressed():
 	if lightball == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_lightning_tripwire_pressed():
 	if lighttrip == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_vacuum_blast_pressed():
 	if vacuumblast == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_vacuum_bomb_pressed():
 	if vacuumbomb == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
 func _on_vacuum_deploy_pressed():
 	if vacuumdeploy == 1:
 		to_weapon_select()
-
+	elif weapons_picked == weapons_limit:
+		reminder()
+	
 func _on_move_to_level_pressed():
 	exit()
 	yield(get_tree().create_timer(1), "timeout")
@@ -323,6 +333,15 @@ func _on_move_to_level_pressed():
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
 
+func reminder():
+	$Warning.modulate.a = 1.0
+	yield(get_tree().create_timer(1.0), "timeout")
+	while $Warning.modulate.a > 0:
+		yield(get_tree().create_timer(0.01), "timeout")
+		$Warning.modulate.a -= 0.01
+
+		
+		
 func _on_flicker_timeout():
 	timer_check = true
 	$flicker.wait_time = rand_range(0.15,0.3)

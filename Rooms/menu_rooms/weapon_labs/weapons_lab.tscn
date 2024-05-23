@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display-weapon3.gd" type="Script" id=1]
 [ext_resource path="res://Rooms/menu_rooms/weapon_labs/display_weapon2.gd" type="Script" id=2]
@@ -363,6 +363,12 @@ outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = -2
 font_data = ExtResource( 24 )
 
+[sub_resource type="DynamicFont" id=60]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 24 )
+
 [node name="weapon_lab_control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -405,6 +411,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 5 )
 animation = "Flamebeam"
+frame = 3
 playing = true
 script = ExtResource( 8 )
 
@@ -436,6 +443,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 10 )
 animation = "Flamebeam"
+frame = 3
 playing = true
 script = ExtResource( 7 )
 
@@ -466,6 +474,7 @@ toggle_mode = true
 modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 15 )
+frame = 3
 playing = true
 script = ExtResource( 10 )
 
@@ -497,7 +506,6 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 20 )
 animation = "spray"
-frame = 1
 playing = true
 script = ExtResource( 11 )
 
@@ -529,7 +537,6 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 25 )
 animation = "ball"
-frame = 1
 playing = true
 script = ExtResource( 14 )
 
@@ -561,7 +568,7 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 30 )
 animation = "tripwire"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 16 )
 
@@ -593,7 +600,6 @@ modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 35 )
 animation = "air"
-frame = 1
 playing = true
 script = ExtResource( 18 )
 
@@ -624,6 +630,7 @@ toggle_mode = true
 modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 40 )
+frame = 3
 playing = true
 script = ExtResource( 20 )
 
@@ -654,7 +661,6 @@ toggle_mode = true
 modulate = Color( 1, 1, 1, 0.607843 )
 position = Vector2( 15, 15 )
 frames = SubResource( 45 )
-frame = 1
 playing = true
 script = ExtResource( 22 )
 
@@ -764,6 +770,20 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 52 )
 text = "Pick 3 Weapons"
+align = 1
+
+[node name="Warning" type="Label" parent="."]
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
+margin_left = 158.0
+margin_top = 462.0
+margin_right = 566.0
+margin_bottom = 525.0
+rect_scale = Vector2( 0.8, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 60 )
+text = "To change weapons, first
+deselect the ones already selected"
 align = 1
 
 [node name="static" type="Sprite" parent="."]

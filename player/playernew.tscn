@@ -344,9 +344,19 @@ position = Vector2( 0, -0.5 )
 scale = Vector2( 45, 45 )
 shape = SubResource( 9 )
 
+[node name="Area2D4" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+position = Vector2( 0, -0.5 )
+scale = Vector2( 60, 60 )
+shape = SubResource( 9 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 5, 5 )
+zoom = Vector2( 10, 10 )
 smoothing_enabled = true
 smoothing_speed = 10.0
 drag_margin_left = 0.02
@@ -393,21 +403,19 @@ script = ExtResource( 17 )
 position = Vector2( 157.5, 71 )
 frames = SubResource( 37 )
 animation = "air_blast"
-frame = 3
 playing = true
 
 [node name="weapon_2" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 106.75 )
 frames = SubResource( 37 )
 animation = "air_blast"
-frame = 2
+frame = 3
 playing = true
 
 [node name="weapon_3" type="AnimatedSprite" parent="Path2D/CanvasLayer/Control/health_hud"]
 position = Vector2( 157.5, 143 )
 frames = SubResource( 37 )
 animation = "air_blast"
-frame = 3
 playing = true
 
 [node name="TextureProgress" type="TextureProgress" parent="Path2D/CanvasLayer/Control"]
@@ -428,12 +436,12 @@ position = Vector2( -1048, -704 )
 scale = Vector2( 2.14688, 2.14688 )
 texture = ExtResource( 15 )
 
-[node name="SWARM_warning" type="Label" parent="Path2D/CanvasLayer/Control"]
-margin_left = -1184.0
-margin_top = -746.667
-margin_right = -1024.0
-margin_bottom = -666.667
-rect_scale = Vector2( 1.71749, 1.71749 )
+[node name="SWARM_warning" type="Label" parent="Path2D/CanvasLayer/Control/popup"]
+margin_left = -63.0
+margin_top = -15.0
+margin_right = 97.0
+margin_bottom = 65.0
+rect_scale = Vector2( 0.8, 0.8 )
 custom_colors/font_color = Color( 0.507813, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
@@ -496,7 +504,7 @@ script = ExtResource( 8 )
 [node name="Light2D" type="Light2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 21 )
-color = Color( 1, 0.960784, 0.717647, 1 )
+color = Color( 1, 0.984314, 0.87451, 1 )
 energy = 0.8
 shadow_enabled = true
 shadow_gradient_length = 5.0
@@ -552,4 +560,6 @@ occluder = SubResource( 69 )
 [connection signal="body_entered" from="weapon_control/bulletpoint/Area2D" to="weapon_control" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
 [connection signal="body_entered" from="Area2D3" to="." method="_on_Area2D3_body_entered"]
+[connection signal="body_entered" from="Area2D4" to="." method="_on_Area2D4_body_entered"]
+[connection signal="body_exited" from="Area2D4" to="." method="_on_Area2D4_body_exited"]
 [connection signal="timeout" from="Light2D/Timer" to="Light2D" method="_on_Timer_timeout"]

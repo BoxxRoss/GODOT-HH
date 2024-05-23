@@ -29,6 +29,7 @@ config/icon="res://Sprites/icon.png"
 Betterpause="*res://Rooms/betterpause.tscn"
 Global="*res://globals/global.gd"
 SaveScript="*res://Scripts/Room Scripts/Save_script.gd"
+ZombiesSong="*res://zombies song.tscn"
 
 [debug]
 

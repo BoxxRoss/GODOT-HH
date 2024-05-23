@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 # health related
-var max_health = 500
-var health = 500
+var max_health = 5
+var health = 5
 
 var boot = preload("res://player/boot/boot_prints.tscn")
 
@@ -186,6 +186,12 @@ func take_a_hit():
 func _on_Area2D3_body_entered(body):
 	body.turn_on_coll()
 	
+func _on_Area2D4_body_entered(body):
+	body.slow_down()
+
+func _on_Area2D4_body_exited(body):
+	body.speed_up()
+
 func light():
 	while $black_effect.modulate.a != 0:
 		yield(get_tree().create_timer(0.03), "timeout")
