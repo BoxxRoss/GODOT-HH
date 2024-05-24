@@ -332,7 +332,7 @@ func _on_move_to_level_pressed():
 	darken()
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().change_scene("res://Rooms/battle_rooms/endless_room.tscn")
-
+	ZombiesSong.stop_playing()
 func reminder():
 	$Warning.modulate.a = 1.0
 	yield(get_tree().create_timer(1.0), "timeout")

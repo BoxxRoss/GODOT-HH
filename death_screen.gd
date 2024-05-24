@@ -32,7 +32,7 @@ func _on_Button2_pressed():
 	yield(get_tree().create_timer(1.5), "timeout")
 	get_tree().change_scene("res://Rooms/menu_rooms/MainMenu.tscn")
 	Global.died = false
-
+	ZombiesSong.button_click()
 func _process(delta):
 	
 	if Input.is_action_pressed("Shoot"):

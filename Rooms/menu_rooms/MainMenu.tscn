@@ -96,7 +96,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=7]
-size = 50
+size = 100
 font_data = ExtResource( 9 )
 
 [node name="MainMenu" type="Control"]
@@ -171,15 +171,15 @@ texture_normal = ExtResource( 8 )
 texture_hover = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="VBoxContainer/Optionsbutton"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 266.0
-margin_bottom = 54.0
-rect_scale = Vector2( 0.2, 0.5 )
+margin_left = 0.25
+margin_top = 3.0
+margin_right = 260.25
+margin_bottom = 53.0
+rect_scale = Vector2( 0.25, 0.5 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 1 )
-text = "Tips/Tutorial"
+text = "How to play"
 align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Optionsbutton"]
@@ -233,14 +233,15 @@ text = "test"
 align = 1
 
 [node name="credits" type="Label" parent="."]
-margin_left = -446.0
-margin_top = 560.0
-margin_right = 54.0
-margin_bottom = 663.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -422.0
+margin_top = 542.0
+margin_right = 698.0
+margin_bottom = 751.0
+rect_scale = Vector2( 0.25, 0.25 )
 custom_fonts/font = SubResource( 7 )
-text = "Main menu music- Zombies
-Level music- "
+text = "The music is purely for demonstration
+I did not make this music
+Main menu music - Zombies | Level music - Demented Wrath"
 
 [node name="static" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.419608 )
