@@ -10,7 +10,7 @@ func _ready():
 	noise.period = 4
 	noise.octaves = 2
 	
-	zoom = Vector2(2,2)
+	zoom = Vector2(1.75,1.75)
 	zoomout()
 
 var spd = 0.1

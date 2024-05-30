@@ -93,7 +93,6 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Breath"):
 		stamina = stamina + 5
 		emit_signal("camera_zoom")
-		emit_signal("add_trauma_minor", 0.2)
 		is_breathing = true
 		Engine.time_scale = 0.1
 		Engine.iterations_per_second = 50

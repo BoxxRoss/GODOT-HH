@@ -36,7 +36,7 @@ func _physics_process(delta):
 	if is_range and firing == false:
 		firing = true
 		
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(1), "timeout")
 		
 		var range_ball = projectile.instance()
 		get_tree().get_root().call_deferred("add_child", range_ball)

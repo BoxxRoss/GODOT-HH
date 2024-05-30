@@ -172,7 +172,7 @@ press right click to cancel beam
 
 waves of enemies will attempting to
 kill you, surivive and move to the
-lower left of the map to progress"
+lower right of the map to progress"
 
 [node name="static" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.419608 )
